@@ -1,0 +1,17 @@
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Repository.deps.json
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Repository.runtimeconfig.json
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Repository.dll
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Repository.pdb
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.dll
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.pdb
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.csproj.AssemblyReference.cache
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.AssemblyInfoInputs.cache
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.AssemblyInfo.cs
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.csproj.CoreCompileInputs.cache
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.csproj.CopyComplete
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.dll
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\refint\WebProgrammingTerm.Auth.Repository.dll
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.pdb
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.genruntimeconfig.cache
+C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\ref\WebProgrammingTerm.Auth.Repository.dll

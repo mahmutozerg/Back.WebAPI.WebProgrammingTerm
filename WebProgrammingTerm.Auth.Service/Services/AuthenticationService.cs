@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using WebProgrammingTerm.Auth.Core.Configurations;
 using WebProgrammingTerm.Auth.Core.DTOs;
 using WebProgrammingTerm.Auth.Core.Models;
 using WebProgrammingTerm.Auth.Core.Repositories;
@@ -13,14 +15,16 @@ public class AuthenticationService:IAuthenticationService
     private readonly UserManager<User> _userManager;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IGenericRepository<UserRefreshToken> _refreshTokenService;
+    private readonly ClientLoginDto _tokenOptions;
 
 
-    public AuthenticationService(ITokenService tokenService, UserManager<User> userManager, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> refreshTokenService)
+    public AuthenticationService(ITokenService tokenService, UserManager<User> userManager, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> refreshTokenService, IOptions<ClientLoginDto> tokenOptions)
     {
         _tokenService = tokenService;
         _userManager = userManager;
         _unitOfWork = unitOfWork;
         _refreshTokenService = refreshTokenService;
+        _tokenOptions = tokenOptions.Value;
     }
 
     public async Task<Response<TokenDto>> CreateTokenAsync(LoginDto loginDto)
@@ -38,7 +42,7 @@ public class AuthenticationService:IAuthenticationService
 
         var token = _tokenService.CreateToken(user);
 
-        var userRefreshToken = await _refreshTokenService.Where(r => r.UserId == user.Id).SingleOrDefaultAsync();
+        var userRefreshToken = await _refreshTokenService.Where(r => r != null && r.UserId == user.Id).SingleOrDefaultAsync();
 
         if (userRefreshToken is null)
         {
@@ -57,7 +61,8 @@ public class AuthenticationService:IAuthenticationService
 
     public async Task<Response<TokenDto>> CreateTokenByRefreshToken(string _refreshToken)
     {
-        var refreshToken = await _refreshTokenService.Where(r => r.Token == _refreshToken).SingleOrDefaultAsync();
+        
+        var refreshToken = await _refreshTokenService.Where(r => r != null && r.Token == _refreshToken).SingleOrDefaultAsync();
 
         if (refreshToken is null)
             return Response<TokenDto>.Fail("Refresh token does not exist", 404,true);
@@ -75,7 +80,27 @@ public class AuthenticationService:IAuthenticationService
 
         
     }
+    public Response<ClientTokenDto> CreateTokenByClient(ClientLoginDto clientLoginDto)
+    {
+        if (string.CompareOrdinal(_tokenOptions.Id,clientLoginDto.Id) == 0
+            && string.CompareOrdinal(_tokenOptions.Secret,clientLoginDto.Secret) == 0)
+        {
+            
+            var Client = new Client()
+            {
+                Id = clientLoginDto.Id,
+                Secret = clientLoginDto.Secret,
+                Audiences = new List<string> { "www.bookerr.com" }
+            };
 
+            var clientTokenDto = _tokenService.CreateTokenByClient(Client);
+            return Response<ClientTokenDto>.Success(statusCode:200,data:clientTokenDto);
+
+        }
+
+        throw new Exception("Client Does not Exist");
+    }
+    
     public async Task<Response<NoDataDto>> RevokeRefreshToken(string _refreshToken)
     {
         var refreshToken = await _refreshTokenService.Where(r => r.Token == _refreshToken).FirstOrDefaultAsync();
@@ -90,5 +115,5 @@ public class AuthenticationService:IAuthenticationService
 
     }
 
-
+    
 }

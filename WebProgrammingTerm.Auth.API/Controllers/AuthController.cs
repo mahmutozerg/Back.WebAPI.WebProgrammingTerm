@@ -8,6 +8,13 @@ namespace WebProgrammingTerm.Auth.API.Controllers;
 public class AuthController:CustomControllerBase
 {
     private readonly IAuthenticationService _authenticationService;
+    [HttpPost]
+    public async Task<IActionResult> CreateTokenByClient(ClientLoginDto clientLoginDto)
+    {
+        var result =  _authenticationService.CreateTokenByClient(clientLoginDto);
+
+        return CreateActionResult(result);
+    }
 
     public AuthController(IAuthenticationService authenticationService)
     {

@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using WebProgrammingTerm.Auth.Core.Configurations;
 using WebProgrammingTerm.Auth.Core.DTOs;
 using WebProgrammingTerm.Auth.Core.Models;
 using WebProgrammingTerm.Auth.Core.Services;
@@ -14,15 +15,15 @@ namespace WebProgrammingTerm.Auth.Service.Services;
 
 public class TokenService:ITokenService
 {
-    
-    /// <summary>
-    ///  user manageri sildim haberin olsun;
-    /// </summary>
+    private readonly UserManager<User> _UserManager;
     private readonly AppTokenOptions _tokenOptions;
+    private readonly ClientLoginDto _clientTokenOptions;
 
-    public TokenService(IOptions<AppTokenOptions> tokenOptions)
+    public TokenService(UserManager<User> userManager, IOptions<AppTokenOptions> tokenOptions, IOptions<ClientLoginDto>  clientTokenOptions)
     {
+        _UserManager = userManager;
         _tokenOptions = tokenOptions.Value;
+        _clientTokenOptions = clientTokenOptions.Value;
     }
    
     
@@ -57,6 +58,33 @@ public class TokenService:ITokenService
         return tokendto;
     }
 
+    public ClientTokenDto CreateTokenByClient(Client client)
+    {
+        var accesTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
+        var securityKey = SignService.GetSymmetricSecurityKey(_tokenOptions.SecurityKey);
+
+        var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
+
+        var jwtSecurityToken = new JwtSecurityToken(
+            
+            issuer: _tokenOptions.Issuer,
+            expires: accesTokenExpiration,
+            notBefore: DateTime.Now,
+            signingCredentials: signingCredentials,
+            claims: GetClaimsByClient(client)
+        );
+
+        var jwtHandler = new JwtSecurityTokenHandler();
+        var token = jwtHandler.WriteToken(jwtSecurityToken);
+
+        var tokendto = new ClientTokenDto
+        {
+            AccesToken = token,
+            AccesTokenExpiration = accesTokenExpiration
+        };
+
+        return tokendto;    
+    }
     
     private string CreateRefreshToken()
     {
@@ -81,6 +109,15 @@ public class TokenService:ITokenService
         return userClaims;
     }
 
+    private IEnumerable<Claim> GetClaimsByClient(Client client)
+    {
+        var claims = new List<Claim>();
+        claims.AddRange(client.Audiences.Select(a=> new Claim(JwtRegisteredClaimNames.Aud,a)));
 
+        claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+        claims.Add(new Claim(JwtRegisteredClaimNames.NameId, client.Id.ToString()));
+        
+        return claims;
+    }
 
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H5MCYB9TnHbzxzLZQ2vvvHVeVMggE7i+1DmQPeJgGWOcQ/Nlaw+Vr2m9DKW7uIuQBEesM53ek4h0HfUAoru5RA==",
+  "dgSpecHash": "NgF5OG9Zc8zIE59+Cb3WtlqyOzcB1meXsXhoaQc3dmV6H9WWf9zWIGjuW6qCL28Gu59PBye8iNYzPz9eIyblUQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj",
+  "projectFilePath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\karak\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
@@ -20,6 +20,7 @@
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\7.0.0\\microsoft.entityframeworkcore.sqlserver.7.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
+    "C:\\Users\\karak\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",

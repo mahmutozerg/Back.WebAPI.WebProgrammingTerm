@@ -1,4 +1,3 @@
-using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,8 +22,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<AppTokenOptions>(builder.Configuration.GetSection("TokenOptions"));
+builder.Services.Configure<ClientLoginDto>(builder.Configuration.GetSection("Clients"));
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<AppTokenOptions>();
-
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
@@ -32,12 +31,9 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-builder.Services.AddDbContext<AppDbContext>(x =>
+builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"), options =>
-    {
-        options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
-    });
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
 });
 
 builder.Services.AddIdentity<User, AppRole>(opt =>
@@ -52,17 +48,16 @@ builder.Services.AddAuthentication(opt =>
 {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    
 }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
 {
     opt.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidIssuer = tokenOptions.Issuer,
+        ValidateIssuer = true,
         IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
         ValidAudience = tokenOptions.Audience[0],
-        
         ValidateAudience = true,
-        ValidateIssuer = true,
+
         ValidateIssuerSigningKey = true,
         ValidateLifetime = true
     };

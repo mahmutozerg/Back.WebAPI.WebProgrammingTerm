@@ -17,9 +17,8 @@ public class UserController:CustomControllerBase
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> Add(string id)
+    public async Task<IActionResult> AddByIdAsync(string id)
     {
-        
         return CreateActionResult(await _userService.AddUserByIdAsync(id));
     }
 

@@ -27,8 +27,12 @@ public class GenericRepository<TEntity>:IGenericRepository<TEntity> where TEntit
     
     public void Update(TEntity? entity)
     {
-        if (entity != null) 
             _dbSet.Update(entity);
+    }
+
+    public async Task AddAsync(TEntity? entity)
+    {
+       await _dbSet.AddAsync(entity);
     }
 
     public void Remove(TEntity entity)

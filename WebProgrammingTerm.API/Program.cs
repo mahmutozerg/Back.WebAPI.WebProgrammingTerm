@@ -13,6 +13,7 @@ using WebProgrammingTerm.Repository;
 using WebProgrammingTerm.Repository.Repositories;
 using WebProgrammingTerm.Repository.UnitOfWorks;
 using WebProgrammingTerm.Service.Configurations;
+using WebProgrammingTerm.Service.Services;
 using UserService = WebProgrammingTerm.Service.Services.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,9 +30,10 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped(typeof(IGenericService<>), typeof(WebProgrammingTerm.Service.Services.GenericService<>));
 builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 builder.Services.AddScoped(typeof(IUserService), typeof(UserService));
-
 builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
+builder.Services.AddScoped(typeof(ICompanyService), typeof(CompanyService));
+builder.Services.AddScoped(typeof(ICompanyRepository), typeof(CompanyRepository));
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"), options =>

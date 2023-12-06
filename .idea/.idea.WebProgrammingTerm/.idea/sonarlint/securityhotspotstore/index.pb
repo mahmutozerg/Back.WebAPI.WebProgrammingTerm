@@ -1,12 +1,6 @@
 
 ^
 .WebProgrammingTerm.Auth.Core/Models/AppRole.cs,9\f\9f1159e83514cb43d503f080cfc2547499e8e5bf
-v
-FWebProgrammingTerm/obj/Debug/net7.0/WebProgrammingTerm.AssemblyInfo.cs,a\5\a5794f7a56a3f62d279125bb92fd2d60978ec6b9
-ê
-`WebProgrammingTerm/obj/Debug/net7.0/WebProgrammingTerm.GeneratedMSBuildEditorConfig.editorconfig,f\3\f3a7d3abe4e9a55cd8a087ad4f9fd9afe9a9ed1a
-x
-HWebProgrammingTerm/obj/Debug/net7.0/WebProgrammingTerm.GlobalUsings.g.cs,9\f\9f0744ad6dada20dc5f4c820b1914dd8cbfbed96
 \
 ,WebProgrammingTerm.Auth.Core/Models/Roles.cs,1\1\112d7326cbb58c84144273fbb4132d343e95275a
 [
@@ -83,20 +77,6 @@ o
 ?WebProgrammingTerm.Auth.API/Controllers/CustomControllerBase.cs,3\2\32fb1b6b4a02f4e5fd0075bfa2ceb3aa627ee4b3
 v
 FWebProgrammingTerm.Auth.Service/WebProgrammingTerm.Auth.Service.csproj,8\b\8b4ff434f02bb3cc642dacb67eae89218e87d2ec
-_
-/WebProgrammingTerm/appsettings.Development.json,c\8\c8d53c1e523205e918f735d04e38610360b000ed
-M
-WebProgrammingTerm/Program.cs,5\7\57571583de6683f7d18e5aa350969c61ebcc54df
-U
-%WebProgrammingTerm/WeatherForecast.cs,5\f\5fd5c6c14198e37fcbc323b89c4e1317742c8188
-S
-#WebProgrammingTerm/appsettings.json,7\1\71dd045703764edd15a36f1196028296cf23ed28
-\
-,WebProgrammingTerm/WebProgrammingTerm.csproj,3\8\38bf312b9a3d780414e2e24f56088c7f65efbfe2
-a
-1WebProgrammingTerm/Properties/launchSettings.json,4\0\40db5bebc6f7ea8b1dc61cf9f5bcccd61d665cea
-k
-;WebProgrammingTerm/Controllers/WeatherForecastController.cs,5\8\58405f597c545833634a04686e58b0b26aab0150
 ê
 `WebProgrammingTerm.Auth.Service/obj/Debug/net7.0/WebProgrammingTerm.Auth.Service.AssemblyInfo.cs,c\a\ca248bec3ac31a56711a9805f1f8a45341612918
 F
@@ -109,9 +89,5 @@ o
 ?WebProgrammingTerm.Auth.Core/Services/IAuthenticationService.cs,2\2\22c8734ee541f36baa42be9d499ed6a2ae8e7be0
 q
 AWebProgrammingTerm.Auth.Service/Configurations/AppTokenOptions.cs,7\6\76095bac422d448a6afb13d1a3be76708aac1aec
-b
-2WebProgrammingTerm.Auth.Repository/AppDbContext.cs,b\f\bfe93ac6fcc51ce311cca3ba5085dbbf40ecce35
 V
 &WebProgrammingTerm.Auth.API/Program.cs,c\7\c7af68c0f71528dcb4c539e67524db295bde4c88
-\
-,WebProgrammingTerm.Auth.API/appsettings.json,8\d\8d5046e76d7cd726f34773b927341f5ae7d49beb

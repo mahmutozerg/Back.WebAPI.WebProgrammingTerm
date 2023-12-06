@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProgrammingTerm", "WebProgrammingTerm\WebProgrammingTerm.csproj", "{686DD1C1-DE00-4506-97B1-873F99842AAF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{76D51CB1-F61D-48D0-A295-7A203FA834E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProgrammingTerm.Auth.Core", "WebProgrammingTerm.Auth.Core\WebProgrammingTerm.Auth.Core.csproj", "{6929C8A8-321B-44F0-896A-3C68B1E6BE75}"
@@ -12,16 +10,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProgrammingTerm.Auth.Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProgrammingTerm.Auth.API", "WebProgrammingTerm.Auth.API\WebProgrammingTerm.Auth.API.csproj", "{F22B58F7-D5A7-4C4C-B61F-8436DC5432FE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{56BAEE81-A1CB-4610-BF3A-76EBB020E4A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProgrammingTerm.API", "WebProgrammingTerm.API\WebProgrammingTerm.API.csproj", "{B818A834-32B5-4CA0-B234-156FCBC85C86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProgrammingTerm.Core", "WebProgrammingTerm.Core\WebProgrammingTerm.Core.csproj", "{7F4B34BA-06E8-40FF-920A-92DEB631E00E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProgrammingTerm.Repository", "WebProgrammingTerm.Repository\WebProgrammingTerm.Repository.csproj", "{AFAD206A-20B8-4F64-A051-42AB37EBE4E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{686DD1C1-DE00-4506-97B1-873F99842AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{686DD1C1-DE00-4506-97B1-873F99842AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{686DD1C1-DE00-4506-97B1-873F99842AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{686DD1C1-DE00-4506-97B1-873F99842AAF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6929C8A8-321B-44F0-896A-3C68B1E6BE75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6929C8A8-321B-44F0-896A-3C68B1E6BE75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6929C8A8-321B-44F0-896A-3C68B1E6BE75}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -38,11 +40,26 @@ Global
 		{F22B58F7-D5A7-4C4C-B61F-8436DC5432FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F22B58F7-D5A7-4C4C-B61F-8436DC5432FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F22B58F7-D5A7-4C4C-B61F-8436DC5432FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B818A834-32B5-4CA0-B234-156FCBC85C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B818A834-32B5-4CA0-B234-156FCBC85C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B818A834-32B5-4CA0-B234-156FCBC85C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B818A834-32B5-4CA0-B234-156FCBC85C86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F4B34BA-06E8-40FF-920A-92DEB631E00E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F4B34BA-06E8-40FF-920A-92DEB631E00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F4B34BA-06E8-40FF-920A-92DEB631E00E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F4B34BA-06E8-40FF-920A-92DEB631E00E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFAD206A-20B8-4F64-A051-42AB37EBE4E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFAD206A-20B8-4F64-A051-42AB37EBE4E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFAD206A-20B8-4F64-A051-42AB37EBE4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFAD206A-20B8-4F64-A051-42AB37EBE4E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6929C8A8-321B-44F0-896A-3C68B1E6BE75} = {76D51CB1-F61D-48D0-A295-7A203FA834E4}
 		{78D6F60C-7588-4998-BDC5-83CE69133A47} = {76D51CB1-F61D-48D0-A295-7A203FA834E4}
 		{C57188D5-DA5F-4D12-9442-BA7D15133E85} = {76D51CB1-F61D-48D0-A295-7A203FA834E4}
 		{F22B58F7-D5A7-4C4C-B61F-8436DC5432FE} = {76D51CB1-F61D-48D0-A295-7A203FA834E4}
+		{B818A834-32B5-4CA0-B234-156FCBC85C86} = {56BAEE81-A1CB-4610-BF3A-76EBB020E4A5}
+		{7F4B34BA-06E8-40FF-920A-92DEB631E00E} = {56BAEE81-A1CB-4610-BF3A-76EBB020E4A5}
+		{AFAD206A-20B8-4F64-A051-42AB37EBE4E2} = {56BAEE81-A1CB-4610-BF3A-76EBB020E4A5}
 	EndGlobalSection
 EndGlobal

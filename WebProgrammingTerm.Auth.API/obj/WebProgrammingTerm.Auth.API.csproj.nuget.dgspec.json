@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\WebProgrammingTerm.Auth.API.csproj": {}
+    "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\WebProgrammingTerm.Auth.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\WebProgrammingTerm.Auth.API.csproj": {
+    "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\WebProgrammingTerm.Auth.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\WebProgrammingTerm.Auth.API.csproj",
+        "projectUniqueName": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\WebProgrammingTerm.Auth.API.csproj",
         "projectName": "WebProgrammingTerm.Auth.API",
-        "projectPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\WebProgrammingTerm.Auth.API.csproj",
+        "projectPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\WebProgrammingTerm.Auth.API.csproj",
         "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\obj\\",
+        "outputPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -27,8 +27,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj": {
-                "projectPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj"
+              "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj": {
+                "projectPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj"
               }
             }
           }
@@ -85,14 +85,14 @@
         }
       }
     },
-    "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj": {
+    "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj",
+        "projectUniqueName": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj",
         "projectName": "WebProgrammingTerm.Auth.Core",
-        "projectPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj",
+        "projectPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj",
         "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\obj\\",
+        "outputPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -148,14 +148,14 @@
         }
       }
     },
-    "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\WebProgrammingTerm.Auth.Repository.csproj": {
+    "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\WebProgrammingTerm.Auth.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\WebProgrammingTerm.Auth.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\WebProgrammingTerm.Auth.Repository.csproj",
         "projectName": "WebProgrammingTerm.Auth.Repository",
-        "projectPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\WebProgrammingTerm.Auth.Repository.csproj",
+        "projectPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\WebProgrammingTerm.Auth.Repository.csproj",
         "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\obj\\",
+        "outputPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -170,8 +170,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj": {
-                "projectPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj"
+              "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj": {
+                "projectPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj"
               }
             }
           }
@@ -227,14 +227,14 @@
         }
       }
     },
-    "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj": {
+    "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj",
+        "projectUniqueName": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj",
         "projectName": "WebProgrammingTerm.Auth.Service",
-        "projectPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj",
+        "projectPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj",
         "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\obj\\",
+        "outputPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -249,8 +249,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\WebProgrammingTerm.Auth.Repository.csproj": {
-                "projectPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\WebProgrammingTerm.Auth.Repository.csproj"
+              "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\WebProgrammingTerm.Auth.Repository.csproj": {
+                "projectPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Repository\\WebProgrammingTerm.Auth.Repository.csproj"
               }
             }
           }

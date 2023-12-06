@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H5MCYB9TnHbzxzLZQ2vvvHVeVMggE7i+1DmQPeJgGWOcQ/Nlaw+Vr2m9DKW7uIuQBEesM53ek4h0HfUAoru5RA==",
+  "dgSpecHash": "KZGSenNvmeoAkgLtKq/Z1Qx8SthXhVPfeTyP/u9sFF9G8KbH480Fvrf/IEt1J9NQUpmLE0oj8LxueVyvwPcAZQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj",
+  "projectFilePath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Service\\WebProgrammingTerm.Auth.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\karak\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

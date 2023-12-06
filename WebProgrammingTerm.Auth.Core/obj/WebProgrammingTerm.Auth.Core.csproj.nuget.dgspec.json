@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj": {}
+    "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj": {
+    "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj",
+        "projectUniqueName": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj",
         "projectName": "WebProgrammingTerm.Auth.Core",
-        "projectPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj",
+        "projectPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj",
         "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karak\\RiderProjects\\WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\obj\\",
+        "outputPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"

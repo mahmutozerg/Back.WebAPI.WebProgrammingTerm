@@ -7,8 +7,8 @@ namespace WebProgrammingTerm.Core.Services;
 public interface IGenericService<TEntity> where TEntity:class
 {
 
-    Task<CustomResponseNoDataDto> Remove(string id);
+    Task<CustomResponseNoDataDto> Remove(string id,string updatedBy);
     Task<CustomResponseNoDataDto> AddAsync(TEntity entity);
     IQueryable<TEntity?> Where(Expression<Func<TEntity?, bool>> expression);
-    Task<CustomResponseNoDataDto> UpdateAsync(TEntity entity);
+    Task<CustomResponseNoDataDto> UpdateAsync(TEntity entity,string updatedBy);
 }

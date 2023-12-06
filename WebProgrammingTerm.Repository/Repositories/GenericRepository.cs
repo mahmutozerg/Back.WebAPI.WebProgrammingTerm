@@ -28,7 +28,6 @@ public class GenericRepository<TEntity>:IGenericRepository<TEntity> where TEntit
     public void Update(TEntity? entity)
     {
         entity.UpdatedAt = DateTime.Now;
-
         _dbSet.Update(entity);
     }
 

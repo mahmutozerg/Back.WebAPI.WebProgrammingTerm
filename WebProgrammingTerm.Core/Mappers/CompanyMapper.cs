@@ -25,8 +25,8 @@ public static class CompanyMapper
             Name = companyDto.Name,
             CreatedAt = DateTime.Now,
             CreatedBy = id,
-            UpdatedAt = DateTime.Now
-
+            UpdatedAt = DateTime.Now,
+            UpdatedBy = id
          };
 
         return company;
@@ -40,7 +40,6 @@ public static class CompanyMapper
             Contact = companyDto.Contact,
             Name = companyDto.Name,
             CreatedAt = DateTime.Now,
-            CreatedBy = "System",
             UpdatedBy = id,
             UpdatedAt = DateTime.Now
         };

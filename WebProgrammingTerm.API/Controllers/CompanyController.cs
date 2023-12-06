@@ -40,7 +40,9 @@ public class CompanyController:CustomControllerBase
     [HttpDelete("[action]")]
     public async Task<IActionResult> Delete(string id)
     {
-        return CreateActionResult( await _companyService.Remove(id));
+        var claimsIdentity = (ClaimsIdentity)User.Identity;
+
+        return CreateActionResult( await _companyService.Remove(id,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
     }
     
     [HttpGet]

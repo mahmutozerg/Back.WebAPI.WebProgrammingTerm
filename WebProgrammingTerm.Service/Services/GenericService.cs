@@ -22,14 +22,14 @@ public class GenericService<TEntity> : IGenericService<TEntity> where TEntity :B
     }
 
 
-    public async Task<CustomResponseNoDataDto> Remove(string id)
+    public async Task<CustomResponseNoDataDto> Remove(string id,string updatedBy)
     {
         var entity = await _repository.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefaultAsync();
         if (entity is null )
             return CustomResponseNoDataDto.Fail(404,ResponseMessages.Notfound);
         
         entity.UpdatedAt =DateTime.Now;
-        entity.UpdatedBy = entity.Id;
+        entity.UpdatedBy = updatedBy;
         _repository.Remove(entity);
         await _unitOfWork.CommitAsync();
         return CustomResponseNoDataDto.Success(200);
@@ -52,12 +52,12 @@ public class GenericService<TEntity> : IGenericService<TEntity> where TEntity :B
         return entities;
     }
     
-    public async Task<CustomResponseNoDataDto> UpdateAsync(TEntity entity)
+    public async Task<CustomResponseNoDataDto> UpdateAsync(TEntity entity,string updatedBy)
     {
         if (entity == null) 
             return CustomResponseNoDataDto.Fail(404,ResponseMessages.Notfound);
         
-        entity.UpdatedBy = entity.Id;
+        entity.UpdatedBy = updatedBy;
         entity.UpdatedAt = DateTime.Now;
         _repository.Update(entity);
         await _unitOfWork.CommitAsync();

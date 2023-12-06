@@ -29,7 +29,6 @@ public class CompanyService:GenericService<Company>,ICompanyService
         entity.Name = string.IsNullOrEmpty(companyUpdateDto.Name) ? entity.Name : companyUpdateDto.Name;
         entity.Contact = string.IsNullOrEmpty(companyUpdateDto.Contact) ? entity.Contact : companyUpdateDto.Contact;
         entity.UpdatedBy = updatedBy;
-        entity.UpdatedAt = DateTime.Now;
         _companyRepository.Update(entity);
         await _unitOfWork.CommitAsync();
         return CustomResponseNoDataDto.Success(200);

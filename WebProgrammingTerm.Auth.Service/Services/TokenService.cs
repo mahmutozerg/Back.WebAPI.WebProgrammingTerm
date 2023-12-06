@@ -57,33 +57,6 @@ public class TokenService:ITokenService
         return tokendto;
     }
 
-    public ClientTokenDto CreateTokenByClient(Client client)
-    {
-        var accesTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
-        var securityKey = SignService.GetSymmetricSecurityKey(_tokenOptions.SecurityKey);
-
-        var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
-
-        var jwtSecurityToken = new JwtSecurityToken(
-
-            issuer: _tokenOptions.Issuer,
-            expires: accesTokenExpiration,
-            notBefore: DateTime.Now,
-            signingCredentials: signingCredentials,
-            claims: GetClaimsByClient(client)
-        );
-
-        var jwtHandler = new JwtSecurityTokenHandler();
-        var token = jwtHandler.WriteToken(jwtSecurityToken);
-
-        var tokendto = new ClientTokenDto
-        {
-            AccessToken = token,
-            AccessTokenExpiration = accesTokenExpiration
-        };
-
-        return tokendto;    
-    }
     
     private string CreateRefreshToken()
     {
@@ -108,17 +81,6 @@ public class TokenService:ITokenService
         return userClaims;
     }
 
-    private IEnumerable<Claim> GetClaimsByClient(Client client)
-    {
-        var claims = new List<Claim>()
-        {
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(JwtRegisteredClaimNames.Sub, client.Id.ToString())
-        };
-        claims.AddRange(client.Audiences.Select(a=> new Claim(JwtRegisteredClaimNames.Aud,a)));
 
-
-        return claims;
-    }
 
 }

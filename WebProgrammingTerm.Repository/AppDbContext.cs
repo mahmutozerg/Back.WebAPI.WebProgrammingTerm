@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using WebProgrammingTerm.Core.Models;
+using WebProgrammingTerm.Repository.Configurations;
 
 namespace WebProgrammingTerm.Repository;
 
@@ -26,15 +27,19 @@ public class AppDbContext:DbContext
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        modelBuilder.Entity<User>(
-                u =>
-                {
-                    u.HasOne<Company>(u => u.Company).WithMany(c => c.Users);
-                });
+
+        modelBuilder.ApplyConfiguration(new OrderConfiguration());
+        modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductDetailConfiguration());
+        modelBuilder.ApplyConfiguration(new CompanyUserConfiguration());
+        modelBuilder.ApplyConfiguration(new UserCommentsConfiguration());
+        modelBuilder.ApplyConfiguration(new UserFavoritesConfiguration());
+
+
 
         
+        base.OnModelCreating(modelBuilder);
     }
 
     

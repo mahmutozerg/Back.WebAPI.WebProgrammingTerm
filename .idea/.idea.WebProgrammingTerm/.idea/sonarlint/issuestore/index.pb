@@ -21,18 +21,12 @@ _
 /WebProgrammingTerm.Auth.Core/DTOs/UserAppDto.cs,3\9\398ab0b38ad3669364ce5cfc4e93edc5adb95886
 `
 0WebProgrammingTerm.Auth.Core/DTOs/IUnitOfWork.cs,4\7\4757c4906655c394ed7f04b16e4c658c76247786
-g
-7WebProgrammingTerm.Auth.Service/Services/SignService.cs,d\d\dd973fbaace91075a94f1448454feed55e8b8c07
 b
 2WebProgrammingTerm.Auth.Core/DTOs/CreateUserDto.cs,b\a\ba063ff466cf9127403bc8d9aae220a897cb853b
-g
-7WebProgrammingTerm.Auth.Service/Services/UserService.cs,1\f\1fb570be72b065670cfc9d4b37728d33efaef3db
 j
 :WebProgrammingTerm.Auth.Service/Services/GenericService.cs,e\5\e5db3e2d0ba6fa235a86ad3ebbb9d49da29f4017
 o
 ?WebProgrammingTerm.Auth.Core/Repositories/IGenericRepository.cs,c\0\c06f2f1cf09a85532ccef3e945339f8f91504a54
-e
-5WebProgrammingTerm.Auth.Core/Services/IUserService.cs,7\c\7c00fd1cf7243d22ebf5462aa7ff7b288fd7b506
 h
 8WebProgrammingTerm.Auth.Core/Services/IGenericService.cs,8\4\84870f72ec99c1681d57b0c365c38fec257d7071
 p
@@ -55,8 +49,6 @@ m
 =WebProgrammingTerm.Auth.Repository/Repositories/UnitOfWork.cs,8\b\8b8c2e09f2565a0beea9dbf9bedce291f1cbdc38
 w
 GWebProgrammingTerm.Auth.Repository/Migrations/20231130161805_Initial.cs,4\c\4ca015fcaec02c2545087ed7b6691b49315352c9
-t
-DWebProgrammingTerm.Auth.Repository/Repositories/GenericRepository.cs,4\f\4fd4d764b26124d82a0ed7b972732b102da51b38
 €
 PWebProgrammingTerm.Auth.Repository/Migrations/20231130161805_Initial.Designer.cs,9\4\949ceebf0bac9c92622fb2762de2fcbb9df102c3
 z
@@ -85,9 +77,3 @@ F
 zWebProgrammingTerm.Auth.Service/obj/Debug/net7.0/WebProgrammingTerm.Auth.Service.GeneratedMSBuildEditorConfig.editorconfig,0\f\0f1e85d666e68c9ee1205663f09d7595949bf08c
 ’
 bWebProgrammingTerm.Auth.Service/obj/Debug/net7.0/WebProgrammingTerm.Auth.Service.GlobalUsings.g.cs,5\2\52d32b66d9f0c9db33746978b12f00bb36ca6710
-q
-AWebProgrammingTerm.Auth.Service/Configurations/AppTokenOptions.cs,7\6\76095bac422d448a6afb13d1a3be76708aac1aec
-V
-&WebProgrammingTerm.Auth.API/Program.cs,c\7\c7af68c0f71528dcb4c539e67524db295bde4c88
-o
-?WebProgrammingTerm.Auth.Core/Services/IAuthenticationService.cs,2\2\22c8734ee541f36baa42be9d499ed6a2ae8e7be0

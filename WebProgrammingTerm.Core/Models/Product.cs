@@ -9,4 +9,5 @@ public class Product:Base
     public float Price { get; set; } = 0f;
     public string Name { get; set; } = string.Empty;
     public int Stock { get; set; } = 0;
+    public ProductDetail ProductDetail { get; set; } = new ProductDetail();
 }

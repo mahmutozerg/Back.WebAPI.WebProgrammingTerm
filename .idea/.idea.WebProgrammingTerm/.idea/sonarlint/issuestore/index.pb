@@ -131,8 +131,6 @@ f
 6WebProgrammingTerm.Core/DTO/CustomResponseNoDataDto.cs,4\1\413d436f4c9f5487ba17501e5e5cd2da2ce7aee3
 V
 &WebProgrammingTerm.Core/Models/User.cs,2\d\2df2f60eb89a1dfd6af58dd8b301d41cc0990c2c
-\
-,WebProgrammingTerm.Auth.API/appsettings.json,8\d\8d5046e76d7cd726f34773b927341f5ae7d49beb
 c
 3WebProgrammingTerm.Auth.Core/DTOs/ClientTokenDto.cs,a\0\a0434ca393473512a86a78630e2b85bad547d3b2
 l

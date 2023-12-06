@@ -27,11 +27,15 @@ public class GenericRepository<TEntity>:IGenericRepository<TEntity> where TEntit
     
     public void Update(TEntity? entity)
     {
-            _dbSet.Update(entity);
+        entity.UpdatedAt = DateTime.Now;
+
+        _dbSet.Update(entity);
     }
 
     public async Task AddAsync(TEntity? entity)
     {
+        entity.CreatedAt = DateTime.Now;
+        entity.UpdatedAt = DateTime.Now;
        await _dbSet.AddAsync(entity);
     }
 

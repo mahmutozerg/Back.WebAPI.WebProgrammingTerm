@@ -15,8 +15,8 @@ public static class CompanyMapper
 
         return companyDto;
     }
-    
-    public static Company ToCompany(CompanyDto companyDto)
+
+    public static Company ToCompany(CompanyDto companyDto,string id)
     {
         var company = new Company()
         {
@@ -24,8 +24,25 @@ public static class CompanyMapper
             Contact = companyDto.Contact,
             Name = companyDto.Name,
             CreatedAt = DateTime.Now,
+            CreatedBy = id,
+            UpdatedAt = DateTime.Now
+
+         };
+
+        return company;
+    }
+    
+    public static Company ToCompany(CompanyUpdateDto companyDto,string id)
+    {
+        var company = new Company()
+        {
+            Id = companyDto.TargetId,
+            Contact = companyDto.Contact,
+            Name = companyDto.Name,
+            CreatedAt = DateTime.Now,
             CreatedBy = "System",
-            UpdatedBy = "System"
+            UpdatedBy = id,
+            UpdatedAt = DateTime.Now
         };
 
         return company;

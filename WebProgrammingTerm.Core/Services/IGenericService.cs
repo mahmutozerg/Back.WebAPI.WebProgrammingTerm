@@ -1,12 +1,14 @@
 using System.Linq.Expressions;
 using WebProgrammingTerm.Core.DTO;
+using WebProgrammingTerm.Core.Models;
 
 namespace WebProgrammingTerm.Core.Services;
 
 public interface IGenericService<TEntity> where TEntity:class
 {
 
-    Task<CustomResponseNoDataDto> Remove(string userId);
+    Task<CustomResponseNoDataDto> Remove(string id);
+    Task<CustomResponseNoDataDto> AddAsync(TEntity entity);
     IQueryable<TEntity?> Where(Expression<Func<TEntity?, bool>> expression);
-    Task<bool> Update(TEntity? entity);
+    Task<CustomResponseNoDataDto> UpdateAsync(TEntity entity);
 }

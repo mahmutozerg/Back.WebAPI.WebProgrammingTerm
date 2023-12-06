@@ -87,8 +87,6 @@ W
 'WebProgrammingTerm.Core/Models/Order.cs,f\a\faff12226538a4250c936fb05568dc8a89779004
 Y
 )WebProgrammingTerm.Core/Models/Product.cs,3\6\36303673019630a7fc9a25fc34e8fe6a929cd6b4
-V
-&WebProgrammingTerm.Core/Models/Base.cs,5\e\5e0c131e3ad41f03fb3a9783da06beb90dba6192
 ]
 -WebProgrammingTerm.Repository/AppDbContext.cs,5\f\5f0ee59ab87199092b31f375e1483155d49f540d
 ]
@@ -109,12 +107,6 @@ e
 5WebProgrammingTerm.Repository/Configurations/Order.cs,d\1\d1e121cd3827a64a841efd5bd8e7b5cda5943d3b
 k
 ;WebProgrammingTerm.Repository/Configurations/CompanyUser.cs,7\4\741be1fab122403fac8515cf74c029397d94241a
-h
-8WebProgrammingTerm.Core/DTO/CustomResponseListDataDto.cs,2\e\2ea3470be9c040a7f9b0de7e1019897045e6e54e
-b
-2WebProgrammingTerm.Core/UnitOfWorks/IUnitOfWork.cs,e\5\e5a27eed075aab8a298c3ca8cf5c8bd8f4793cb9
-g
-7WebProgrammingTerm.Repository/UnitOfWorks/UnitOfWork.cs,1\6\16f1ff42225cd2e522b07201a6fe62d3188bb0e3
 j
 :WebProgrammingTerm.API/Controllers/CustomBaseController.cs,1\c\1c2f28f9c6bca36fa3508c7c7a324dd468d478cc
 e
@@ -145,8 +137,6 @@ c
 3WebProgrammingTerm.Auth.Core/DTOs/ClientTokenDto.cs,a\0\a0434ca393473512a86a78630e2b85bad547d3b2
 l
 <WebProgrammingTerm.Service/Configurations/AppTokenOptions.cs,3\6\368483b90b5a6650e257ca037ec6e40399fc8504
-h
-8WebProgrammingTerm.Auth.Service/Services/TokenService.cs,7\e\7e33df211ee77e72f9ec073833a7e0495e925faa
 n
 >WebProgrammingTerm.API/AuthRequirements/ClientIdRequirement.cs,8\4\84c3b9c0165047d03ae1f8b47789e8d0e8f1a173
 W

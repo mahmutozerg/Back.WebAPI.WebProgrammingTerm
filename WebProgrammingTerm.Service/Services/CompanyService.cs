@@ -19,30 +19,20 @@ public class CompanyService:GenericService<Company>,ICompanyService
         _companyRepository = companyRepository;
     }
 
-    public  async Task<CustomResponseNoDataDto> AddAsync(CompanyDto companyDto)
+    public  async Task<CustomResponseNoDataDto> UpdateAsync(CompanyUpdateDto companyUpdateDto,string updatedBy)
     {
-        var entityExist = await _companyRepository.Where(c => c.Name == companyDto.Name && !c.IsDeleted).AnyAsync();
-        if (entityExist)
-            return CustomResponseNoDataDto.Fail(409,ResponseMessages.CompanyNameExist);
-            
-        
-        var entity = CompanyMapper.ToCompany(companyDto);
-        await _companyRepository.AddAsync(entity);
-        await _unitOfWork.CommitAsync();
-        return CustomResponseNoDataDto.Success(201);
-    }
+        var entity = await _companyRepository.Where(c => c != null && c.Id == companyUpdateDto.TargetId && !c.IsDeleted).SingleOrDefaultAsync();
 
-    public  async Task<CustomResponseNoDataDto> UpdateAsync(CompanyDto companyDto)
-    {
-        var entityExist = await _companyRepository.Where(c => c.Name == companyDto.Name && !c.IsDeleted).AnyAsync();
-        if (!entityExist)
-            return CustomResponseNoDataDto.Fail(409,ResponseMessages.CompanyNameExist);
-            
+        if (entity is null)
+            return CustomResponseNoDataDto.Fail(404,ResponseMessages.Notfound);
         
-        var entity = CompanyMapper.ToCompany(companyDto);
-         _companyRepository.Update(entity);
+        entity.Name = string.IsNullOrEmpty(companyUpdateDto.Name) ? entity.Name : companyUpdateDto.Name;
+        entity.Contact = string.IsNullOrEmpty(companyUpdateDto.Contact) ? entity.Contact : companyUpdateDto.Contact;
+        entity.UpdatedBy = updatedBy;
+        entity.UpdatedAt = DateTime.Now;
+        _companyRepository.Update(entity);
         await _unitOfWork.CommitAsync();
-        return CustomResponseNoDataDto.Success(204);
+        return CustomResponseNoDataDto.Success(200);
+
     }
- 
 }

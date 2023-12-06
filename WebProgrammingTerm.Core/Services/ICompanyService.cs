@@ -5,6 +5,5 @@ namespace WebProgrammingTerm.Core.Services;
 
 public interface ICompanyService:IGenericService<Company>
 {
-    Task<CustomResponseNoDataDto> AddAsync(CompanyDto companyDto);
-
+    Task<CustomResponseNoDataDto> UpdateAsync(CompanyUpdateDto companyUpdateDtoDto,string updatedBy);
 }

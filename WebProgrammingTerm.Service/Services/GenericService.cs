@@ -26,7 +26,7 @@ public class GenericService<TEntity> : IGenericService<TEntity> where TEntity :B
     {
         var entity = await _repository.Where(x => x.Id == id && !x.IsDeleted).FirstOrDefaultAsync();
         if (entity is null )
-            return CustomResponseNoDataDto.Fail(404,ResponseMessages.UserNotFound);
+            return CustomResponseNoDataDto.Fail(404,ResponseMessages.Notfound);
         
         entity.UpdatedAt =DateTime.Now;
         entity.UpdatedBy = entity.Id;
@@ -35,7 +35,16 @@ public class GenericService<TEntity> : IGenericService<TEntity> where TEntity :B
         return CustomResponseNoDataDto.Success(200);
     }
 
+    public async Task<CustomResponseNoDataDto> AddAsync(TEntity _entity)
+    {
+        var entity = await _repository.Where(x => x != null && x.Id == _entity.Id && !x.IsDeleted).FirstOrDefaultAsync();
+        if (entity is not null )
+            return CustomResponseNoDataDto.Fail(409,ResponseMessages.UserNotFound);
 
+        await _repository.AddAsync(_entity);
+        await _unitOfWork.CommitAsync();
+        return CustomResponseNoDataDto.Success(201);
+    }
 
     public IQueryable<TEntity?> Where(Expression<Func<TEntity?, bool>> expression)
     {
@@ -43,16 +52,16 @@ public class GenericService<TEntity> : IGenericService<TEntity> where TEntity :B
         return entities;
     }
     
-    public async Task<bool> Update(TEntity? entity)
+    public async Task<CustomResponseNoDataDto> UpdateAsync(TEntity entity)
     {
         if (entity == null) 
-            return false;
+            return CustomResponseNoDataDto.Fail(404,ResponseMessages.Notfound);
         
         entity.UpdatedBy = entity.Id;
         entity.UpdatedAt = DateTime.Now;
         _repository.Update(entity);
         await _unitOfWork.CommitAsync();
-        return true;
+        return CustomResponseNoDataDto.Success(200);
 
     }
     

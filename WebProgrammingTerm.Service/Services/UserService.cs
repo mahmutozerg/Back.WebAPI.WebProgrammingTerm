@@ -17,7 +17,7 @@ public class UserService:GenericService<User>,IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<CustomResponseDto<CustomResponseNoDataDto>> AddUserByIdAsync(string id)
+    public async Task<CustomResponseDto<CustomResponseNoDataDto>> AddUserByIdAsync(string id,string createdBy)
     {
         var userExist = await _userRepository.AnyAsync(u => u != null && u.Id == id);
         if (userExist)
@@ -29,6 +29,8 @@ public class UserService:GenericService<User>,IUserService
             LastName = string.Empty,
             Id = id,
             IsDeleted = false,
+            CreatedBy = createdBy,
+            UpdatedBy = createdBy
         };
         await _userRepository.AddAsync(user);
         await _unitOfWork.CommitAsync();

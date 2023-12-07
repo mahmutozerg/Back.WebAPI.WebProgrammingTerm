@@ -19,7 +19,9 @@ public class UserController:CustomControllerBase
     [HttpPost("[action]")]
     public async Task<IActionResult> AddByIdAsync(string id)
     {
-        return CreateActionResult(await _userService.AddUserByIdAsync(id));
+        var claimsIdentity = (ClaimsIdentity)User.Identity;
+
+        return CreateActionResult(await _userService.AddUserByIdAsync(id,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
     }
 
 }

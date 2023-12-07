@@ -89,10 +89,6 @@ Y
 )WebProgrammingTerm.Core/Models/Product.cs,3\6\36303673019630a7fc9a25fc34e8fe6a929cd6b4
 ]
 -WebProgrammingTerm.Core/Models/OrderDetail.cs,5\d\5df6707c5a1d97f54138acd436f189dbc287c389
-]
--WebProgrammingTerm.Repository/AppDbContext.cs,5\f\5f0ee59ab87199092b31f375e1483155d49f540d
-]
--WebProgrammingTerm.Core/Models/CompanyUser.cs,2\0\201ba08b562b8cba3bd1556dea5632af3c260114
 _
 /WebProgrammingTerm.Core/Models/ProductDetail.cs,8\2\82d15017038c66f55534c1bba9467d3e561a09cd
 m
@@ -105,8 +101,6 @@ m
 =WebProgrammingTerm.Repository/Configurations/OrderDetailed.cs,e\c\ec21462178b9b169d09996ce44586818315a4d0c
 e
 5WebProgrammingTerm.Repository/Configurations/Order.cs,d\1\d1e121cd3827a64a841efd5bd8e7b5cda5943d3b
-k
-;WebProgrammingTerm.Repository/Configurations/CompanyUser.cs,7\4\741be1fab122403fac8515cf74c029397d94241a
 j
 :WebProgrammingTerm.API/Controllers/CustomBaseController.cs,1\c\1c2f28f9c6bca36fa3508c7c7a324dd468d478cc
 g

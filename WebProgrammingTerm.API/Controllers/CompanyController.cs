@@ -14,10 +14,12 @@ namespace WebProgrammingTerm.API.Controllers;
 public class CompanyController:CustomControllerBase
 {
     private readonly ICompanyService _companyService;
-
-    public CompanyController(ICompanyService companyService)
+    private readonly ICompanyUserService _companyUserService;
+    
+    public CompanyController(ICompanyService companyService, ICompanyUserService companyUserService)
     {
         _companyService = companyService;
+        _companyUserService = companyUserService;
     }
     
     [HttpPost("[action]")]
@@ -35,8 +37,6 @@ public class CompanyController:CustomControllerBase
         return CreateActionResult(await _companyService.UpdateAsync(companyUpdateDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
 
     }
-    
-        
     [HttpDelete("[action]")]
     public async Task<IActionResult> Delete(string id)
     {
@@ -52,4 +52,12 @@ public class CompanyController:CustomControllerBase
         return CreateActionResult(CustomResponseListDataDto<Company>.Success(entities,200));
 
     }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> CreateCompanyUser(CompanyUserDto companyUserDto)
+    {
+        var claimsIdentity = (ClaimsIdentity)User.Identity;
+        return CreateActionResult(await _companyUserService.AddAsync(companyUserDto,
+            claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+    }
+    
 }

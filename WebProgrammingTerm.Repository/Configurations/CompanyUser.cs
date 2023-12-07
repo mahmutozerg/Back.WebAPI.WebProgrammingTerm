@@ -8,17 +8,8 @@ namespace WebProgrammingTerm.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<CompanyUser> builder)
         {
-            builder.HasKey(cu => new { cu.CompanyId, cu.UserId });
 
-            builder
-                .HasOne(cu => cu.Company)
-                .WithMany()
-                .HasForeignKey(cu => cu.CompanyId);
 
-            builder
-                .HasOne(cu => cu.User)
-                .WithMany()
-                .HasForeignKey(cu => cu.UserId);
         }
     }
 }

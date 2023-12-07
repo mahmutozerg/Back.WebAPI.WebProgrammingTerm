@@ -71,12 +71,18 @@ namespace WebProgrammingTerm.Repository.Migrations
                 name: "CompanyUser",
                 columns: table => new
                 {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CompanyId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompanyUser", x => new { x.CompanyId, x.UserId });
+                    table.PrimaryKey("PK_CompanyUser", x => x.Id);
                     table.ForeignKey(
                         name: "FK_CompanyUser_Companies_CompanyId",
                         column: x => x.CompanyId,
@@ -306,6 +312,11 @@ namespace WebProgrammingTerm.Repository.Migrations
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CompanyUser_CompanyId",
+                table: "CompanyUser",
+                column: "CompanyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CompanyUser_UserId",

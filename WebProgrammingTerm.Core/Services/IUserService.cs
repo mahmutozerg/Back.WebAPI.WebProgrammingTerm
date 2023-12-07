@@ -5,5 +5,5 @@ namespace WebProgrammingTerm.Core.Services;
 
 public interface IUserService:IGenericService<User>
 {
-    Task<CustomResponseDto<CustomResponseNoDataDto>> AddUserByIdAsync(string id);
+    Task<CustomResponseDto<CustomResponseNoDataDto>> AddUserByIdAsync(string id,string createdBy);
 }

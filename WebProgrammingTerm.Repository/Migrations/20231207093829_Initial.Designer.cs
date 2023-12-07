@@ -12,7 +12,7 @@ using WebProgrammingTerm.Repository;
 namespace WebProgrammingTerm.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231206141236_Initial")]
+    [Migration("20231207093829_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -62,13 +62,37 @@ namespace WebProgrammingTerm.Repository.Migrations
 
             modelBuilder.Entity("WebProgrammingTerm.Core.Models.CompanyUser", b =>
                 {
-                    b.Property<string>("CompanyId")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CompanyId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("CompanyId", "UserId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("UserId");
 

@@ -21,19 +21,19 @@ public class DepotService:GenericService<Depot>,IDepotService
 
     public async Task<CustomResponseDto<Depot>> UpdateAsync(DepotUpdateDto depotUpdateDto, string updatedBy)
     {
-        var entity = await _depotRepository.Where(d => d != null && d.Id == depotUpdateDto.TargetDepotId && !d.IsDeleted).SingleOrDefaultAsync();
+        var depotEntity = await _depotRepository.Where(d => d != null && d.Id == depotUpdateDto.TargetDepotId && !d.IsDeleted).SingleOrDefaultAsync();
 
-        if (entity is null)
+        if (depotEntity is null)
             throw new Exception(ResponseMessages.DepotNotFound);
         
-        entity.City = string.IsNullOrWhiteSpace(depotUpdateDto.City) ? entity.City : depotUpdateDto.City;
-        entity.Street = string.IsNullOrWhiteSpace(depotUpdateDto.Street) ? entity.Street : depotUpdateDto.Street;
-        entity.Country = string.IsNullOrWhiteSpace(depotUpdateDto.Country) ? entity.Country : depotUpdateDto.Country;
-        entity.Contact = string.IsNullOrWhiteSpace(depotUpdateDto.Contact) ? entity.Contact : depotUpdateDto.Contact;
-        entity.UpdatedBy = updatedBy;
-        _depotRepository.Update(entity);
+        depotEntity.City = string.IsNullOrWhiteSpace(depotUpdateDto.City) ? depotEntity.City : depotUpdateDto.City;
+        depotEntity.Street = string.IsNullOrWhiteSpace(depotUpdateDto.Street) ? depotEntity.Street : depotUpdateDto.Street;
+        depotEntity.Country = string.IsNullOrWhiteSpace(depotUpdateDto.Country) ? depotEntity.Country : depotUpdateDto.Country;
+        depotEntity.Contact = string.IsNullOrWhiteSpace(depotUpdateDto.Contact) ? depotEntity.Contact : depotUpdateDto.Contact;
+        depotEntity.UpdatedBy = updatedBy;
+        _depotRepository.Update(depotEntity);
         await _unitOfWork.CommitAsync();
-        return CustomResponseDto<Depot>.Success(entity,ResponseCodes.Updated);
+        return CustomResponseDto<Depot>.Success(depotEntity,ResponseCodes.Updated);
         
     }
     

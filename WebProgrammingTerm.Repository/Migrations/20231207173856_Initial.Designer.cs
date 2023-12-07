@@ -12,7 +12,7 @@ using WebProgrammingTerm.Repository;
 namespace WebProgrammingTerm.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231207171926_Initial")]
+    [Migration("20231207173856_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -151,6 +151,16 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("No")
                         .HasColumnType("int");
 
@@ -162,6 +172,13 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

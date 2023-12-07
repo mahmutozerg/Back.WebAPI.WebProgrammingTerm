@@ -3,8 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 public class ProductAddDto
 {
-    [Required(ErrorMessage = "CompanyId is required")]
-    public string CompanyId { get; set; } = string.Empty;
+ 
 
     [Required(ErrorMessage = "Price is required")]
     public float Price { get; set; } = 0f;

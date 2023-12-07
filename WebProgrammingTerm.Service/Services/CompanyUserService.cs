@@ -43,11 +43,11 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
             throw new Exception(ResponseMessages.UserNotFound);
         
 
-        var companyuser = CompanyUserMapper.ToCompany(companyUserDto, createdBy);
-        companyuser.Company = companyEntity;
-        companyuser.User = userEntity;
-        await _companyUserRepository.AddAsync(companyuser);
+        var companyUser = CompanyUserMapper.ToCompany(companyUserDto, createdBy);
+        companyUser.Company = companyEntity;
+        companyUser.User = userEntity;
+        await _companyUserRepository.AddAsync(companyUser);
         await _unitOfWork.CommitAsync();
-        return CustomResponseDto<CompanyUser>.Success(companyuser,ResponseCodes.Created);
+        return CustomResponseDto<CompanyUser>.Success(companyUser,ResponseCodes.Created);
     }
 }

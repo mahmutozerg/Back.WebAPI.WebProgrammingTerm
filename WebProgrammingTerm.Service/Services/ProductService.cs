@@ -23,23 +23,24 @@ public class ProductService:GenericService<Product>,IProductService
 
     public async Task<CustomResponseDto<Product>> UpdateAsync(ProductUpdateDto productUpdateDto, string updatedBy)
     {
-        var entity = await _productRepository
+        var productEntity = await _productRepository
             .Where(p => p != null && p.Id == productUpdateDto.TargetProductId && !p.IsDeleted)
             .Include(x=>x.Company)
             .FirstOrDefaultAsync();
 
-        if (entity is null)
+        if (productEntity is null)
             throw new Exception(ResponseMessages.ProductNotFound);
         
-        entity.Price = productUpdateDto.Price == 0f ? entity.Price : productUpdateDto.Price;
-        entity.Name =  string.IsNullOrWhiteSpace(productUpdateDto.Name) ? entity.Name : productUpdateDto.Name;
-        entity.ImagePath =  string.IsNullOrWhiteSpace(productUpdateDto.ImagePath) ? entity.ImagePath : productUpdateDto.ImagePath;
-        entity.Stock = productUpdateDto.Stock == 0 ? entity.Stock : productUpdateDto.Stock;
-        entity.DiscountRate = productUpdateDto.DiscountRate == 0f ? entity.DiscountRate : productUpdateDto.DiscountRate;
-        entity.UpdatedBy = updatedBy;
-        _productRepository.Update(entity);
+        productEntity.Price = productUpdateDto.Price == 0f ? productEntity.Price : productUpdateDto.Price;
+        productEntity.Name =  string.IsNullOrWhiteSpace(productUpdateDto.Name) ? productEntity.Name : productUpdateDto.Name;
+        productEntity.ImagePath =  string.IsNullOrWhiteSpace(productUpdateDto.ImagePath) ? productEntity.ImagePath : productUpdateDto.ImagePath;
+        productEntity.Stock = productUpdateDto.Stock == 0 ? productEntity.Stock : productUpdateDto.Stock;
+        productEntity.DiscountRate = productUpdateDto.DiscountRate == 0f ? productEntity.DiscountRate : productUpdateDto.DiscountRate;
+        productEntity.UpdatedBy = updatedBy;
+        
+        _productRepository.Update(productEntity);
         await _unitOfWork.CommitAsync();
-        return CustomResponseDto<Product>.Success(entity, ResponseCodes.Updated);
+        return CustomResponseDto<Product>.Success(productEntity, ResponseCodes.Updated);
     }
 
     public async Task<CustomResponseDto<Product>> AddAsync(ProductAddDto productAddDto, string createdBy)

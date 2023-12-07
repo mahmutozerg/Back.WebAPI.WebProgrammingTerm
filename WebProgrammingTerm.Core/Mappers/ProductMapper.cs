@@ -10,8 +10,7 @@ public static class ProductMapper
         var product = new Product()
         {
             Id = Guid.NewGuid().ToString(),
-            CompanyId = productAddDto.CompanyId,
-            Stock = productAddDto.Stock,
+             Stock = productAddDto.Stock,
             Price = productAddDto.Price,
             Name = productAddDto.Name,
             CreatedAt = DateTime.Now,

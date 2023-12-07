@@ -8,7 +8,9 @@ public class ProductDetail:Base
     public string Id { get; set; }
     [JsonIgnore]
     public Product Product { get; set; }
+ 
     public string ProductId { get; set; } = string.Empty;
+    [JsonIgnore]
     public Depot Depot { get; set; } = new Depot();
     public string DepotId { get; set; } = string.Empty;
     public string Author { get; set; } = string.Empty;

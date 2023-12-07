@@ -27,6 +27,7 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
     {
         var productEntity = await _productRepository
             .Where(p => p.Id == productDetailAddDto.ProductId && !p.IsDeleted)
+            .Include(p=>p.Company)
             .FirstOrDefaultAsync();
 
         if (productEntity is null)
@@ -53,24 +54,24 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
 
     public async Task<CustomResponseDto<ProductDetail>> UpdateAsync(ProductDetailUpdateDto productDetailUpdateDto, string updatedBy)
     {
-        var entity = await _productDetailRepository
+        var productDetailEntity = await _productDetailRepository
             .Where(pd => pd.Id == productDetailUpdateDto.ProductDetailId && !pd.IsDeleted)
             .FirstOrDefaultAsync();
 
-        if (entity is null)
+        if (productDetailEntity is null)
             throw new Exception(ResponseMessages.ProductDetailNotFound);
 
 
-        entity.Author = string.IsNullOrWhiteSpace(productDetailUpdateDto.Author) ? entity.Author : productDetailUpdateDto.Author;
-        entity.PublishDate = string.IsNullOrWhiteSpace(productDetailUpdateDto.PublishDate.ToString()) ? entity.PublishDate : productDetailUpdateDto.PublishDate;
-        entity.Publisher = string.IsNullOrWhiteSpace(productDetailUpdateDto.Publisher) ? entity.Publisher : productDetailUpdateDto.Publisher;
-        entity.Language = string.IsNullOrWhiteSpace(productDetailUpdateDto.Language) ? entity.Language : productDetailUpdateDto.Language;
-        entity.Size = string.IsNullOrWhiteSpace(productDetailUpdateDto.Size) ? entity.Size : productDetailUpdateDto.Size;
-        entity.Category = string.IsNullOrWhiteSpace(productDetailUpdateDto.Category) ? entity.Category : productDetailUpdateDto.Category;
-        entity.Page = productDetailUpdateDto.Page == 0 ? entity.Page : productDetailUpdateDto.Page;
+        productDetailEntity.Author = string.IsNullOrWhiteSpace(productDetailUpdateDto.Author) ? productDetailEntity.Author : productDetailUpdateDto.Author;
+        productDetailEntity.PublishDate = string.IsNullOrWhiteSpace(productDetailUpdateDto.PublishDate.ToString()) ? productDetailEntity.PublishDate : productDetailUpdateDto.PublishDate;
+        productDetailEntity.Publisher = string.IsNullOrWhiteSpace(productDetailUpdateDto.Publisher) ? productDetailEntity.Publisher : productDetailUpdateDto.Publisher;
+        productDetailEntity.Language = string.IsNullOrWhiteSpace(productDetailUpdateDto.Language) ? productDetailEntity.Language : productDetailUpdateDto.Language;
+        productDetailEntity.Size = string.IsNullOrWhiteSpace(productDetailUpdateDto.Size) ? productDetailEntity.Size : productDetailUpdateDto.Size;
+        productDetailEntity.Category = string.IsNullOrWhiteSpace(productDetailUpdateDto.Category) ? productDetailEntity.Category : productDetailUpdateDto.Category;
+        productDetailEntity.Page = productDetailUpdateDto.Page == 0 ? productDetailEntity.Page : productDetailUpdateDto.Page;
 
-        _productDetailRepository.Update(entity);
+        _productDetailRepository.Update(productDetailEntity);
         await _unitOfWork.CommitAsync();
-        return CustomResponseDto<ProductDetail>.Success(entity, ResponseCodes.Updated);
+        return CustomResponseDto<ProductDetail>.Success(productDetailEntity, ResponseCodes.Updated);
     }
 }

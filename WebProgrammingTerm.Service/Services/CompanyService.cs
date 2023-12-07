@@ -5,8 +5,7 @@ using WebProgrammingTerm.Core.Models;
 using WebProgrammingTerm.Core.Repositories;
 using WebProgrammingTerm.Core.Services;
 using WebProgrammingTerm.Core.UnitOfWorks;
-using WebProgrammingTerm.Core.Mappers;
-
+ 
 namespace WebProgrammingTerm.Service.Services;
 
 public class CompanyService:GenericService<Company>,ICompanyService
@@ -21,17 +20,17 @@ public class CompanyService:GenericService<Company>,ICompanyService
 
     public  async Task<CustomResponseDto<Company>> UpdateAsync(CompanyUpdateDto companyUpdateDto,string updatedBy)
     {
-        var entity = await _companyRepository.Where(c => c != null && c.Id == companyUpdateDto.TargetId && !c.IsDeleted).SingleOrDefaultAsync();
+        var companyEntity = await _companyRepository.Where(c => c != null && c.Id == companyUpdateDto.TargetId && !c.IsDeleted).SingleOrDefaultAsync();
 
-        if (entity is null)
+        if (companyEntity is null)
             throw new Exception(ResponseMessages.CompanyNotFound);
         
-        entity.Name = string.IsNullOrWhiteSpace(companyUpdateDto.Name) ? entity.Name : companyUpdateDto.Name;
-        entity.Contact = string.IsNullOrWhiteSpace(companyUpdateDto.Contact) ? entity.Contact : companyUpdateDto.Contact;
-        entity.UpdatedBy = updatedBy;
-        _companyRepository.Update(entity);
+        companyEntity.Name = string.IsNullOrWhiteSpace(companyUpdateDto.Name) ? companyEntity.Name : companyUpdateDto.Name;
+        companyEntity.Contact = string.IsNullOrWhiteSpace(companyUpdateDto.Contact) ? companyEntity.Contact : companyUpdateDto.Contact;
+        companyEntity.UpdatedBy = updatedBy;
+        _companyRepository.Update(companyEntity);
         await _unitOfWork.CommitAsync();
-        return CustomResponseDto<Company>.Success(entity,ResponseCodes.Updated);
+        return CustomResponseDto<Company>.Success(companyEntity,ResponseCodes.Updated);
 
     }
 }

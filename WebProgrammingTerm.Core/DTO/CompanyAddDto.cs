@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebProgrammingTerm.Core.DTO
-{
+namespace WebProgrammingTerm.Core.DTO;
+ 
     public class CompanyAddDto
     {
         [Required(ErrorMessage = "Name is required")]
@@ -10,4 +10,4 @@ namespace WebProgrammingTerm.Core.DTO
         [Required(ErrorMessage = "Contact is required")]
         public string Contact { get; set; } = string.Empty; 
     }
-}
+ 

@@ -1,7 +1,9 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebProgrammingTerm.Core.DTO;
+using WebProgrammingTerm.Core.Models;
 using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
@@ -27,4 +29,6 @@ public class ProductController:CustomControllerBase
         var claimsIdentity = (ClaimsIdentity)User.Identity;
         return CreateActionResult(await _productService.UpdateAsync(productUpdateDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
      }
+    
+
 }

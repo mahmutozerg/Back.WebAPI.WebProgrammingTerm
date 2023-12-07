@@ -22,10 +22,10 @@ public class CompanyController:CustomControllerBase
     }
     
     [HttpPost("[action]")]
-    public async Task<IActionResult> Add(CompanyDto companyDto)
+    public async Task<IActionResult> Add(CompanyAddDto companyAddDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
-        var company = CompanyMapper.ToCompany(companyDto);
+        var company = CompanyMapper.ToCompany(companyAddDto);
         return CreateActionResult(await _companyService.AddAsync(company,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
     }
     

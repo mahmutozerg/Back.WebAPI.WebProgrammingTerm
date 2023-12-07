@@ -20,9 +20,10 @@ var builder = WebApplication.CreateBuilder(args);
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<AppTokenOptions>();
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+ // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
@@ -47,8 +48,6 @@ builder.Services.AddScoped(typeof(IProductRepository), typeof(ProductRepository)
 
 builder.Services.AddScoped(typeof(IProductDetailService), typeof(ProductDetailService));
 builder.Services.AddScoped(typeof(IProductDetailRepository), typeof(ProductDetailRepository));
-
-
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {

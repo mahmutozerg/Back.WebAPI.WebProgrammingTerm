@@ -9,7 +9,6 @@ public class AppDbContext:DbContext
 {
     public DbSet<Company> Companies { get; set; }
     public DbSet<Depot> Depots { get; set; }
-    public DbSet<Images> Images { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }

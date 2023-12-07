@@ -5,9 +5,9 @@ namespace WebProgrammingTerm.Core.Mappers;
 
 public static class CompanyMapper
 {
-    public static CompanyDto ToCompanyDto(Company company)
+    public static CompanyAddDto ToCompanyDto(Company company)
     {
-        var companyDto = new CompanyDto()
+        var companyDto = new CompanyAddDto()
         {
             Contact = company.Contact,
             Name = company.Name
@@ -16,13 +16,13 @@ public static class CompanyMapper
         return companyDto;
     }
 
-    public static Company ToCompany(CompanyDto companyDto )
+    public static Company ToCompany(CompanyAddDto companyAddDto )
     {
         var company = new Company()
         {
             Id = Guid.NewGuid().ToString(),
-            Contact = companyDto.Contact,
-            Name = companyDto.Name,
+            Contact = companyAddDto.Contact,
+            Name = companyAddDto.Name,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
             

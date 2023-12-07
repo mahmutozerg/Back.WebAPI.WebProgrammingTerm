@@ -139,43 +139,6 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.ToTable("Depots");
                 });
 
-            modelBuilder.Entity("WebProgrammingTerm.Core.Models.Images", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Images");
-                });
-
             modelBuilder.Entity("WebProgrammingTerm.Core.Models.Location", b =>
                 {
                     b.Property<string>("Id")
@@ -292,6 +255,10 @@ namespace WebProgrammingTerm.Repository.Migrations
 
                     b.Property<float>("DiscountRate")
                         .HasColumnType("real");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -528,17 +495,6 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebProgrammingTerm.Core.Models.Images", b =>
-                {
-                    b.HasOne("WebProgrammingTerm.Core.Models.Product", "Product")
-                        .WithMany("Images")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("WebProgrammingTerm.Core.Models.Location", b =>
                 {
                     b.HasOne("WebProgrammingTerm.Core.Models.User", "User")
@@ -656,8 +612,6 @@ namespace WebProgrammingTerm.Repository.Migrations
 
             modelBuilder.Entity("WebProgrammingTerm.Core.Models.Product", b =>
                 {
-                    b.Navigation("Images");
-
                     b.Navigation("ProductDetail")
                         .IsRequired();
                 });

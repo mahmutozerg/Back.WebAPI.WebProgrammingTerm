@@ -107,8 +107,6 @@ e
 5WebProgrammingTerm.Auth.Core/Configurations/Client.cs,7\6\760cce67be41f561e73356334d4d06e0066aabcf
 t
 DWebProgrammingTerm.Auth.Repository/Repositories/GenericRepository.cs,4\f\4fd4d764b26124d82a0ed7b972732b102da51b38
-V
-&WebProgrammingTerm.Core/Models/User.cs,2\d\2df2f60eb89a1dfd6af58dd8b301d41cc0990c2c
 c
 3WebProgrammingTerm.Auth.Core/DTOs/ClientTokenDto.cs,a\0\a0434ca393473512a86a78630e2b85bad547d3b2
 l
@@ -120,11 +118,7 @@ n
 q
 AWebProgrammingTerm.API/RequirementHandlers/ClientIdRequirement.cs,d\1\d17b9e721c3707209729831a3f004ec7a56b1b6c
 ]
--WebProgrammingTerm.Core/DTO/CompanyUserDto.cs,3\2\32a7703be2f2afd8c6b643d73ae85f78f0e8fbbe
-]
 -WebProgrammingTerm.Core/Models/CompanyUser.cs,2\0\201ba08b562b8cba3bd1556dea5632af3c260114
-]
--WebProgrammingTerm.Repository/AppDbContext.cs,5\f\5f0ee59ab87199092b31f375e1483155d49f540d
 n
 >WebProgrammingTerm.Core/Repositories/ICompanyUserRepository.cs,0\5\054eef0bd5b743ed7dcd417d625defa2601f0c30
 s
@@ -143,8 +137,6 @@ g
 7WebProgrammingTerm.Repository/UnitOfWorks/UnitOfWork.cs,1\6\16f1ff42225cd2e522b07201a6fe62d3188bb0e3
 X
 (WebProgrammingTerm.Core/Models/Depots.cs,f\8\f824b1a1f0bb8454991e89daed26d7afe3183090
-Z
-*WebProgrammingTerm.Core/DTO/DepotAddDto.cs,2\b\2ba21aa6e649be9b74eef3b1cbd5f1a2b4cdadfe
 l
 <WebProgrammingTerm.Repository/Repositories/UserRepository.cs,7\7\771ce5cbbe6684fc1f1a0f0d22c5565795aea98c
 j
@@ -155,8 +147,6 @@ o
 ?WebProgrammingTerm.Repository/Repositories/GenericRepository.cs,7\1\7180ba44dd46e4a8bc822398965d81c881563857
 e
 5WebProgrammingTerm.API/Controllers/DepotController.cs,8\d\8db8e09b26312756dcf2839523e8e8d8590be1f4
-]
--WebProgrammingTerm.Core/DTO/DepotUpdateDto.cs,3\6\36c18ad46c7f5b88435db09bec3e9890fbf347cd
 `
 0WebProgrammingTerm.Core/Mappers/CompanyMapper.cs,8\7\878b71f17cab056ffec890a161170316a8502b25
 o
@@ -165,10 +155,6 @@ X
 (WebProgrammingTerm.Core/ResponseCodes.cs,7\8\78c56581d41a93a0ab477133e6b14b134b682442
 f
 6WebProgrammingTerm.Core/DTO/CustomResponseNoDataDto.cs,4\1\413d436f4c9f5487ba17501e5e5cd2da2ce7aee3
-`
-0WebProgrammingTerm.Core/DTO/CustomResponseDto.cs,0\d\0d5deca3ffbd75bdc7ced7b0855bb02afa10dcf7
-X
-(WebProgrammingTerm.Core/Models/Images.cs,4\9\49aecb76cb23c8ff136be4eeabdf15627b98c265
 c
 3WebProgrammingTerm.Core/Services/ICompanyService.cs,7\b\7b19f584a967058de8d49c5d39d39a47cc33b696
 `

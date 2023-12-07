@@ -2,11 +2,8 @@
 
 namespace WebProgrammingTerm.Core.DTO
 {
-    public class CompanyUpdateDto
+    public class CompanyAddDto
     {
-        [Required(ErrorMessage = "TargetId is required")]
-        public string TargetId { get; set; } = string.Empty;
-
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; } = string.Empty;
 

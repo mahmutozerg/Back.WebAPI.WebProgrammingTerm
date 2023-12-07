@@ -12,6 +12,7 @@ public static class ResponseMessages
     public const string UserNotFound = "User not found";
     public const string ProductNotFound = "Product not found";
     public const string ProductDetailNotFound = "Product detail not found";
+    public const string ImageExist = "Image already exist";
     public const string ProductExist = "Product already exist";
     public const string EmailExist = "Email already exist";
     public const string CompanyNameExist = "Company Name already exist";

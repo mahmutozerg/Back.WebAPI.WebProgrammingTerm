@@ -26,7 +26,6 @@ public class ProductService:GenericService<Product>,IProductService
         var entity = await _productRepository
             .Where(p => p != null && p.Id == productUpdateDto.TargetProductId && !p.IsDeleted)
             .Include(x=>x.Company)
-            .Include(x=>x.Images)
             .FirstOrDefaultAsync();
 
         if (entity is null)
@@ -34,6 +33,7 @@ public class ProductService:GenericService<Product>,IProductService
         
         entity.Price = productUpdateDto.Price == 0f ? entity.Price : productUpdateDto.Price;
         entity.Name =  string.IsNullOrWhiteSpace(productUpdateDto.Name) ? entity.Name : productUpdateDto.Name;
+        entity.ImagePath =  string.IsNullOrWhiteSpace(productUpdateDto.ImagePath) ? entity.ImagePath : productUpdateDto.ImagePath;
         entity.Stock = productUpdateDto.Stock == 0 ? entity.Stock : productUpdateDto.Stock;
         entity.DiscountRate = productUpdateDto.DiscountRate == 0f ? entity.DiscountRate : productUpdateDto.DiscountRate;
         entity.UpdatedBy = updatedBy;
@@ -55,10 +55,10 @@ public class ProductService:GenericService<Product>,IProductService
 
         var productEntity = ProductMapper.ToProduct(productAddDto);
         productEntity.Company = companyUserEntity.Company;
+        productEntity.ImagePath = productAddDto.ImagePath;
         productEntity.CreatedBy = createdBy;
         productEntity.UpdatedAt = DateTime.Now;
         productEntity.UpdatedBy = createdBy;
-
         await _productRepository.AddAsync(productEntity);
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<Product>.Success(productEntity, ResponseCodes.Created);

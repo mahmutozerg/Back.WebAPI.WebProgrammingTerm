@@ -1,8 +1,6 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.JsonWebTokens;
-using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Mappers;
 using WebProgrammingTerm.Core.Models;
@@ -26,8 +24,8 @@ public class CompanyController:CustomControllerBase
     public async Task<IActionResult> Add(CompanyDto companyDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
-        var company = CompanyMapper.ToCompany(companyDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-        return CreateActionResult(await _companyService.AddAsync(company));
+        var company = CompanyMapper.ToCompany(companyDto);
+        return CreateActionResult(await _companyService.AddAsync(company,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
     }
     
     [HttpPost("[action]")]

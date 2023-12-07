@@ -33,9 +33,9 @@ public class GenericRepository<TEntity>:IGenericRepository<TEntity> where TEntit
 
     public async Task AddAsync(TEntity? entity)
     {
-        entity.CreatedAt = DateTime.Now;
-        entity.UpdatedAt = DateTime.Now;
-       await _dbSet.AddAsync(entity);
+        entity.CreatedAt = DateTime.Now; 
+        entity.UpdatedAt = DateTime.Now; 
+        await _dbSet.AddAsync(entity);
     }
 
     public void Remove(TEntity entity)

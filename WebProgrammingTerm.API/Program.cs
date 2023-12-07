@@ -37,6 +37,16 @@ builder.Services.AddScoped(typeof(ICompanyRepository), typeof(CompanyRepository)
 
 builder.Services.AddScoped(typeof(ICompanyUserService), typeof(CompanyUserService));
 builder.Services.AddScoped(typeof(ICompanyUserRepository), typeof(CompanyUserRepository));
+
+builder.Services.AddScoped(typeof(IDepotService), typeof(DepotService));
+builder.Services.AddScoped(typeof(IDepotRepository), typeof(DepotRepository));
+
+
+
+
+
+
+
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"), options =>

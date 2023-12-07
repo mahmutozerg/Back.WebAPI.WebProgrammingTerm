@@ -35,12 +35,16 @@ public class GenericService<TEntity> : IGenericService<TEntity> where TEntity :B
         return CustomResponseNoDataDto.Success(200);
     }
 
-    public async Task<CustomResponseNoDataDto> AddAsync(TEntity _entity)
+    public async Task<CustomResponseNoDataDto> AddAsync(TEntity _entity,string createdBy)
     {
         var entity = await _repository.Where(x => x != null && x.Id == _entity.Id && !x.IsDeleted).FirstOrDefaultAsync();
         if (entity is not null )
             return CustomResponseNoDataDto.Fail(409,ResponseMessages.UserNotFound);
 
+
+        _entity.UpdatedBy = createdBy;
+        _entity.CreatedBy = createdBy;
+        _entity.CreatedAt = DateTime.Now;
         await _repository.AddAsync(_entity);
         await _unitOfWork.CommitAsync();
         return CustomResponseNoDataDto.Success(201);

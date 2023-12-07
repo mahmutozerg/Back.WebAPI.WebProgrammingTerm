@@ -8,7 +8,7 @@ public interface IGenericService<TEntity> where TEntity:class
 {
 
     Task<CustomResponseNoDataDto> Remove(string id,string updatedBy);
-    Task<CustomResponseNoDataDto> AddAsync(TEntity entity);
+    Task<CustomResponseNoDataDto> AddAsync(TEntity entity,string createdBy);
     IQueryable<TEntity?> Where(Expression<Func<TEntity?, bool>> expression);
     Task<CustomResponseNoDataDto> UpdateAsync(TEntity entity,string updatedBy);
 }

@@ -19,37 +19,23 @@ public class DepotService:GenericService<Depot>,IDepotService
         _depotRepository = depotRepository;
     }
 
-    public async Task<CustomResponseNoDataDto> UpdateAsync(DepotUpdateDto depotUpdateDto, string updatedBy)
+    public async Task<CustomResponseDto<Depot>> UpdateAsync(DepotUpdateDto depotUpdateDto, string updatedBy)
     {
         var entity = await _depotRepository.Where(d => d != null && d.Id == depotUpdateDto.TargetDepotId && !d.IsDeleted).SingleOrDefaultAsync();
 
         if (entity is null)
-            return CustomResponseNoDataDto.Fail(404,ResponseMessages.Notfound);
+            throw new Exception(ResponseMessages.DepotNotFound);
         
-        entity.City = string.IsNullOrEmpty(depotUpdateDto.City) ? entity.City : depotUpdateDto.City;
-        entity.Street = string.IsNullOrEmpty(depotUpdateDto.Street) ? entity.Street : depotUpdateDto.Street;
-        entity.Country = string.IsNullOrEmpty(depotUpdateDto.Country) ? entity.Country : depotUpdateDto.Country;
-        entity.Contact = string.IsNullOrEmpty(depotUpdateDto.Contact) ? entity.Contact : depotUpdateDto.Contact;
+        entity.City = string.IsNullOrWhiteSpace(depotUpdateDto.City) ? entity.City : depotUpdateDto.City;
+        entity.Street = string.IsNullOrWhiteSpace(depotUpdateDto.Street) ? entity.Street : depotUpdateDto.Street;
+        entity.Country = string.IsNullOrWhiteSpace(depotUpdateDto.Country) ? entity.Country : depotUpdateDto.Country;
+        entity.Contact = string.IsNullOrWhiteSpace(depotUpdateDto.Contact) ? entity.Contact : depotUpdateDto.Contact;
         entity.UpdatedBy = updatedBy;
         _depotRepository.Update(entity);
         await _unitOfWork.CommitAsync();
-        return CustomResponseNoDataDto.Success(200);
+        return CustomResponseDto<Depot>.Success(entity,ResponseCodes.Updated);
         
     }
     
-    public async Task<CustomResponseNoDataDto> AddAsync(DepotAddDto depotUpdateDto, string createdBy)
-    {
-        var entity = await _depotRepository.Where(d => d != null && d.Contact == depotUpdateDto.Contact && !d.IsDeleted).SingleOrDefaultAsync();
 
-        if (entity is not null)
-            return CustomResponseNoDataDto.Fail(404,ResponseMessages.Notfound);
-
-        var depotEntity = DepotMapper.ToDepot(depotUpdateDto);
-        depotEntity.CreatedBy = createdBy;
-        depotEntity.UpdatedBy = createdBy;
-        await _depotRepository.AddAsync(depotEntity);
-        await _unitOfWork.CommitAsync();
-        return CustomResponseNoDataDto.Success(200);
-        
-    }
 }

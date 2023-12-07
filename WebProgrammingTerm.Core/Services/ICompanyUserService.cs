@@ -5,6 +5,6 @@ namespace WebProgrammingTerm.Core.Services;
 
 public interface ICompanyUserService:IGenericService<CompanyUser>
 {
-    Task<CustomResponseDto<CustomResponseNoDataDto>> AddAsync(CompanyUserDto companyUserDto,string createdBy);
+    Task<CustomResponseDto<CompanyUser>> AddAsync(CompanyUserDto companyUserDto,string createdBy);
 
 }

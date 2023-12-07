@@ -5,5 +5,6 @@ public class UserFavorites:Base
     public User User { get; set; } = null!;
     public string UserId { get; set; } = string.Empty;
 
-    public List<Product> Product { get; set; } = new List<Product>();
+    public Product Product { get; set; } 
+    public string ProductId { get; set; }
 }

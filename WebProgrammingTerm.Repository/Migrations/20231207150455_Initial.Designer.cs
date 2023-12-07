@@ -12,7 +12,7 @@ using WebProgrammingTerm.Repository;
 namespace WebProgrammingTerm.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231207093829_Initial")]
+    [Migration("20231207150455_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -293,6 +293,9 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float>("DiscountRate")
+                        .HasColumnType("real");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -313,14 +316,9 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserFavoritesId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("UserFavoritesId");
 
                     b.ToTable("Products");
                 });
@@ -341,11 +339,18 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("DiscountRate")
-                        .HasColumnType("real");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Language")
                         .IsRequired()
@@ -362,6 +367,13 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -476,6 +488,10 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -488,6 +504,8 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("UserId");
 
@@ -516,7 +534,7 @@ namespace WebProgrammingTerm.Repository.Migrations
             modelBuilder.Entity("WebProgrammingTerm.Core.Models.Images", b =>
                 {
                     b.HasOne("WebProgrammingTerm.Core.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("Images")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -573,10 +591,6 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebProgrammingTerm.Core.Models.UserFavorites", null)
-                        .WithMany("Product")
-                        .HasForeignKey("UserFavoritesId");
-
                     b.Navigation("Company");
                 });
 
@@ -620,11 +634,19 @@ namespace WebProgrammingTerm.Repository.Migrations
 
             modelBuilder.Entity("WebProgrammingTerm.Core.Models.UserFavorites", b =>
                 {
+                    b.HasOne("WebProgrammingTerm.Core.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("WebProgrammingTerm.Core.Models.User", "User")
                         .WithMany("Favorites")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.Navigation("Product");
 
                     b.Navigation("User");
                 });
@@ -637,6 +659,8 @@ namespace WebProgrammingTerm.Repository.Migrations
 
             modelBuilder.Entity("WebProgrammingTerm.Core.Models.Product", b =>
                 {
+                    b.Navigation("Images");
+
                     b.Navigation("ProductDetail")
                         .IsRequired();
                 });
@@ -650,11 +674,6 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.Navigation("Locations");
 
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("WebProgrammingTerm.Core.Models.UserFavorites", b =>
-                {
-                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
-﻿using WebProgrammingTerm.Core.DTO;
+﻿using WebProgrammingTerm.Core;
+using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Models;
 using WebProgrammingTerm.Core.Repositories;
 using WebProgrammingTerm.Core.Services;
@@ -17,11 +18,11 @@ public class UserService:GenericService<User>,IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<CustomResponseDto<CustomResponseNoDataDto>> AddUserByIdAsync(string id,string createdBy)
+    public async Task<CustomResponseDto<User>> AddUserByIdAsync(string id,string createdBy)
     {
         var userExist = await _userRepository.AnyAsync(u => u != null && u.Id == id);
         if (userExist)
-            return CustomResponseDto<CustomResponseNoDataDto>.Fail("User already exist",409);
+            throw new Exception(ResponseMessages.UserAlreadyExist);
 
         var user = new User()
         {
@@ -34,7 +35,7 @@ public class UserService:GenericService<User>,IUserService
         };
         await _userRepository.AddAsync(user);
         await _unitOfWork.CommitAsync();
-        return CustomResponseDto<CustomResponseNoDataDto>.Success(201);
+        return CustomResponseDto<User>.Success(user,ResponseCodes.Created);
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Mappers;
 using WebProgrammingTerm.Core.Models;
@@ -47,7 +48,7 @@ public class CompanyController:CustomControllerBase
     public async Task<IActionResult> GetCompanyInfo(string id)
     {
         var entities =  _companyService.Where(c => c.Id == id && !c.IsDeleted).ToList();
-        return CreateActionResult(CustomResponseListDataDto<Company>.Success(entities,200));
+        return CreateActionResult(CustomResponseListDataDto<Company>.Success(entities,ResponseCodes.Ok));
 
     }
     [HttpPost("[action]")]

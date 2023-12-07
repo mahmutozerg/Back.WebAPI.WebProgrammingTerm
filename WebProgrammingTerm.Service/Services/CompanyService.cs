@@ -19,19 +19,19 @@ public class CompanyService:GenericService<Company>,ICompanyService
         _companyRepository = companyRepository;
     }
 
-    public  async Task<CustomResponseNoDataDto> UpdateAsync(CompanyUpdateDto companyUpdateDto,string updatedBy)
+    public  async Task<CustomResponseDto<Company>> UpdateAsync(CompanyUpdateDto companyUpdateDto,string updatedBy)
     {
         var entity = await _companyRepository.Where(c => c != null && c.Id == companyUpdateDto.TargetId && !c.IsDeleted).SingleOrDefaultAsync();
 
         if (entity is null)
-            return CustomResponseNoDataDto.Fail(404,ResponseMessages.Notfound);
+            throw new Exception(ResponseMessages.CompanyNotFound);
         
-        entity.Name = string.IsNullOrEmpty(companyUpdateDto.Name) ? entity.Name : companyUpdateDto.Name;
-        entity.Contact = string.IsNullOrEmpty(companyUpdateDto.Contact) ? entity.Contact : companyUpdateDto.Contact;
+        entity.Name = string.IsNullOrWhiteSpace(companyUpdateDto.Name) ? entity.Name : companyUpdateDto.Name;
+        entity.Contact = string.IsNullOrWhiteSpace(companyUpdateDto.Contact) ? entity.Contact : companyUpdateDto.Contact;
         entity.UpdatedBy = updatedBy;
         _companyRepository.Update(entity);
         await _unitOfWork.CommitAsync();
-        return CustomResponseNoDataDto.Success(200);
+        return CustomResponseDto<Company>.Success(entity,ResponseCodes.Updated);
 
     }
 }

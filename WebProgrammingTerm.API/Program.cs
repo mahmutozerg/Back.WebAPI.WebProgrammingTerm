@@ -26,11 +26,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
+
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IGenericService<>), typeof(WebProgrammingTerm.Service.Services.GenericService<>));
+
 builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 builder.Services.AddScoped(typeof(IUserService), typeof(UserService));
-builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
 builder.Services.AddScoped(typeof(ICompanyService), typeof(CompanyService));
 builder.Services.AddScoped(typeof(ICompanyRepository), typeof(CompanyRepository));
@@ -41,9 +42,11 @@ builder.Services.AddScoped(typeof(ICompanyUserRepository), typeof(CompanyUserRep
 builder.Services.AddScoped(typeof(IDepotService), typeof(DepotService));
 builder.Services.AddScoped(typeof(IDepotRepository), typeof(DepotRepository));
 
+builder.Services.AddScoped(typeof(IProductService), typeof(ProductService));
+builder.Services.AddScoped(typeof(IProductRepository), typeof(ProductRepository));
 
-
-
+builder.Services.AddScoped(typeof(IProductDetailService), typeof(ProductDetailService));
+builder.Services.AddScoped(typeof(IProductDetailRepository), typeof(ProductDetailRepository));
 
 
 

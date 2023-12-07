@@ -23,31 +23,31 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
         _userRepository = userRepository;
     }
 
-    public async Task<CustomResponseDto<CustomResponseNoDataDto>> AddAsync(CompanyUserDto companyUserDto,string createdBy)
+    public async Task<CustomResponseDto<CompanyUser>> AddAsync(CompanyUserDto companyUserDto,string createdBy)
     {
         var isCompanyUserExist = await _companyUserRepository.Where(cu =>
             cu.CompanyId == companyUserDto.CompanyId && cu.UserId == companyUserDto.UserId && !cu.IsDeleted).AnyAsync();
 
         if (isCompanyUserExist)
-            return CustomResponseDto<CustomResponseNoDataDto>.Fail(ResponseMessages.CompanyUserAlreadyExist,404);
-
+            throw new Exception(ResponseMessages.CompanyUserAlreadyExist);
 
         var companyEntity = await _companyRepository.Where(c => c.Id == companyUserDto.CompanyId && !c.IsDeleted).FirstOrDefaultAsync();
-        
-        if(companyEntity is null)
-            return CustomResponseDto<CustomResponseNoDataDto>.Fail(ResponseMessages.Notfound,404);
+
+        if (companyEntity is null)
+            throw new Exception(ResponseMessages.CompanyNotFound);
+
         
         var userEntity = await _userRepository.Where(u => u.Id == companyUserDto.UserId && !u.IsDeleted).FirstOrDefaultAsync();
 
         if (userEntity is null)
-            return CustomResponseDto<CustomResponseNoDataDto>.Fail(ResponseMessages.Notfound,404);
-
+            throw new Exception(ResponseMessages.UserNotFound);
+        
 
         var companyuser = CompanyUserMapper.ToCompany(companyUserDto, createdBy);
         companyuser.Company = companyEntity;
         companyuser.User = userEntity;
         await _companyUserRepository.AddAsync(companyuser);
         await _unitOfWork.CommitAsync();
-        return CustomResponseDto<CustomResponseNoDataDto>.Success(201);
+        return CustomResponseDto<CompanyUser>.Success(companyuser,ResponseCodes.Created);
     }
 }

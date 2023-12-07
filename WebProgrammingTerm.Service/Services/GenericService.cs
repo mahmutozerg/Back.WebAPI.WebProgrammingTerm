@@ -35,11 +35,11 @@ public class GenericService<TEntity> : IGenericService<TEntity> where TEntity :B
         return CustomResponseNoDataDto.Success(200);
     }
 
-    public async Task<CustomResponseNoDataDto> AddAsync(TEntity _entity,string createdBy)
+    public async Task<CustomResponseDto<TEntity>> AddAsync(TEntity _entity,string createdBy)
     {
         var entity = await _repository.Where(x => x != null && x.Id == _entity.Id && !x.IsDeleted).FirstOrDefaultAsync();
-        if (entity is not null )
-            return CustomResponseNoDataDto.Fail(409,ResponseMessages.UserNotFound);
+        if (entity is not null)
+            throw new Exception(ResponseMessages.Notfound);
 
 
         _entity.UpdatedBy = createdBy;
@@ -47,7 +47,7 @@ public class GenericService<TEntity> : IGenericService<TEntity> where TEntity :B
         _entity.CreatedAt = DateTime.Now;
         await _repository.AddAsync(_entity);
         await _unitOfWork.CommitAsync();
-        return CustomResponseNoDataDto.Success(201);
+        return CustomResponseDto<TEntity>.Success(_entity, ResponseCodes.Created);
     }
 
     public IQueryable<TEntity?> Where(Expression<Func<TEntity?, bool>> expression)
@@ -65,7 +65,7 @@ public class GenericService<TEntity> : IGenericService<TEntity> where TEntity :B
         entity.UpdatedAt = DateTime.Now;
         _repository.Update(entity);
         await _unitOfWork.CommitAsync();
-        return CustomResponseNoDataDto.Success(200);
+        return CustomResponseNoDataDto.Success(ResponseCodes.Updated);
 
     }
     

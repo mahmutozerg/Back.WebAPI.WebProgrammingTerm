@@ -20,8 +20,8 @@ public class DepotController:CustomControllerBase
     public async Task<IActionResult> Add(DepotAddDto depotAddDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
-        var company = DepotMapper.ToDepot(depotAddDto);
-        return CreateActionResult(await _depotService.AddAsync(company,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        var depot = DepotMapper.ToDepot(depotAddDto);
+        return CreateActionResult(await _depotService.AddAsync(depot,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
     }
     
     [HttpPost("[action]")]

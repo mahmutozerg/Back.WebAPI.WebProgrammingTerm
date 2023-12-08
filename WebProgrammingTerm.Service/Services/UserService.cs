@@ -77,4 +77,16 @@ public class UserService:GenericService<User>,IUserService
 
         return userEntity;
     }
+
+    public async Task<User> GetUserWithOrders(string id)
+    {
+        var userEntity= await _userRepository
+            .Where(u => u != null && u.Id == id && !u.IsDeleted)
+            .Include(u=>u.Orders)
+            .FirstOrDefaultAsync();
+        if (userEntity is null)
+            throw new Exception(ResponseMessages.UserNotFound);
+
+
+        return userEntity;    }
 }

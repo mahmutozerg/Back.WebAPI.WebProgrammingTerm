@@ -12,7 +12,7 @@ using WebProgrammingTerm.Repository;
 namespace WebProgrammingTerm.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231207173856_Initial")]
+    [Migration("20231208213041_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -24,6 +24,21 @@ namespace WebProgrammingTerm.Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("OrderProduct", b =>
+                {
+                    b.Property<string>("OrdersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProductsId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("OrdersId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("OrderProduct");
+                });
 
             modelBuilder.Entity("WebProgrammingTerm.Core.Models.Company", b =>
                 {
@@ -211,10 +226,6 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.Property<string>("LocationId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("OrderDetailId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Shipment")
                         .IsRequired()
@@ -496,6 +507,21 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.ToTable("UserFavorites");
                 });
 
+            modelBuilder.Entity("OrderProduct", b =>
+                {
+                    b.HasOne("WebProgrammingTerm.Core.Models.Order", null)
+                        .WithMany()
+                        .HasForeignKey("OrdersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebProgrammingTerm.Core.Models.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("WebProgrammingTerm.Core.Models.CompanyUser", b =>
                 {
                     b.HasOne("WebProgrammingTerm.Core.Models.Company", "Company")
@@ -550,7 +576,7 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.HasOne("WebProgrammingTerm.Core.Models.Order", "Order")
                         .WithOne("OrderDetail")
                         .HasForeignKey("WebProgrammingTerm.Core.Models.OrderDetail", "OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Order");

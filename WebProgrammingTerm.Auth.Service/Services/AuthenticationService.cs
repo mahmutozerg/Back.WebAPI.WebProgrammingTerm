@@ -15,10 +15,10 @@ public class AuthenticationService:IAuthenticationService
     private readonly UserManager<User> _userManager;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IGenericRepository<UserRefreshToken> _refreshTokenService;
-    private readonly ClientLoginDto _tokenOptions;
+    private readonly List<ClientLoginDto >_tokenOptions;
 
 
-    public AuthenticationService(ITokenService tokenService, UserManager<User> userManager, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> refreshTokenService, IOptions<ClientLoginDto> tokenOptions)
+    public AuthenticationService(ITokenService tokenService, UserManager<User> userManager, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> refreshTokenService, IOptions<List<ClientLoginDto>> tokenOptions)
     {
         _tokenService = tokenService;
         _userManager = userManager;
@@ -82,20 +82,24 @@ public class AuthenticationService:IAuthenticationService
     }
     public Response<ClientTokenDto> CreateTokenByClient(ClientLoginDto clientLoginDto)
     {
-        if (string.CompareOrdinal(_tokenOptions.Id,clientLoginDto.Id) == 0
-            && string.CompareOrdinal(_tokenOptions.Secret,clientLoginDto.Secret) == 0)
+         if (_tokenOptions != null && _tokenOptions.Any())
         {
-            
-            var Client = new Client()
+            foreach (var configuredClient in _tokenOptions)
             {
-                Id = clientLoginDto.Id,
-                Secret = clientLoginDto.Secret,
-                Audiences = new List<string> { "www.bookerr.com" }
-            };
+                if (string.CompareOrdinal(configuredClient.Id, clientLoginDto.Id) == 0
+                    && string.CompareOrdinal(configuredClient.Secret, clientLoginDto.Secret) == 0)
+                {
+                    var client = new Client()
+                    {
+                        Id = clientLoginDto.Id,
+                        Secret = clientLoginDto.Secret,
+                        Audiences = new List<string> { "www.bookerr.com" }
+                    };
 
-            var clientTokenDto = _tokenService.CreateTokenByClient(Client);
-            return Response<ClientTokenDto>.Success(statusCode:200,data:clientTokenDto);
-
+                    var clientTokenDto = _tokenService.CreateTokenByClient(client);
+                    return Response<ClientTokenDto>.Success(statusCode: 200, data: clientTokenDto);
+                }
+            }
         }
 
         throw new Exception("Client Does not Exist");

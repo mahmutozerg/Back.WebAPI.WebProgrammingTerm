@@ -57,6 +57,8 @@ builder.Services.AddScoped(typeof(IUserFavoritesRepository), typeof(UserFavorite
 builder.Services.AddScoped(typeof(IUserCommentService), typeof(UserCommentService));
 builder.Services.AddScoped(typeof(IUserCommentRepository), typeof(UserCommentRepository));
 
+builder.Services.AddScoped(typeof(IOrderService), typeof(OrderService));
+builder.Services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"), options =>
@@ -84,8 +86,10 @@ builder.Services.AddAuthentication(opt =>
 });
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("ClientIdPolicy", policy =>
+    options.AddPolicy("AuthServerPolicy", policy =>
         policy.Requirements.Add(new ClientIdRequirement("authserver")));
+    options.AddPolicy("JSClientPolicy", policy =>
+        policy.Requirements.Add(new ClientIdRequirement("jsclient")));
 });
 builder.Services.AddSingleton<IAuthorizationHandler, ClientIdRequirementHandler>();
 

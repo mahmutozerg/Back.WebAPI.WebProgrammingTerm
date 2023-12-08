@@ -6,7 +6,7 @@ using WebProgrammingTerm.Core.Models;
 using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
-[Authorize(Policy = "ClientIdPolicy")]
+[Authorize(Policy = "AuthServerPolicy")]
 public class UserController:CustomControllerBase
 {
     private readonly IUserService _userService;

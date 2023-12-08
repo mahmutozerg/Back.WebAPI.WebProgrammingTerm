@@ -259,7 +259,6 @@ namespace WebProgrammingTerm.Repository.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Shipment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LocationId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    OrderDetailId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -297,6 +296,29 @@ namespace WebProgrammingTerm.Repository.Migrations
                         name: "FK_OrderDetails_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderProduct",
+                columns: table => new
+                {
+                    OrdersId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProductsId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderProduct", x => new { x.OrdersId, x.ProductsId });
+                    table.ForeignKey(
+                        name: "FK_OrderProduct_Orders_OrdersId",
+                        column: x => x.OrdersId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderProduct_Products_ProductsId",
+                        column: x => x.ProductsId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -315,6 +337,11 @@ namespace WebProgrammingTerm.Repository.Migrations
                 name: "IX_Locations_UserId",
                 table: "Locations",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderProduct_ProductsId",
+                table: "OrderProduct",
+                column: "ProductsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_LocationId",
@@ -372,6 +399,9 @@ namespace WebProgrammingTerm.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderDetails");
+
+            migrationBuilder.DropTable(
+                name: "OrderProduct");
 
             migrationBuilder.DropTable(
                 name: "ProductDetails");

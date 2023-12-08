@@ -22,7 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<AppTokenOptions>(builder.Configuration.GetSection("TokenOptions"));
-builder.Services.Configure<ClientLoginDto>(builder.Configuration.GetSection("Clients"));
+builder.Services.Configure<List<ClientLoginDto>>(builder.Configuration.GetSection("Clients"));
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<AppTokenOptions>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IUserService, UserService>();

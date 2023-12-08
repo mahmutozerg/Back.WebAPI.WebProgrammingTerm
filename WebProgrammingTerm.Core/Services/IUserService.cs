@@ -9,4 +9,5 @@ public interface IUserService:IGenericService<User>
     Task<User> GetUserWithComments(string id);
     Task<User> GetUserWithFavorites(string id);
     Task<User> GetUserWithLocations(string id);
+    Task<User> GetUserWithOrders(string id);
 }

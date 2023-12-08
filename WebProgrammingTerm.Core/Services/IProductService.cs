@@ -8,4 +8,5 @@ public interface IProductService:IGenericService<Product>
     Task<CustomResponseDto<Product>> UpdateAsync(ProductUpdateDto productUpdateDto,string updatedBy);
     Task<CustomResponseDto<Product>> AddAsync(ProductAddDto productAddDto, string createdBy);
 
+    Task<Product> GetProductWithCompany(string productId);
 }

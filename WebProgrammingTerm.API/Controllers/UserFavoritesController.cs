@@ -8,11 +8,11 @@ using WebProgrammingTerm.Core.Services;
 namespace WebProgrammingTerm.API.Controllers;
 [Authorize]
 
-public class UserFavoriteController:CustomControllerBase
+public class UserFavoritesController:CustomControllerBase
 {
     private readonly IUserFavoriteService _userFavoriteService;
 
-    public UserFavoriteController(IUserFavoriteService  userFavoriteService)
+    public UserFavoritesController(IUserFavoriteService  userFavoriteService)
     {
         _userFavoriteService = userFavoriteService;
     }

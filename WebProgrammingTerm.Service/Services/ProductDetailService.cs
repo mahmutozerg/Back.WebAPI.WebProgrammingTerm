@@ -12,28 +12,26 @@ namespace WebProgrammingTerm.Service.Services;
 public class ProductDetailService:GenericService<ProductDetail>,IProductDetailService
 {
     private readonly IProductDetailRepository _productDetailRepository;
-    private readonly IDepotRepository _depotRepository;
-    private readonly IProductRepository _productRepository;
+    private readonly IDepotService _depotService;
+    private readonly IProductService _productService;
     private readonly IUnitOfWork _unitOfWork;
-    public ProductDetailService(IUnitOfWork unitOfWork,IProductDetailRepository productDetailRepository, IProductRepository productRepository, IDepotRepository depotRepository) : base(productDetailRepository, unitOfWork)
+
+
+    public ProductDetailService(IUnitOfWork unitOfWork, IProductDetailRepository productDetailRepository, IDepotService depotService, IProductService productService) : base(productDetailRepository, unitOfWork)
     {
         _productDetailRepository = productDetailRepository;
-        _productRepository = productRepository;
-        _depotRepository = depotRepository;
+        _depotService = depotService;
+        _productService = productService;
         _unitOfWork = unitOfWork;
     }
 
     public async Task<CustomResponseDto<ProductDetail>> AddAsync(ProductDetailAddDto productDetailAddDto, string createdBy)
     {
-        var productEntity = await _productRepository
-            .Where(p => p.Id == productDetailAddDto.ProductId && !p.IsDeleted)
-            .Include(p=>p.Company)
-            .FirstOrDefaultAsync();
+        var productEntity = await _productService.GetProductWithCompany(productDetailAddDto.ProductId);
 
-        if (productEntity is null)
-            throw new Exception(ResponseMessages.ProductNotFound);
+
         
-        var depotEntity = await _depotRepository
+        var depotEntity = await _depotService
             .Where(p => p.Id == productDetailAddDto.DepotId && !p.IsDeleted)
             .FirstOrDefaultAsync();
 

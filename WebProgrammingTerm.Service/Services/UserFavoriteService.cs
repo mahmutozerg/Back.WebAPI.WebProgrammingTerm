@@ -50,36 +50,29 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
 
     public async Task<CustomResponseDto<UserFavorites>> AddAsync(UserFavoritesDto userFavoritesDto, string createdBy)
     {
-        var productExist = await _productService.Where(p => p.Id == userFavoritesDto.ProductId && !p.IsDeleted)
+        var userEntity = await _userService.GetUserWithFavorites(createdBy);
+        
+        var productExist = await _productService.Where(p => p != null && p.Id == userFavoritesDto.ProductId && !p.IsDeleted)
             .AsNoTracking().AnyAsync();
         
         if (!productExist)
             throw new Exception(ResponseMessages.ProductNotFound);
         
-        var favoritesEntity = await _userFavoritesRepository.Where(uf => uf.UserId == createdBy).SingleOrDefaultAsync();
+        var favoritesEntity = await _userFavoritesRepository.Where(uf => uf != null && uf.UserId == createdBy).SingleOrDefaultAsync();
         
         if (favoritesEntity is not null)
             return await UpdateAsync(userFavoritesDto, createdBy);
 
-        var userEntity = await _userService
-            .Where(u => u.Id == createdBy && !u.IsDeleted)
-            .Include(u=>u.Favorites)
-            .SingleOrDefaultAsync();
-
-        if (userEntity is null)
-            throw new Exception(ResponseMessages.UserNotFound);
+        favoritesEntity = UserFavoriteMapper.ToUserFavorites(userFavoritesDto);
+        favoritesEntity.CreatedAt = DateTime.Now;
+        favoritesEntity.CreatedBy = createdBy;
+        favoritesEntity.UpdatedAt = DateTime.Now;
+        favoritesEntity.UpdatedBy = createdBy;
         
-        
-        var favoriteEntity = UserFavoriteMapper.ToUserFavorites(userFavoritesDto);
-         favoriteEntity.CreatedAt = DateTime.Now;
-         favoriteEntity.CreatedBy = createdBy;
-         favoriteEntity.UpdatedAt = DateTime.Now;
-         favoriteEntity.UpdatedBy = createdBy;
-        
-        userEntity.Favorites.Add(favoriteEntity);
+        userEntity.Favorites.Add(favoritesEntity);
 
         await _userService.UpdateAsync(userEntity,createdBy);
 
-        return CustomResponseDto<UserFavorites>.Success(favoriteEntity, ResponseCodes.Created);
+        return CustomResponseDto<UserFavorites>.Success(favoritesEntity, ResponseCodes.Created);
     }
 }

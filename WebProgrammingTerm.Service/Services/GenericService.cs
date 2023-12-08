@@ -53,6 +53,7 @@ public class GenericService<TEntity> : IGenericService<TEntity> where TEntity :B
     public IQueryable<TEntity?> Where(Expression<Func<TEntity?, bool>> expression)
     {
         var entities = _repository.Where(expression);
+        
         return entities;
     }
     

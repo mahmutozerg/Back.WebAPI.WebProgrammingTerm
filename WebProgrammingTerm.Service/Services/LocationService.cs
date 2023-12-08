@@ -46,19 +46,11 @@ public class LocationService:GenericService<Location>,ILocationService
 
     public async Task<CustomResponseDto<Location>> AddAsync(LocationDto locationDto, string createdBy)
     {
-        var userEntity = await _userService
-            .Where(u => u != null && u.Id == createdBy && !u.IsDeleted)
-            .Include(u=>u.Locations)
-            .FirstOrDefaultAsync();
-        if (userEntity is null)
-            throw new Exception(ResponseMessages.UserNotFound);
-
-        if (userEntity.Locations.Count > 10)
-            throw new Exception("Max Location Count Reached");
+        var userEntity = await _userService.GetUserWithLocations(createdBy);
         
         var locationEntity = LocationMapper.ToLocation(locationDto);
         locationEntity.User = userEntity;
-         locationEntity.CreatedBy = createdBy;
+        locationEntity.CreatedBy = createdBy;
         locationEntity.UpdatedAt = DateTime.Now;
         locationEntity.UpdatedBy = createdBy;
 

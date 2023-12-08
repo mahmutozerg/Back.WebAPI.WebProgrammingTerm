@@ -13,11 +13,11 @@ public class ProductService:GenericService<Product>,IProductService
 {
     private readonly IProductRepository _productRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ICompanyUserRepository _companyUserRepository;
-    public ProductService(IUnitOfWork unitOfWork, IProductRepository productRepository, ICompanyUserRepository companyUserRepository) : base(productRepository, unitOfWork)
+    private readonly ICompanyUserService _companyUserService;
+    public ProductService(IUnitOfWork unitOfWork, IProductRepository productRepository , ICompanyUserService companyUserService) : base(productRepository, unitOfWork)
     {
         _productRepository = productRepository;
-        _companyUserRepository = companyUserRepository;
+        _companyUserService = companyUserService;
         _unitOfWork = unitOfWork;
     }
 
@@ -45,14 +45,7 @@ public class ProductService:GenericService<Product>,IProductService
 
     public async Task<CustomResponseDto<Product>> AddAsync(ProductAddDto productAddDto, string createdBy)
     {
-        var companyUserEntity =
-            await _companyUserRepository
-                .Where(cu => cu != null  && cu.UserId == createdBy && !cu.IsDeleted)
-                .Include(cu=>cu.Company)
-                .FirstOrDefaultAsync();
-
-        if (companyUserEntity is null)
-            throw new Exception(ResponseMessages.CompanyUserNotFound);
+        var companyUserEntity = await _companyUserService.GetCompanyUserWithCompany(createdBy);
 
         var productEntity = ProductMapper.ToProduct(productAddDto);
         productEntity.Company = companyUserEntity.Company;
@@ -66,5 +59,18 @@ public class ProductService:GenericService<Product>,IProductService
 
     }
 
-  
+    public async Task<Product> GetProductWithCompany(string productId)
+    {
+        var product = await _productRepository
+            .Where(p => p != null && p.Id == productId && !p.IsDeleted)
+            .Include(p=>p.Company)
+            .SingleOrDefaultAsync();
+
+        if (product is null)
+            throw new Exception(ResponseMessages.ProductNotFound);
+
+        return product;
+
+
+    }
 }

@@ -54,6 +54,9 @@ builder.Services.AddScoped(typeof(ILocationRepository), typeof(LocationRepositor
 builder.Services.AddScoped(typeof(IUserFavoriteService), typeof(UserFavoriteService));
 builder.Services.AddScoped(typeof(IUserFavoritesRepository), typeof(UserFavoritesRepository));
 
+builder.Services.AddScoped(typeof(IUserCommentService), typeof(UserCommentService));
+builder.Services.AddScoped(typeof(IUserCommentRepository), typeof(UserCommentRepository));
+
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"), options =>

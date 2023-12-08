@@ -1,4 +1,5 @@
-﻿using WebProgrammingTerm.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Models;
 using WebProgrammingTerm.Core.Repositories;
@@ -37,5 +38,43 @@ public class UserService:GenericService<User>,IUserService
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<User>.Success(user,ResponseCodes.Created);
 
+    }
+
+    public async Task<User> GetUserWithComments(string id)
+    {
+        var user= await _userRepository
+            .Where(u => u != null && u.Id == id && !u.IsDeleted)
+            .Include(u=>u!.Comments)
+            .SingleOrDefaultAsync();
+
+        if (user is null)
+            new Exception(ResponseMessages.UserNotFound);
+
+        return user;
+    }
+
+    public async Task<User> GetUserWithFavorites(string id)
+    {
+        var user= await _userRepository
+            .Where(u => u != null && u.Id == id && !u.IsDeleted)
+            .Include(u=>u!.Favorites)
+            .SingleOrDefaultAsync();
+
+        if (user is null)
+            new Exception(ResponseMessages.UserNotFound);
+
+        return user;    }
+
+    public async Task<User> GetUserWithLocations(string id)
+    {
+       var userEntity= await _userRepository
+            .Where(u => u != null && u.Id == id && !u.IsDeleted)
+            .Include(u=>u.Locations)
+            .FirstOrDefaultAsync();
+        if (userEntity is null)
+            throw new Exception(ResponseMessages.UserNotFound);
+
+
+        return userEntity;
     }
 }

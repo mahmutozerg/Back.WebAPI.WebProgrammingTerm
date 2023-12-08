@@ -50,4 +50,18 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<CompanyUser>.Success(companyUser,ResponseCodes.Created);
     }
+
+    public async Task<CompanyUser> GetCompanyUserWithCompany( string userId)
+    {
+        var companyUserEntity =
+            await _companyUserRepository
+                .Where(cu => cu != null  && cu.UserId == userId && !cu.IsDeleted)
+                .Include(cu=>cu.Company)
+                .FirstOrDefaultAsync();
+        
+        if (companyUserEntity is null)
+            throw new Exception(ResponseMessages.CompanyUserNotFound);
+
+        return companyUserEntity;
+    }
 }

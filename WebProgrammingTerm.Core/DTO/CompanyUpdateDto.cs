@@ -7,10 +7,8 @@ namespace WebProgrammingTerm.Core.DTO
         [Required(ErrorMessage = "TargetId is required")]
         public string TargetId { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Name is required")]
-        public string Name { get; set; } = string.Empty;
+         public string Name { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Contact is required")]
-        public string Contact { get; set; } = string.Empty; 
+         public string Contact { get; set; } = string.Empty; 
     }
 }

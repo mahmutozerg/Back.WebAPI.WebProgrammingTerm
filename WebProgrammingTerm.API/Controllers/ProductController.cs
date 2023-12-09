@@ -5,7 +5,7 @@ using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
-[Authorize(Roles = "Company,Admin")]
+[Authorize(Roles = "CompanyUser,Admin")]
 public class ProductController:CustomControllerBase
 {
     private readonly IProductService _productService;
@@ -16,6 +16,7 @@ public class ProductController:CustomControllerBase
     }
     
     [HttpPost("[action]")]
+    [Authorize(Roles = "CompanyUser")]
     public async Task<IActionResult> Add( ProductAddDto productAddDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;

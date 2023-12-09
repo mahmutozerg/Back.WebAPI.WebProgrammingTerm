@@ -5,5 +5,5 @@ namespace WebProgrammingTerm.Core.Services;
 
 public interface IOrderService:IGenericService<Order>
 {
-     Task<CustomResponseDto<UserFavorites>> AddAsync(OrderAddDto orderAddDto, string createdBy);
+     Task<CustomResponseDto<Order>> AddAsync(OrderAddDto orderAddDto, string createdBy);
 }

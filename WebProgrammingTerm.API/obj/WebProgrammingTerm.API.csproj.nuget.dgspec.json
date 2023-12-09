@@ -275,6 +275,10 @@
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             }
           },
           "imports": [
@@ -318,7 +322,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj": {
+                "projectPath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.Core\\WebProgrammingTerm.Auth.Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -460,6 +468,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

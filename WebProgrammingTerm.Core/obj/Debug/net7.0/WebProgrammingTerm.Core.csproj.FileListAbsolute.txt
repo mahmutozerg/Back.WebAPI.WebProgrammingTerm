@@ -11,9 +11,7 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\obj\Debug\net7.0\WebProgrammingTerm.Core.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\obj\Debug\net7.0\ref\WebProgrammingTerm.Core.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\bin\Debug\net7.0\Microsoft.AspNetCore.Authorization.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\bin\Debug\net7.0\Microsoft.AspNetCore.Metadata.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\obj\Debug\net7.0\WebProgrammingTerm.Core.csproj.CopyComplete
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.pdb

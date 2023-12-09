@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebProgrammingTerm.Core;
@@ -9,7 +10,7 @@ using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
 
-[Authorize(Roles = "Company,Admin")]
+[Authorize(Roles = "CompanyUser,Admin")]
 
 public class CompanyController:CustomControllerBase
 {
@@ -23,6 +24,7 @@ public class CompanyController:CustomControllerBase
     }
     
     [HttpPost("[action]")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Add(CompanyAddDto companyAddDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -56,8 +58,9 @@ public class CompanyController:CustomControllerBase
     public async Task<IActionResult> CreateCompanyUser(CompanyUserDto companyUserDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
+        var accessToken = await HttpContext.GetTokenAsync("access_token");
         return CreateActionResult(await _companyUserService.AddAsync(companyUserDto,
-            claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+            claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value, accessToken));
     }
     
 }

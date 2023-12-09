@@ -1449,6 +1449,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Microsoft.Extensions.Configuration": "7.0.0",
+          "Newtonsoft.Json": "13.0.1",
           "WebProgrammingTerm.Auth.Repository": "1.0.0"
         },
         "compile": {
@@ -1461,6 +1462,9 @@
       "WebProgrammingTerm.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "WebProgrammingTerm.Auth.Core": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/WebProgrammingTerm.Core.dll": {}
         },
@@ -1487,6 +1491,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
           "WebProgrammingTerm.Repository": "1.0.0"
         },
         "compile": {

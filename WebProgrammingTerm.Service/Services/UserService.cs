@@ -19,9 +19,9 @@ public class UserService:GenericService<User>,IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<CustomResponseDto<User>> AddUserByIdAsync(string id,string createdBy)
+    public async Task<CustomResponseDto<User>> AddUserAsync(UserAddDto userAddDto,string createdBy)
     {
-        var userExist = await _userRepository.AnyAsync(u => u != null && u.Id == id);
+        var userExist = await _userRepository.AnyAsync(u => u != null && u.Id == userAddDto.Id);
         if (userExist)
             throw new Exception(ResponseMessages.UserAlreadyExist);
 
@@ -29,10 +29,12 @@ public class UserService:GenericService<User>,IUserService
         {
             Name = string.Empty,
             LastName = string.Empty,
-            Id = id,
+            Id = userAddDto.Id,
             IsDeleted = false,
+            MailAddress = userAddDto.MailAddress,
             CreatedBy = createdBy,
             UpdatedBy = createdBy
+            
         };
         await _userRepository.AddAsync(user);
         await _unitOfWork.CommitAsync();

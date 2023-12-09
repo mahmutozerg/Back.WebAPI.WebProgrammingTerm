@@ -17,11 +17,11 @@ namespace WebProgrammingTerm.API.Controllers;
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> AddByIdAsync(string id)
+    public async Task<IActionResult> AddByIdAsync(UserAddDto userAddDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
 
-        return CreateActionResult(await _userService.AddUserByIdAsync(id,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        return CreateActionResult(await _userService.AddUserAsync(userAddDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
     }
 
 }

@@ -102,6 +102,10 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("UserMail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
@@ -396,6 +400,10 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MailAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

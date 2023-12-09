@@ -12,7 +12,7 @@ using WebProgrammingTerm.Repository;
 namespace WebProgrammingTerm.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231208213041_Initial")]
+    [Migration("20231209165748_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -104,6 +104,10 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserMail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -399,6 +403,10 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MailAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

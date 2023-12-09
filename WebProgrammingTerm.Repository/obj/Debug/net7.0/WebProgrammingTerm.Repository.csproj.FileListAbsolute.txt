@@ -15,3 +15,5 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\obj\Debug\net7.0\WebProgrammingTerm.Repository.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\obj\Debug\net7.0\WebProgrammingTerm.Repository.genruntimeconfig.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\obj\Debug\net7.0\ref\WebProgrammingTerm.Repository.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.pdb

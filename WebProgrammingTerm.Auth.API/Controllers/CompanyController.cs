@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using WebProgrammingTerm.Auth.Core.DTOs;
 using WebProgrammingTerm.Auth.Core.Services;
 namespace WebProgrammingTerm.Auth.API.Controllers;
 
-[Authorize(Roles = "Company")]
+[Authorize(Roles = "Admin,CompanyUser" )]
+
 public class CompanyController:CustomControllerBase
 {
     private readonly IUserService _userService;
@@ -17,10 +19,10 @@ public class CompanyController:CustomControllerBase
     }
 
     [HttpPost]
-     public async Task<IActionResult> AddUserToCompanyRole(UserToCompanyRoleDto userRoleDto)
+    public async Task<IActionResult> AddUserToCompanyRole(UserToCompanyRoleDto userRoleDto)
     {
         
-        var user = await _userService.AddRoleToUser(userRoleDto.UserMail,"Company");
+        var user = await _userService.AddRoleToUser(userRoleDto.UserMail,"CompanyUser");
         var userRefreshToken = await _authenticationService.GetUserRefreshTokenByEmail(userRoleDto.UserMail);
         var userAccessToken = await _authenticationService.CreateTokenByRefreshToken(userRefreshToken.Token);
         return CreateActionResult(userAccessToken);

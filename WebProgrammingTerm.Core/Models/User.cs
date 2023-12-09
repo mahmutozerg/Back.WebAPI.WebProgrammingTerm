@@ -8,5 +8,6 @@ public class User:Base
     public List<Location> Locations { get; set; } = new List<Location>();
     public List<UserFavorites> Favorites { get; set; } = new List<UserFavorites>();
     public List<Order> Orders { get; set; } = new List<Order>();
+    public string MailAddress { get; set; } = string.Empty;
 
 }

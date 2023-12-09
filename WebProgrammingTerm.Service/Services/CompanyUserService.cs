@@ -27,17 +27,19 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
         _userRepository = userRepository;
     }
 
-    public async Task<CustomResponseDto<TokenDto>> AddAsync(CompanyUserDto companyUserDto,string createdBy,string token)
+    public async Task<CustomResponseDto<CompanyUser>> AddAsync(CompanyUserDto companyUserDto,string createdBy,string token)
     {
         var isCompanyUserExist = await _companyUserRepository.Where(cu =>
-            cu.CompanyId == companyUserDto.CompanyId && cu.UserMail == companyUserDto.UserMail && !cu.IsDeleted).AnyAsync();
+            cu.UserMail == companyUserDto.UserMail && !cu.IsDeleted).AnyAsync();
 
         if (isCompanyUserExist)
             throw new Exception(ResponseMessages.CompanyUserAlreadyExist);
 
-        var companyEntity = await _companyRepository.Where(c => c.Id == companyUserDto.CompanyId && !c.IsDeleted).FirstOrDefaultAsync();
+        var existingCompanyUser = await _companyUserRepository
+            .Where(cu => cu.UserId == createdBy)
+            .Include(cu => cu.Company).FirstOrDefaultAsync();
 
-        if (companyEntity is null)
+        if (existingCompanyUser is null)
             throw new Exception(ResponseMessages.CompanyNotFound);
 
         
@@ -48,8 +50,10 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
         
 
         var companyUser = CompanyUserMapper.ToCompany(companyUserDto, createdBy);
-        companyUser.Company = companyEntity;
+        companyUser.Company = existingCompanyUser.Company;
+        companyUser.CompanyId = existingCompanyUser.Company.Id;
         companyUser.User = userEntity;
+        
 
 
         using (var client = new HttpClient())
@@ -58,8 +62,8 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
             
             var requestData = new
             {
-                companyId = companyEntity.Id,
-                userMail = companyUserDto.UserMail
+                companyId = companyUser.CompanyId,
+                userMail = companyUser.UserMail
                 
             };
 
@@ -71,16 +75,12 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
             var response = await client.PostAsync(url,content);
             if (!response.IsSuccessStatusCode)
                 throw new Exception("Something went wrong");
-            
-            
-            string responseContent = await response.Content.ReadAsStringAsync();
-            var apiResponse = JsonConvert.DeserializeObject<ApiResponseto<TokenDto>>(responseContent);
 
             await _companyUserRepository.AddAsync(companyUser);
             await _unitOfWork.CommitAsync();
-            return CustomResponseDto<TokenDto>.Success(apiResponse.Data,ResponseCodes.Created);
 
         }
+        return CustomResponseDto<CompanyUser>.Success(companyUser,ResponseCodes.Created);
 
     }
 

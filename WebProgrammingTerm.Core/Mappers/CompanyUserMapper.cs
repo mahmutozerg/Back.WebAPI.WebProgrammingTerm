@@ -9,7 +9,6 @@ public static class CompanyUserMapper
     {
         var companyDto = new CompanyUserDto()
         {
-            CompanyId = companyUser.Id,
             UserMail = companyUser.UserMail
         };
 
@@ -22,7 +21,6 @@ public static class CompanyUserMapper
         {
             Id = Guid.NewGuid().ToString(),
             UserMail = companyUserDto.UserMail,
-            CompanyId = companyUserDto.CompanyId,
             CreatedAt = DateTime.Now,
             CreatedBy = id,
             UpdatedAt = DateTime.Now,

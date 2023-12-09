@@ -28,13 +28,13 @@ public class UserService:GenericService<User>,IUserService
         _clientTokenOptions = clientTokenOptions.Value;
     }
 
-    public async Task<Response<UserAppDto>> CreateUserAsync(CreateUserDto createUserDto)
+    public async Task<Response<User>> CreateUserAsync(CreateUserDto createUserDto)
     {
         var user = new User {Id = Guid.NewGuid().ToString(),Email = createUserDto.Email, UserName = createUserDto.UserName,CreatedAt = DateTime.Now,CreatedBy = "System"};
         var result = await _userManager.CreateAsync(user, createUserDto.Password);
         
         if (!result.Succeeded)
-            return Response<UserAppDto>.Fail(result.Errors.Select(x => x.Description).ToList(), 400);
+            return Response<User>.Fail(result.Errors.Select(x => x.Description).ToList(), 400);
 
         using (var client = new HttpClient())
         {
@@ -65,7 +65,7 @@ public class UserService:GenericService<User>,IUserService
                 throw new Exception("Authserver cannot reach api  ");
         }
 
-        return Response<UserAppDto>.Success(200);
+        return Response<User>.Success(user,200);
     }
 
     public async Task<Response<UserAppDto>> GetUserByNameAsync(string userName)

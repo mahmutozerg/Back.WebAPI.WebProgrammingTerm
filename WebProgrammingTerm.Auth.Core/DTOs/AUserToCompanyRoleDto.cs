@@ -2,7 +2,7 @@
 
 namespace WebProgrammingTerm.Auth.Core.DTOs;
 
-public class UserToCompanyRoleDto
+public class AUserToCompanyRoleDto
 {    
     [Required(ErrorMessage = "UserMail field is required")]
     [EmailAddress(ErrorMessage = "Invalid email address")]

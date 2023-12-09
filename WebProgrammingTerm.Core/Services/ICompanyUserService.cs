@@ -6,7 +6,7 @@ namespace WebProgrammingTerm.Core.Services;
 
 public interface ICompanyUserService:IGenericService<CompanyUser>
 {
-    Task<CustomResponseDto<TokenDto>> AddAsync(CompanyUserDto companyUserDto,string createdBy,string token);
+    Task<CustomResponseDto<CompanyUser>> AddAsync(CompanyUserDto companyUserDto,string createdBy,string token);
     Task<CompanyUser> GetCompanyUserWithCompany( string userId);
 
 }

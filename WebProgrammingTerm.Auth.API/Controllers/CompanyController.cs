@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
-using WebProgrammingTerm.Auth.Core.DTOs;
-using WebProgrammingTerm.Auth.Core.Services;
+ using Microsoft.AspNetCore.Mvc;
+using WebProgrammingTerm.Auth.Core.DTO;
+ using WebProgrammingTerm.Auth.Core.Services;
+ 
 namespace WebProgrammingTerm.Auth.API.Controllers;
 
 [Authorize(Roles = "Admin,CompanyUser" )]
@@ -17,14 +17,17 @@ public class CompanyController:CustomControllerBase
         _userService = userService;
         _authenticationService = authenticationService;
     }
-
+    
     [HttpPost]
-    public async Task<IActionResult> AddUserToCompanyRole(UserToCompanyRoleDto userRoleDto)
+    [Authorize(Roles="CompanyUser")]
+    public async Task<IActionResult> AddUserToCompanyRole(CUserToCompanyRoleDto aUserRoleDto)
     {
         
-        var user = await _userService.AddRoleToUser(userRoleDto.UserMail,"CompanyUser");
-        var userRefreshToken = await _authenticationService.GetUserRefreshTokenByEmail(userRoleDto.UserMail);
+        var user = await _userService.AddRoleToUser(aUserRoleDto.UserMail,"CompanyUser");
+        var userRefreshToken = await _authenticationService.GetUserRefreshTokenByEmail(aUserRoleDto.UserMail);
         var userAccessToken = await _authenticationService.CreateTokenByRefreshToken(userRefreshToken.Token);
         return CreateActionResult(userAccessToken);
     }
+
+    
 }

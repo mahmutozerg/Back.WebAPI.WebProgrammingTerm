@@ -79,9 +79,8 @@ builder.Services.AddAuthentication(opt =>
         IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
         ValidAudience = tokenOptions.Audience[0],
         ValidateAudience = true,
-
         ValidateIssuerSigningKey = true,
-        ValidateLifetime = true
+        ValidateLifetime = true,
     };
 });
 builder.Services.AddAuthorization(options =>

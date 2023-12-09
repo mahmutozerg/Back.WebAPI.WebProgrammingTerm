@@ -30,11 +30,8 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
         
         if (!productExist)
             throw new Exception(ResponseMessages.ProductNotFound);
-        
-        var userEntity = await _userService
-            .Where(u => u.Id == updatedBy && !u.IsDeleted)
-            .Include(u=>u.Favorites)
-            .SingleOrDefaultAsync();
+
+        var userEntity = await _userService.GetUserWithFavorites(updatedBy);
 
         if (userEntity is null)
             throw new Exception(ResponseMessages.UserNotFound);

@@ -10,11 +10,10 @@ namespace WebProgrammingTerm.Auth.API.Controllers;
 public class UserController:CustomControllerBase
 {
     private readonly IUserService _userService;
-
-    public UserController(IUserService userService, IGenericService<User> genericService)
+     public UserController(IUserService userService, IGenericService<User> genericService )
     {
         _userService = userService;
-    }
+     }
 
     [HttpPost]
     public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
@@ -43,4 +42,7 @@ public class UserController:CustomControllerBase
 
         return CreateActionResult(user);
     }
+    
+  
+
 }

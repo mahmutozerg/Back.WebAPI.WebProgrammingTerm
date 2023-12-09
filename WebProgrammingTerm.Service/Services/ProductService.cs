@@ -23,10 +23,7 @@ public class ProductService:GenericService<Product>,IProductService
 
     public async Task<CustomResponseDto<Product>> UpdateAsync(ProductUpdateDto productUpdateDto, string updatedBy)
     {
-        var productEntity = await _productRepository
-            .Where(p => p != null && p.Id == productUpdateDto.TargetProductId && !p.IsDeleted)
-            .Include(x=>x.Company)
-            .FirstOrDefaultAsync();
+        var productEntity = await GetProductWithCompany(productUpdateDto.TargetProductId);
 
         if (productEntity is null)
             throw new Exception(ResponseMessages.ProductNotFound);

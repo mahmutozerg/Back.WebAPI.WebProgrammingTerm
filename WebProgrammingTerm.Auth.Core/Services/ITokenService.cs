@@ -6,7 +6,7 @@ namespace WebProgrammingTerm.Auth.Core.Services;
 
 public interface ITokenService
 {
-    TokenDto CreateToken(User user);
+    Task<TokenDto> CreateTokenAsync(User user);
     ClientTokenDto CreateTokenByClient(Client client);
 
 }

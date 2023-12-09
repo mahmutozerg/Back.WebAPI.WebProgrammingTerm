@@ -29,8 +29,6 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
     {
         var productEntity = await _productService.GetProductWithCompany(productDetailAddDto.ProductId);
 
-
-        
         var depotEntity = await _depotService
             .Where(p => p.Id == productDetailAddDto.DepotId && !p.IsDeleted)
             .FirstOrDefaultAsync();

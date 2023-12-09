@@ -5,7 +5,7 @@ using WebProgrammingTerm.Auth.Core.Models;
 
 namespace WebProgrammingTerm.Auth.Repository;
 
-public class AppDbContext:IdentityDbContext<User,Roles,string>
+public class AppDbContext:IdentityDbContext<User,AppRole,string>
 {
     public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
     

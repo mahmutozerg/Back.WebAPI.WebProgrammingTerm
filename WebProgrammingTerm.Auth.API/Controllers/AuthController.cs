@@ -8,6 +8,11 @@ namespace WebProgrammingTerm.Auth.API.Controllers;
 public class AuthController:CustomControllerBase
 {
     private readonly IAuthenticationService _authenticationService;
+    
+    public AuthController(IAuthenticationService authenticationService)
+    {
+        _authenticationService = authenticationService;
+    }
     [HttpPost]
     public async Task<IActionResult> CreateTokenByClient(ClientLoginDto clientLoginDto)
     {
@@ -16,17 +21,12 @@ public class AuthController:CustomControllerBase
         return CreateActionResult(result);
     }
 
-    public AuthController(IAuthenticationService authenticationService)
-    {
-        _authenticationService = authenticationService;
-    }
+
 
     [HttpPost]
     public async Task<IActionResult> CreateToken(LoginDto loginDto)
     {
         var result = await _authenticationService.CreateTokenAsync(loginDto);
-
-
         return CreateActionResult(result);
     }
     
@@ -44,6 +44,14 @@ public class AuthController:CustomControllerBase
     public async Task<IActionResult> CreateTokenByRefreshToken(string refreshToken)
     {
         var result = await _authenticationService.CreateTokenByRefreshToken(refreshToken);
+        return CreateActionResult(result);
+    }
+    
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
+     public async Task<IActionResult> AddRole(string role)
+    {
+        var result = await _authenticationService.AddRole(role);
 
         return CreateActionResult(result);
     }

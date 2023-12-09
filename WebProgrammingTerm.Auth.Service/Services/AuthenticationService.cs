@@ -16,14 +16,16 @@ public class AuthenticationService:IAuthenticationService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IGenericRepository<UserRefreshToken> _refreshTokenService;
     private readonly List<ClientLoginDto >_tokenOptions;
+    private readonly RoleManager<AppRole> _roleManager;
 
 
-    public AuthenticationService(ITokenService tokenService, UserManager<User> userManager, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> refreshTokenService, IOptions<List<ClientLoginDto>> tokenOptions)
+    public AuthenticationService(ITokenService tokenService, UserManager<User> userManager, IUnitOfWork unitOfWork, IGenericRepository<UserRefreshToken> refreshTokenService, IOptions<List<ClientLoginDto>> tokenOptions, RoleManager<AppRole> roleManager)
     {
         _tokenService = tokenService;
         _userManager = userManager;
         _unitOfWork = unitOfWork;
         _refreshTokenService = refreshTokenService;
+        _roleManager = roleManager;
         _tokenOptions = tokenOptions.Value;
     }
 
@@ -40,7 +42,7 @@ public class AuthenticationService:IAuthenticationService
         if (! await _userManager.CheckPasswordAsync(user,loginDto.Password))
             return Response<TokenDto>.Fail("Email or password is wrong", 400,true);
 
-        var token = _tokenService.CreateToken(user);
+        var token = await _tokenService.CreateTokenAsync(user);
 
         var userRefreshToken = await _refreshTokenService.Where(r => r != null && r.UserId == user.Id).SingleOrDefaultAsync();
 
@@ -71,7 +73,7 @@ public class AuthenticationService:IAuthenticationService
         if (user is null)
             return Response<TokenDto>.Fail("User does not exist", 404,true);
 
-        var token = _tokenService.CreateToken(user);
+        var token =await _tokenService.CreateTokenAsync(user);
         refreshToken.Token = token.RefreshToken;
         refreshToken.Expiration = token.RefreshTokenExpiration;
 
@@ -119,5 +121,30 @@ public class AuthenticationService:IAuthenticationService
 
     }
 
-    
+    public async Task<Response<NoDataDto>> AddRole(string role)
+    {
+        var roleEntity = await _roleManager.FindByNameAsync(role);
+        if (roleEntity is not null)
+            return Response<NoDataDto>.Fail("Role already exist",409,true);
+        
+        var result = await _roleManager.CreateAsync(new AppRole(role));
+
+        return Response<NoDataDto>.Success(200);
+
+    }
+
+    public async Task<UserRefreshToken> GetUserRefreshTokenByEmail(string userEmail)
+    {
+        var user =await _userManager.FindByEmailAsync(userEmail);
+        if (user is null)
+            throw new Exception("User not found");
+
+        var refreshToken = await _refreshTokenService.Where(u => u.UserId == user.Id).FirstOrDefaultAsync();
+
+        if (refreshToken is null)
+            throw new Exception("Refresh token not found");
+
+        return refreshToken;
+
+    }
 }

@@ -12,7 +12,7 @@ using WebProgrammingTerm.Auth.Repository;
 namespace WebProgrammingTerm.Auth.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231130161805_Initial")]
+    [Migration("20231209103840_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -131,7 +131,7 @@ namespace WebProgrammingTerm.Auth.Repository.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WebProgrammingTerm.Auth.Core.Models.Roles", b =>
+            modelBuilder.Entity("WebProgrammingTerm.Auth.Core.Models.AppRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -254,7 +254,7 @@ namespace WebProgrammingTerm.Auth.Repository.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("WebProgrammingTerm.Auth.Core.Models.Roles", null)
+                    b.HasOne("WebProgrammingTerm.Auth.Core.Models.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -281,7 +281,7 @@ namespace WebProgrammingTerm.Auth.Repository.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("WebProgrammingTerm.Auth.Core.Models.Roles", null)
+                    b.HasOne("WebProgrammingTerm.Auth.Core.Models.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -8,8 +8,7 @@ public class ClientIdRequirementHandler : AuthorizationHandler<ClientIdRequireme
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ClientIdRequirement requirement)
     {
         var nameIdClaim = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        if (nameIdClaim != null && nameIdClaim == requirement.ClientId)
+        if ((nameIdClaim != null && nameIdClaim == requirement.ClientId))
         {
             context.Succeed(requirement);
         }

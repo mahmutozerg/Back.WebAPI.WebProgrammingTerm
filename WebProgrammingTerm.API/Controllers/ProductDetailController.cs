@@ -7,7 +7,7 @@ using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Company,Admin")]
 public class ProductDetailController:CustomControllerBase
 {
     private readonly IProductDetailService _productDetailService;

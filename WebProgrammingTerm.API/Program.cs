@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -81,16 +82,23 @@ builder.Services.AddAuthentication(opt =>
         ValidateAudience = true,
         ValidateIssuerSigningKey = true,
         ValidateLifetime = true,
+        RoleClaimType = ClaimTypes.Role,
+        
     };
 });
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AuthServerPolicy", policy =>
-        policy.Requirements.Add(new ClientIdRequirement("authserver")));
+        policy.Requirements.Add(new ClientIdRequirement("authserver")));    
+    
+    options.AddPolicy("AdminBypassAuthServerPolicy", policy =>
+        policy.Requirements.Add(new AdminClientIdBypassRequirement("authserver")));
     options.AddPolicy("JSClientPolicy", policy =>
         policy.Requirements.Add(new ClientIdRequirement("jsclient")));
+    
 });
 builder.Services.AddSingleton<IAuthorizationHandler, ClientIdRequirementHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, AdminClientIdBypassRequirementHandler>();
 
 var app = builder.Build();
 

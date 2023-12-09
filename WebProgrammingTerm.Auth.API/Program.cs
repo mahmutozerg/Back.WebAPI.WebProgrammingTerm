@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -58,9 +59,10 @@ builder.Services.AddAuthentication(opt =>
         IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
         ValidAudience = tokenOptions.Audience[0],
         ValidateAudience = true,
-
         ValidateIssuerSigningKey = true,
-        ValidateLifetime = true
+        ValidateLifetime = true,
+        RoleClaimType = ClaimTypes.Role
+
     };
 });
 var app = builder.Build();

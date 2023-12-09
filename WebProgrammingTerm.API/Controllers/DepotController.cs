@@ -7,7 +7,7 @@ using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 public class DepotController:CustomControllerBase
 {
     private readonly IDepotService _depotService;

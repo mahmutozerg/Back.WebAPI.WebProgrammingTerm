@@ -9,7 +9,8 @@ using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Company,Admin")]
+
 public class CompanyController:CustomControllerBase
 {
     private readonly ICompanyService _companyService;

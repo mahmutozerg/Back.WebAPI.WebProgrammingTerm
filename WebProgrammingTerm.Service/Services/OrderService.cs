@@ -59,6 +59,11 @@ public class OrderService:GenericService<Order>,IOrderService
         orderEntity.Products.AddRange(productList);
         orderEntity.CreatedBy = createdBy;
         orderEntity.UpdatedBy = createdBy;
+        orderEntity.OrderDetail = new OrderDetail()
+        {
+            Tax = 0.18f,
+            PaymentMethod = "CC"
+        };
         await _orderRepository.AddAsync(orderEntity);
         await _unitOfWork.CommitAsync();
 

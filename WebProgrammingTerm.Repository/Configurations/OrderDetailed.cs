@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WebProgrammingTerm.Core.Models;
 
@@ -14,7 +13,8 @@ namespace WebProgrammingTerm.Repository.Configurations
             builder
                 .HasOne(od => od.Order)
                 .WithOne(o => o.OrderDetail)
-                .HasForeignKey<OrderDetail>(od => od.OrderId);
+                .HasForeignKey<OrderDetail>(od => od.OrderId)
+                .OnDelete(DeleteBehavior.NoAction);  
         }
     }
 }

@@ -6,8 +6,8 @@ using WebProgrammingTerm.Core.Models;
 using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
-[Authorize(Policy = "ClientIdPolicy")]
-public class UserController:CustomControllerBase
+[Authorize(Policy = "AdminBypassAuthServerPolicy")]
+ public class UserController:CustomControllerBase
 {
     private readonly IUserService _userService;
 
@@ -17,10 +17,10 @@ public class UserController:CustomControllerBase
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> Add(string id)
+    public async Task<IActionResult> AddByIdAsync(UserAddDto userAddDto)
     {
-        
-        return CreateActionResult(await _userService.AddUserByIdAsync(id));
+ 
+        return CreateActionResult(await _userService.AddUserAsync(userAddDto,(ClaimsIdentity)User.Identity));
     }
 
 }

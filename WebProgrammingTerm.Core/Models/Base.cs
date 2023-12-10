@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace WebProgrammingTerm.Core.Models;
 
@@ -18,7 +19,8 @@ public class Base
     [Required]
 
     public DateTime UpdatedAt { get; set; } =DateTime.Now;
+    
+    [JsonIgnore]
     [Required]
-
     public bool IsDeleted { get; set; } = false;
 }

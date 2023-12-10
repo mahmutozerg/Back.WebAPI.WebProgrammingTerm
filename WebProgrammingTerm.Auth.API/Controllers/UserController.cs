@@ -10,17 +10,29 @@ namespace WebProgrammingTerm.Auth.API.Controllers;
 public class UserController:CustomControllerBase
 {
     private readonly IUserService _userService;
-
-    public UserController(IUserService userService, IGenericService<User> genericService)
-    {
-        _userService = userService;
-    }
+    private readonly IAuthenticationService _authenticationService;
+     public UserController(IUserService userService, IGenericService<User> genericService, IAuthenticationService authenticationService)
+     {
+         _userService = userService;
+         _authenticationService = authenticationService;
+     }
 
     [HttpPost]
     public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
     {
         var result = await _userService.CreateUserAsync(createUserDto);
+        if (result.StatusCode == 200)
+        {
+            var loginD = new LoginDto()
+            {
+                Email = createUserDto.Email,
+                Password = createUserDto.Password
+            };
+            var token = await _authenticationService.CreateTokenAsync(loginD);
+            return CreateActionResult(  token);
 
+        }        
+        
         return CreateActionResult(result);
     }
 
@@ -43,4 +55,7 @@ public class UserController:CustomControllerBase
 
         return CreateActionResult(user);
     }
+    
+  
+
 }

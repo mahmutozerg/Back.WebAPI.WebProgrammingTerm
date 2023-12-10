@@ -1,9 +1,11 @@
-﻿namespace WebProgrammingTerm.Core.Models;
+﻿using System.Text.Json.Serialization;
 
-public class Location
+namespace WebProgrammingTerm.Core.Models;
+
+public class Location:Base
 {
-    public string Id { get; set; } = string.Empty;
-    public User User { get; set; } = new User();
+    [JsonIgnore]
+     public User User { get; set; } = new User();
     public string UserId { get; set; } = string.Empty;
     public string Country { get; set; } = string.Empty;
     public string Street { get; set; } = string.Empty;

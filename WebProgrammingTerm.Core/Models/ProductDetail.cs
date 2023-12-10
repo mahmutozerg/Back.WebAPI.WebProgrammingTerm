@@ -1,12 +1,16 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using System.Text.Json.Serialization;
 
 namespace WebProgrammingTerm.Core.Models;
 
-public class ProductDetail
+public class ProductDetail:Base
 {
     public string Id { get; set; }
-    public Product Product { get; set; } = new Product();
+    [JsonIgnore]
+    public Product Product { get; set; }
+ 
     public string ProductId { get; set; } = string.Empty;
+    [JsonIgnore]
     public Depot Depot { get; set; } = new Depot();
     public string DepotId { get; set; } = string.Empty;
     public string Author { get; set; } = string.Empty;
@@ -16,5 +20,4 @@ public class ProductDetail
     public string Size { get; set; } = string.Empty;
     public string Category { get; set; } = string.Empty;
     public int Page { get; set; } = 0;
-    public float DiscountRate { get; set; } = 0f;
 }

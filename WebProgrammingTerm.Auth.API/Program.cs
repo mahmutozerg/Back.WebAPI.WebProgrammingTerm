@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<AppTokenOptions>(builder.Configuration.GetSection("TokenOptions"));
-builder.Services.Configure<ClientLoginDto>(builder.Configuration.GetSection("Clients"));
+builder.Services.Configure<List<ClientLoginDto>>(builder.Configuration.GetSection("Clients"));
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<AppTokenOptions>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -37,12 +38,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddIdentity<User, AppRole>(opt =>
-{
-    opt.Password.RequireDigit = true;
-    opt.Password.RequiredLength = 8;
-    opt.Password.RequireUppercase = true;
-}).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
-
+    {
+        opt.Password.RequireDigit = true;
+        opt.Password.RequiredLength = 8;
+        opt.Password.RequireUppercase = true;
+    })
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(opt =>
 {
@@ -57,18 +59,21 @@ builder.Services.AddAuthentication(opt =>
         IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
         ValidAudience = tokenOptions.Audience[0],
         ValidateAudience = true,
-
         ValidateIssuerSigningKey = true,
-        ValidateLifetime = true
+        ValidateLifetime = true,
+        RoleClaimType = ClaimTypes.Role
+
     };
 });
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    
 }
 
 app.UseHttpsRedirection();

@@ -16,11 +16,13 @@ public class ProductService:GenericService<Product>,IProductService
     private readonly IUnitOfWork _unitOfWork;
     private readonly ICompanyUserService _companyUserService;
     private readonly ICompanyService _companyService;
-    public ProductService(IUnitOfWork unitOfWork, IProductRepository productRepository , ICompanyUserService companyUserService, ICompanyService companyService) : base(productRepository, unitOfWork)
+    private readonly IProductDetailService _productDetailService;
+    public ProductService(IUnitOfWork unitOfWork, IProductRepository productRepository , ICompanyUserService companyUserService, ICompanyService companyService, IProductDetailService productDetailService) : base(productRepository, unitOfWork)
     {
         _productRepository = productRepository;
         _companyUserService = companyUserService;
         _companyService = companyService;
+        _productDetailService = productDetailService;
         _unitOfWork = unitOfWork;
     }
 
@@ -70,10 +72,13 @@ public class ProductService:GenericService<Product>,IProductService
             productEntity.Company = companyUserEntity.Company;
         }
         
+        var productDetailEntity = await _productDetailService.CreateAsync(ProductDetailMapper.toProductDetail(productAddDto),claimsIdentity);
         productEntity.ImagePath = productAddDto.ImagePath;
         productEntity.CreatedBy = createdBy;
         productEntity.UpdatedAt = DateTime.Now;
         productEntity.UpdatedBy = createdBy;
+        productEntity.ProductDetail = productDetailEntity;
+        productEntity.Category = productAddDto.Category;
         await _productRepository.AddAsync(productEntity);
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<Product>.Success(productEntity, ResponseCodes.Created);

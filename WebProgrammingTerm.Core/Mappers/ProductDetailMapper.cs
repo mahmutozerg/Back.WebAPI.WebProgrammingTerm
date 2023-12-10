@@ -16,8 +16,7 @@ public static class ProductDetailMapper
             Publisher = productDetailAddDto.Publisher,
             Language = productDetailAddDto.Language,
             Size = productDetailAddDto.Size,
-            Category = productDetailAddDto.Category,
-            Page = productDetailAddDto.Page,
+             Page = productDetailAddDto.Page,
             PublishDate = productDetailAddDto.PublishDate,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
@@ -26,4 +25,21 @@ public static class ProductDetailMapper
         return productDetail;
     }
  
+    public static ProductDetailAddDto toProductDetail(ProductAddDto productDetailAddDto )
+    {
+        var productDetail = new ProductDetailAddDto()
+        {
+             Author = productDetailAddDto.Author,
+             DepotId = productDetailAddDto.DepotId,
+            Publisher = productDetailAddDto.Publisher,
+            Language = productDetailAddDto.Language,
+            Size = productDetailAddDto.Size,
+            Page = productDetailAddDto.Page,
+            PublishDate = productDetailAddDto.PublishDate,
+            
+ 
+        };
+
+        return productDetail;
+    }
 }

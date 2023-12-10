@@ -18,6 +18,5 @@ public class ProductDetail:Base
     public string Publisher { get; set; } = string.Empty;
     public string Language { get; set; } = string.Empty;
     public string Size { get; set; } = string.Empty;
-    public string Category { get; set; } = string.Empty;
     public int Page { get; set; } = 0;
 }

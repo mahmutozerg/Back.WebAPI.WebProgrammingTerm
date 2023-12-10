@@ -14,22 +14,20 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
 {
     private readonly IProductDetailRepository _productDetailRepository;
     private readonly IDepotService _depotService;
-    private readonly IProductService _productService;
     private readonly IUnitOfWork _unitOfWork;
 
 
-    public ProductDetailService(IUnitOfWork unitOfWork, IProductDetailRepository productDetailRepository, IDepotService depotService, IProductService productService) : base(productDetailRepository, unitOfWork)
+    public ProductDetailService(IUnitOfWork unitOfWork, IProductDetailRepository productDetailRepository, IDepotService depotService) : base(productDetailRepository, unitOfWork)
     {
         _productDetailRepository = productDetailRepository;
         _depotService = depotService;
-        _productService = productService;
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<CustomResponseDto<ProductDetail>> AddAsync(ProductDetailAddDto productDetailAddDto, ClaimsIdentity  claimsIdentity)
+    public async Task<ProductDetail> CreateAsync(ProductDetailAddDto productDetailAddDto, ClaimsIdentity  claimsIdentity)
     {
         var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var productEntity = await _productService.GetProductWithCompany(productDetailAddDto.ProductId);
+        //var productEntity = await _productService.GetProductWithCompany(productDetailAddDto.ProductId);
 
         var depotEntity = await _depotService
             .Where(p => p != null && p.Id == productDetailAddDto.DepotId && !p.IsDeleted)
@@ -42,12 +40,11 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
         var productDetailEntity = ProductDetailMapper.toProductDetail(productDetailAddDto);
         
         productDetailEntity.Depot = depotEntity;
-        productDetailEntity.ProductId = productEntity.Id;
+        //productDetailEntity.ProductId = productEntity.Id;
         productDetailEntity.CreatedBy = createdBy;
         productDetailEntity.UpdatedBy = createdBy;
-        await _productDetailRepository.AddAsync(productDetailEntity);
-        await _unitOfWork.CommitAsync();
-        return CustomResponseDto<ProductDetail>.Success(productDetailEntity, ResponseCodes.Created);
+
+        return productDetailEntity;
     }
 
     public async Task<CustomResponseDto<ProductDetail>> UpdateAsync(ProductDetailUpdateDto productDetailUpdateDto, ClaimsIdentity claimsIdentity)
@@ -67,7 +64,6 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
         productDetailEntity.Publisher = string.IsNullOrWhiteSpace(productDetailUpdateDto.Publisher) ? productDetailEntity.Publisher : productDetailUpdateDto.Publisher;
         productDetailEntity.Language = string.IsNullOrWhiteSpace(productDetailUpdateDto.Language) ? productDetailEntity.Language : productDetailUpdateDto.Language;
         productDetailEntity.Size = string.IsNullOrWhiteSpace(productDetailUpdateDto.Size) ? productDetailEntity.Size : productDetailUpdateDto.Size;
-        productDetailEntity.Category = string.IsNullOrWhiteSpace(productDetailUpdateDto.Category) ? productDetailEntity.Category : productDetailUpdateDto.Category;
         productDetailEntity.Page = productDetailUpdateDto.Page == 0 ? productDetailEntity.Page : productDetailUpdateDto.Page;
         productDetailEntity.UpdatedAt = DateTime.Now;
         productDetailEntity.UpdatedBy = updatedBy;

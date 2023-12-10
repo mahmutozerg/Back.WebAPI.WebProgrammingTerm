@@ -25,10 +25,7 @@ public class ProductDetailAddDto
 
     [Required(ErrorMessage = "Size is required")]
     public string Size { get; set; } = string.Empty;
-
-    [Required(ErrorMessage = "Category is required")]
-    public string Category { get; set; } = string.Empty;
-
+    
     [Range(0, int.MaxValue, ErrorMessage = "Page must be a non-negative number")]
     public int Page { get; set; } = 0;
 }

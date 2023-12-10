@@ -42,11 +42,11 @@ builder.Services.AddScoped(typeof(ICompanyUserRepository), typeof(CompanyUserRep
 builder.Services.AddScoped(typeof(IDepotService), typeof(DepotService));
 builder.Services.AddScoped(typeof(IDepotRepository), typeof(DepotRepository));
 
-builder.Services.AddScoped(typeof(IProductService), typeof(ProductService));
-builder.Services.AddScoped(typeof(IProductRepository), typeof(ProductRepository));
-
 builder.Services.AddScoped(typeof(IProductDetailService), typeof(ProductDetailService));
 builder.Services.AddScoped(typeof(IProductDetailRepository), typeof(ProductDetailRepository));
+
+builder.Services.AddScoped(typeof(IProductService), typeof(ProductService));
+builder.Services.AddScoped(typeof(IProductRepository), typeof(ProductRepository));
 
 
 builder.Services.AddScoped(typeof(ILocationService), typeof(LocationService));

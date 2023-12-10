@@ -10,7 +10,7 @@ using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
 
-[Authorize(Roles = "CompanyUser,Admin")]
+[Authorize(Roles = "Admin,CompanyUser,Company")]
 
 public class CompanyController:CustomControllerBase
 {
@@ -28,11 +28,13 @@ public class CompanyController:CustomControllerBase
     public async Task<IActionResult> Add(CompanyAddDto companyAddDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
-        var company = CompanyMapper.ToCompany(companyAddDto);
-        return CreateActionResult(await _companyService.AddAsync(company,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        var accessToken = await HttpContext.GetTokenAsync("access_token");
+        
+        return CreateActionResult(await _companyService.AddAsync(companyAddDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value,accessToken));
     }
     
     [HttpPost("[action]")]
+    [Authorize(Roles = "Company,Admin")]
     public async Task<IActionResult> Update(CompanyUpdateDto companyUpdateDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -40,6 +42,7 @@ public class CompanyController:CustomControllerBase
 
     }
     [HttpDelete("[action]")]
+    [Authorize(Roles = "Admin,Company")]
     public async Task<IActionResult> Delete(string id)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -55,12 +58,12 @@ public class CompanyController:CustomControllerBase
 
     }
     [HttpPost("[action]")]
+    [Authorize(Roles = "Company")]
     public async Task<IActionResult> CreateCompanyUser(CompanyUserDto companyUserDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
         var accessToken = await HttpContext.GetTokenAsync("access_token");
-        return CreateActionResult(await _companyUserService.AddAsync(companyUserDto,
-            claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value, accessToken));
+        return CreateActionResult(await _companyUserService.AddAsync(companyUserDto,(ClaimsIdentity)User.Identity,accessToken));
     }
     
 }

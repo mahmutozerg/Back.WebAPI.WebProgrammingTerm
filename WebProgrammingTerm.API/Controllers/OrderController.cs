@@ -6,7 +6,7 @@ using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
 
-[Authorize]
+[Authorize(Policy = "JSClientPolicy")]
 public class OrderController:CustomControllerBase
 {
     private readonly IOrderService _orderService;
@@ -19,8 +19,6 @@ public class OrderController:CustomControllerBase
     [HttpPost("[action]")]
     public async Task<IActionResult> Add(OrderAddDto orderAddDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-
-        return CreateActionResult(await _orderService.AddAsync(orderAddDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        return CreateActionResult(await _orderService.AddAsync(orderAddDto,(ClaimsIdentity)User.Identity));
     }
 }

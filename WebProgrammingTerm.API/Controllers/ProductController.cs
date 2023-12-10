@@ -5,7 +5,7 @@ using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
-[Authorize(Roles = "CompanyUser,Admin")]
+[Authorize(Roles = "CompanyUser,Admin,Company")]
 public class ProductController:CustomControllerBase
 {
     private readonly IProductService _productService;
@@ -16,16 +16,18 @@ public class ProductController:CustomControllerBase
     }
     
     [HttpPost("[action]")]
-    [Authorize(Roles = "CompanyUser")]
     public async Task<IActionResult> Add( ProductAddDto productAddDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-         return CreateActionResult(await _productService.AddAsync(productAddDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        return CreateActionResult(
+            await _productService.AddAsync(
+                productAddDto,
+                (ClaimsIdentity)User.Identity));
     }
+    
     [HttpPost("[action]")]
     public async Task<IActionResult> Update(ProductUpdateDto productUpdateDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-        return CreateActionResult(await _productService.UpdateAsync(productUpdateDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+ 
+         return CreateActionResult(await _productService.UpdateAsync(productUpdateDto,(ClaimsIdentity)User.Identity));
      }
 }

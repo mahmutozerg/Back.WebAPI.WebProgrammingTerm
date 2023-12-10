@@ -17,14 +17,16 @@ public class UserService:GenericService<User>,IUserService
     private readonly IUnitOfWork _unitOfWork;
     private readonly RoleManager<AppRole> _roleManager;
     private readonly IAuthenticationService _authenticationService;
+    private readonly ITokenService _tokenService;
     private readonly List<ClientLoginDto>_clientTokenOptions;
-     public UserService(UserManager<User> userManager, IGenericRepository<User> repository, IUnitOfWork unitOfWork, RoleManager<AppRole> roleManager, IAuthenticationService authenticationService, IOptions<List<ClientLoginDto>> clientTokenOptions) :base(repository, unitOfWork)
+     public UserService(UserManager<User> userManager, IGenericRepository<User> repository, IUnitOfWork unitOfWork, RoleManager<AppRole> roleManager, IAuthenticationService authenticationService, IOptions<List<ClientLoginDto>> clientTokenOptions, ITokenService tokenService) :base(repository, unitOfWork)
     {
         _userManager = userManager;
         _repository = repository;
         _unitOfWork = unitOfWork;
         _roleManager = roleManager;
         _authenticationService = authenticationService;
+        _tokenService = tokenService;
         _clientTokenOptions = clientTokenOptions.Value;
     }
 
@@ -35,7 +37,13 @@ public class UserService:GenericService<User>,IUserService
         
         if (!result.Succeeded)
             return Response<User>.Fail(result.Errors.Select(x => x.Description).ToList(), 400);
-
+        
+        /*
+         * This is for creating the same user in business database
+         * when a new user created we are sending the request to the business api
+         * For that we need a bearer token(client token) which we are going to get from authentication service
+         * User/AddById endpoint is authorized with a policy according to that so only a authserver client can reach there
+         */
         using (var client = new HttpClient())
         {
             var url = "https://localhost:7082/api/User/AddById";
@@ -46,10 +54,8 @@ public class UserService:GenericService<User>,IUserService
                 MailAddress = user.Email
             };
 
-            // Serialize the object to JSON
             string jsonData = JsonConvert.SerializeObject(requestData);
 
-            // Create StringContent with JSON data
             HttpContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             
             var clientToken =  _authenticationService.CreateTokenByClient(
@@ -65,6 +71,7 @@ public class UserService:GenericService<User>,IUserService
                 throw new Exception("Authserver cannot reach api  ");
         }
 
+        
         return Response<User>.Success(user,200);
     }
 

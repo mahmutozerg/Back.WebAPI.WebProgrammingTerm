@@ -20,13 +20,12 @@ public class ProductDetailController:CustomControllerBase
     [HttpPost("[action]")]
     public async Task<IActionResult> Add( ProductDetailAddDto productAddDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-        return CreateActionResult(await _productDetailService.AddAsync(productAddDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        return CreateActionResult(await _productDetailService.AddAsync(productAddDto,(ClaimsIdentity)User.Identity));
     }
     [HttpPost("[action]")]
     public async Task<IActionResult> Update(ProductDetailUpdateDto productDetailUpdateDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
-        return CreateActionResult(await _productDetailService.UpdateAsync(productDetailUpdateDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        return CreateActionResult(await _productDetailService.UpdateAsync(productDetailUpdateDto,(ClaimsIdentity)User.Identity));
     }
 }

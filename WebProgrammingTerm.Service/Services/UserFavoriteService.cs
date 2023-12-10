@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Mappers;
@@ -23,8 +24,9 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
         _productService = productService;
     }
 
-    public async Task<CustomResponseDto<UserFavorites>> UpdateAsync(UserFavoritesDto userFavoritesDto, string updatedBy)
+    public async Task<CustomResponseDto<UserFavorites>> UpdateAsync(UserFavoritesDto userFavoritesDto, ClaimsIdentity claimsIdentity)
     {
+        var updatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var productExist = await _productService.Where(p => p.Id == userFavoritesDto.ProductId && !p.IsDeleted)
             .AsNoTracking().AnyAsync();
         
@@ -45,8 +47,9 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
         return CustomResponseDto<UserFavorites>.Success(favoriteEntity, ResponseCodes.Updated);
     }
 
-    public async Task<CustomResponseDto<UserFavorites>> AddAsync(UserFavoritesDto userFavoritesDto, string createdBy)
+    public async Task<CustomResponseDto<UserFavorites>> AddAsync(UserFavoritesDto userFavoritesDto, ClaimsIdentity claimsIdentity)
     {
+        var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)!.Value;
         var userEntity = await _userService.GetUserWithFavorites(createdBy);
         
         var productExist = await _productService.Where(p => p != null && p.Id == userFavoritesDto.ProductId && !p.IsDeleted)
@@ -58,7 +61,7 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
         var favoritesEntity = await _userFavoritesRepository.Where(uf => uf != null && uf.UserId == createdBy).SingleOrDefaultAsync();
         
         if (favoritesEntity is not null)
-            return await UpdateAsync(userFavoritesDto, createdBy);
+            return await UpdateAsync(userFavoritesDto, claimsIdentity);
 
         favoritesEntity = UserFavoriteMapper.ToUserFavorites(userFavoritesDto);
         favoritesEntity.CreatedAt = DateTime.Now;

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Mappers;
@@ -21,8 +22,9 @@ public class LocationService:GenericService<Location>,ILocationService
         _userService = userService;
     }
 
-    public async Task<CustomResponseDto<Location>> UpdateAsync(LocationUpdateDto locationUpdateDto, string updatedBy)
+    public async Task<CustomResponseDto<Location>> UpdateAsync(LocationUpdateDto locationUpdateDto, ClaimsIdentity claimsIdentity)
     {
+        var updatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var locationEntity = await _locationRepository.Where(p => p.Id == locationUpdateDto.Id && !p.IsDeleted).FirstOrDefaultAsync();
 
         if (locationEntity is null)
@@ -44,8 +46,10 @@ public class LocationService:GenericService<Location>,ILocationService
 
     }
 
-    public async Task<CustomResponseDto<Location>> AddAsync(LocationDto locationDto, string createdBy)
+    public async Task<CustomResponseDto<Location>> AddAsync(LocationDto locationDto,ClaimsIdentity claimsIdentity)
     {
+        var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
         var userEntity = await _userService.GetUserWithLocations(createdBy);
         
         var locationEntity = LocationMapper.ToLocation(locationDto);

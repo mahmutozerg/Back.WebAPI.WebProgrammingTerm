@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Mappers;
@@ -25,12 +26,13 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<CustomResponseDto<ProductDetail>> AddAsync(ProductDetailAddDto productDetailAddDto, string createdBy)
+    public async Task<CustomResponseDto<ProductDetail>> AddAsync(ProductDetailAddDto productDetailAddDto, ClaimsIdentity  claimsIdentity)
     {
+        var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var productEntity = await _productService.GetProductWithCompany(productDetailAddDto.ProductId);
 
         var depotEntity = await _depotService
-            .Where(p => p.Id == productDetailAddDto.DepotId && !p.IsDeleted)
+            .Where(p => p != null && p.Id == productDetailAddDto.DepotId && !p.IsDeleted)
             .FirstOrDefaultAsync();
 
         if (depotEntity is null)
@@ -48,10 +50,12 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
         return CustomResponseDto<ProductDetail>.Success(productDetailEntity, ResponseCodes.Created);
     }
 
-    public async Task<CustomResponseDto<ProductDetail>> UpdateAsync(ProductDetailUpdateDto productDetailUpdateDto, string updatedBy)
+    public async Task<CustomResponseDto<ProductDetail>> UpdateAsync(ProductDetailUpdateDto productDetailUpdateDto, ClaimsIdentity claimsIdentity)
     {
+        var updatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
         var productDetailEntity = await _productDetailRepository
-            .Where(pd => pd.Id == productDetailUpdateDto.ProductDetailId && !pd.IsDeleted)
+            .Where(pd => pd != null && pd.Id == productDetailUpdateDto.ProductDetailId && !pd.IsDeleted)
             .FirstOrDefaultAsync();
 
         if (productDetailEntity is null)
@@ -65,7 +69,8 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
         productDetailEntity.Size = string.IsNullOrWhiteSpace(productDetailUpdateDto.Size) ? productDetailEntity.Size : productDetailUpdateDto.Size;
         productDetailEntity.Category = string.IsNullOrWhiteSpace(productDetailUpdateDto.Category) ? productDetailEntity.Category : productDetailUpdateDto.Category;
         productDetailEntity.Page = productDetailUpdateDto.Page == 0 ? productDetailEntity.Page : productDetailUpdateDto.Page;
-
+        productDetailEntity.UpdatedAt = DateTime.Now;
+        productDetailEntity.UpdatedBy = updatedBy;
         _productDetailRepository.Update(productDetailEntity);
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<ProductDetail>.Success(productDetailEntity, ResponseCodes.Updated);

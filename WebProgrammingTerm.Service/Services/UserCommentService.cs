@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Mappers;
@@ -23,8 +24,9 @@ public class UserCommentService:GenericService<UserComments>,IUserCommentService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<CustomResponseDto<UserComments>> UpdateAsync(UserCommentUpdateDto userCommentUpdateDto, string updatedBy)
+    public async Task<CustomResponseDto<UserComments>> UpdateAsync(UserCommentUpdateDto userCommentUpdateDto, ClaimsIdentity claimsIdentity)
     {
+        var updatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var userEntity = await _userService.GetUserWithComments(updatedBy);
         var productEntity = await _productService.GetProductWithCompany(userCommentUpdateDto.ProductId);
         
@@ -45,8 +47,9 @@ public class UserCommentService:GenericService<UserComments>,IUserCommentService
 
     }
 
-    public async Task<CustomResponseDto<UserComments>> AddAsync(UserCommentAddDto userCommentAddDto, string createdBy)
+    public async Task<CustomResponseDto<UserComments>> AddAsync(UserCommentAddDto userCommentAddDto, ClaimsIdentity claimsIdentity)
     {
+        var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var userEntity = await _userService.GetUserWithComments(createdBy);
         
         if (string.IsNullOrEmpty(userEntity.Name) || string.IsNullOrEmpty(userEntity.LastName))

@@ -20,13 +20,11 @@ public class UserFavoritesController:CustomControllerBase
     [HttpPost("[action]")]
     public async Task<IActionResult> Add( UserFavoritesDto userFavoritesDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-        return CreateActionResult(await _userFavoriteService.AddAsync(userFavoritesDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        return CreateActionResult(await _userFavoriteService.AddAsync(userFavoritesDto,(ClaimsIdentity)User.Identity));
     }
     [HttpPost("[action]")]
-    public async Task<IActionResult> Update(UserFavorites userFavoritesDto)
+    public async Task<IActionResult> Update(UserFavoritesDto userFavoritesDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-        return CreateActionResult(await _userFavoriteService.UpdateAsync(userFavoritesDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+         return CreateActionResult(await _userFavoriteService.UpdateAsync(userFavoritesDto,(ClaimsIdentity)User.Identity));
     }
 }

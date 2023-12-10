@@ -5,7 +5,7 @@ using WebProgrammingTerm.Auth.Core.DTO;
  
 namespace WebProgrammingTerm.Auth.API.Controllers;
 
-[Authorize(Roles = "Admin,CompanyUser" )]
+[Authorize(Roles = "Admin,Company" )]
 
 public class CompanyController:CustomControllerBase
 {
@@ -19,7 +19,7 @@ public class CompanyController:CustomControllerBase
     }
     
     [HttpPost]
-    [Authorize(Roles="CompanyUser")]
+    [Authorize(Roles="Company")]
     public async Task<IActionResult> AddUserToCompanyRole(CUserToCompanyRoleDto aUserRoleDto)
     {
         

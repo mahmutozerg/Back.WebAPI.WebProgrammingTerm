@@ -19,13 +19,11 @@ public class LocationController:CustomControllerBase
     [HttpPost("[action]")]
     public async Task<IActionResult> Add( LocationDto locationDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-        return CreateActionResult(await _locationService.AddAsync(locationDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        return CreateActionResult(await _locationService.AddAsync(locationDto,(ClaimsIdentity)User.Identity));
     }
     [HttpPost("[action]")]
     public async Task<IActionResult> Update(LocationUpdateDto locationUpdateDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-        return CreateActionResult(await _locationService.UpdateAsync(locationUpdateDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        return CreateActionResult(await _locationService.UpdateAsync(locationUpdateDto,(ClaimsIdentity)User.Identity));
     }
 }

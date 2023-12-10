@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Mappers;
@@ -19,8 +20,9 @@ public class DepotService:GenericService<Depot>,IDepotService
         _depotRepository = depotRepository;
     }
 
-    public async Task<CustomResponseDto<Depot>> UpdateAsync(DepotUpdateDto depotUpdateDto, string updatedBy)
+    public async Task<CustomResponseDto<Depot>> UpdateAsync(DepotUpdateDto depotUpdateDto, ClaimsIdentity claimsIdentity)
     {
+        var updatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var depotEntity = await _depotRepository.Where(d => d != null && d.Id == depotUpdateDto.TargetDepotId && !d.IsDeleted).SingleOrDefaultAsync();
 
         if (depotEntity is null)

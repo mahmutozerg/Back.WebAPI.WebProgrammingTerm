@@ -19,9 +19,8 @@ namespace WebProgrammingTerm.API.Controllers;
     [HttpPost("[action]")]
     public async Task<IActionResult> AddByIdAsync(UserAddDto userAddDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-
-        return CreateActionResult(await _userService.AddUserAsync(userAddDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+ 
+        return CreateActionResult(await _userService.AddUserAsync(userAddDto,(ClaimsIdentity)User.Identity));
     }
 
 }

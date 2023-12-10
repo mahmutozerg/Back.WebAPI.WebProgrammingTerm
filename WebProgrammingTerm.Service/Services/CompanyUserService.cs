@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Security.Claims;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -27,34 +28,37 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
         _userRepository = userRepository;
     }
 
-    public async Task<CustomResponseDto<CompanyUser>> AddAsync(CompanyUserDto companyUserDto,string createdBy,string token)
+    public async Task<CustomResponseDto<CompanyUser>> AddAsync(CompanyUserDto companyUserDto,ClaimsIdentity claimsIdentity,string accessToken)
     {
+        var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var companyName = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+        // this is a company not a company user. Company are only stored in user table and company table not in companyuser table
+        // Our system's rule company's name are unique
+        var userEntity = await _userRepository.Where(u => u.MailAddress == companyUserDto.UserMail && !u.IsDeleted).FirstOrDefaultAsync();
+        
+        if (userEntity is null)
+            throw new Exception(ResponseMessages.UserNotFound);
+        
         var isCompanyUserExist = await _companyUserRepository.Where(cu =>
             cu.UserMail == companyUserDto.UserMail && !cu.IsDeleted).AnyAsync();
 
         if (isCompanyUserExist)
             throw new Exception(ResponseMessages.CompanyUserAlreadyExist);
 
-        var existingCompanyUser = await _companyUserRepository
-            .Where(cu => cu.UserId == createdBy)
-            .Include(cu => cu.Company).FirstOrDefaultAsync();
 
-        if (existingCompanyUser is null)
+        var companyEntity =
+            await _companyRepository.Where(c => c.Name == companyName  && !c.IsDeleted).SingleOrDefaultAsync();
+
+        if (companyEntity is null)
             throw new Exception(ResponseMessages.CompanyNotFound);
 
-        
-        var userEntity = await _userRepository.Where(u => u.MailAddress == companyUserDto.UserMail && !u.IsDeleted).FirstOrDefaultAsync();
-
-        if (userEntity is null)
-            throw new Exception(ResponseMessages.UserNotFound);
-        
 
         var companyUser = CompanyUserMapper.ToCompany(companyUserDto, createdBy);
-        companyUser.Company = existingCompanyUser.Company;
-        companyUser.CompanyId = existingCompanyUser.Company.Id;
+        companyUser.Company = companyEntity;
+        companyUser.CompanyId = companyEntity.Id;
         companyUser.User = userEntity;
         
-
+        
 
         using (var client = new HttpClient())
         { 
@@ -67,10 +71,10 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
                 
             };
 
-             string jsonData = JsonConvert.SerializeObject(requestData);
+            string jsonData = JsonConvert.SerializeObject(requestData);
 
             HttpContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
             var response = await client.PostAsync(url,content);
             if (!response.IsSuccessStatusCode)

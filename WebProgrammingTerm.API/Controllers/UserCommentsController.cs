@@ -19,12 +19,11 @@ public class UserCommentsController:CustomControllerBase
     [HttpPost("[action]")]
     public async Task<IActionResult> Add( UserCommentAddDto userCommentAddDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-        return CreateActionResult(await _userCommentService.AddAsync(userCommentAddDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        return CreateActionResult(await _userCommentService.AddAsync(userCommentAddDto,(ClaimsIdentity)User.Identity));
     }
     [HttpPost("[action]")]
     public async Task<IActionResult> Update(UserCommentUpdateDto userCommentUpdateDto)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
-        return CreateActionResult(await _userCommentService.UpdateAsync(userCommentUpdateDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+        return CreateActionResult(await _userCommentService.UpdateAsync(userCommentUpdateDto,(ClaimsIdentity)User.Identity));
     }}

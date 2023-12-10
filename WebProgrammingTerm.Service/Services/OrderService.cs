@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Mappers;
@@ -25,8 +26,9 @@ public class OrderService:GenericService<Order>,IOrderService
     }
 
 
-    public async Task<CustomResponseDto<Order>> AddAsync(OrderAddDto orderAddDto, string createdBy)
+    public async Task<CustomResponseDto<Order>> AddAsync(OrderAddDto orderAddDto, ClaimsIdentity claimsIdentity)
     {
+        var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         var productList = new List<Product>();
 

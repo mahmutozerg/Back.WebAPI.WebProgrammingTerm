@@ -27,8 +27,7 @@ public class DepotController:CustomControllerBase
     [HttpPost("[action]")]
     public async Task<IActionResult> Update(DepotUpdateDto depotUpdateDto)
     {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-        return CreateActionResult(await _depotService.UpdateAsync(depotUpdateDto,claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value));
+         return CreateActionResult(await _depotService.UpdateAsync(depotUpdateDto,(ClaimsIdentity)User.Identity));
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Mappers;
@@ -14,15 +15,18 @@ public class ProductService:GenericService<Product>,IProductService
     private readonly IProductRepository _productRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly ICompanyUserService _companyUserService;
-    public ProductService(IUnitOfWork unitOfWork, IProductRepository productRepository , ICompanyUserService companyUserService) : base(productRepository, unitOfWork)
+    private readonly ICompanyService _companyService;
+    public ProductService(IUnitOfWork unitOfWork, IProductRepository productRepository , ICompanyUserService companyUserService, ICompanyService companyService) : base(productRepository, unitOfWork)
     {
         _productRepository = productRepository;
         _companyUserService = companyUserService;
+        _companyService = companyService;
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<CustomResponseDto<Product>> UpdateAsync(ProductUpdateDto productUpdateDto, string updatedBy)
+    public async Task<CustomResponseDto<Product>> UpdateAsync(ProductUpdateDto productUpdateDto, ClaimsIdentity claimsIdentity)
     {
+        var updatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var productEntity = await GetProductWithCompany(productUpdateDto.TargetProductId);
 
         if (productEntity is null)
@@ -40,12 +44,32 @@ public class ProductService:GenericService<Product>,IProductService
         return CustomResponseDto<Product>.Success(productEntity, ResponseCodes.Updated);
     }
 
-    public async Task<CustomResponseDto<Product>> AddAsync(ProductAddDto productAddDto, string createdBy)
+    public async Task<CustomResponseDto<Product>> AddAsync(ProductAddDto productAddDto,ClaimsIdentity claimsIdentity)
     {
-        var companyUserEntity = await _companyUserService.GetCompanyUserWithCompany(createdBy);
-
         var productEntity = ProductMapper.ToProduct(productAddDto);
-        productEntity.Company = companyUserEntity.Company;
+        var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        if (claimsIdentity.FindAll(ClaimTypes.Role).Any(role => role.Value == "Company"))
+        {
+            var companyName = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+
+            if (companyName is not null)
+            {
+                var company = await _companyService.Where(c => c != null && c.Name == companyName && !c.IsDeleted)
+                    .SingleOrDefaultAsync();
+                productEntity.Company = company;
+
+            }
+            else
+                throw new Exception(ResponseMessages.CompanyNotFound);
+            
+        }
+        else
+        {
+            var companyUserEntity = await _companyUserService.GetCompanyUserWithCompany(createdBy);
+            productEntity.Company = companyUserEntity.Company;
+        }
+        
         productEntity.ImagePath = productAddDto.ImagePath;
         productEntity.CreatedBy = createdBy;
         productEntity.UpdatedAt = DateTime.Now;

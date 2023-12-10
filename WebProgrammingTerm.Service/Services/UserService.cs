@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Models;
@@ -19,9 +20,10 @@ public class UserService:GenericService<User>,IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<CustomResponseDto<User>> AddUserAsync(UserAddDto userAddDto,string createdBy)
+    public async Task<CustomResponseDto<User>> AddUserAsync(UserAddDto userAddDto,ClaimsIdentity claimsIdentity)
     {
-        var userExist = await _userRepository.AnyAsync(u => u != null && u.Id == userAddDto.Id);
+        var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userExist = await _userRepository.AnyAsync(u => u != null && u.MailAddress == userAddDto.MailAddress);
         if (userExist)
             throw new Exception(ResponseMessages.UserAlreadyExist);
 

@@ -4,7 +4,7 @@ namespace WebProgrammingTerm.Core.Models;
 
 public class OrderDetail
 {    
-
+    
     public Order Order { get; set; } = new Order();
     public string OrderId { get; set; } = string.Empty;
 

@@ -113,8 +113,6 @@ c
 3WebProgrammingTerm.API/appsettings.Development.json,b\8\b82ba7bc95b1704dbf182c561eb2884af5fc31d5
 e
 5WebProgrammingTerm.API/Properties/launchSettings.json,2\5\25b64f8e4f5bbee155534028527718633c04d3cc
-Z
-*WebProgrammingTerm.Core/DTO/LocationDto.cs,2\0\2044d92557fed245628ca4f57f3a427ea77ff4fe
 _
 /WebProgrammingTerm.Core/DTO/UserFavoritesDto.cs,3\4\345856a25716464282fe4861c7d27a936b3ef33f
 `
@@ -155,8 +153,6 @@ h
 8WebProgrammingTerm.Core/Repositories/IOrderRepository.cs,5\d\5d1ff7e6dbc6f08fb05ec23595518be87ed56f8d
 p
 @WebProgrammingTerm.Core/Repositories/IUserFavoritesRepository.cs,e\3\e323c24a89d339466028ad4a2c1b8e2dcab4278c
-Z
-*WebProgrammingTerm.Core/Models/Location.cs,b\c\bcc023bc74d8adb2bd4fdf60e3f89778189abbe1
 m
 =WebProgrammingTerm.Repository/Repositories/OrderRepository.cs,b\d\bdd73ca4bff72a063a76bb3105f0bdae43524b50
 u
@@ -171,8 +167,6 @@ m
 =WebProgrammingTerm.Repository/Configurations/OrderDetailed.cs,e\c\ec21462178b9b169d09996ce44586818315a4d0c
 _
 /WebProgrammingTerm.Core/Models/UserFavorites.cs,8\1\810f30b3821205e74767de7e3151667b530e3edb
-e
-5WebProgrammingTerm.Repository/Configurations/Order.cs,d\1\d1e121cd3827a64a841efd5bd8e7b5cda5943d3b
 [
 +WebProgrammingTerm.Auth.Core/Models/User.cs,4\1\419d207d541ec403e66ab1bd132c560e979ae27a
 b
@@ -185,10 +179,6 @@ y
 IWebProgrammingTerm.API/AuthRequirements/AdminClientIdBypassRequirement.cs,e\d\edd20949236eeccbe141659638d4affd57780ecd
 ƒ
 SWebProgrammingTerm.API/RequirementHandlers/AdminClientIdBypassRequirementHandler.cs,0\1\01b260d4233ac4f1fea50f0a91981e6a47421f42
-Z
-*WebProgrammingTerm.Core/DTO/OrderAddDto.cs,f\e\feb82d0c118ae3478d037b4acd16cc46fc879407
-^
-.WebProgrammingTerm.Core/Mappers/OrderMapper.cs,b\f\bf28de0c9b8446eff928a70a069b548e1e2c8628
 o
 ?WebProgrammingTerm.Repository/Repositories/GenericRepository.cs,7\1\7180ba44dd46e4a8bc822398965d81c881563857
 j
@@ -245,8 +235,6 @@ _
 0WebProgrammingTerm.Core/Mappers/CompanyMapper.cs,8\7\878b71f17cab056ffec890a161170316a8502b25
 V
 &WebProgrammingTerm.Auth.API/Program.cs,c\7\c7af68c0f71528dcb4c539e67524db295bde4c88
-Q
-!WebProgrammingTerm.API/Program.cs,f\1\f1c3fd42fe3cfcdac9449d9d5c87d8b496de9deb
 q
 AWebProgrammingTerm.Auth.Service/Services/AuthenticationService.cs,8\8\880e3fd7fec3b9365508ad437d8ebc541de9c8f2
 o
@@ -265,8 +253,6 @@ c
 3WebProgrammingTerm.Core/Services/ICompanyService.cs,7\b\7b19f584a967058de8d49c5d39d39a47cc33b696
 e
 5WebProgrammingTerm.Service/Services/CompanyService.cs,d\4\d46d317ec2a5bb0c6f96ec221614b34fe40d9d49
-V
-&WebProgrammingTerm.Core/Models/User.cs,2\d\2df2f60eb89a1dfd6af58dd8b301d41cc0990c2c
 Y
 )WebProgrammingTerm.Core/Models/Company.cs,2\b\2bb5e013f6a0ac2d9944604a86a483354dc5c2eb
 l

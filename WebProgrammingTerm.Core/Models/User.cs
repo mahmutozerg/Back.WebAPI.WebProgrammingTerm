@@ -1,4 +1,6 @@
-﻿namespace WebProgrammingTerm.Core.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace WebProgrammingTerm.Core.Models;
 
 public class User:Base
 {

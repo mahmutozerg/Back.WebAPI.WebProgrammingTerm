@@ -14,6 +14,7 @@ public class Product:Base
     public ProductDetail ProductDetail { get; set; }
     public string ImagePath { get; set; } = string.Empty;
     public float DiscountRate { get; set; } = 0f;
+    [JsonIgnore]
 
     public List<Order> Orders { get; set; } = new List<Order>();
 }

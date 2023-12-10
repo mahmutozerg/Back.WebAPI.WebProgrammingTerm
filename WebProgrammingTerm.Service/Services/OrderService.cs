@@ -16,11 +16,13 @@ public class OrderService:GenericService<Order>,IOrderService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IProductService _productService;
     private readonly ILocationService _locationService;
-    public OrderService( IUnitOfWork unitOfWork, IOrderRepository orderRepository, IProductService productService, ILocationService locationService) : base(orderRepository, unitOfWork)
+    private readonly IUserService _userService;
+    public OrderService( IUnitOfWork unitOfWork, IOrderRepository orderRepository, IProductService productService, ILocationService locationService, IUserService userService) : base(orderRepository, unitOfWork)
     {
         _orderRepository = orderRepository;
         _productService = productService;
         _locationService = locationService;
+        _userService = userService;
         _unitOfWork = unitOfWork;
 
     }
@@ -29,7 +31,7 @@ public class OrderService:GenericService<Order>,IOrderService
     public async Task<CustomResponseDto<Order>> AddAsync(OrderAddDto orderAddDto, ClaimsIdentity claimsIdentity)
     {
         var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
+        
         var productList = new List<Product>();
 
         foreach (var productIdVariable in orderAddDto.ProductIdList.ToHashSet())
@@ -46,9 +48,13 @@ public class OrderService:GenericService<Order>,IOrderService
         var locationEntity = await _locationService.Where(l => l != null && l.Id == orderAddDto.LocationId && !l.IsDeleted).FirstOrDefaultAsync();
         if (locationEntity is null)
             throw new Exception(ResponseMessages.LocationNotFound);
-            
+
+        var userEntity = await _userService.GetUserWithOrders(createdBy);
+        if (userEntity is null)
+            throw new Exception(ResponseMessages.UserNotFound);
         
         var orderEntity = OrderMapper.ToOrder(orderAddDto);
+        orderEntity.User = userEntity;
         orderEntity.Location = locationEntity;
         orderEntity.Products.AddRange(productList);
         orderEntity.CreatedBy = createdBy;

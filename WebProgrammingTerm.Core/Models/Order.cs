@@ -10,7 +10,7 @@ public class Order : Base
     public string Shipment { get; set; } = string.Empty;
     public Location Location { get; set; } = new Location();
     public string LocationId { get; set; } = string.Empty; 
-    public OrderDetail OrderDetail { get; set; } = new OrderDetail();
+    public OrderDetail OrderDetail { get; set; }
     public List<Product> Products { get; set; }
 
- }
+}

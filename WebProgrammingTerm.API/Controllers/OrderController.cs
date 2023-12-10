@@ -6,7 +6,7 @@ using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
 
-[Authorize(Policy = "JSClientPolicy")]
+[Authorize]
 public class OrderController:CustomControllerBase
 {
     private readonly IOrderService _orderService;

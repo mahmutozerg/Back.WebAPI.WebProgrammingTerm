@@ -59,9 +59,8 @@ public class CompanyService:GenericService<Company>,ICompanyService
             var addrole = "/Admin/AddUserToRole";
              var createUserRequestData = new
             {
-                email = companyEntity.Name.Normalize()+"@example.com",
-                userName = companyEntity.Name.Normalize(),
-                password = "!"+companyEntity.Name[0].ToString().Normalize().ToLowerInvariant()+companyEntity.Name[1..].Normalize().ToUpperInvariant()+"0"
+                email = companyEntity.Name.Normalize().Replace(" ","")+"@example.com",
+                password = "!"+companyEntity.Name[0].ToString().Normalize().Replace(" ","").ToLowerInvariant()+companyEntity.Name[1..].Normalize().Replace(" ","").ToUpperInvariant()+"0"
             };
             
             var createUserJsonData = JsonConvert.SerializeObject(createUserRequestData);

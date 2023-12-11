@@ -60,11 +60,11 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
 
 
         productDetailEntity.Author = string.IsNullOrWhiteSpace(productDetailUpdateDto.Author) ? productDetailEntity.Author : productDetailUpdateDto.Author;
-        productDetailEntity.PublishDate = string.IsNullOrWhiteSpace(productDetailUpdateDto.PublishDate.ToString()) ? productDetailEntity.PublishDate : productDetailUpdateDto.PublishDate;
+        productDetailEntity.PublishDate = string.IsNullOrWhiteSpace(productDetailUpdateDto.PublishDate) ? productDetailEntity.PublishDate : productDetailUpdateDto.PublishDate;
         productDetailEntity.Publisher = string.IsNullOrWhiteSpace(productDetailUpdateDto.Publisher) ? productDetailEntity.Publisher : productDetailUpdateDto.Publisher;
         productDetailEntity.Language = string.IsNullOrWhiteSpace(productDetailUpdateDto.Language) ? productDetailEntity.Language : productDetailUpdateDto.Language;
         productDetailEntity.Size = string.IsNullOrWhiteSpace(productDetailUpdateDto.Size) ? productDetailEntity.Size : productDetailUpdateDto.Size;
-        productDetailEntity.Page = productDetailUpdateDto.Page == 0 ? productDetailEntity.Page : productDetailUpdateDto.Page;
+        productDetailEntity.Page = string.IsNullOrWhiteSpace(productDetailUpdateDto.Page) ? productDetailEntity.Page : productDetailUpdateDto.Page;
         productDetailEntity.UpdatedAt = DateTime.Now;
         productDetailEntity.UpdatedBy = updatedBy;
         _productDetailRepository.Update(productDetailEntity);

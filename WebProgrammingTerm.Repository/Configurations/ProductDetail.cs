@@ -17,8 +17,9 @@ namespace WebProgrammingTerm.Repository.Configurations
 
             builder
                 .HasOne(pd => pd.Depot)
-                .WithOne()
-                .HasForeignKey<ProductDetail>(pd => pd.DepotId);
+                .WithMany()  // Use WithMany() to indicate that the 'Depot' can be referenced by multiple 'ProductDetails'
+                .HasForeignKey(pd => pd.DepotId)
+                .OnDelete(DeleteBehavior.Restrict); 
         }
     }
 }

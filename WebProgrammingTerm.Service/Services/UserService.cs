@@ -23,7 +23,7 @@ public class UserService:GenericService<User>,IUserService
     public async Task<CustomResponseDto<User>> AddUserAsync(UserAddDto userAddDto,ClaimsIdentity claimsIdentity)
     {
         var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var userExist = await _userRepository.AnyAsync(u => u != null && u.MailAddress == userAddDto.MailAddress);
+        var userExist = await _userRepository.AnyAsync(u => u != null && u.Email == userAddDto.MailAddress);
         if (userExist)
             throw new Exception(ResponseMessages.UserAlreadyExist);
 
@@ -33,7 +33,7 @@ public class UserService:GenericService<User>,IUserService
             LastName = string.Empty,
             Id = userAddDto.Id,
             IsDeleted = false,
-            MailAddress = userAddDto.MailAddress,
+            Email = userAddDto.MailAddress,
             CreatedBy = createdBy,
             UpdatedBy = createdBy
             

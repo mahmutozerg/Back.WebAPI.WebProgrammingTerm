@@ -15,7 +15,7 @@ public class DepotAddDto
     public string Country { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Contact is required")]
-    [StringLength(11, ErrorMessage = "Contact must be a maximum of 10 characters")]
+    [StringLength(21, ErrorMessage = "Contact must be a maximum of 10 characters")]
 
     public string Contact { get; set; } = string.Empty;
 }

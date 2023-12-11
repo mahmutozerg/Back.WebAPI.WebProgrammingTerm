@@ -1,26 +1,29 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace WebProgrammingTerm.Core.Models;
 
 public class Base
 {
-    [Required]
+    [Column(TypeName = "varchar(50)")]
     public string Id { get; set; } = string.Empty;
-    [Required]
-
+    
+    
+    [Column(TypeName = "varchar(50)")]
     public string CreatedBy { get; set; } = string.Empty;
-    [Required]
-
+    
+    
+    [Column(TypeName = "varchar(50)")]
     public string UpdatedBy { get; set; } = string.Empty;
-    [Required]
-
+    
+    
+    [Column(TypeName = "datetime2")]
     public DateTime CreatedAt { get; set; } =DateTime.Now;
-    [Required]
-
+    
+    [Column(TypeName = "datetime2")]
     public DateTime UpdatedAt { get; set; } =DateTime.Now;
     
     [JsonIgnore]
-    [Required]
     public bool IsDeleted { get; set; } = false;
 }

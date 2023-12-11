@@ -30,8 +30,7 @@ public class ProductAddDto
     public string Author { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "PublishDate is required")]
-    [DataType(DataType.Date, ErrorMessage = "Invalid PublishDate format")]
-    public DateTime PublishDate { get; set; } = DateTime.Now;
+     public string PublishDate { get; set; } = String.Empty;
 
     [Required(ErrorMessage = "Publisher is required")]
     public string Publisher { get; set; } = string.Empty;
@@ -41,7 +40,8 @@ public class ProductAddDto
 
     [Required(ErrorMessage = "Size is required")]
     public string Size { get; set; } = string.Empty;
-    
-    [Range(0, int.MaxValue, ErrorMessage = "Page must be a non-negative number")]
-    public int Page { get; set; } = 0;
+
+    [Required(ErrorMessage = "Product is required")]
+
+    public string Page { get; set; } = string.Empty;
 }

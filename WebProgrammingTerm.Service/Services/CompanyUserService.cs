@@ -34,13 +34,13 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
         var companyName = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
         // this is a company not a company user. Company are only stored in user table and company table not in companyuser table
         // Our system's rule company's name are unique
-        var userEntity = await _userRepository.Where(u => u.MailAddress == companyUserDto.UserMail && !u.IsDeleted).FirstOrDefaultAsync();
+        var userEntity = await _userRepository.Where(u => u.Email == companyUserDto.UserMail && !u.IsDeleted).FirstOrDefaultAsync();
         
         if (userEntity is null)
             throw new Exception(ResponseMessages.UserNotFound);
         
         var isCompanyUserExist = await _companyUserRepository.Where(cu =>
-            cu.UserMail == companyUserDto.UserMail && !cu.IsDeleted).AnyAsync();
+            cu.Email == companyUserDto.UserMail && !cu.IsDeleted).AnyAsync();
 
         if (isCompanyUserExist)
             throw new Exception(ResponseMessages.CompanyUserAlreadyExist);
@@ -67,7 +67,7 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
             var requestData = new
             {
                 companyId = companyUser.CompanyId,
-                userMail = companyUser.UserMail
+                userMail = companyUser.Email
                 
             };
 

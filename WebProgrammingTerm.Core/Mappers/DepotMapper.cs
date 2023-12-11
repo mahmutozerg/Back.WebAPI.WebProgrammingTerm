@@ -5,8 +5,6 @@ namespace WebProgrammingTerm.Core.Mappers;
 
 public static class DepotMapper
 {
-
-    
     public static Depot ToDepot(DepotAddDto depotAddDto )
     {
         var company = new Depot()

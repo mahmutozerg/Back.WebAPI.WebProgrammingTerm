@@ -32,7 +32,7 @@ public class UserService:GenericService<User>,IUserService
 
     public async Task<Response<User>> CreateUserAsync(CreateUserDto createUserDto)
     {
-        var user = new User {Id = Guid.NewGuid().ToString(),Email = createUserDto.Email, UserName = createUserDto.UserName,CreatedAt = DateTime.Now,CreatedBy = "System"};
+        var user = new User {Id = Guid.NewGuid().ToString(),Email = createUserDto.Email, UserName = createUserDto.Email.Split("@")[0],CreatedAt = DateTime.Now,CreatedBy = "System"};
         var result = await _userManager.CreateAsync(user, createUserDto.Password);
         
         if (!result.Succeeded)

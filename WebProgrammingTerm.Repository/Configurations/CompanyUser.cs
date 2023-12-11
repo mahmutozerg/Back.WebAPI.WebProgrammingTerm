@@ -9,7 +9,6 @@ namespace WebProgrammingTerm.Repository.Configurations
         public void Configure(EntityTypeBuilder<CompanyUser> builder)
         {
 
-
         }
     }
 }

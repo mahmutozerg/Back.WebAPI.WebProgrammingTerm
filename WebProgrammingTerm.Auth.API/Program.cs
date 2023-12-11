@@ -40,7 +40,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddIdentity<User, AppRole>(opt =>
     {
         opt.Password.RequireDigit = true;
-        opt.Password.RequiredLength = 8;
+        opt.Password.RequiredLength = 4;
         opt.Password.RequireUppercase = true;
     })
     .AddEntityFrameworkStores<AppDbContext>()

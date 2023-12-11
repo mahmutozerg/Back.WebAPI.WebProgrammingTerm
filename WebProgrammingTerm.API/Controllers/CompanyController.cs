@@ -42,7 +42,7 @@ public class CompanyController:CustomControllerBase
 
     }
     [HttpDelete("[action]")]
-    [Authorize(Roles = "Admin,Company")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(string id)
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;

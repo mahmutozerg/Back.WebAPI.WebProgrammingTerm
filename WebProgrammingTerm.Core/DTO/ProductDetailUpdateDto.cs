@@ -8,7 +8,7 @@ public class ProductDetailUpdateDto
     public string ProductDetailId { get; set; } = string.Empty;
 
      public string Author { get; set; } = string.Empty;
-     public DateTime PublishDate { get; set; } = DateTime.Now;
+     public string PublishDate { get; set; } = string.Empty;
 
     public string Publisher { get; set; } = string.Empty;
 
@@ -17,7 +17,6 @@ public class ProductDetailUpdateDto
     public string Size { get; set; } = string.Empty;
 
     public string Category { get; set; } = string.Empty;
-
-    [Range(0, int.MaxValue, ErrorMessage = "Page must be a non-negative number")]
-    public int Page { get; set; } = 0;
+    
+    public string Page { get; set; } = string.Empty;
 }

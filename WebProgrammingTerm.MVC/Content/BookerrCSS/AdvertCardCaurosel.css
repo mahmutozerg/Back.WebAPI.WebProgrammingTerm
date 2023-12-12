@@ -1,0 +1,67 @@
+.advertCarousel {
+    width: 70%;
+    /* Adjust the width as needed */
+    margin: auto;
+    overflow: hidden;
+    margin-top: 5%;
+    position: relative;
+}
+
+
+
+.advert-carousel-next-btn {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    /* Adjust the right distance as needed */
+    transform: translateY(-50%);
+    transform: translatex(50%);
+
+}
+
+.advert-carousel-prev-btn {
+    position: absolute;
+    top: 50%;
+    left: 2.30%;
+    /* Adjust the right distance as needed */
+    transform: translateY(-50%);
+    transform: translatex(-50%);
+
+}
+
+
+.advert-carousel-prev-btn,
+.advert-carousel-next-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.advert-carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.advert-carousel-item {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    flex: 0 0 100%;
+
+    /* This ensures each item takes up the full width */
+}
+
+.advert-carousel-prev-btn img {
+    width: 30%;
+    /* Adjust the width as needed */
+    height: 30%;
+    /* Adjust the height as needed */
+}
+
+.advert-carousel-next-btn img {
+    width: 30%;
+    /* Adjust the width as needed */
+    height: 30%;
+    /* Adjust the height as needed */
+}

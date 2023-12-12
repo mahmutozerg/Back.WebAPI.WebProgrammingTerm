@@ -1,0 +1,55 @@
+body {
+    font-family: Montserrat;
+    margin: 0;
+    background-color: #E6E7E8;
+    min-height: min-content;
+    min-width: min-content;
+}
+
+.row {
+    display:block;
+    height: 100%;
+}
+
+.column {
+    flex: 1;
+}
+
+.triangle {
+    background-color: #F47878;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.white-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.opps {
+    width: 400px;
+	margin-top: 120px;
+	margin-bottom: 60px;
+}
+
+.button {
+    width: 200px;
+}
+
+a{
+	width: 200px;
+	margin-top: 50px;
+}
+
+p{
+	width: 400px;
+}
+
+.bookerr-logo {
+    width: 200px;
+	margin: 50px;
+}

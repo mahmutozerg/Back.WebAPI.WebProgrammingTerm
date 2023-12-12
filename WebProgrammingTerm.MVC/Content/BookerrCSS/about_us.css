@@ -1,0 +1,83 @@
+.about-us-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.about-us-text {
+    flex: 1;
+    max-width: 45%;
+}
+
+
+section {
+    max-width: 85%;
+    margin: 1% auto;
+    padding: 0 1%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer {
+    background-color: #808285;
+    /* Arka plan rengini belirle */
+    color: #828285;
+    /* Metin rengini belirle */
+    text-align: center;
+    /* Metni merkezle */
+    padding: 1em 0;
+    /* Dış kenar boşluğunu belirle */
+}
+
+/* Hizmetler bölümünü yatayda sıralama, dikeyde sarıma ve hizalama ile biçimlendir */
+.services-section {
+    display: flex;
+    /* Elemanları yatay olarak sırala */
+    flex-direction: column;
+    /* Elemanları dikeyde sırala */
+    justify-content: space-around;
+    /* Elemanları dikeyde aralarında boşluk bırakarak hizala */
+    align-items: flex-start;
+    /* Elemanları yatayda ve dikeyde merkezle */
+}
+
+/* Hizmet öğesini genişlik, dikeyde sıralama, hizalama, metin hizalama ve alt boşluk ile biçimlendir */
+.service-item {
+
+    position: relative;
+    /* Pozisyonu göreceli olarak ayarla */
+    padding: 3% 0;
+    /* Dış kenar boşluklarını ayarla */
+    display: flex;
+    /* Elemanları yatay olarak sırala */
+    margin: 2% 2%;
+
+}
+
+/* Hizmet öğesinin resmini min genişlik, yükseklik, içerik hizalama, kenar yarıçapı, yazı tipi boyutu, içerik sıralama ve sağ kenar boşluğu ile biçimlendir */
+.service-item img {
+
+    width: 10%;
+    /* Minimum genişliği belirle */
+    height: 10%;
+    font-size: 18px;
+
+    display: flex;
+    margin-left: 40%;
+    margin-right: 5%;
+    /* Elemanları yatay olarak sırala */
+}
+
+/* Hizmet öğesinin metnini üst kenar boşluğu ile biçimlendir */
+.service-item p {
+    font-size: 22px;
+    margin-top: 1%;
+    margin-left: 1%;
+    /* Üst kenar boşluğunu belirle */
+}

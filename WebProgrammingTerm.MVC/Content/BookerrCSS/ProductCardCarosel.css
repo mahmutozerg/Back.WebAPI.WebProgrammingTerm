@@ -1,0 +1,103 @@
+.product-carousel-inner {
+    padding-left: 2%;
+    padding-right: 2%;
+    max-width: 45%;
+    max-height: 60%;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.productCarousel {
+    max-width: 72%;
+    max-height: 72%;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-next-btn {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    /* Adjust the right distance as needed */
+    transform: translateY(-50%);
+    transform: translatex(50%);
+
+}
+
+.carousel-prev-btn {
+    position: absolute;
+    top: 50%;
+    left: 2.75%;
+    /* Adjust the right distance as needed */
+    transform: translateY(-50%);
+    transform: translatex(-50%);
+
+}
+
+
+.carousel-prev-btn,
+.carousel-next-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.product-carousel-item {
+    position: relative;
+    box-sizing: border-box;
+    object-fit: cover;
+    max-height: 100%;
+    max-width: 50%;
+    margin-right: 5%;
+}
+
+.card-title {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.card-text {
+    padding: auto;
+    color: #000000;
+    text-decoration: none;
+}
+
+.card-img-top {
+    /* Adjust this value to your desired width */
+    height: 25%;
+    max-width: 75%;
+    display: block;
+    margin: 0 auto;
+}
+
+.carosel-product-info {
+    height: 40%;
+    /* Set a specific height, using 'vh' (viewport height) as an example */
+    max-height: 10%;
+}
+
+.add-to-cart-image {
+    display: block;
+    max-width: 55%;
+    max-height: 100%;
+    margin-left: auto;
+    /* Move the image to the right */
+    margin-right: 4.75%;
+    margin-top: -2%;
+    /* Adjust the value as needed to move the image up */
+
+}
+
+
+.carosel-product-info-text {
+    color: #000000;
+    font-size: larger;
+    width: 40%;
+    height: 50%;
+    /* Set a specific height, using 'vh' (viewport height) as an example */
+    max-height: 80%;
+    margin-top: -14%;
+}

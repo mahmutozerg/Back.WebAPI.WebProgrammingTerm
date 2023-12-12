@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.under-development-container {
+    text-align: center;
+}
+
+img {
+    width: 100px;
+    /* Adjust the size of the construction icon */
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}

@@ -1,0 +1,60 @@
+body {
+    font-family: Montserrat;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contact-section {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.contact .contact-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-item,
+.contact-item-wp {
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contact-item img,
+.contact-item-wp img {
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    display: flex;
+}
+
+.contact-item-wp img {
+    width: 200px;
+    height: auto;
+    display: flex;
+    margin-right: 20px;
+}
+
+.contact-item-wp p,
+.contact-item p {
+    display: flex;
+    font-size: 16px;
+    color: black;
+    flex-direction: column;
+    font-weight: 400;
+    align-self: center;
+    margin-left: 10px;
+    /* Adjust the margin to shift the text to the right */
+}

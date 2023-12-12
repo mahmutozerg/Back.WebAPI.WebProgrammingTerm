@@ -1,0 +1,31 @@
+.card {
+    padding-top: 20px;
+    background-color: rgb(230, 230, 230);
+    position: relative;
+    width: 200px;
+    height: 400px;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in-out;
+    /* Add border properties as needed */
+    border-radius: 20px;
+    /* Adjust the value for rounded corners */
+
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card-body {
+    max-height: 25%;
+    padding-left: 20px;
+    color: #fff;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    opacity: 1;
+}

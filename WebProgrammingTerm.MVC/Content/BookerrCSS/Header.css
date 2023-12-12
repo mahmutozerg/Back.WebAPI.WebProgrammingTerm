@@ -1,0 +1,161 @@
+.no-underline {
+    text-decoration: none;
+}
+
+#topLayer {
+    display: inline;
+    position: relative;
+}
+.myhr {
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 0;
+    border-top: 2px solid #808285;
+}
+#topLayer img {
+    width: 100%;
+    height: 5%;
+}
+
+#topLayer h1 {
+    position: absolute;
+    top: 0%;
+    left: 40%;
+    transform: translate(-30%, -60%);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
+}
+
+#about-contact {
+    margin-top: 0.6%;
+    text-align: right;
+    margin-right: 18%;
+}
+
+#about-contact p {
+    font-size: 1.1rem;
+    color: #828285;
+}
+
+#about-contact a {
+    color: #828285;
+}
+
+#about-contact a:hover {
+    text-decoration: underline;
+}
+
+.line {
+    margin-top: 0.7%;
+    height: 0.15%;
+    background-color: #808285;
+    margin-bottom: 1%;
+}
+
+.bookerr-image {
+    width: 10.23%;
+    position: absolute;
+    left: 16%;
+    top: 70%;
+}
+
+
+
+.bookerr-image img {
+    width: 150px;
+}
+
+.search-bar {
+    width: fit-content;
+    position: inherit;
+    top: 15%;
+    padding-bottom: 1%;
+    padding-left: 34%;
+}
+
+.search-bar input[type="text"] {
+    background-color: #E6E7E8;
+    border-radius: 300px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    width: 100%;
+    /* Use 100% width to fill the available space */
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+
+.search-bar a {
+    text-decoration: none;
+    color: black;
+}
+
+.search-bar a i {
+    position: relative;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.profile-image {
+    width: 2.5%;
+    position: absolute;
+    right: 22%;
+    top: 64%
+}
+
+.profile-image a {
+    display: inline-block;
+
+}
+
+.profile-image img {
+    width: 40px;
+}
+
+.sepet-image {
+    width: 2.5%;
+    position: absolute;
+    right: 18%;
+    top: 66%
+}
+
+.sepet-image a {
+    display: inline-block;
+}
+
+.sepet-image img {
+    width: 40px;
+}
+
+.vertical-stripe {
+    background-color: #F47878;
+    height: 6%;
+}
+
+.stripe-item {
+    color: #E6E7E8;
+    font-family: 'Montserrat', sans-serif;
+    font-size: small;
+    text-align: center;
+    display: inline-block;
+    width: 10%;
+    height: 50%;
+    margin-left: 1.5%;
+    margin-top: 0.75%;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.stripe-item:first-child {
+    margin-left: 17%;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+button {
+    cursor: pointer;
+}

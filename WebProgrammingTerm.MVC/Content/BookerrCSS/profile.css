@@ -1,0 +1,245 @@
+body {
+    font-family: Montserrat;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.profile-nav-menu nav a:hover {
+
+    color: #F47878; /* Hover durumunda metin rengi */
+}
+
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    background-color: #E6E7E8;
+    color: #000000;
+}
+
+
+/* new Code*/
+div.profile_section{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+div.profile_section > div{
+    width: auto;
+    height: 400px;
+    /* border: 2px solid red; */
+}
+
+div.profile_section > div > div.profile_sections{
+    width: 240px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    background-color: #E6E7E8;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+div.profile_section > div.link_holder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+div.profile_section > div.link_holder > h2{
+    font-size: 52px;
+    width: 240px;
+    text-align: left;
+	margin-bottom:10px;
+}
+
+div.profile_section > div > div.profile_sections > a{
+    width: 100%;
+    height: auto;
+}
+
+div.profile_section > div > div.profile_sections > a > button{
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    background-color: transparent;
+    border: 0;
+    text-align: left;
+    padding: 20px;
+	margin-bottom: -2px;
+	margin-top:-2px;
+
+}
+
+div.profile_section > div > div.profile_sections > a:hover > button{
+	color: #F47878; /* Hover durumunda metin rengi */
+	font-weight: 600;
+	
+}
+
+
+div.profile_section > div.user_information{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 700px;
+}
+
+div.profile_section > div.user_information > h2{
+    width: 500px;
+    text-align: left;
+	font-size:35px;
+	margin-top: 110px;
+	margin-left:-90px;
+}
+
+div.profile_section > div.user_information > form{
+    width: 600px; /*name surname bar boyutları*/
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+}
+
+div.profile_section > div.user_information > form > div.partial{
+    width: 100%;
+}
+
+div.profile_section > div.user_information > form > div.partial > input{
+    width: 50%;
+}
+
+div.profile_section > div.user_information > form > div.partial{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+div.profile_section > div.user_information > form > div.partial >  div.birth_date{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 5px;
+	
+
+}
+
+div.profile_section > div.user_information > form > div.partial >  div.birth_date > select{
+    width: 70px;
+    height: 32px;
+    background-color: #E6E7E8;
+}
+
+div.profile_section > div.user_information > form > div.partial > div.gender{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    width: 200px;
+	color:#000000;
+	font-weight:700;
+	margin-left:61px;
+
+}
+
+div.profile_section > div.user_information > form > div.partial > div.gender > input{
+    margin-bottom: 4px;
+
+}
+
+div.profile_section > div.user_information > form > button.save-button {
+    width: 33%;
+    height: 35px;
+    font-size: 13px;
+	font-weight:700;
+    background-color: #F47878;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+	margin-left:400px;
+}
+
+div.profile_section > div.user_information > form > button.save-button:hover {
+    background-color: #808285;
+}
+
+
+
+div.password-change-form > h2{
+    width: 500px;
+    text-align: center;
+	font-size:35px;
+	margin: 110px auto 0 auto; /*tam ortalamak için*/
+
+}
+
+.password-change-form {
+    text-align: center;
+}
+
+
+
+.password-input {
+    display: block; /* Alt alta sıralanması için display: block */
+    width: 33%; 
+    max-width: 400px; /* bar genişliği */
+    margin: 0 auto 15px; 
+	margin-left:40%;
+}
+
+.password-change-form > input {
+    width: 100%; /* Parent genişliğinde olacak */
+    box-sizing: border-box; /* padding ve border'ları genişliğe dahil etmek için */
+    height: 30px;
+    padding-right: 30px;
+}
+
+.password-toggle {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+div.password-change-form > button.reset-button {
+    width: 13%;
+    height: 35px;
+    font-size: 13px;
+	font-weight:700;
+    background-color: #F47878;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+	margin-left:300px;
+	margin-top:12px;
+}
+
+div.password-change-form > button.reset-button:hover {
+    background-color: #808285;
+}

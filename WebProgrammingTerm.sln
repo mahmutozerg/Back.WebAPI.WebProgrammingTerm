@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{76D51CB1-F61D-48D0-A295-7A203FA834E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProgrammingTerm.Auth.Core", "WebProgrammingTerm.Auth.Core\WebProgrammingTerm.Auth.Core.csproj", "{6929C8A8-321B-44F0-896A-3C68B1E6BE75}"
@@ -21,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProgrammingTerm.Service", "WebProgrammingTerm.Service\WebProgrammingTerm.Service.csproj", "{65F732A8-8A47-4948-8DE3-B1CA2EACEC35}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibrary", "SharedLibrary\SharedLibrary.csproj", "{CAC6A282-A1D8-4557-8B67-046F5968B112}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProgrammingTerm.MVC", "WebProgrammingTerm.MVC\WebProgrammingTerm.MVC.csproj", "{6C457B28-BAF4-43C1-975F-6EC66388E5FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +69,13 @@ Global
 		{CAC6A282-A1D8-4557-8B67-046F5968B112}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAC6A282-A1D8-4557-8B67-046F5968B112}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAC6A282-A1D8-4557-8B67-046F5968B112}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C457B28-BAF4-43C1-975F-6EC66388E5FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C457B28-BAF4-43C1-975F-6EC66388E5FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C457B28-BAF4-43C1-975F-6EC66388E5FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C457B28-BAF4-43C1-975F-6EC66388E5FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6929C8A8-321B-44F0-896A-3C68B1E6BE75} = {76D51CB1-F61D-48D0-A295-7A203FA834E4}
@@ -74,5 +86,8 @@ Global
 		{7F4B34BA-06E8-40FF-920A-92DEB631E00E} = {56BAEE81-A1CB-4610-BF3A-76EBB020E4A5}
 		{AFAD206A-20B8-4F64-A051-42AB37EBE4E2} = {56BAEE81-A1CB-4610-BF3A-76EBB020E4A5}
 		{65F732A8-8A47-4948-8DE3-B1CA2EACEC35} = {56BAEE81-A1CB-4610-BF3A-76EBB020E4A5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {830A6785-D678-4533-93E5-CBF4A6C52E30}
 	EndGlobalSection
 EndGlobal

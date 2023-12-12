@@ -17,12 +17,10 @@ public class CompanyService:GenericService<Company>,ICompanyService
 {
     private readonly ICompanyRepository _companyRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly List<ClientTokenDto> _clientTokenOptions;
-    public CompanyService(IUnitOfWork unitOfWork, ICompanyRepository companyRepository, IOptions<List<ClientTokenDto>> tokenOptions) : base(companyRepository,unitOfWork)
+     public CompanyService(IUnitOfWork unitOfWork, ICompanyRepository companyRepository) : base(companyRepository,unitOfWork)
     {
         _unitOfWork = unitOfWork;
         _companyRepository = companyRepository;
-        _clientTokenOptions = tokenOptions.Value;
     }
 
     public  async Task<CustomResponseDto<Company>> UpdateAsync(CompanyUpdateDto companyUpdateDto,string updatedBy)

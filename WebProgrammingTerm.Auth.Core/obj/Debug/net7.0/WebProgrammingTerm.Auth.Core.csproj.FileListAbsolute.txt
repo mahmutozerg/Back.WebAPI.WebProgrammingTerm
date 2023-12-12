@@ -10,15 +10,3 @@ C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj
 C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\refint\WebProgrammingTerm.Auth.Core.dll
 C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.pdb
 C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\ref\WebProgrammingTerm.Auth.Core.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.deps.json
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.pdb
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.csproj.AssemblyReference.cache
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.AssemblyInfoInputs.cache
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.AssemblyInfo.cs
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.csproj.CoreCompileInputs.cache
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\refint\WebProgrammingTerm.Auth.Core.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.pdb
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\ref\WebProgrammingTerm.Auth.Core.dll

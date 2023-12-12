@@ -1,13 +1,12 @@
-﻿using System.Net;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using WebProgrammingTerm.Auth.Core.DTOs;
+using SharedLibrary.DTO;
+using SharedLibrary.Mappers;
+using SharedLibrary.Models;
 using WebProgrammingTerm.Core;
-using WebProgrammingTerm.Core.DTO;
-using WebProgrammingTerm.Core.Mappers;
-using WebProgrammingTerm.Core.Models;
+
 using WebProgrammingTerm.Core.Repositories;
 using WebProgrammingTerm.Core.Services;
 using IUnitOfWork = WebProgrammingTerm.Core.UnitOfWorks.IUnitOfWork;

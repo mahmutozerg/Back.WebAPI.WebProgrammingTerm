@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SharedLibrary.DTO;
+using SharedLibrary.Models;
 using WebProgrammingTerm.Core;
-using WebProgrammingTerm.Core.DTO;
-using WebProgrammingTerm.Core.Mappers;
-using WebProgrammingTerm.Core.Models;
+
 using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;

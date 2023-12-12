@@ -1,4 +1,5 @@
-﻿using WebProgrammingTerm.Core.Models;
+﻿
+using SharedLibrary.Models;
 
 namespace WebProgrammingTerm.Core.Repositories;
 

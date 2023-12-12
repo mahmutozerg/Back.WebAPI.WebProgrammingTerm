@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
+using SharedLibrary.DTO;
+using SharedLibrary.Models;
 using WebProgrammingTerm.Core.DTO;
-using WebProgrammingTerm.Core.Models;
 
 namespace WebProgrammingTerm.Core.Services;
 

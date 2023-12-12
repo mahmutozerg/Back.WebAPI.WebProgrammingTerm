@@ -1415,6 +1415,16 @@
           }
         }
       },
+      "SharedLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/SharedLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SharedLibrary.dll": {}
+        }
+      },
       "WebProgrammingTerm.Auth.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -1463,6 +1473,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "SharedLibrary": "1.0.0",
           "WebProgrammingTerm.Auth.Core": "1.0.0"
         },
         "compile": {
@@ -4361,6 +4372,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "SharedLibrary/1.0.0": {
+      "type": "project",
+      "path": "../SharedLibrary/SharedLibrary.csproj",
+      "msbuildProject": "../SharedLibrary/SharedLibrary.csproj"
     },
     "WebProgrammingTerm.Auth.Core/1.0.0": {
       "type": "project",

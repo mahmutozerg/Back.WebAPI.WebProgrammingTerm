@@ -1,5 +1,7 @@
-﻿using WebProgrammingTerm.Core.DTO;
-using WebProgrammingTerm.Core.Models;
+﻿
+
+using SharedLibrary.DTO;
+using SharedLibrary.Models;
 
 namespace WebProgrammingTerm.Core.Services;
 

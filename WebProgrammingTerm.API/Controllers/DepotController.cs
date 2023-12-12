@@ -1,8 +1,9 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebProgrammingTerm.Core.DTO;
-using WebProgrammingTerm.Core.Mappers;
+using SharedLibrary.DTO;
+using SharedLibrary.Mappers;
+
 using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;

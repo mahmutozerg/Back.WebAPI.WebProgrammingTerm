@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using SharedLibrary.DTO;
+using SharedLibrary.Models;
 using WebProgrammingTerm.Core;
-using WebProgrammingTerm.Core.DTO;
-using WebProgrammingTerm.Core.Models;
 using WebProgrammingTerm.Core.Repositories;
 using WebProgrammingTerm.Core.Services;
 using WebProgrammingTerm.Core.UnitOfWorks;

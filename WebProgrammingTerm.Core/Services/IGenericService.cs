@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
-using WebProgrammingTerm.Core.DTO;
-using WebProgrammingTerm.Core.Models;
+using SharedLibrary.DTO;
+
 
 namespace WebProgrammingTerm.Core.Services;
 

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using WebProgrammingTerm.Core.Models;
+using SharedLibrary.Models;
 using WebProgrammingTerm.Repository.Configurations;
 
 namespace WebProgrammingTerm.Repository;

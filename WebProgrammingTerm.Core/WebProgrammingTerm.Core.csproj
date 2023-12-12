@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SharedLibrary\SharedLibrary.csproj" />
       <ProjectReference Include="..\WebProgrammingTerm.Auth.Core\WebProgrammingTerm.Auth.Core.csproj" />
     </ItemGroup>
 

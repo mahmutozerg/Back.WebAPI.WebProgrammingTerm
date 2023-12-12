@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SharedLibrary.DTO;
 using WebProgrammingTerm.Core.DTO;
 using WebProgrammingTerm.Core.Services;
 

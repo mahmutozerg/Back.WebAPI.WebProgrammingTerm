@@ -59,11 +59,11 @@ function initializeCarousel(containerClass) {
         }
 
         function prevSlide() {
-            showSlide(currentIndex - 4);
+            showSlide(currentIndex - 5);
         }
 
         function nextSlide() {
-            showSlide(currentIndex + 4);
+            showSlide(currentIndex + 5);
         }
     }
 }

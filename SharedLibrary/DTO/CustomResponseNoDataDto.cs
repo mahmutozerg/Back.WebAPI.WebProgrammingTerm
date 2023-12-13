@@ -7,7 +7,7 @@ public class CustomResponseNoDataDto
     
     public static CustomResponseNoDataDto Fail(int statusCode,string errors)
     {
-        return new CustomResponseNoDataDto { StatusCode = statusCode,Errors = errors.Split("\n")};
+        return new CustomResponseNoDataDto { StatusCode = statusCode,Errors = errors.Split('\n')};
     }   
     public static CustomResponseNoDataDto Success(int statusCode)
     {

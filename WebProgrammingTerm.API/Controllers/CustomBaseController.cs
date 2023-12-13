@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using SharedLibrary.DTO;
-using WebProgrammingTerm.Core.DTO;
 
 namespace WebProgrammingTerm.API.Controllers;
 [Route("api/[controller]")]

@@ -1,25 +1,48 @@
-﻿using SharedLibrary.DTO;
+﻿using System;
+using SharedLibrary.DTO;
 using SharedLibrary.Models;
 
-namespace SharedLibrary.Mappers;
-
-public static class ProductMapper
+namespace SharedLibrary.Mappers
 {
-    public static Product ToProduct(ProductAddDto productAddDto )
+    public static class ProductMapper
     {
-        var product = new Product()
+        public static Product ToProduct(ProductAddDto productAddDto)
         {
-            Id = Guid.NewGuid().ToString(),
-             Stock = productAddDto.Stock,
-            Price = productAddDto.Price,
-            Name = productAddDto.Name,
-            CreatedAt = DateTime.Now,
-            DiscountRate = productAddDto.DiscountRate
-       
-        };
+            var product = new Product()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Stock = productAddDto.Stock,
+                Price = productAddDto.Price,
+                Name = productAddDto.Name,
+                CreatedAt = DateTime.Now,
+                DiscountRate = productAddDto.DiscountRate
+            };
 
-        return product;
+            return product;
+        }
+
+        public static ProductGetDto ToAddDto(Product product)
+        {
+            
+            var productAddDto = new ProductGetDto()
+            {
+                Author = product.ProductDetail.Author,
+                Category = product.Category,
+                DepotId = product.ProductDetail.DepotId,
+                DiscountRate = product.DiscountRate,
+                ImagePath = product.ImagePath,
+                Language = product.ProductDetail.Language,
+                Name = product.Name,
+                Price = product.Price,
+                Page = product.ProductDetail.Page,
+                PublishDate = product.ProductDetail.PublishDate,
+                Publisher = product.ProductDetail.Publisher,
+                Stock = product.Stock,
+                Company = product.Company
+            };
+            return productAddDto;
+            
+        }
     }
-
- 
 }
+

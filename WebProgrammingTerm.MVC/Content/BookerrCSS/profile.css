@@ -1,9 +1,4 @@
-body {
-    font-family: Montserrat;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 
 
 .profile-nav-menu nav a:hover {
@@ -11,8 +6,27 @@ body {
     color: #F47878; /* Hover durumunda metin rengi */
 }
 
+.partial input,.password-input input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    background-color: #E6E7E8;
+    color: #000000;
+}
+input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    background-color: #E6E7E8;
+    color: #000000;
+}
 
-input,
 select {
     width: 100%;
     padding: 8px;

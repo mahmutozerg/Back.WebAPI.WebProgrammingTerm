@@ -13,4 +13,10 @@ public class ProductRepository:GenericRepository<Product>,IProductRepository
         _products = context.Set<Product>();
         
     }
+
+    public async Task<List<Product>> GetProducstByPage(int page)
+    {
+        return await _products.Skip(20 * page).Take(20).Where(p=>p.Stock >=0 && !p.IsDeleted)
+            .Include(p=>p.ProductDetail).Include(p=>p.Company).ToListAsync();
+    }
 }

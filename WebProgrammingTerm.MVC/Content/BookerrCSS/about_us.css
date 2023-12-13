@@ -24,16 +24,7 @@ ul {
     margin: 0;
 }
 
-footer {
-    background-color: #808285;
-    /* Arka plan rengini belirle */
-    color: #828285;
-    /* Metin rengini belirle */
-    text-align: center;
-    /* Metni merkezle */
-    padding: 1em 0;
-    /* Dış kenar boşluğunu belirle */
-}
+
 
 /* Hizmetler bölümünü yatayda sıralama, dikeyde sarıma ve hizalama ile biçimlendir */
 .services-section {

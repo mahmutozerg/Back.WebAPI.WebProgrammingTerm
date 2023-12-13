@@ -1,4 +1,7 @@
-﻿
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+
+
 @{
     ViewBag.Title = "Bookerr test";
 }
@@ -7,19 +10,16 @@
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/AdvertCardCaurosel.css">
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/ProductCard.css">
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/ProductCardCarosel.css">
-    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/Footer.css">
     <link rel="stylesheet" type="text/css" href="../../Content/WebAssets/">
 
-    <script src="/Scripts/BookerrScripts/AdvertCarousel.js?v3" defer></script>
-    <script src="/Scripts/BookerrScripts/ProductCardCarousel.js?v2" defer></script>
+    <script src="/Scripts/BookerrScripts/AdvertCarousel.js?v4" defer></script>
+    <script src="/Scripts/BookerrScripts/ProductCardCarousel.js?v3" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 
 <body>
 
-
-    <div class="advertCarousel">
+<div class="advertCarousel">
        
 
         <div class="advert-carousel-inner">
@@ -37,276 +37,109 @@
     <div class="productCarousel">
         <h5 class="Title" style="color: black; font-size: 20px;padding:20px;"><strong>Top Sales</strong></h5>
         <div class="product-carousel-inner">
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/WebAssets/img3.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color:inherit">Kızıl
-                                    Panda
-                                    Yayınevi</a><br />
-
-                            </strong>
-                            Dünya Klasikleri Seti 1 (6 KİTAP) T109002
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-
-
-
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/WebAssets/img2.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color:inherit">Kızıl
-                                    Panda
-                                    Yayınevi</a><br />
-                            </strong>
-                            Dünya Klasikleri Seti 1 (6 KİTAP) T109002
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/webAssets/img1.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html"
-                                    style="color: inherit;">Domingo
-                                    Yayınevi</a><br />
-                            </strong>
-                            Incognito Beynin Gizli Hayatı / 148124
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/webAssets/img4.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color: inherit;">Can
-                                    Yayınları </a>
-                                <br />
-                            </strong>
-                            Şeker Portakalı Jose Mauro De Vasconcelos 0000000064031
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/webAssets/img5.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html"
-                                    style="color: inherit;">Domingo
-                                    Yayınevi </a>
-                                <br />
-                            </strong>
-                            Gece Yarısı Kütüphanesi 12-9786051981833
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/webAssets/img6.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color: inherit;">İş
-                                    Bankası
-                                    Kültür Yayınları
-                                </a>
-                                <br />
-                            </strong>
-                            Suç Ve Ceza Ciltsiz- Fyodor Mihailoviç Dostoyevski 180035
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @{
+                var jsonData = ViewData["test"]?.ToString();  
+            
+                if (!string.IsNullOrEmpty(jsonData))
+                {
+                    try
+                    {
+                        var jsonArray = JArray.Parse(jsonData);
+        
+                        foreach (var item in jsonArray)
+                        {
+                            <div class="product-carousel-item">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/Content/WebAssets/img3.jpg" class="card-img-top" alt="productImage">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <strong class="card-title">
+                                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color:inherit">
+                                                    @item["publisher"]</a><br />
+                                            </strong>
+                                             @{
+                                                 var truncatedName = item["name"].ToString().Length > 60
+                                                     ? item["name"].ToString().Substring(0, 57) + "..."
+                                                     : item["name"].ToString();
+                                             }
+                                             @truncatedName       
+                                            <div class="carosel-product-info">
+                                                <a href="../UnderDevelopement/UnderDevelopementPage.html">
+                                                    <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
+                                                </a>
+                                                <p class="carosel-product-info-text">@item["price"]₺</p>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    catch (JsonReaderException ex)
+                    {
+                        <p>Error parsing JSON array: @ex.Message</p>
+                    }
+                }
+                else
+                {
+                    <p>No JSON data available.</p>
+                }
+            }
+            
         </div>
     </div>
     <div class="productCarousel">
         <h5 class="Title" style="color: black; font-size: 20px;padding:20px;"><strong>New Products</strong></h5>
         <div class="product-carousel-inner">
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/webAssets/img3.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color:inherit">Pegasus
-                                    Yayınları </a>
-                                <br />
-                            </strong>
-                            Atomik Alışkanlıklar – James Clear 9786052998380
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/webAssets/img2.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color:inherit">Kızıl
-                                    Panda
-                                    Yayınevi</a><br />
-                            </strong>
-                            Dünya Klasikleri Seti 1 (6 KİTAP) T109002
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
+            @{
+                jsonData = ViewData["test2"]?.ToString();  
+            
+                if (!string.IsNullOrEmpty(jsonData))
+                {
+                    try
+                    {
+                        var jsonArray = JArray.Parse(jsonData);
+                        int ct = 0;
+                        foreach (var item in jsonArray)
+                        {
+                            <div class="product-carousel-item">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/Content/WebAssets/img3.jpg" class="card-img-top" alt="productImage">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <strong class="card-title">
+                                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color:inherit">
+                                                    @item["publisher"]</a><br />
+                                            </strong>
+                                            @{
+                                                var truncatedName = item["name"].ToString().Length > 60
+                                                    ? item["name"].ToString().Substring(0, 57) + "..."
+                                                    : item["name"].ToString();
+                                            }
+                                            @truncatedName                                          
+                                            <div class="carosel-product-info">
+                                                <a href="../UnderDevelopement/UnderDevelopementPage.html">
+                                                    <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
+                                                </a>
+                                                <p class="carosel-product-info-text">@item["price"]₺</p>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    catch (JsonReaderException ex)
+                    {
+                        <p>Error parsing JSON array: @ex.Message</p>
+                    }
+                }
+                else
+                {
+                    <p>No JSON data available.</p>
+                }
+            }
 
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/webAssets/img1.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html"
-                                    style="color: inherit;">Domingo
-                                    Yayınevi</a><br />
-                            </strong>
-                            Incognito Beynin Gizli Hayatı / 148124
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/webAssets/img4.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color: inherit;">Can
-                                    Yayınları </a>
-                                <br />
-                            </strong>
-                            Şeker Portakalı Jose Mauro De Vasconcelos 0000000064031
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/webAssets/img5.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html"
-                                    style="color: inherit;">Domingo
-                                    Yayınevi </a>
-                                <br />
-                            </strong>
-                            Gece Yarısı Kütüphanesi 12-9786051981833
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-carousel-item">
-                <div class="card" style="width: 18rem;">
-                    <img src="/Content/webAssets/img6.jpg" class="card-img-top" alt="productImage">
-                    <div class="card-body">
-                        <p class="card-text">
-                            <strong class="card-title">
-                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color: inherit;">İş
-                                    Bankası
-                                    Kültür Yayınları
-                                    <br />
-                                </a>
-                            </strong>
-                            Suç Ve Ceza Ciltsiz- Fyodor Mihailoviç Dostoyevski 180035
-                        <div class="carosel-product-info">
-                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                            </a>
-                            <p class="carosel-product-info-text">00.00₺</p>
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </body>

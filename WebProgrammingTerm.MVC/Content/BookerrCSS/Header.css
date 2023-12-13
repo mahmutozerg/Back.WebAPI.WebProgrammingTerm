@@ -65,13 +65,16 @@
 .bookerr-image img {
     width: 150px;
 }
-
+.bookerr-image img a {
+    display: inline-block;
+}
 .search-bar {
     width: fit-content;
     position: inherit;
     top: 15%;
     padding-bottom: 1%;
-    padding-left: 34%;
+    margin-left: 34%;
+    margin-top: 1%;
 }
 
 .search-bar input[type="text"] {

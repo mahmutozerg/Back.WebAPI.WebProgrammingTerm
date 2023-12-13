@@ -1,12 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/Header.css">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/Header.css?v2">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/Footer.css?v1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -26,8 +29,8 @@
                 <div>
                     <font color="#828285">
 
-                        <body vlink="#828285"><a href="../About/about.html">About</a>&nbsp;&nbsp;&nbsp;
-                        <a href="../Contact/contact.html">Contact</a>
+                        <body vlink="#828285"><a href="@Url.Action("AboutUsIndex", "AboutUs")">About</a>&nbsp;&nbsp;&nbsp;
+                        <a href="@Url.Action("ContactIndex", "Contact")">Contact</a>
                         </body>
                     </font>
 
@@ -37,11 +40,10 @@
             <hr class="myhr">
 
             <div class="bookerr-image">
-                <a href="Bookerr.html">
-                    <img src="../..../../Content/WebAssets/BOOKERRLogo_Pink.svg">
+                <a href="@Url.Action("Home", "Home")">
+                    <img src="../../Content/WebAssets/BOOKERRLogo_Pink.svg">
                 </a>
             </div>
-
 
             <div class="search-bar">
                 <input type="text" placeholder="Search">
@@ -50,7 +52,7 @@
             </div>
 
             <div class="profile-image">
-                <a href="../Profile/profile.html">
+                <a href=@Url.Action("ProfileIndex", "Profile")>
                     <img src="../../Content/WebAssets/ProfileIcon.svg">
                 </a>
             </div>
@@ -79,7 +81,7 @@
                 <div class="footer-col">
                     <h4>
 
-                        <body vlink="#808285 "> </body><a href="#" style="color:#808285">Main Category 1></a>
+                        <body vlink="#808285 "> </body><a href="#" style="color:#808285">Main Category 1</a>
                     </h4>
                     <ul>
                         <li><a href="#">Sub Category 1</a></li>
@@ -151,8 +153,8 @@
                         <li><a href="#">Sub Category 7</a></li>
                     </ul>
                     <div class="additional-links about-contact">
-                        <a href="#" style="color:#808285">About&nbsp;</a>
-                        <a href="#" style="color:#808285">&nbsp;&nbsp;&nbsp;&nbsp;Contact</a>
+                        <a href="@Url.Action("AboutUsIndex", "AboutUs")" style="color:#808285">About&nbsp;</a>
+                        <a href="@Url.Action("ContactIndex", "Contact")" style="color:#808285">&nbsp;&nbsp;&nbsp;&nbsp;Contact</a>
                     </div>
 
                     <div class="additional-links faq-help">

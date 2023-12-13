@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FrMtBpFGjFFO//PWoIyMm3vP7HcLPbwQEIwzTEVnMif+Eevl56dMMfEz8ah6xEQpnGIe+q8xge08YPz+BnKLsA==",
+  "dgSpecHash": "t/IDGfIted+Xyk/Q/nOcmTFlkaZWWTiltHh4X+dj2Vd0jQhCtYfbjMbfcIE0bQdU4vsAsSfcaqYfnybCce1NPA==",
   "success": true,
   "projectFilePath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Repository\\WebProgrammingTerm.Repository.csproj",
   "expectedPackageFiles": [
@@ -47,6 +47,7 @@
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\karak\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",

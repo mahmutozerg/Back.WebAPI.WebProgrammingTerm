@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebProgrammingTerm.Core.DTO;
+namespace SharedLibrary.DTO;
 public class ProductUpdateDto
 {
     [Required(ErrorMessage = "TargetProductId is required")]

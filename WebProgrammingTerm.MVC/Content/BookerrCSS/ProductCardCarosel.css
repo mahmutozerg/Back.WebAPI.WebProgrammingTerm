@@ -1,8 +1,6 @@
 .product-carousel-inner {
     padding-left: 2%;
-    padding-right: 2%;
-    max-width: 45%;
-    max-height: 60%;
+    padding-right: 4%;
     display: flex;
     transition: transform 0.5s ease-in-out;
 }
@@ -19,7 +17,6 @@
     position: absolute;
     top: 50%;
     right: 2%;
-    /* Adjust the right distance as needed */
     transform: translateY(-50%);
     transform: translatex(50%);
 
@@ -29,7 +26,6 @@
     position: absolute;
     top: 50%;
     left: 2.75%;
-    /* Adjust the right distance as needed */
     transform: translateY(-50%);
     transform: translatex(-50%);
 

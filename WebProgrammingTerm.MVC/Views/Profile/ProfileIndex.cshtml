@@ -1,0 +1,75 @@
+﻿@model dynamic
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v3">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    <div class="profile_section">
+        <div class="link_holder">
+            <h2 id="profile_header">Profile</h2>
+            <div class="profile_sections">
+                <a href="#"><button type="button">Profile Details</button></a>
+                <a href="#"><button type="button">Nav Link</button></a>
+                <a href="#"><button type="button">Nav Link</button></a>
+                <a href="#"><button type="button">Nav Link</button></a>
+                <a href="#"><button type="button">Nav Link</button></a>
+            </div>
+        </div>
+
+        <div class="user_information">
+            <h2>Profile Details</h2>
+            <form action="#" method="POST">
+                <div class="partial">
+                    <input type="text" name="name">
+                    <input type="text" name="surname">
+                </div>
+                <input type="email">
+                <div class="partial">
+                    <div class="birth_date">
+                        <p style="color:#808285; font-weight:700;">Birth Date: </p>
+                        <select id="birthMonth" name="birthMonth"></select>
+                        <select id="birthDay" name="birthDay"></select>
+                        <select id="birthYear" name="birthYear"></select>
+                    </div>
+                    <div class="gender">
+                        <p style="color:#808285; font-weight:700;">Sex: </p>
+                        <input type="radio" id="male" name="age" value="30">
+                        <p>Male</p>
+                        <input type="radio" id="female" name="age" value="60">
+                        <p>Female</p>
+                    </div>
+                </div>
+                <button type="submit" class="save-button">Save</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="password-change-form">
+        <h2>Reset Password</h2>
+        <div class="password-input">
+            <input type="password" id="current-password" placeholder="Current Password*">
+            <div class="password-toggle" onclick="togglePassword('current-password')">
+
+            </div>
+        </div>
+
+        <div class="password-input">
+            <input type="password" id="new-password" placeholder="New Password*">
+            <div class="password-toggle" onclick="togglePassword('new-password')">
+
+            </div>
+        </div>
+
+        <div class="password-input">
+            <input type="password" id="confirm-new-password" placeholder="Confirm New Password*">
+            <div class="password-toggle" onclick="togglePassword('confirm-new-password')">
+
+            </div>
+        </div>
+        <button type="submit" class="reset-button">Reset Password</button>
+    </div>
+</body>

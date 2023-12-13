@@ -4,8 +4,6 @@ using SharedLibrary.DTO;
 using SharedLibrary.Mappers;
 using SharedLibrary.Models;
 using WebProgrammingTerm.Core;
-using WebProgrammingTerm.Core.DTO;
-
 using WebProgrammingTerm.Core.Repositories;
 using WebProgrammingTerm.Core.Services;
 using WebProgrammingTerm.Core.UnitOfWorks;
@@ -100,5 +98,16 @@ public class ProductService:GenericService<Product>,IProductService
         return product;
 
 
+    }
+
+    public async Task<CustomResponseListDataDto<ProductGetDto>> GetProductsByPage(int page)
+    {
+        var products = await _productRepository.GetProducstByPage(page);
+        List<ProductGetDto> dtos = new List<ProductGetDto>();
+        foreach (var product in products)
+        {
+            dtos.Add(ProductMapper.ToAddDto(product));
+        }
+        return  CustomResponseListDataDto<ProductGetDto>.Success(dtos,200);
     }
 }

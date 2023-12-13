@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace SharedLibrary.Models;
 
 public class ProductDetail:Base
 {
-    public string Id { get; set; }
     [JsonIgnore]
     public Product Product { get; set; }
     [Column(TypeName = "varchar(50)")]

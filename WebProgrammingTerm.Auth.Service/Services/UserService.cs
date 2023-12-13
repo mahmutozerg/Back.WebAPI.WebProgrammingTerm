@@ -36,7 +36,7 @@ public class UserService:GenericService<User>,IUserService
         var result = await _userManager.CreateAsync(user, createUserDto.Password);
         
         if (!result.Succeeded)
-            return Response<User>.Fail(result.Errors.Select(x => x.Description).ToList(), 400);
+            return Response<User>.Fail(result.Errors.Select(x => x.Description).ToList(), 409);
         
         /*
          * This is for creating the same user in business database

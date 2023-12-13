@@ -20,10 +20,16 @@ public class RouteConfig
             url: "profile",
             defaults: new { controller = "Profile", action = "ProfileIndex" }
         );
+        
         routes.MapRoute(
             name: "SignInRoute",
             url: "signin",
-            defaults: new { controller = "Account", action = "SignInIndex" }
+            defaults: new { controller = "Account", action = "SignIn" }
+        );
+        routes.MapRoute(
+            name: "SignUpRoute",
+            url: "signup",
+            defaults: new { controller = "Account", action = "SignUp" }
         );
         routes.MapRoute(
             name: "AboutUsRoute",

@@ -140,6 +140,7 @@
         <Content Include="Content\BookerrCSS\ProductCardCarosel.css" />
         <Content Include="Content\BookerrCSS\profile.css" />
         <Content Include="Content\BookerrCSS\sign_in.css" />
+        <Content Include="Content\BookerrCSS\sign_up.css" />
         <Content Include="Content\BookerrCSS\UnderDevelopementPage.css" />
         <Content Include="Content\WebAssets\Addtocart.svg" />
         <Content Include="Content\WebAssets\arrow_left.svg" />
@@ -202,7 +203,8 @@
         <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
         <Content Include="Scripts\modernizr-2.8.3.js" />
         <Content Include="Views\AboutUs\AboutUsIndex.cshtml" />
-        <Content Include="Views\Account\SignInIndex.cshtml" />
+        <Content Include="Views\Account\SignIn.cshtml" />
+        <Content Include="Views\Account\SignUp.cshtml" />
         <Content Include="Views\Contact\ContactIndex.cshtml" />
         <Content Include="Views\Home\Booker.cshtml" />
         <Content Include="Views\Home\Test.cshtml" />

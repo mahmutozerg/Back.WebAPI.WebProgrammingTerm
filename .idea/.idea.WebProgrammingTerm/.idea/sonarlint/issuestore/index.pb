@@ -81,8 +81,6 @@ q
 AWebProgrammingTerm.Auth.Service/Configurations/AppTokenOptions.cs,7\6\76095bac422d448a6afb13d1a3be76708aac1aec
 c
 3WebProgrammingTerm.Auth.Core/DTOs/ClientLoginDto.cs,2\f\2f25207da4664934f5423608dbc9ee53801f9790
-]
--WebProgrammingTerm.Auth.Core/DTOs/TokenDto.cs,9\2\922d7fb0e8fdc6d222a111afc51e2e93816a40b8
 j
 :WebProgrammingTerm.Auth.Core/DTOs/AUserToCompanyRoleDto.cs,5\0\505c61d262d189d5f70a8dc7fc498598af9c6987
 o
@@ -95,8 +93,6 @@ j
 +WebProgrammingTerm.Core/ResponseMessages.cs,6\5\655d7d243aa3ebe4d6e36b2c1f0f836fda028c3f
 j
 :WebProgrammingTerm.Auth.API/Controllers/AdminController.cs,e\6\e65da71f66f642d7b860a330100bc86a61db6d5f
-e
-5WebProgrammingTerm.Auth.Core/Services/IUserService.cs,7\c\7c00fd1cf7243d22ebf5462aa7ff7b288fd7b506
 l
 <WebProgrammingTerm.Auth.API/Controllers/CompanyController.cs,0\c\0c462d0ac36274514282cc90f1de9ef5016cb08a
 W
@@ -105,8 +101,6 @@ Q
 !WebProgrammingTerm.API/Program.cs,f\1\f1c3fd42fe3cfcdac9449d9d5c87d8b496de9deb
 V
 &WebProgrammingTerm.Auth.API/Program.cs,c\7\c7af68c0f71528dcb4c539e67524db295bde4c88
-b
-2WebProgrammingTerm.Auth.Core/DTOs/CreateUserDto.cs,b\a\ba063ff466cf9127403bc8d9aae220a897cb853b
 [
 +WebProgrammingTerm.Auth.Core/Models/Base.cs,f\2\f2f1b7e3b19d7e0fd03e931f43d412df0adf76e0
 g
@@ -309,8 +303,6 @@ V
 &SharedLibrary/DTO/CustomResponseDto.cs,5\f\5f080fbf531a6f9a2b6d65a5c46d1bf99de73567
 [
 +SharedLibrary/DTO/ProductDetailUpdateDto.cs,1\6\16fd026f830de3c73cad7fcbc5ca4d58c4a72831
-g
-7WebProgrammingTerm.Auth.Service/Services/UserService.cs,1\f\1fb570be72b065670cfc9d4b37728d33efaef3db
 c
 3WebProgrammingTerm.Core/Services/IProductService.cs,f\b\fb6f49ddbbf8e3ebdca936e0377616700c31b65c
 V

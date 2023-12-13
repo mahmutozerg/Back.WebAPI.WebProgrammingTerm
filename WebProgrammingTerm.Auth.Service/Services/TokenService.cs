@@ -49,8 +49,8 @@ public class TokenService:ITokenService
 
         var tokendto = new TokenDto
         {
-            AccesssToken = token,
-            AccesTokenExpiration = accesTokenExpiration,
+            AccessToken = token,
+            AccessTokenExpiration = accesTokenExpiration,
             RefreshToken = CreateRefreshToken(),
             RefreshTokenExpiration = refreshTokenExpiration
         };

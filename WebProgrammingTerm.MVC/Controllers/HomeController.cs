@@ -23,19 +23,6 @@ namespace WebProgrammingTerm.MVC.Controllers
             }
             return View("Booker");
         }
-        public async Task<ActionResult> Test()
-        {
-            var cookies = await UserServices.SetUserTokens("user@example.com", "!Mahmut3590");
-
-            if (cookies is not null)
-            {
-                Response.Cookies.Add(cookies[0]);
-                Response.Cookies.Add(cookies[1]);
-            }
-
-
-            return View();
-        }
 
     }
 }

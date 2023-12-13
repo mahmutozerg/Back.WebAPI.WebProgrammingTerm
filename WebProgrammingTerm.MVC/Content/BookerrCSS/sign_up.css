@@ -1,0 +1,158 @@
+ 
+.sign-up {
+	width: 150%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.password-error {
+    color: red; /* Adjust the color based on your design */
+    font-size: 14px; /* Adjust the font size based on your design */
+}
+
+.mail-error {
+    color: red; /* Adjust the color based on your design */
+    font-size: 14px; /* Adjust the font size based on your design */
+}
+.button-items {
+	flex: 1;
+	max-width: 45%;
+}
+
+.book-img{
+	display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.sign-info {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+	margin-left: 370px;
+}
+.bar {
+    width: 70%;
+	display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 15%;
+    padding-bottom: 1%;
+    padding-left: 30%;
+}
+
+#name-bar {
+	display:flex;
+	gap: 5%;
+}
+
+#name-bar input[type="text"]{
+    position: relative;
+    top: 15%;
+    padding-bottom: 1%;
+	background-color: #E6E7E8;
+    border-radius: 300px;
+    border: 8px solid rgba(0, 0, 0, 0);
+    /* Use 100% width to fill the available space */
+    box-sizing: border-box;
+    font-size: 16px;
+	width: 100%; /* Genişliği artırın */
+    display: inline-block; /* Blok öğeleri yan yana sıralamak için */
+}
+
+.email-bar input[type="email"] {
+    background-color: #E6E7E8;
+    border-radius: 300px;
+    border: 8px solid rgba(0, 0, 0, 0);
+    width: 100%;
+    /* Use 100% width to fill the available space */
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.password-bar input[type="text"] {
+    background-color: #E6E7E8;
+    border-radius: 300px;
+    border: 8px solid rgba(0, 0, 0, 0);
+    width: 100%;
+    /* Use 100% width to fill the available space */
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.confirm-password-bar input[type="text"] {
+    background-color: #E6E7E8;
+    border-radius: 300px;
+    border: 8px solid rgba(0, 0, 0, 0);
+    width: 100%;
+    /* Use 100% width to fill the available space */
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.bar a {
+    text-decoration: none;
+    color: black;
+}
+
+.bar a i {
+    position: relative;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.image-button {
+    display: inline-block; /* Resmin buton içinde düzgün görünmesi için */
+    width: 30px; /* Resmin genişliği */
+    height: 30px; /* Resmin yüksekliği */
+    background-color: transparent; /* Arka plan rengi şeffaf yapılır */
+    border: none; /* Kenarlık olmaması için */
+	position: relative;
+	left: 450px;
+	top: -28px;
+}
+
+.image-button:hover {
+    opacity: 0.7; /* Butonun üzerine gelindiğinde opaklığını düşürme örneği */
+}
+
+.account{
+	font-family: Montserrat;
+	color: #808285;
+	display: flex;
+    font-size: 20px;
+	margin-left: 80px;
+}
+
+.continue img {
+	display: block;
+	margin: 0 auto;
+	width: 360px;
+}
+
+.book-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.book-item img {
+    width: 200%;
+    height: 200%;
+    font-size: 18px;
+    display: flex;
+	margin: 100px auto 0;
+}
+
+#checkbox input[type="checkbox"] {
+    border-radius: 50%; /* Yuvarlak checkbox */
+    background-color: #E6E7E8; /* Gri arkaplan */
+    margin-right: 5px; /* Checkbox'lar arasında boşluk */
+}
+
+
+
+
+

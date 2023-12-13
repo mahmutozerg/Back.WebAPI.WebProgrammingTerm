@@ -9,13 +9,15 @@ using Newtonsoft.Json.Linq;
 
 namespace WebProgrammingTerm.MVC.Services;
 
-public class TokenServices
+public static class UserServices
 {
-    private string Url = "https://localhost:7049/api/Auth/CreateToken";
+    private static string Url = "https://localhost:7049/api/Auth/CreateToken";
 
-    public async Task<List<HttpCookie>> GetUserTokens(string mail,string passwd)
+    public static async Task<List<HttpCookie>> SetUserTokens(string mail,string passwd)
     {
-
+        if (!IsValidUser(mail, passwd))
+            return null;
+        
         using (var client = new HttpClient())
         {
             var loginDto = new
@@ -71,6 +73,21 @@ public class TokenServices
             }
 
             return null;
+        }
+    }
+    
+    
+    
+    private static bool IsValidUser(string email, string password)
+    {
+        try
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
         }
     }
 }

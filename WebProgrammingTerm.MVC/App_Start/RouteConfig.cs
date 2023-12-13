@@ -20,7 +20,11 @@ public class RouteConfig
             url: "profile",
             defaults: new { controller = "Profile", action = "ProfileIndex" }
         );
-        
+        routes.MapRoute(
+            name: "SignInRoute",
+            url: "signin",
+            defaults: new { controller = "Account", action = "SignInIndex" }
+        );
         routes.MapRoute(
             name: "AboutUsRoute",
             url: "AboutUs",

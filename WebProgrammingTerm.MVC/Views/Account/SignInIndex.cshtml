@@ -1,0 +1,52 @@
+﻿@model dynamic
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/sign_in.css">
+</head>
+
+<body>
+<br><br>
+
+<div class="sign-in">
+    <div class="button-items">
+        <div class="sign-info">
+            <p style="font-size:50px;"><strong>Sign In</strong></p>
+        </div>
+        <br><br>
+        <form action="@Url.Action("SignIn", "Account")" method="post">
+            <div class="bar">
+                <div class="email-bar">
+                    <input type="email" name="email" placeholder="E-Mail*" required>
+                    <a href="#E6E7E8"></a>
+                </div>
+                <br>
+                <div class="password-bar">
+                    <input type="password" name="password" placeholder="Password*" required>
+                    <a href="#E6E7E8" class="image-button">
+                        <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
+                    </a>
+                </div>
+                <div class="sign-button-img">
+                    <input type="submit" value="Sign In">
+                </div>
+            </div>
+        </form>
+        <br>
+        <div class="account">
+            <p>Do not have an account?<a href="https://www.google.com.tr/?hl=tr"> Create an account</a></p>
+        </div>
+        <br>
+        <div class="continue">
+            <img src="../../Content/WebAssets/continuewithgooglebutton.svg" alt="Sign in Button Image" />
+            <a href="https://www.google.com.tr/?hl=tr"></a>
+        </div>
+    </div>
+
+    <div class="book-img">
+        <div class="book-item">
+            <img src="../../Content/WebAssets/bookvector.svg" alt="Book Image">
+        </div>
+    </div>
+</div>
+</body>

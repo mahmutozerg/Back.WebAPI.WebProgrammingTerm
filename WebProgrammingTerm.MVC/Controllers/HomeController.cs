@@ -11,8 +11,7 @@ namespace WebProgrammingTerm.MVC.Controllers
     public class HomeController : Controller
     {
         private readonly ProductServices _productServices = new ProductServices();
-        private readonly TokenServices _tokenServices = new TokenServices();
-        public async Task<ActionResult> Home()
+         public async Task<ActionResult> Home()
         {
             var jsonResult = await _productServices.GetProductsFromApi(1);
             var jsonResult2 = await _productServices.GetProductsFromApi(3); 
@@ -26,7 +25,7 @@ namespace WebProgrammingTerm.MVC.Controllers
         }
         public async Task<ActionResult> Test()
         {
-            var cookies = await _tokenServices.GetUserTokens("user@example.com", "!Mahmut3590");
+            var cookies = await UserServices.SetUserTokens("user@example.com", "!Mahmut3590");
 
             if (cookies is not null)
             {

@@ -253,12 +253,6 @@ W
 'WebProgrammingTerm.MVC/Content/Site.css,a\c\ace4b06920856d18b6269a2c6c3ec1176e863762
 o
 ?WebProgrammingTerm.MVC/Scripts/BookerrScripts/AdvertCarousel.js,d\3\d36cea1e54f1e52828ddeef3d67ca178a06e056c
-U
-%SharedLibrary/DTO/CompanyUpdateDto.cs,a\3\a3ae817ad3bb06f1d7b1a6c369eb58ec16d5a5c4
-S
-#SharedLibrary/DTO/CompanyUserDto.cs,c\1\c1ed3345b639a1203d3fd47f1713329bc451ca10
-P
- SharedLibrary/DTO/DepotAddDto.cs,9\2\92a0d8e5a20fe8dec39cec91f9114cccd6bfc5ce
 S
 #SharedLibrary/DTO/DepotUpdateDto.cs,f\9\f94982f13bd5c00ecdf8d299dc9d7893d618b1ae
 V
@@ -311,8 +305,6 @@ j
 :WebProgrammingTerm.Core/Repositories/IProductRepository.cs,e\3\e3ed64b04cbaac30a3a6fce68cb9ffa3f82e6f5c
 V
 &SharedLibrary/DTO/CustomResponseDto.cs,5\f\5f080fbf531a6f9a2b6d65a5c46d1bf99de73567
-R
-"SharedLibrary/DTO/CompanyAddDto.cs,f\d\fd86a2d19b53273b00a4c587d2fafa3383d8d688
 O
 SharedLibrary/DTO/UserAddDto.cs,8\4\848035a6a955d670a516d7cad545498746a6b1c6
 [

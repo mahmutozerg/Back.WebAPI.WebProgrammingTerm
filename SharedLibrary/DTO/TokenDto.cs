@@ -1,4 +1,4 @@
-namespace WebProgrammingTerm.Auth.Core.DTOs;
+namespace SharedLibrary.DTO;
 
 public class TokenDto
 {

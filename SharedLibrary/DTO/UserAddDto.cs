@@ -9,5 +9,9 @@ public class UserAddDto
 
     [Required(ErrorMessage = "MailAddress field is required")]
     [EmailAddress(ErrorMessage = "Invalid email address format")]
-    public string MailAddress { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    
+
+    public string Name { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using SharedLibrary.DTO;
 using WebProgrammingTerm.Auth.Core.Configurations;
 using WebProgrammingTerm.Auth.Core.DTOs;
 using WebProgrammingTerm.Auth.Core.Models;

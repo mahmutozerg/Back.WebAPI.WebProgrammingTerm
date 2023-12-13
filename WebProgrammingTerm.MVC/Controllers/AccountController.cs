@@ -1,13 +1,14 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using SharedLibrary.DTO;
+using WebProgrammingTerm.MVC.Models;
 using WebProgrammingTerm.MVC.Services;
 
 namespace WebProgrammingTerm.MVC.Controllers;
 
 public class AccountController : Controller
 {
-    // GET
     public ActionResult SignIn()
     {
         var token = Request.Cookies["accessToken"]?.Value;
@@ -20,7 +21,7 @@ public class AccountController : Controller
     }
     
     [HttpPost]
-    public async Task<ActionResult> SignIn(string email, string password)
+    public async Task<ActionResult> SignIn(LoginDto loginDto)
     {
 
         var token = Request.Cookies["accessToken"]?.Value;
@@ -28,11 +29,15 @@ public class AccountController : Controller
         if (token is not null)
             return RedirectToAction("Home", "Home");
         
-        var result = await UserServices.SignInUser(email, password);
+        var result = await UserServices.SignInUser(loginDto.Email, loginDto.Password);
 
-        if (result is null)
-            return View("SignUp");
+        if (!result.HasValues )
+        {
+            
+            ModelState.AddModelError("LoginError","PleaseCheck your credentials");
+            return View();
 
+        }
         var cookies = UserServices.GetCookies(result);
         foreach (var cookie in cookies)
         {
@@ -49,18 +54,31 @@ public class AccountController : Controller
     }
     
     [HttpPost]
-    public async Task<ActionResult> SignUp(string firstName, string lastName, string email, string password, string confirmPassword)
+    public async Task<ActionResult> SignUp(SignUpDto signUpDto)
     {
-        var result = await UserServices.SignUpUser(email, password);
+        if (string.CompareOrdinal(signUpDto.Password, signUpDto.ConfirmPassword) != 0)
+        {
+            ViewData["email"] = signUpDto.Email;
+            ViewData["FirstName"] = signUpDto.FirstName;
+            ViewData["LastName"] = signUpDto.LastName;
+            ModelState.AddModelError("Password","Password and Confirm Password must match");
+            return View();
+        }
+        
+        var result = await UserServices.SignUpUser(signUpDto.Email, signUpDto.Password,signUpDto.FirstName,signUpDto.LastName);
         /*
-         *todo şifreleri kıyasla
          *todo giris okeyse tokenleri setle
          *todo uyarı yazılarını duzenle
          */
         if (!result["errors"].HasValues)
         {
+            var cookies = UserServices.GetCookies(result);
+            foreach (var cookie in cookies)
+            {
+                Response.Cookies.Add(cookie);
+            }
 
-            return View();
+            return RedirectToAction("Home", "Home");
 
         }
 
@@ -74,14 +92,13 @@ public class AccountController : Controller
                 ModelState.AddModelError("mail",$"{"Email already exist"}");
 
             }
-
-            if (!ViewData.ModelState.ContainsKey("mail"))
-                ViewData["email"] = email;
             
-            ViewData["FirstName"] = firstName;
-            ViewData["LastName"] = lastName;
         }
-
+        if (!ViewData.ModelState.ContainsKey("mail"))
+                ViewData["email"] = signUpDto.Email;
+            
+        ViewData["FirstName"] = signUpDto.FirstName;
+        ViewData["LastName"] = signUpDto.LastName;
         return View();
     }
 }

@@ -38,8 +38,11 @@ body {
     padding-bottom: 1%;
     padding-left: 30%;
 }
-
-.email-bar input[type="email"] {
+.login-error {
+    color: red;
+    font-size: 14px;
+}
+.email-bar input {
     background-color: #E6E7E8;
     border-radius: 300px;
     border: 8px solid rgba(0, 0, 0, 0);
@@ -49,7 +52,7 @@ body {
     font-size: 16px;
 }
 
-.password-bar input[type="password"] {
+.password-bar input {
     background-color: #E6E7E8;
     border-radius: 300px;
     border: 8px solid rgba(0, 0, 0, 0);

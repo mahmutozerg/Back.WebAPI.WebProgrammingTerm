@@ -125,6 +125,7 @@
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
         </Compile>
+        <Compile Include="Models\SignUpDto.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Services\ProductServices.cs" />
         <Compile Include="Services\UserServices.cs" />
@@ -188,7 +189,10 @@
         <Content Include="Global.asax" />
         <Content Include="Content\Site.css" />
         <Content Include="Scripts\BookerrScripts\AdvertCarousel.js" />
+        <Content Include="Scripts\BookerrScripts\BirthDate.js" />
+        <Content Include="Scripts\BookerrScripts\ClientSidePasswordCompare.js" />
         <Content Include="Scripts\BookerrScripts\ProductCardCarousel.js" />
+        <Content Include="Scripts\BookerrScripts\TogglePassword.js" />
         <Content Include="Scripts\bootstrap.js" />
         <Content Include="Scripts\bootstrap.min.js" />
         <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -226,7 +230,6 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="App_Data" />
-        <Folder Include="Models" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="fonts\glyphicons-halflings-regular.woff2" />

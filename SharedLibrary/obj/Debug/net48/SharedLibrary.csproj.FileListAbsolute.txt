@@ -1,11 +1,11 @@
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\SharedLibrary.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\SharedLibrary.pdb
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\Newtonsoft.Json.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.csproj.AssemblyReference.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.AssemblyInfoInputs.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.AssemblyInfo.cs
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.csproj.CoreCompileInputs.cache
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\SharedLibrary.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\SharedLibrary.pdb
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\Newtonsoft.Json.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.csproj.CopyComplete
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.pdb

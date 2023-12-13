@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SharedLibrary.DTO;
 
 namespace WebProgrammingTerm.MVC.Services;
 
@@ -16,38 +17,48 @@ public static class UserServices
     public static async Task<JObject> SignInUser(string mail,string passwd)
     {
         if (!IsValidUser(mail, passwd))
-            return null;
+            return new JObject();
 
-        using var client = new HttpClient();
-        var loginDto = new
+        using (var client = new HttpClient())
         {
-            email = mail,
-            password = passwd
+            var loginDto = new
+            {
+                email = mail,
+                password = passwd
 
-        };
+            };
 
-        var createUserJsonData = JsonConvert.SerializeObject(loginDto);
+            var createUserJsonData = JsonConvert.SerializeObject(loginDto);
 
-        var content = new StringContent(createUserJsonData, Encoding.UTF8, "application/json");
+            var content = new StringContent(createUserJsonData, Encoding.UTF8, "application/json");
 
-        var response = await client.PostAsync(CreateTokenUrl, content);
+            var response = await client.PostAsync(CreateTokenUrl, content);
 
-        var jsonResult = JObject.Parse(await response.Content.ReadAsStringAsync());
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonResult = JObject.Parse(await response.Content.ReadAsStringAsync());
+                return jsonResult;
+            }
 
-        return jsonResult;
+            return new JObject();
+        }
+
+
 
     }
 
-    public static async Task<JObject> SignUpUser(string mail,string passwd)
+    public static async Task<JObject> SignUpUser(string mail,string passwd,string firstName,string lastName)
     {
         if (!IsValidUser(mail, passwd))
-            return null;
+            return new JObject();
 
         using var client = new HttpClient();
-        var loginDto = new
+        var loginDto = new CreateUserDto()
         {
-            email = mail,
-            password = passwd
+            Email = mail,
+            Password = passwd,
+            FirstName = firstName,
+            LastName = lastName
 
         };
 
@@ -73,10 +84,12 @@ public static class UserServices
                         
             var accessTokenCookie = new HttpCookie("accessToken")
             {
+                
                 Expires = DateTime.TryParse(_accessTokenExp, out var expirationDate) ? expirationDate : DateTime.MinValue,
                 Value = _accessToken,
                 HttpOnly = true,
                 Secure = true, // Set to true if using HTTPS
+                
             };
 
             // Handle the refresh token as needed

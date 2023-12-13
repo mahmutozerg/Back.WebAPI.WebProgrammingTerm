@@ -9,7 +9,7 @@ public class CompanyUser:Base
     public Company Company { get; set; } = new Company();
     public string CompanyId { get; set; } = string.Empty;
     [JsonIgnore]
-    public User User { get; set; } = new User();
+    public AppUser AppUser { get; set; } = new AppUser();
     public string UserId { get; set; } = string.Empty;
     
     [Column(TypeName = "varchar(120)")]

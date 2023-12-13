@@ -1419,7 +1419,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "Newtonsoft.Json": "13.0.3"
+          "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
           "bin/placeholder/SharedLibrary.dll": {}
@@ -1433,7 +1433,8 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.0",
-          "Microsoft.Extensions.Identity.Stores": "7.0.0"
+          "Microsoft.Extensions.Identity.Stores": "7.0.0",
+          "SharedLibrary": "1.0.0"
         },
         "compile": {
           "bin/placeholder/WebProgrammingTerm.Auth.Core.dll": {}

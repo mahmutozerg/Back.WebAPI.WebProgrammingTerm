@@ -55,7 +55,7 @@ public class OrderService:GenericService<Order>,IOrderService
             throw new Exception(ResponseMessages.UserNotFound);
         
         var orderEntity = OrderMapper.ToOrder(orderAddDto);
-        orderEntity.User = userEntity;
+        orderEntity.AppUser = userEntity;
         orderEntity.Location = locationEntity;
         orderEntity.Products.AddRange(productList);
         orderEntity.CreatedBy = createdBy;

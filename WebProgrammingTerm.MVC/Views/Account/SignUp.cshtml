@@ -1,27 +1,31 @@
-﻿@model dynamic
+﻿@model WebProgrammingTerm.MVC.Models.SignUpDto
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/sign_up.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/sign_up.css?v3">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../Scripts/BookerrScripts/ClientSidePasswordCompare.js?v2"></script>
+    <script src="../../Scripts/BookerrScripts/TogglePassword.js"></script>
+
 
 </head>
 
 <body>
-    <br><br>
-<div class="sign-up">
-    <div class="button-items">
-        <div class="sign-info">
-            <p style="font-size:50px;"><strong>Sign Up</strong></p>
-        </div>
-        <br><br>
-            @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Count > 0)
+<br><br>
+    <div class="sign-up">
+        <div class="button-items">
+            <div class="sign-info">
+                <p style="font-size:50px;"><strong>Sign Up</strong></p>
+            </div>
+            <br><br>
+
+            @if (ViewData.ModelState["LoginError"] != null && ViewData.ModelState["LoginError"].Errors.Count > 0)
             {
-                <div class="password-error">
-                    <span>@ViewData.ModelState["Password"].Errors[0].ErrorMessage</span>
+                <div class="login-error">
+                    <span>@ViewData.ModelState["LoginError"].Errors[0].ErrorMessage</span>
                 </div>
             }
 
@@ -32,53 +36,51 @@
                     <span>@ViewData.ModelState["mail"].Errors[0].ErrorMessage</span>
                 </div>
             }
- 
-        <form action="@Url.Action("SignUp", "Account")" method="post">
-            <div class="bar">
-                <div id="name-bar">
-                    <input type="text" name="firstName" placeholder="First Name*" value="@Html.Raw(ViewData["firstName"] ?? string.Empty)" required>
-                    <input type="text" name="lastName" placeholder="Last Name*" value="@Html.Raw(ViewData["lastName"] ?? string.Empty)" required>
+
+            <form action="@Url.Action("SignUp", "Account")" method="post">
+                <div class="bar">
+                    <div id="name-bar">
+                        @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name*", required = "required" })
+                        @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name*", required = "required" })
+                    </div>
+                    <br>
+                    <div class="email-bar">
+                        @Html.TextBoxFor(m => m.Email, new { placeholder = "E-Mail*", required = "required",type="email" })
+                        <a href="#E6E7E8"></a>
+                    </div>
+                    <br>
+                    <div class="password-bar">
+                        @Html.PasswordFor(m => m.Password, new { id = "password", placeholder = "Password*", required = "required" })
+                            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('password')">
+                            <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
+                        </a>
+                    </div>
+                    <div class="confirm-password-bar">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { id = "confirmPassword", placeholder = "Confirm Password*", required = "required" })
+                            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('confirmPassword')">
+                            <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Confirm Password Button Image">
+                        </a>
+                    </div>
+                    <div class="terms">
+                        <!-- Your checkbox input fields go here -->
+                    </div>
+                    <div class="sign-button-img">
+                        <input type="submit" value="Sign Up">
+                    </div>
+                    <br>
+                    <div class="continue">
+                        <!-- Your "Continue with Google" and "Sign In" links go here -->
+                    </div>
+                    <br>
                 </div>
-                <br>
-                <div class="email-bar">
-                    <input type="email" name="email" placeholder="E-Mail*" value="@Html.Raw(ViewData["email"] ?? string.Empty)" required>
-                    <a href="#E6E7E8"></a>
-                </div>
-                <br>
-                <div class="password-bar">
-                    <input type="password" name="password" placeholder="Password*" required>
-                    <a href="#E6E7E8" class="image-button">
-                        <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
-                    </a>
-                </div>
-                <div class="confirm-password-bar">
-                    <input type="password" name="confirmPassword" placeholder="Confirm Password*" required>
-                    <a href="#E6E7E8" class="image-button">
-                        <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Confirm Password Button Image">
-                    </a>
-                </div>
-                <div class="terms">
-                    <!-- Your checkbox input fields go here -->
-                </div>
-                <div class="sign-button-img">
-                    <input type="submit" value="Sign Up">
-                </div>
-                <br>
-                <div class="continue">
-                    <!-- Your "Continue with Google" and "Sign In" links go here -->
-                </div>
-                <br>
+            </form>
+            <!-- Form Ends Here -->
+        </div>
+
+        <div class="book-img">
+            <div class="book-item">
+                <img src="../../Content/WebAssets/bookvector.svg" alt="Book Image">
             </div>
-        </form>
-        <!-- Form Ends Here -->
-    </div>
-        
-    <div class="book-img">
-        <div class="book-item">
-            <img src="../../Content/WebAssets/bookvector.svg" alt="Book Image">
         </div>
     </div>
-</div>
-
-
 </body>

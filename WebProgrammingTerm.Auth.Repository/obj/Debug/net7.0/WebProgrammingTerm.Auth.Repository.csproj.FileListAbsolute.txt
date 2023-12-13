@@ -19,8 +19,10 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Repository.runtimeconfig.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Repository.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Repository.pdb
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\SharedLibrary.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.pdb
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\bin\Debug\net7.0\SharedLibrary.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.csproj.AssemblyReference.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.AssemblyInfoInputs.cache

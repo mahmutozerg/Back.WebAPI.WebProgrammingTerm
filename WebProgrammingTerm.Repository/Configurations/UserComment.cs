@@ -9,7 +9,7 @@ namespace WebProgrammingTerm.Repository.Configurations
         public void Configure(EntityTypeBuilder<UserComments> builder)
         {
             builder
-                .HasOne(uc => uc.User)
+                .HasOne(uc => uc.AppUser)
                 .WithMany(u => u.Comments)
                 .HasForeignKey(uc => uc.UserId)
                 .OnDelete(DeleteBehavior.NoAction);

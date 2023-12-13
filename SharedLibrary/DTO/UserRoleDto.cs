@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebProgrammingTerm.Auth.Core.DTOs;
+namespace SharedLibrary.DTO;
 
 public class UserRoleDto
 {

@@ -17,8 +17,6 @@ p
 @WebProgrammingTerm.Auth.Core/WebProgrammingTerm.Auth.Core.csproj,3\f\3fa835dcd56377745d3d75e58357a851ca86d943
 Š
 ZWebProgrammingTerm.Auth.Core/obj/Debug/net7.0/WebProgrammingTerm.Auth.Core.AssemblyInfo.cs,9\d\9d34e5d0cfa4b0fb8c0255b20a5bdc4c7b65472b
-n
->WebProgrammingTerm.Auth.API/WebProgrammingTerm.Auth.API.csproj,4\5\4539e19d0ace2dcc18f5a637bbd689f6e691aa61
 h
 8WebProgrammingTerm.Auth.API/appsettings.Development.json,b\f\bf6a845670ed17eee67693b23ae3e6c253925554
 ¤
@@ -59,8 +57,6 @@ b
 2WebProgrammingTerm.Auth.Repository/AppDbContext.cs,b\f\bfe93ac6fcc51ce311cca3ba5085dbbf40ecce35
 ^
 .WebProgrammingTerm.Auth.Core/Models/AppRole.cs,9\f\9f1159e83514cb43d503f080cfc2547499e8e5bf
-`
-0WebProgrammingTerm.Auth.Core/DTOs/UserRoleDto.cs,c\e\ce8eec44d747275381293a97b5e9d0cca51bd01c
 y
 IWebProgrammingTerm.API/AuthRequirements/AdminClientIdBypassRequirement.cs,e\d\edd20949236eeccbe141659638d4affd57780ecd
 ƒ
@@ -101,8 +97,6 @@ W
 'WebProgrammingTerm.API/appsettings.json,1\c\1c9a255e7ca319f484149d32ca118f5276d70961
 V
 &WebProgrammingTerm.Auth.API/Program.cs,c\7\c7af68c0f71528dcb4c539e67524db295bde4c88
-[
-+WebProgrammingTerm.Auth.Core/Models/Base.cs,f\2\f2f1b7e3b19d7e0fd03e931f43d412df0adf76e0
 Ž
 ^WebProgrammingTerm.Repository/obj/Debug/net7.0/WebProgrammingTerm.Repository.GlobalUsings.g.cs,7\7\77114896ee1ca838412b34ee44d02187914be6b8
 g
@@ -193,8 +187,6 @@ m
 =WebProgrammingTerm.Repository/Repositories/DepotRepository.cs,5\4\54ef337930cbc07b98d870b342da1135b87220d0
 ]
 -WebProgrammingTerm.Repository/AppDbContext.cs,5\f\5f0ee59ab87199092b31f375e1483155d49f540d
-`
-0WebProgrammingTerm.Core/Services/IUserService.cs,2\1\21e4922ec47fbaea1218692d036cd2c66dfe2b1e
 c
 3WebProgrammingTerm.Core/Services/IGenericService.cs,7\4\7412eca5b5468079c95e3202e49e4757a495fa1b
 b
@@ -221,8 +213,6 @@ e
 5WebProgrammingTerm.API/Controllers/OrderController.cs,e\c\ec8859953609a4d941f5507b5204536f3159c675
 l
 <WebProgrammingTerm.API/Controllers/UserCommentsController.cs,7\7\7787bcf61e8a9bc35a25244cd68072cd9924384a
-d
-4WebProgrammingTerm.API/Controllers/UserController.cs,4\3\43988abb60f13e1f10872031bf7c2848beacc245
 m
 =WebProgrammingTerm.API/Controllers/ProductDetailController.cs,2\f\2fefe95968e64bc5016129e3c5c00204a6fc7c90
 h
@@ -245,8 +235,6 @@ b
 2WebProgrammingTerm.MVC/Content/bootstrap-theme.css,2\e\2ed7b8555bb45bb5529c4172b059065fd92cf1d7
 W
 'WebProgrammingTerm.MVC/Content/Site.css,a\c\ace4b06920856d18b6269a2c6c3ec1176e863762
-o
-?WebProgrammingTerm.MVC/Scripts/BookerrScripts/AdvertCarousel.js,d\3\d36cea1e54f1e52828ddeef3d67ca178a06e056c
 S
 #SharedLibrary/DTO/DepotUpdateDto.cs,f\9\f94982f13bd5c00ecdf8d299dc9d7893d618b1ae
 V
@@ -259,8 +247,6 @@ Y
 )SharedLibrary/DTO/UserCommentUpdateDto.cs,b\d\bdf0abc5c7f46fb7b3a4a4b4287db79f476bd2b5
 U
 %SharedLibrary/DTO/UserFavoritesDto.cs,2\1\2144fb8389613856c97274bc65729bfad73641fa
-R
-"SharedLibrary/DTO/ApiResponseto.cs,8\a\8a7ada08c3716410842c342ce491ef34acab8707
 N
 SharedLibrary/Models/Depots.cs,1\2\12f4683de4d64ace8130adbf80b7cfbd1deee5ae
 m
@@ -287,20 +273,14 @@ $SharedLibrary/Mappers/OrderMapper.cs,8\c\8cacc130ac6e2e69c5f361e04ecbcc66dc111
 +SharedLibrary/Mappers/UserFavoriteMapper.cs,3\3\33aeecdb95a5e52e893f688076f7ff6b44320292
 Z
 *SharedLibrary/Mappers/UserCommentMapper.cs,6\9\69c200d8c6c4a3591faa09953926364eb4f8babd
-L
-SharedLibrary/Models/User.cs,3\8\38c41a2b7958581f67483304ffaeda81f6143c46
 n
 >SharedLibrary/obj/Debug/net7.0/SharedLibrary.GlobalUsings.g.cs,1\3\13d5d3eaae8944fbfcf3606006a6a54a6e8bb682
 l
 <WebProgrammingTerm.Service/WebProgrammingTerm.Service.csproj,a\6\a6ae147fd04df76f73d89f77e45afc340f1e843c
-b
-2WebProgrammingTerm.Service/Services/UserService.cs,8\f\8f5ddb26b3adf6b433d77bc9681608c515b1a84d
 j
 :WebProgrammingTerm.Core/Repositories/IProductRepository.cs,e\3\e3ed64b04cbaac30a3a6fce68cb9ffa3f82e6f5c
 V
 &SharedLibrary/DTO/CustomResponseDto.cs,5\f\5f080fbf531a6f9a2b6d65a5c46d1bf99de73567
-O
-SharedLibrary/DTO/UserAddDto.cs,8\4\848035a6a955d670a516d7cad545498746a6b1c6
 [
 +SharedLibrary/DTO/ProductDetailUpdateDto.cs,1\6\16fd026f830de3c73cad7fcbc5ca4d58c4a72831
 c
@@ -315,3 +295,25 @@ R
 "SharedLibrary/DTO/ProductGetDto.cs,c\7\c77f25a5495a5c57fc229503a5b1e83ec21b4d45
 R
 "SharedLibrary/DTO/ProductAddDto.cs,e\4\e449711e80161b3ab7be3ffea819f4d6f21116af
+R
+"SharedLibrary/DTO/CompanyAddDto.cs,f\d\fd86a2d19b53273b00a4c587d2fafa3383d8d688
+W
+'WebProgrammingTerm.MVC/Views/Web.config,7\c\7cc6b1c44c2adc5a8203e8d68cdec7f5af78f76d
+P
+ SharedLibrary/DTO/DepotAddDto.cs,9\2\92a0d8e5a20fe8dec39cec91f9114cccd6bfc5ce
+S
+#SharedLibrary/DTO/CompanyUserDto.cs,c\1\c1ed3345b639a1203d3fd47f1713329bc451ca10
+U
+%SharedLibrary/DTO/CompanyUpdateDto.cs,a\3\a3ae817ad3bb06f1d7b1a6c369eb58ec16d5a5c4
+h
+8WebProgrammingTerm.Auth.Service/Services/TokenService.cs,7\e\7e33df211ee77e72f9ec073833a7e0495e925faa
+g
+7WebProgrammingTerm.MVC/Controllers/ProfileController.cs,1\9\191d45dcf109c5f119182b5fbc026b5842c6d9d7
+b
+2WebProgrammingTerm.MVC/Views/Shared/_Layout.cshtml,2\7\27d819ffcdf10b872132137880fcefbb96c71ed1
+g
+7WebProgrammingTerm.MVC/Controllers/AboutUsController.cs,3\8\381a9ea5fc57bf7d900219b9c3fdcf66b9e525ca
+_
+/WebProgrammingTerm.MVC/App_Start/RouteConfig.cs,6\7\6724f10666e6570cc2fa693330c9291b73872b57
+e
+5WebProgrammingTerm.Auth.Core/Services/IUserService.cs,7\c\7c00fd1cf7243d22ebf5462aa7ff7b288fd7b506

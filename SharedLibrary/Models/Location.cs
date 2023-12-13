@@ -6,7 +6,7 @@ namespace SharedLibrary.Models;
 public class Location:Base
 {
     [JsonIgnore]
-    public User User { get; set; } = new User();
+    public AppUser AppUser { get; set; } = new AppUser();
     
     public string UserId { get; set; } = string.Empty;
     

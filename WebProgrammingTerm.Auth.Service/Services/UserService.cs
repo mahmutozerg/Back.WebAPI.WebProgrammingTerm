@@ -3,6 +3,8 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using SharedLibrary.DTO;
+using SharedLibrary.Models;
 using WebProgrammingTerm.Auth.Core.DTOs;
 using WebProgrammingTerm.Auth.Core.Models;
 using WebProgrammingTerm.Auth.Core.Repositories;
@@ -48,10 +50,12 @@ public class UserService:GenericService<User>,IUserService
         {
             var url = "https://localhost:7082/api/User/AddById";
  
-            var requestData = new
+            var requestData = new UserAddDto()
             {
                 Id = user.Id,
-                MailAddress = user.Email
+                Email = user.Email,
+                Name = createUserDto.FirstName,
+                LastName = createUserDto.LastName
             };
 
             string jsonData = JsonConvert.SerializeObject(requestData);

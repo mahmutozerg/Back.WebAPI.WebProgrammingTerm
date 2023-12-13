@@ -9,7 +9,7 @@ namespace WebProgrammingTerm.Repository.Configurations
         public void Configure(EntityTypeBuilder<UserFavorites> builder)
         {
             builder
-                .HasOne(uf => uf.User)
+                .HasOne(uf => uf.AppUser)
                 .WithMany(u => u.Favorites)
                 .HasForeignKey(uf => uf.UserId)
                 .OnDelete(DeleteBehavior.NoAction);

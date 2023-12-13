@@ -1,3 +1,4 @@
+using SharedLibrary.DTO;
 using WebProgrammingTerm.Auth.Core.DTOs;
 using WebProgrammingTerm.Auth.Core.Models;
 

@@ -55,7 +55,7 @@ public class CompanyUserService:GenericService<CompanyUser>,ICompanyUserService
         var companyUser = CompanyUserMapper.ToCompany(companyUserDto, createdBy);
         companyUser.Company = companyEntity;
         companyUser.CompanyId = companyEntity.Id;
-        companyUser.User = userEntity;
+        companyUser.AppUser = userEntity;
         
         
 

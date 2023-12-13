@@ -2,7 +2,7 @@
 
 namespace SharedLibrary.Models;
 
-public class User:Base
+public class AppUser:Base
 {
     [Column(TypeName = "varchar(50)")]
 

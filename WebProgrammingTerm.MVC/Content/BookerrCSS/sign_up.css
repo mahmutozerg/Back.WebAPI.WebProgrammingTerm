@@ -6,13 +6,13 @@
     padding: 0 20px;
 }
 .password-error {
-    color: red; /* Adjust the color based on your design */
-    font-size: 14px; /* Adjust the font size based on your design */
+    color: red; 
+    font-size: 14px; 
 }
 
 .mail-error {
-    color: red; /* Adjust the color based on your design */
-    font-size: 14px; /* Adjust the font size based on your design */
+    color: red; 
+    font-size: 14px;
 }
 .button-items {
 	flex: 1;
@@ -71,7 +71,7 @@
     font-size: 16px;
 }
 
-.password-bar input[type="text"] {
+.password-bar input {
     background-color: #E6E7E8;
     border-radius: 300px;
     border: 8px solid rgba(0, 0, 0, 0);
@@ -81,7 +81,7 @@
     font-size: 16px;
 }
 
-.confirm-password-bar input[type="text"] {
+.confirm-password-bar input {
     background-color: #E6E7E8;
     border-radius: 300px;
     border: 8px solid rgba(0, 0, 0, 0);

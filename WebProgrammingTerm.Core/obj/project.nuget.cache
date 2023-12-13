@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qNoV1BaI55+cIQLy3kw7ayu89XKcxmzleVKgzO3FqauC+vetsFWM5Vye5wUBuEpBINyy/0c1rjOBffsLqATD4g==",
+  "dgSpecHash": "O5OH2LXyzA8bzwBXDE6ZweJu5Q6P1kGzwftk7XMMXKWijEy63wlPRDKkz6EKuHMFF8l1e9z2XyWNNcpHGM9nNA==",
   "success": true,
   "projectFilePath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Core\\WebProgrammingTerm.Core.csproj",
   "expectedPackageFiles": [
@@ -22,7 +22,7 @@
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
-    "C:\\Users\\karak\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\karak\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }

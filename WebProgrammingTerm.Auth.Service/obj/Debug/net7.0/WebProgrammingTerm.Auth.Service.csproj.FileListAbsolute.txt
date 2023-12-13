@@ -18,10 +18,12 @@ C:\Users\karak\RiderProjects\WebProgrammingTerm\WebProgrammingTerm.Auth.Service\
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\bin\Debug\net7.0\WebProgrammingTerm.Auth.Service.deps.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\bin\Debug\net7.0\WebProgrammingTerm.Auth.Service.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\bin\Debug\net7.0\WebProgrammingTerm.Auth.Service.pdb
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\bin\Debug\net7.0\SharedLibrary.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\bin\Debug\net7.0\WebProgrammingTerm.Auth.Repository.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\bin\Debug\net7.0\WebProgrammingTerm.Auth.Repository.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\bin\Debug\net7.0\WebProgrammingTerm.Auth.Core.pdb
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\bin\Debug\net7.0\SharedLibrary.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\obj\Debug\net7.0\WebProgrammingTerm.Auth.Service.csproj.AssemblyReference.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\obj\Debug\net7.0\WebProgrammingTerm.Auth.Service.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\obj\Debug\net7.0\WebProgrammingTerm.Auth.Service.AssemblyInfoInputs.cache

@@ -129,10 +129,6 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
-            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
-              "target": "Package",
-              "version": "[7.0.0, )"
-            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.8, )"
@@ -142,10 +138,6 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.0, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -85,8 +85,6 @@ j
 :WebProgrammingTerm.Auth.Core/DTOs/CUserToCompanyRoleDto.cs,a\6\a6063e87b76c8831ac8c90ffc2816e4571da84d1
 o
 ?WebProgrammingTerm.Auth.API/Controllers/CustomControllerBase.cs,3\2\32fb1b6b4a02f4e5fd0075bfa2ceb3aa627ee4b3
-[
-+WebProgrammingTerm.Core/ResponseMessages.cs,6\5\655d7d243aa3ebe4d6e36b2c1f0f836fda028c3f
 j
 :WebProgrammingTerm.Auth.API/Controllers/AdminController.cs,e\6\e65da71f66f642d7b860a330100bc86a61db6d5f
 l
@@ -185,8 +183,6 @@ m
 =WebProgrammingTerm.Repository/Repositories/DepotRepository.cs,5\4\54ef337930cbc07b98d870b342da1135b87220d0
 ]
 -WebProgrammingTerm.Repository/AppDbContext.cs,5\f\5f0ee59ab87199092b31f375e1483155d49f540d
-c
-3WebProgrammingTerm.Core/Services/IGenericService.cs,7\4\7412eca5b5468079c95e3202e49e4757a495fa1b
 b
 2WebProgrammingTerm.Core/UnitOfWorks/IUnitOfWork.cs,e\5\e5a27eed075aab8a298c3ca8cf5c8bd8f4793cb9
 j
@@ -203,8 +199,6 @@ c
 3WebProgrammingTerm.Service/Services/DepotService.cs,f\7\f7c4bc9d82a2119d5b1b17c0e89deaa89f1b170e
 g
 7WebProgrammingTerm.API/Controllers/CompanyController.cs,0\a\0a845fcfe978a1094dcfa026bdb33fb4620a657a
-j
-:WebProgrammingTerm.API/Controllers/CustomBaseController.cs,1\c\1c2f28f9c6bca36fa3508c7c7a324dd468d478cc
 e
 5WebProgrammingTerm.API/Controllers/OrderController.cs,e\c\ec8859953609a4d941f5507b5204536f3159c675
 l
@@ -215,8 +209,6 @@ h
 8WebProgrammingTerm.API/Controllers/LocationController.cs,b\0\b039972e15296b0848f583f8d16e8a95bdad9d44
 m
 =WebProgrammingTerm.API/Controllers/UserFavoritesController.cs,b\9\b9bfc2d159902ca2906fab86579a9cf86d02ab8e
-f
-6WebProgrammingTerm.Service/Services/LocationService.cs,f\c\fcf207794628f534a5894af97cf23e34c25d49ca
 e
 5WebProgrammingTerm.API/Controllers/DepotController.cs,8\d\8db8e09b26312756dcf2839523e8e8d8590be1f4
 d
@@ -261,8 +253,6 @@ Z
 *SharedLibrary/Mappers/CompanyUserMapper.cs,6\d\6d3879aaac4be22e8e70a01dff667091cb72d0c4
 T
 $SharedLibrary/Mappers/DepotMapper.cs,1\f\1faa7c3d94bcb4b7568fc0453762e26287d24421
-W
-'SharedLibrary/Mappers/LocationMapper.cs,3\1\31f4f0d6c5ddc56523c4ddc28a70aa57a60e1d55
 T
 $SharedLibrary/Mappers/OrderMapper.cs,8\c\8cacc130ac6e2e69c5f361e04ecbcc66dc11179c
 [
@@ -303,10 +293,6 @@ U
 %SharedLibrary/DTO/CompanyUpdateDto.cs,a\3\a3ae817ad3bb06f1d7b1a6c369eb58ec16d5a5c4
 h
 8WebProgrammingTerm.Auth.Service/Services/TokenService.cs,7\e\7e33df211ee77e72f9ec073833a7e0495e925faa
-g
-7WebProgrammingTerm.MVC/Controllers/ProfileController.cs,1\9\191d45dcf109c5f119182b5fbc026b5842c6d9d7
-b
-2WebProgrammingTerm.MVC/Views/Shared/_Layout.cshtml,2\7\27d819ffcdf10b872132137880fcefbb96c71ed1
 g
 7WebProgrammingTerm.MVC/Controllers/AboutUsController.cs,3\8\381a9ea5fc57bf7d900219b9c3fdcf66b9e525ca
 _

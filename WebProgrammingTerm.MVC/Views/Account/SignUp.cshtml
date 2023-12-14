@@ -27,16 +27,35 @@
                 <div class="login-error">
                     <span>@ViewData.ModelState["LoginError"].Errors[0].ErrorMessage</span>
                 </div>
+                for (var i = 0; i < ViewData.ModelState["LoginError"].Errors.Count; ++i)
+                {
+                    <div class="login-error">
+                        <span>@ViewData.ModelState["LoginError"].Errors[i].ErrorMessage</span>
+                    </div>
+                }
             }
 
             <!-- Display Validation Errors for Mail -->
             @if (ViewData.ModelState["mail"] != null && ViewData.ModelState["mail"].Errors.Count > 0)
             {
-                <div class="mail-error">
-                    <span>@ViewData.ModelState["mail"].Errors[0].ErrorMessage</span>
-                </div>
-            }
+                for (var i = 0; i < ViewData.ModelState["mail"].Errors.Count; ++i)
+                {
+                    <div class="mail-error">
+                        <span>@ViewData.ModelState["mail"].Errors[i].ErrorMessage</span>
+                    </div>
+                }
 
+            }
+            @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Count > 0)
+            {
+                for (var i = 0; i < ViewData.ModelState["Password"].Errors.Count; ++i)
+                {
+                    <div class="mail-error">
+                        <span>@ViewData.ModelState["Password"].Errors[i].ErrorMessage</span>
+                    </div>
+                }
+
+            }
             <form action="@Url.Action("SignUp", "Account")" method="post">
                 <div class="bar">
                     <div id="name-bar">

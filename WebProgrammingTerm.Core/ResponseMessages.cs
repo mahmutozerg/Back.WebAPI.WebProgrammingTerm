@@ -17,6 +17,7 @@ public static class ResponseMessages
     public const string UserCommentExist = "User comment already exist";
     public const string UserCommentCredentialNotFound= "User doesn't have any name or lastname info";
     public const string UserCommentNotFound = "User comment not found";
+    public const string UserMailExist = "Duplicate email";
 
 
 }

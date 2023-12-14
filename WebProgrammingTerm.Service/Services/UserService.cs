@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using SharedLibrary.DTO;
+using SharedLibrary.Mappers;
 using SharedLibrary.Models;
 using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.Repositories;
@@ -27,21 +28,36 @@ public class UserService:GenericService<User>,IUserService
         if (userExist)
             throw new Exception(ResponseMessages.UserAlreadyExist);
 
-        var user = new User()
-        {
-            Name = string.IsNullOrEmpty(userAddDto.Name) ? string.Empty: userAddDto.Name,
-            LastName = string.IsNullOrEmpty(userAddDto.LastName) ? string.Empty: userAddDto.LastName,
-            Id = userAddDto.Id,
-            IsDeleted = false,
-            Email = userAddDto.Email,
-            CreatedBy = createdBy,
-            UpdatedBy = createdBy
-            
-        };
+        var user = AppUserMapper.ToUser(userAddDto);
+        user.CreatedBy = createdBy;
+        user.UpdatedBy = createdBy;
         await _userRepository.AddAsync(user);
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<User>.Success(user,ResponseCodes.Created);
 
+    }
+
+    public async Task<CustomResponseDto<User>> UpdateUserAsync(AppUserUpdateDto updateDto, ClaimsIdentity claimsIdentity)
+    {
+        var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userEntity = await _userRepository.Where(u => u != null && u.Id == userId && !u.IsDeleted).SingleOrDefaultAsync();
+
+        var emailExist = await _userRepository.Where(u => u != null && u.Email == updateDto.Email && !u.IsDeleted).AnyAsync();
+        if (userEntity is null)
+            return CustomResponseDto<User>.Fail(ResponseMessages.UserNotFound, ResponseCodes.NotFound);
+        if (emailExist)
+            return CustomResponseDto<User>.Fail(ResponseMessages.UserMailExist, ResponseCodes.Duplicate);
+        
+        userEntity.Email =  string.IsNullOrWhiteSpace(updateDto.Email) ? userEntity.Email : updateDto.Email;
+        userEntity.Name =  string.IsNullOrWhiteSpace(updateDto.Name) ? userEntity.Name : updateDto.Name;
+        userEntity.Email =  string.IsNullOrWhiteSpace(updateDto.LastName) ? userEntity.LastName : updateDto.LastName;
+        userEntity.BirthDate =  string.IsNullOrWhiteSpace(updateDto.BirthDate) ? userEntity.BirthDate : updateDto.BirthDate;
+        userEntity.Age = updateDto.Age == int.MinValue ? userEntity.Age : updateDto.Age;
+
+
+        _userRepository.Update(userEntity);
+        await _unitOfWork.CommitAsync();
+        return CustomResponseDto<User>.Success(userEntity, ResponseCodes.Updated);
     }
 
     public async Task<User> GetUserWithComments(string id)

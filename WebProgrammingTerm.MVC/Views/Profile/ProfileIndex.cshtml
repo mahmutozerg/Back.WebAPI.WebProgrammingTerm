@@ -1,4 +1,5 @@
-﻿
+﻿@model SharedLibrary.Models.User
+
 <head>
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v3">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,10 +27,10 @@
         <h2>Profile Details</h2>
         <form action="#" method="POST">
             <div class="partial">
-                <input type="text" name="name" placeholder="Name">
-                <input type="text" name="surname" placeholder="Surname">
+                <input type="text" name="name" placeholder="@Model.Name">
+                <input type="text" name="surname" placeholder="@Model.LastName">
             </div>
-            <input type="email" name="email" placeholder="Email">
+            <input type="email" name="email" placeholder="@Model.Email">
             <div class="partial">
                 <div class="birth_date">
                     <p style="color:#808285; font-weight:700;">Birth Date: </p>

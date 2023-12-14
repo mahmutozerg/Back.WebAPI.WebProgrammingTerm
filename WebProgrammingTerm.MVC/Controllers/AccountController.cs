@@ -35,7 +35,7 @@ public class AccountController : Controller
         {
             
             ModelState.AddModelError("LoginError","PleaseCheck your credentials");
-            return View();
+            return View("SignIn",loginDto);
 
         }
         var cookies = UserServices.GetCookies(result);
@@ -62,7 +62,7 @@ public class AccountController : Controller
             ViewData["FirstName"] = signUpDto.FirstName;
             ViewData["LastName"] = signUpDto.LastName;
             ModelState.AddModelError("Password","Password and Confirm Password must match");
-            return View();
+            return View(signUpDto);
         }
         
         var result = await UserServices.SignUpUser(signUpDto);
@@ -99,6 +99,6 @@ public class AccountController : Controller
             
         ViewData["FirstName"] = signUpDto.FirstName;
         ViewData["LastName"] = signUpDto.LastName;
-        return View();
+        return View(signUpDto);
     }
 }

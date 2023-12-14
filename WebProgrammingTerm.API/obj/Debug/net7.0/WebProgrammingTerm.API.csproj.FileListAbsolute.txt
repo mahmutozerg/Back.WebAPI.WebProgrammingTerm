@@ -10,8 +10,6 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Humanizer.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
@@ -34,7 +32,6 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Newtonsoft.Json.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll

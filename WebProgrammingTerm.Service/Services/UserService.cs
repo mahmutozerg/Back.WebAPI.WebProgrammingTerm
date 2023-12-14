@@ -1,5 +1,7 @@
 ﻿using System.Security.Claims;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using SharedLibrary.DTO;
 using SharedLibrary.Mappers;
 using SharedLibrary.Models;
@@ -14,7 +16,7 @@ public class UserService:GenericService<User>,IUserService
 {
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
-
+    private const string UpdateUserUrl = "https://localhost:7049/api/User/UpdateUser";
     public UserService(IUnitOfWork unitOfWork, IUserRepository userRepository) : base(userRepository,unitOfWork)
     {
         _unitOfWork = unitOfWork;
@@ -37,7 +39,7 @@ public class UserService:GenericService<User>,IUserService
 
     }
 
-    public async Task<CustomResponseDto<User>> UpdateUserAsync(AppUserUpdateDto updateDto, ClaimsIdentity claimsIdentity)
+    public async Task<CustomResponseDto<User>> UpdateUserAsync(AppUserUpdateDto updateDto, ClaimsIdentity claimsIdentity,string accessToken)
     {
         var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var userEntity = await _userRepository.Where(u => u != null && u.Id == userId && !u.IsDeleted).SingleOrDefaultAsync();
@@ -47,14 +49,19 @@ public class UserService:GenericService<User>,IUserService
             return CustomResponseDto<User>.Fail(ResponseMessages.UserNotFound, ResponseCodes.NotFound);
         if (emailExist)
             return CustomResponseDto<User>.Fail(ResponseMessages.UserMailExist, ResponseCodes.Duplicate);
+
+        userEntity = AppUserMapper.UpdateUser(userEntity, updateDto);
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            var content = new StringContent(JsonConvert.SerializeObject(updateDto), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(UpdateUserUrl,content);
+
+            if (response is null)
+                throw new Exception(ResponseMessages.UserNotFound);
+        }
         
-        userEntity.Email =  string.IsNullOrWhiteSpace(updateDto.Email) ? userEntity.Email : updateDto.Email;
-        userEntity.Name =  string.IsNullOrWhiteSpace(updateDto.Name) ? userEntity.Name : updateDto.Name;
-        userEntity.LastName =  string.IsNullOrWhiteSpace(updateDto.LastName) ? userEntity.LastName : updateDto.LastName;
-        userEntity.BirthDate =  string.IsNullOrWhiteSpace(updateDto.BirthDate) ? userEntity.BirthDate : updateDto.BirthDate;
-        userEntity.Age = updateDto.Age == int.MinValue ? userEntity.Age : updateDto.Age;
-
-
         _userRepository.Update(userEntity);
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<User>.Success(userEntity, ResponseCodes.Updated);

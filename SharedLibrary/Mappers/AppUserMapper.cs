@@ -18,5 +18,16 @@ public static class AppUserMapper
         };
     }
 
+    public static User UpdateUser(User userEntity, AppUserUpdateDto updateDto)
+    {
+        userEntity.Email =  string.IsNullOrWhiteSpace(updateDto.Email) ? userEntity.Email : updateDto.Email;
+        userEntity.Name =  string.IsNullOrWhiteSpace(updateDto.Name) ? userEntity.Name : updateDto.Name;
+        userEntity.LastName =  string.IsNullOrWhiteSpace(updateDto.LastName) ? userEntity.LastName : updateDto.LastName;
+        userEntity.BirthDate =  string.IsNullOrWhiteSpace(updateDto.BirthDate) ? userEntity.BirthDate : updateDto.BirthDate;
+        userEntity.Age = updateDto.Age == int.MinValue ? userEntity.Age : updateDto.Age;
+
+
+        return userEntity;
+    }
 
 }

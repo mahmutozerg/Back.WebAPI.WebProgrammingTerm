@@ -18,7 +18,14 @@ public class ProfileController : Controller
         
         var userJson = await UserServices.GetUserProfileInfo(token);
         if (!userJson.HasValues)
+        {
+            Response.Cookies["accessToken"].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies["refreshToken"].Expires = DateTime.Now.AddDays(-1);
+
+            // Redirect the user to the login page or another appropriate page
             return RedirectToAction("SignIn", "Account");
+
+        }
         var userData = userJson["data"];
         var user = userData.ToObject<User>();
         return View(user);
@@ -38,7 +45,7 @@ public class ProfileController : Controller
         
         var userData = userJson["data"];
         var user = userData.ToObject<User>();
-        return View("ProfileIndex",user);
+        return RedirectToAction("ProfileIndex");
 
     }
 }

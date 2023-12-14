@@ -145,36 +145,27 @@ public static async Task<JObject> UpdateUserProfile(AppUserUpdateDto appUserUpda
     {
         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-        // Create a JObject to store the properties
-        JObject jsonObject = new JObject();
+        var jsonObject = new JObject();
 
-        // Get the type of the AppUserUpdateDto
-        Type type = typeof(AppUserUpdateDto);
+        var type = typeof(AppUserUpdateDto);
 
         // Get all public properties of the type
-        PropertyInfo[] properties = type.GetProperties();
+        var properties = type.GetProperties();
 
-        // Iterate over each property
-        foreach (PropertyInfo property in properties)
+        foreach (var property in properties)
         {
-            // Get the value of the property
-            object value = property.GetValue(appUserUpdateDto);
+            var value = property.GetValue(appUserUpdateDto);
 
-            // Add property to the JObject only if it has a non-null value
-            if (value != null)
-            {
-                JToken jToken = JToken.FromObject(value);
-                jsonObject[property.Name] = jToken;
-            }
+            if (value == null) 
+                continue;
+            JToken jToken = JToken.FromObject(value);
+            jsonObject[property.Name] = jToken;
         }
 
-        // Convert the JObject to JSON string
         var jsonData = jsonObject.ToString();
 
-        // Create StringContent with JSON data
         var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-        // Send the request and handle the response
         var response = await client.PostAsync(UpdateUserInfo, content);
 
         if (response.IsSuccessStatusCode)

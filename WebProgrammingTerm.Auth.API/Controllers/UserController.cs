@@ -22,19 +22,16 @@ public class UserController:CustomControllerBase
     public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
     {
         var result = await _userService.CreateUserAsync(createUserDto);
-        if (result.StatusCode == 200)
+        if (result.StatusCode != 200) 
+            return CreateActionResult(result);
+        var loginD = new LoginDto()
         {
-            var loginD = new LoginDto()
-            {
-                Email = createUserDto.Email,
-                Password = createUserDto.Password
-            };
-            var token = await _authenticationService.CreateTokenAsync(loginD);
-            return CreateActionResult(  token);
+            Email = createUserDto.Email,
+            Password = createUserDto.Password
+        };
+        var token = await _authenticationService.CreateTokenAsync(loginD);
+        return CreateActionResult(  token);
 
-        }        
-        
-        return CreateActionResult(result);
     }
 
 
@@ -57,6 +54,14 @@ public class UserController:CustomControllerBase
         return CreateActionResult(user);
     }
     
-  
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> UpdateUser(AppUserUpdateDto userUpdateDto)
+    {
+        var user = await _userService.UpdateUser(userUpdateDto,(ClaimsIdentity)User.Identity);
+
+        return CreateActionResult(user);
+    }
+
 
 }

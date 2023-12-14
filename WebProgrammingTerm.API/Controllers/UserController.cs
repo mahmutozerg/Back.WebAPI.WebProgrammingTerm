@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,10 +29,11 @@ namespace WebProgrammingTerm.API.Controllers;
     
     [HttpPost("[action]")]
     [Authorize]
-    public async Task<IActionResult> Update(AppUserUpdateDto userAddDto)
+    public async Task<IActionResult> Update(AppUserUpdateDto userUpdateDto)
     {
- 
-        return CreateActionResult(await _userService.UpdateUserAsync(userAddDto,(ClaimsIdentity)User.Identity));
+        var accessToken = await HttpContext.GetTokenAsync("access_token");
+        return CreateActionResult(
+                await _userService.UpdateUserAsync(userUpdateDto, (ClaimsIdentity)User.Identity, accessToken));
     }
     
     

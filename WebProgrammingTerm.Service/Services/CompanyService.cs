@@ -17,6 +17,9 @@ public class CompanyService:GenericService<Company>,ICompanyService
 {
     private readonly ICompanyRepository _companyRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private const string BaseUrl = "https://localhost:7049/api";
+    private const string CreateUser = "/User/CreateUser";
+    private const string AddRole = "/Admin/AddUserToRole";
      public CompanyService(IUnitOfWork unitOfWork, ICompanyRepository companyRepository) : base(companyRepository,unitOfWork)
     {
         _unitOfWork = unitOfWork;
@@ -51,9 +54,7 @@ public class CompanyService:GenericService<Company>,ICompanyService
         
         using (var client = new HttpClient())
         {
-            var url = "https://localhost:7049/api";
-            var createUser = "/User/CreateUser";
-            var addrole = "/Admin/AddUserToRole";
+
              var createUserRequestData = new
             {
                 email = companyEntity.Name.Normalize().Replace(" ","")+"@example.com",
@@ -65,7 +66,7 @@ public class CompanyService:GenericService<Company>,ICompanyService
             var content = new StringContent(createUserJsonData, Encoding.UTF8, "application/json");
             
             
-            var response = await client.PostAsync(url+createUser,content);
+            var response = await client.PostAsync(BaseUrl+CreateUser,content);
             if (!response.IsSuccessStatusCode)
                 throw new Exception(response.Content.ToString());
 
@@ -78,7 +79,7 @@ public class CompanyService:GenericService<Company>,ICompanyService
             content = new StringContent(userRoleJsonData, Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-            response = await client.PostAsync(url+addrole,content);
+            response = await client.PostAsync(BaseUrl+AddRole,content);
             if (!response.IsSuccessStatusCode)
                 throw new Exception(response.Content.ToString());
             
@@ -90,7 +91,6 @@ public class CompanyService:GenericService<Company>,ICompanyService
                 
             }, 200);
         }
-        throw new Exception("Authserver cannot reach api  ");
-
     }
+
 }

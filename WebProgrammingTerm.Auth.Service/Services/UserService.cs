@@ -1,4 +1,5 @@
 using System.Net;
+using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -123,5 +124,37 @@ public class UserService:GenericService<User>,IUserService
 
         return Response<NoDataDto>.Success(201);
 
+    }
+
+    public async Task<Response<NoDataDto>> UpdateUser(AppUserUpdateDto appUserUpdateDto,ClaimsIdentity claimsIdentity)
+    {
+        var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (userId == null)
+            return Response<NoDataDto>.Fail("User not found", 404, true);
+
+        var userEntityExist = await _userManager.FindByNameAsync(appUserUpdateDto.Email.Split('@')[0]);
+        if (userEntityExist is not null)
+        {
+            return Response<NoDataDto>.Fail("Email already taken", 409, true);
+
+        }
+        var userEntity = await _userManager.FindByIdAsync(userId);
+        if (userEntity == null) 
+            return Response<NoDataDto>.Fail("User not found", 404, true);
+
+        userEntity.Email = string.IsNullOrEmpty(appUserUpdateDto.Email) ? userEntity.Email: appUserUpdateDto.Email;
+        userEntity.UserName = userEntity.Email.Split('@')[0];
+        try
+        {
+            await _userManager.UpdateAsync(userEntity);
+            return Response<NoDataDto>.Success(202);
+        }
+        catch
+        {
+            return Response<NoDataDto>.Fail("Email already exist", 409, true);
+
+        }
+        
     }
 }

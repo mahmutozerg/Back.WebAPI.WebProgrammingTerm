@@ -175,8 +175,6 @@ m
 =WebProgrammingTerm.Repository/Repositories/OrderRepository.cs,b\d\bdd73ca4bff72a063a76bb3105f0bdae43524b50
 u
 EWebProgrammingTerm.Repository/Repositories/UserFavoritesRepository.cs,1\5\150390584a3bbbd09d5f1e197c82b9accef1039a
-l
-<WebProgrammingTerm.Repository/Repositories/UserRepository.cs,7\7\771ce5cbbe6684fc1f1a0f0d22c5565795aea98c
 s
 CWebProgrammingTerm.Repository/Repositories/UserCommentRepository.cs,2\3\23f84705de7e3db956e64240e121e704f6625d80
 u

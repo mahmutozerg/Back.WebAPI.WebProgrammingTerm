@@ -2,7 +2,7 @@
 
 namespace SharedLibrary.Models;
 
-public class AppUser:Base
+public class User:Base
 {
     [Column(TypeName = "varchar(50)")]
 
@@ -15,5 +15,8 @@ public class AppUser:Base
     public List<Order> Orders { get; set; } = new List<Order>();
     [Column(TypeName = "varchar(120)")]
     public string Email { get; set; } = string.Empty;
+
+    public int Age { get; set; } = 0;
+    public string BirthDate { get; set; } = string.Empty;
 
 }

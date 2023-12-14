@@ -9,7 +9,8 @@ using WebProgrammingTerm.Auth.Core.DTOs;
 using WebProgrammingTerm.Auth.Core.Models;
 using WebProgrammingTerm.Auth.Core.Repositories;
 using WebProgrammingTerm.Auth.Core.Services;
- 
+using User = WebProgrammingTerm.Auth.Core.Models.User;
+
 namespace WebProgrammingTerm.Auth.Service.Services;
 
 public class UserService:GenericService<User>,IUserService

@@ -54,7 +54,7 @@ public class LocationService:GenericService<Location>,ILocationService
         var userEntity = await _userService.GetUserWithLocations(createdBy);
         
         var locationEntity = LocationMapper.ToLocation(locationDto);
-        locationEntity.AppUser = userEntity;
+        locationEntity.User = userEntity;
         locationEntity.CreatedBy = createdBy;
         locationEntity.UpdatedAt = DateTime.Now;
         locationEntity.UpdatedBy = createdBy;

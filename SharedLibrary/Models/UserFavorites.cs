@@ -6,7 +6,7 @@ namespace SharedLibrary.Models;
 public class UserFavorites:Base
 {
     [JsonIgnore]
-    public AppUser AppUser { get; set; } = null!;
+    public User User { get; set; } = null!;
     [Column(TypeName = "varchar(50)")]
 
     public string UserId { get; set; } = string.Empty;

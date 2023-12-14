@@ -65,7 +65,7 @@ public class UserCommentService:GenericService<UserComments>,IUserCommentService
             throw new Exception(ResponseMessages.UserCommentExist);
 
         var  userCommentEntity = UserCommentMapper.ToUserComment(userCommentAddDto);
-        userCommentEntity.AppUser = userEntity;
+        userCommentEntity.User = userEntity;
         userCommentEntity.Product = productEntity;
         userCommentEntity.CreatedBy = createdBy;
         userCommentEntity.UpdatedBy = createdBy;

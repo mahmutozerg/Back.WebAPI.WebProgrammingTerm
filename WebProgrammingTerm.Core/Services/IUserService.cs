@@ -5,11 +5,11 @@ using SharedLibrary.Models;
 
 namespace WebProgrammingTerm.Core.Services;
 
-public interface IUserService:IGenericService<AppUser>
+public interface IUserService:IGenericService<User>
 {
-    Task<CustomResponseDto<AppUser>> AddUserAsync(UserAddDto userAddDto,ClaimsIdentity claimsIdentity);
-    Task<AppUser> GetUserWithComments(string id);
-    Task<AppUser> GetUserWithFavorites(string id);
-    Task<AppUser> GetUserWithLocations(string id);
-    Task<AppUser> GetUserWithOrders(string id);
+    Task<CustomResponseDto<User>> AddUserAsync(UserAddDto userAddDto,ClaimsIdentity claimsIdentity);
+    Task<User> GetUserWithComments(string id);
+    Task<User> GetUserWithFavorites(string id);
+    Task<User> GetUserWithLocations(string id);
+    Task<User> GetUserWithOrders(string id);
 }

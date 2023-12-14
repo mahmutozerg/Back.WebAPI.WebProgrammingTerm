@@ -9,7 +9,7 @@ using WebProgrammingTerm.Core.UnitOfWorks;
 
 namespace WebProgrammingTerm.Service.Services;
 
-public class UserService:GenericService<AppUser>,IUserService
+public class UserService:GenericService<User>,IUserService
 {
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -20,14 +20,14 @@ public class UserService:GenericService<AppUser>,IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<CustomResponseDto<AppUser>> AddUserAsync(UserAddDto userAddDto,ClaimsIdentity claimsIdentity)
+    public async Task<CustomResponseDto<User>> AddUserAsync(UserAddDto userAddDto,ClaimsIdentity claimsIdentity)
     {
         var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var userExist = await _userRepository.AnyAsync(u => u != null && u.Email == userAddDto.Email);
         if (userExist)
             throw new Exception(ResponseMessages.UserAlreadyExist);
 
-        var user = new AppUser()
+        var user = new User()
         {
             Name = string.IsNullOrEmpty(userAddDto.Name) ? string.Empty: userAddDto.Name,
             LastName = string.IsNullOrEmpty(userAddDto.LastName) ? string.Empty: userAddDto.LastName,
@@ -40,11 +40,11 @@ public class UserService:GenericService<AppUser>,IUserService
         };
         await _userRepository.AddAsync(user);
         await _unitOfWork.CommitAsync();
-        return CustomResponseDto<AppUser>.Success(user,ResponseCodes.Created);
+        return CustomResponseDto<User>.Success(user,ResponseCodes.Created);
 
     }
 
-    public async Task<AppUser> GetUserWithComments(string id)
+    public async Task<User> GetUserWithComments(string id)
     {
         var user= await _userRepository
             .Where(u => u != null && u.Id == id && !u.IsDeleted)
@@ -57,7 +57,7 @@ public class UserService:GenericService<AppUser>,IUserService
         return user;
     }
 
-    public async Task<AppUser> GetUserWithFavorites(string id)
+    public async Task<User> GetUserWithFavorites(string id)
     {
         var user= await _userRepository
             .Where(u => u != null && u.Id == id && !u.IsDeleted)
@@ -69,7 +69,7 @@ public class UserService:GenericService<AppUser>,IUserService
 
         return user;    }
 
-    public async Task<AppUser> GetUserWithLocations(string id)
+    public async Task<User> GetUserWithLocations(string id)
     {
        var userEntity= await _userRepository
             .Where(u => u != null && u.Id == id && !u.IsDeleted)
@@ -82,7 +82,7 @@ public class UserService:GenericService<AppUser>,IUserService
         return userEntity;
     }
 
-    public async Task<AppUser> GetUserWithOrders(string id)
+    public async Task<User> GetUserWithOrders(string id)
     {
         var userEntity= await _userRepository
             .Where(u => u != null && u.Id == id && !u.IsDeleted)

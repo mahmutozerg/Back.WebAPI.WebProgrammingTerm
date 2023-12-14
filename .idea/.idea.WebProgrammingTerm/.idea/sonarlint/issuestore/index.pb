@@ -91,8 +91,6 @@ l
 <WebProgrammingTerm.Auth.API/Controllers/CompanyController.cs,0\c\0c462d0ac36274514282cc90f1de9ef5016cb08a
 W
 'WebProgrammingTerm.API/appsettings.json,1\c\1c9a255e7ca319f484149d32ca118f5276d70961
-Q
-!WebProgrammingTerm.API/Program.cs,f\1\f1c3fd42fe3cfcdac9449d9d5c87d8b496de9deb
 V
 &WebProgrammingTerm.Auth.API/Program.cs,c\7\c7af68c0f71528dcb4c539e67524db295bde4c88
 g
@@ -193,8 +191,6 @@ k
 ;WebProgrammingTerm.Service/Services/ProductDetailService.cs,4\9\49a43c49c3a5f1477dc07a2ecf387930250c0ad9
 c
 3WebProgrammingTerm.Service/Services/OrderService.cs,1\e\1ec4b7e3cfcc457fbaab9eb4e617d3f2a3a59e33
-e
-5WebProgrammingTerm.Service/Services/GenericService.cs,c\e\ce2632a35757b850d1bf6d85c08c6c01bed7c2e4
 c
 3WebProgrammingTerm.Service/Services/DepotService.cs,f\7\f7c4bc9d82a2119d5b1b17c0e89deaa89f1b170e
 g

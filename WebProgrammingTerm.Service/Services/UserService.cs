@@ -50,7 +50,7 @@ public class UserService:GenericService<User>,IUserService
         
         userEntity.Email =  string.IsNullOrWhiteSpace(updateDto.Email) ? userEntity.Email : updateDto.Email;
         userEntity.Name =  string.IsNullOrWhiteSpace(updateDto.Name) ? userEntity.Name : updateDto.Name;
-        userEntity.Email =  string.IsNullOrWhiteSpace(updateDto.LastName) ? userEntity.LastName : updateDto.LastName;
+        userEntity.LastName =  string.IsNullOrWhiteSpace(updateDto.LastName) ? userEntity.LastName : updateDto.LastName;
         userEntity.BirthDate =  string.IsNullOrWhiteSpace(updateDto.BirthDate) ? userEntity.BirthDate : updateDto.BirthDate;
         userEntity.Age = updateDto.Age == int.MinValue ? userEntity.Age : updateDto.Age;
 

@@ -1,8 +1,7 @@
 ﻿function populateMonths() {
     var select = document.getElementById("birthMonth");
-    var currentMonth = new Date().getMonth()+1;
 
-    for (var i = currentMonth; i <= 12; i++) {
+    for (var i = 1; i <= 12; i++) {
         var month = ("0" + i).slice(-2);
         var option = document.createElement("option");
         option.value = month;
@@ -13,9 +12,8 @@
 
 function populateDays() {
     var select = document.getElementById("birthDay");
-    var currentDay = new Date().getDate();
 
-    for (var i = currentDay; i <= 31; i++) {
+    for (var i = 1; i <= 31; i++) {
         var option = document.createElement("option");
         option.value = i;
         option.text = i;

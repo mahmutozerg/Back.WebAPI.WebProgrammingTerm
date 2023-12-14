@@ -1,14 +1,13 @@
-﻿@model SharedLibrary.Models.User
+﻿@using System.Globalization
+@model SharedLibrary.Models.User
 
 <head>
-    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v3">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <script src="../../Scripts/BookerrScripts/BirthDate.js"></script>
-
 </head>
 <body>
 <div class="profile_section">
@@ -25,7 +24,7 @@
 
     <div class="user_information">
         <h2>Profile Details</h2>
-        <form action="#" method="POST">
+        <form action="@Url.Action("SaveProfile", "Profile")" method="POST">
             <div class="partial">
                 <input type="text" name="name" placeholder="@Model.Name">
                 <input type="text" name="surname" placeholder="@Model.LastName">
@@ -34,15 +33,56 @@
             <div class="partial">
                 <div class="birth_date">
                     <p style="color:#808285; font-weight:700;">Birth Date: </p>
-                    <select id="birthMonth" name="birthMonth"></select>
-                    <select id="birthDay" name="birthDay"></select>
-                    <select id="birthYear" name="birthYear"></select>
+                @{
+                    DateTime currentDate = DateTime.Now;
+                    string dateString = Model.BirthDate;
+                    string format = "dd.MM.yyyy";
+                    DateTime? parsedDate = null;
+
+                    if (DateTime.TryParseExact(dateString, format, null, DateTimeStyles.None, out var result))
+                    {
+                        parsedDate = result;
+                    }
+
+                    int currentDay = currentDate.Day;
+                    int currentMonth = currentDate.Month;
+                    int currentYear = currentDate.Year;
+
+                    if (parsedDate.HasValue)
+                    {
+                        // User's birthdate is parsed successfully
+                        currentDay = parsedDate.Value.Day;
+                        currentMonth = parsedDate.Value.Month;
+                        currentYear = parsedDate.Value.Year;
+                    }
+                }
+
+                <select id="birthMonth" name="birthMonth">
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        <option value="@i" @(i == currentMonth ? "selected" : "")>@i</option>
+                    }
+                </select>
+
+                <select id="birthDay" name="birthDay">
+                    @for (int i = 1; i <= 31; i++)
+                    {
+                        <option value="@i" @(i == currentDay ? "selected" : "")>@i</option>
+                    }
+                </select>
+
+                <select id="birthYear" name="birthYear">
+                    @for (int i = currentYear; i >= currentYear - 100; i--)
+                    {
+                        <option value="@i" @(i == currentYear ? "selected" : "")>@i</option>
+                    }
+                </select>   
                 </div>
                 <div class="gender">
                     <p style="color:#808285; font-weight:700;">Sex: </p>
-                    <input type="radio" id="male" name="age" value="30">
+                    <input type="radio" id="male" name="gender" value="Male">
                     <p>Male</p>
-                    <input type="radio" id="female" name="age" value="60">
+                    <input type="radio" id="female" name="gender" value="Female">
                     <p>Female</p>
                 </div>
             </div>
@@ -51,28 +91,21 @@
     </div>
 </div>
 
-
 <div class="password-change-form">
     <h2>Reset Password</h2>
     <div class="password-input">
         <input type="password" id="current-password" placeholder="Current Password*">
-        <div class="password-toggle" onclick="togglePassword('current-password')">
-
-        </div>
+        <div class="password-toggle" onclick="togglePassword('current-password')"></div>
     </div>
 
     <div class="password-input">
         <input type="password" id="new-password" placeholder="New Password*">
-        <div class="password-toggle" onclick="togglePassword('new-password')">
-
-        </div>
+        <div class="password-toggle" onclick="togglePassword('new-password')"></div>
     </div>
 
     <div class="password-input">
         <input type="password" id="confirm-new-password" placeholder="Confirm New Password*">
-        <div class="password-toggle" onclick="togglePassword('confirm-new-password')">
-
-        </div>
+        <div class="password-toggle" onclick="togglePassword('confirm-new-password')"></div>
     </div>
     <button type="submit" class="reset-button">Reset Password</button>
 </div>

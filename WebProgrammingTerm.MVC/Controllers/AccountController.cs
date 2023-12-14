@@ -38,7 +38,7 @@ public class AccountController : Controller
             return View("SignIn",loginDto);
 
         }
-        var cookies = UserServices.GetCookies(result);
+        var cookies = UserServices.AddCookies(result);
         foreach (var cookie in cookies)
         {
             Response.Cookies.Add(cookie);
@@ -49,7 +49,10 @@ public class AccountController : Controller
     
     public  ActionResult SignUp()
     {
-
+        var token = Request.Cookies["accessToken"]?.Value;
+ 
+        if (token is not null)
+            return RedirectToAction("Home", "Home");
         return View();
     }
     
@@ -72,7 +75,7 @@ public class AccountController : Controller
          */
         if (!result["errors"].HasValues)
         {
-            var cookies = UserServices.GetCookies(result);
+            var cookies = UserServices.AddCookies(result);
             foreach (var cookie in cookies)
             {
                 Response.Cookies.Add(cookie);

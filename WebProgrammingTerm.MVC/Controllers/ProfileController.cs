@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using SharedLibrary.DTO;
 using SharedLibrary.Models;
 using WebProgrammingTerm.MVC.Services;
 
@@ -7,7 +9,7 @@ namespace WebProgrammingTerm.MVC.Controllers;
 
 public class ProfileController : Controller
 {
-    // GET
+    [HttpGet]
     public async Task<ActionResult> ProfileIndex()
     {
         var token = Request.Cookies["accessToken"]?.Value;
@@ -15,14 +17,28 @@ public class ProfileController : Controller
             return RedirectToAction("SignIn", "Account");
         
         var userJson = await UserServices.GetUserProfileInfo(token);
+        if (!userJson.HasValues)
+            return RedirectToAction("SignIn", "Account");
         var userData = userJson["data"];
-        if (userJson.HasValues)
-        {
-            var user = userData.ToObject<User>();
-            return View(user);
+        var user = userData.ToObject<User>();
+        return View(user);
+    }
+    
+    
+    [HttpPost]
+    public async Task<ActionResult> SaveProfile(AppUserUpdateDto appUserUpdateDto)
+    {
+        var token = Request.Cookies["accessToken"]?.Value;
 
-        }
+        var userJson = await UserServices.UpdateUserProfile(appUserUpdateDto,token);
 
-        return RedirectToAction("SignIn", "Account");
+        if (!userJson.HasValues)
+            return RedirectToAction("SignIn", "Account");
+        
+        
+        var userData = userJson["data"];
+        var user = userData.ToObject<User>();
+        return View("ProfileIndex",user);
+
     }
 }

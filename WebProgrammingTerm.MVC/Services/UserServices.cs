@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SharedLibrary.DTO;
-using SharedLibrary.Models;
 using WebProgrammingTerm.MVC.Models;
 
 namespace WebProgrammingTerm.MVC.Services;
@@ -16,7 +16,8 @@ public static class UserServices
 {
     private const string CreateTokenUrl = "https://localhost:7049/api/Auth/CreateToken";
     private const string CreateUserUrl = "https://localhost:7049/api/User/CreateUser";
-    private const string GetUserUrl = "https://localhost:7082/api/User/GetById";
+    private const string GetUserBasicInfo = "https://localhost:7082/api/User/GetById";
+    private const string UpdateUserInfo = "https://localhost:7082/api/User/Update";
     public static async Task<JObject> SignInUser(LoginDto loginDto)
     {
         if (!IsValidUser(loginDto.Email, loginDto.Password))
@@ -80,7 +81,7 @@ public static class UserServices
             
         };
     }
-    public static List<HttpCookie> GetCookies(JObject jsonResult)
+    public static List<HttpCookie> AddCookies(JObject jsonResult)
     {
         try
         {
@@ -129,7 +130,7 @@ public static class UserServices
         {
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
-            var response = await client.GetAsync(GetUserUrl);
+            var response = await client.GetAsync(GetUserBasicInfo);
 
             if (response.IsSuccessStatusCode)
                 return JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -138,7 +139,52 @@ public static class UserServices
 
         return new JObject();
     }
+public static async Task<JObject> UpdateUserProfile(AppUserUpdateDto appUserUpdateDto, string token)
+{
+    using (var client = new HttpClient())
+    {
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
+        // Create a JObject to store the properties
+        JObject jsonObject = new JObject();
+
+        // Get the type of the AppUserUpdateDto
+        Type type = typeof(AppUserUpdateDto);
+
+        // Get all public properties of the type
+        PropertyInfo[] properties = type.GetProperties();
+
+        // Iterate over each property
+        foreach (PropertyInfo property in properties)
+        {
+            // Get the value of the property
+            object value = property.GetValue(appUserUpdateDto);
+
+            // Add property to the JObject only if it has a non-null value
+            if (value != null)
+            {
+                JToken jToken = JToken.FromObject(value);
+                jsonObject[property.Name] = jToken;
+            }
+        }
+
+        // Convert the JObject to JSON string
+        var jsonData = jsonObject.ToString();
+
+        // Create StringContent with JSON data
+        var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+        // Send the request and handle the response
+        var response = await client.PostAsync(UpdateUserInfo, content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            return JObject.Parse(await response.Content.ReadAsStringAsync());
+        }
+    }
+
+    return new JObject();
+}
     private static bool IsValidUser(string email, string password)
     {
         try

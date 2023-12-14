@@ -203,8 +203,6 @@ e
 5WebProgrammingTerm.Service/Services/GenericService.cs,c\e\ce2632a35757b850d1bf6d85c08c6c01bed7c2e4
 c
 3WebProgrammingTerm.Service/Services/DepotService.cs,f\7\f7c4bc9d82a2119d5b1b17c0e89deaa89f1b170e
-i
-9WebProgrammingTerm.Service/Services/CompanyUserService.cs,a\2\a22c8f072b4be9defcdf171a5021b91f2cd14a4b
 g
 7WebProgrammingTerm.API/Controllers/CompanyController.cs,0\a\0a845fcfe978a1094dcfa026bdb33fb4620a657a
 j

@@ -29,7 +29,7 @@ public class AccountController : Controller
         if (token is not null)
             return RedirectToAction("Home", "Home");
         
-        var result = await UserServices.SignInUser(loginDto.Email, loginDto.Password);
+        var result = await UserServices.SignInUser(loginDto);
 
         if (!result.HasValues )
         {
@@ -65,7 +65,7 @@ public class AccountController : Controller
             return View();
         }
         
-        var result = await UserServices.SignUpUser(signUpDto.Email, signUpDto.Password,signUpDto.FirstName,signUpDto.LastName);
+        var result = await UserServices.SignUpUser(signUpDto);
         /*
          *todo giris okeyse tokenleri setle
          *todo uyarı yazılarını duzenle

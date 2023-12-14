@@ -7,6 +7,7 @@ using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SharedLibrary.DTO;
+using WebProgrammingTerm.MVC.Models;
 
 namespace WebProgrammingTerm.MVC.Services;
 
@@ -14,20 +15,14 @@ public static class UserServices
 {
     private const string CreateTokenUrl = "https://localhost:7049/api/Auth/CreateToken";
     private const string CreateUserUrl = "https://localhost:7049/api/User/CreateUser";
-    public static async Task<JObject> SignInUser(string mail,string passwd)
+    public static async Task<JObject> SignInUser(LoginDto loginDto)
     {
-        if (!IsValidUser(mail, passwd))
+        if (!IsValidUser(loginDto.Email, loginDto.Password))
             return new JObject();
 
         using (var client = new HttpClient())
         {
-            var loginDto = new
-            {
-                email = mail,
-                password = passwd
-
-            };
-
+ 
             var createUserJsonData = JsonConvert.SerializeObject(loginDto);
 
             var content = new StringContent(createUserJsonData, Encoding.UTF8, "application/json");
@@ -47,22 +42,22 @@ public static class UserServices
 
     }
 
-    public static async Task<JObject> SignUpUser(string mail,string passwd,string firstName,string lastName)
+    public static async Task<JObject> SignUpUser(SignUpDto signUpDto)
     {
-        if (!IsValidUser(mail, passwd))
+        if (!IsValidUser(signUpDto.Email, signUpDto.Password))
             return new JObject();
 
         using var client = new HttpClient();
-        var loginDto = new CreateUserDto()
+        var createUserDto = new CreateUserDto()
         {
-            Email = mail,
-            Password = passwd,
-            FirstName = firstName,
-            LastName = lastName
+            Email = signUpDto.Email,
+            Password = signUpDto.Password,
+            FirstName = signUpDto.FirstName,
+            LastName = signUpDto.LastName
 
         };
 
-        var createUserJsonData = JsonConvert.SerializeObject(loginDto);
+        var createUserJsonData = JsonConvert.SerializeObject(createUserDto);
 
         var content = new StringContent(createUserJsonData, Encoding.UTF8, "application/json");
 
@@ -73,20 +68,30 @@ public static class UserServices
         return jsonResult;
 
     }
+
+    public static TokenDto GeTokenInfo(JObject jsonResult)
+    {
+        return new TokenDto()
+        {
+            AccessToken = jsonResult["data"]["accessToken"].ToString(),
+            AccessTokenExpiration = DateTime.TryParse(jsonResult["data"]["accessTokenExpiration"]!.ToString(), out var expirationDate) ? expirationDate : DateTime.MinValue,
+            RefreshToken = jsonResult["data"]["refreshToken"].ToString(),
+            RefreshTokenExpiration = DateTime.TryParse(jsonResult["data"]["refreshTokenExpiration"].ToString(), out var ex) ? ex : DateTime.MinValue,
+            
+            
+        };
+    }
     public static List<HttpCookie> GetCookies(JObject jsonResult)
     {
         try
         {
-            var _accessToken = jsonResult["data"]["accessToken"].ToString();
-            var _accessTokenExp = jsonResult["data"]["accessTokenExpiration"]!.ToString();
-            var _refreshToken = jsonResult["data"]["refreshToken"].ToString();
-            var _refreshTokenxp = jsonResult["data"]["refreshTokenExpiration"].ToString();
+            var tokenDto = GeTokenInfo(jsonResult);
                         
             var accessTokenCookie = new HttpCookie("accessToken")
             {
                 
-                Expires = DateTime.TryParse(_accessTokenExp, out var expirationDate) ? expirationDate : DateTime.MinValue,
-                Value = _accessToken,
+                Expires = tokenDto.AccessTokenExpiration,
+                Value = tokenDto.AccessToken,
                 HttpOnly = true,
                 Secure = true, // Set to true if using HTTPS
                 
@@ -95,16 +100,18 @@ public static class UserServices
             // Handle the refresh token as needed
             var refreshTokenCookie = new HttpCookie("refreshToken")
             {
-                Expires = DateTime.TryParse(_refreshTokenxp, out var ex) ? ex : DateTime.MinValue,
-                Value = _refreshToken,
+                Expires = tokenDto.RefreshTokenExpiration,
+                Value = tokenDto.RefreshToken,
                 HttpOnly = true,
                 Secure = true, // Set to true if using HTTPS
             };
 
-            var cookies = new List<HttpCookie>();
-            cookies.Add(accessTokenCookie);
-            cookies.Add(refreshTokenCookie);
-                        
+            var cookies = new List<HttpCookie>
+            {
+                accessTokenCookie,
+                refreshTokenCookie
+            };
+
             return cookies;
         }
         catch (NullReferenceException ex)

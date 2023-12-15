@@ -18,6 +18,27 @@ public static class UserServices
     private const string CreateUserUrl = "https://localhost:7049/api/User/CreateUser";
     private const string GetUserBasicInfo = "https://localhost:7082/api/User/GetById";
     private const string UpdateUserInfo = "https://localhost:7082/api/User/Update";
+    private const string CreateTokenByRefreshTokenUrl = "https://localhost:7049/api/Auth/CreateTokenByRefreshToken";
+
+    public static async Task<JObject> CreateTokenByRefreshToken(string refreshToken)
+    {
+        using (var client = new HttpClient())
+        {
+ 
+            var content = new StringContent(string.Empty, Encoding.UTF8, "application/json");
+
+ 
+            var response = await client.PostAsync(CreateTokenByRefreshTokenUrl+"?refreshToken="+Uri.EscapeDataString(refreshToken),content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonResult = JObject.Parse(await response.Content.ReadAsStringAsync());
+                return jsonResult;
+            }
+
+            return new JObject();
+        }
+    }
     public static async Task<JObject> SignInUser(LoginDto loginDto)
     {
         if (!IsValidUser(loginDto.Email, loginDto.Password))
@@ -139,43 +160,43 @@ public static class UserServices
 
         return new JObject();
     }
-public static async Task<JObject> UpdateUserProfile(AppUserUpdateDto appUserUpdateDto, string token)
-{
-    using (var client = new HttpClient())
+    public static async Task<JObject> UpdateUserProfile(AppUserUpdateDto appUserUpdateDto, string token)
     {
-        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-        var jsonObject = new JObject();
-
-        var type = typeof(AppUserUpdateDto);
-
-        // Get all public properties of the type
-        var properties = type.GetProperties();
-
-        foreach (var property in properties)
+        using (var client = new HttpClient())
         {
-            var value = property.GetValue(appUserUpdateDto);
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-            if (value == null) 
-                continue;
-            JToken jToken = JToken.FromObject(value);
-            jsonObject[property.Name] = jToken;
+            var jsonObject = new JObject();
+
+            var type = typeof(AppUserUpdateDto);
+
+            // Get all public properties of the type
+            var properties = type.GetProperties();
+
+            foreach (var property in properties)
+            {
+                var value = property.GetValue(appUserUpdateDto);
+
+                if (value == null) 
+                    continue;
+                JToken jToken = JToken.FromObject(value);
+                jsonObject[property.Name] = jToken;
+            }
+
+            var jsonData = jsonObject.ToString();
+
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync(UpdateUserInfo, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return JObject.Parse(await response.Content.ReadAsStringAsync());
+            }
         }
 
-        var jsonData = jsonObject.ToString();
-
-        var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-        var response = await client.PostAsync(UpdateUserInfo, content);
-
-        if (response.IsSuccessStatusCode)
-        {
-            return JObject.Parse(await response.Content.ReadAsStringAsync());
-        }
+        return new JObject();
     }
-
-    return new JObject();
-}
     private static bool IsValidUser(string email, string password)
     {
         try

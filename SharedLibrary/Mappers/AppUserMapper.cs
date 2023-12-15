@@ -24,7 +24,7 @@ public static class AppUserMapper
         userEntity.Name =  string.IsNullOrWhiteSpace(updateDto.Name) ? userEntity.Name : updateDto.Name;
         userEntity.LastName =  string.IsNullOrWhiteSpace(updateDto.LastName) ? userEntity.LastName : updateDto.LastName;
         userEntity.BirthDate =  string.IsNullOrWhiteSpace(updateDto.BirthDate) ? userEntity.BirthDate : updateDto.BirthDate;
-        userEntity.Age = updateDto.Age == int.MinValue ? userEntity.Age : updateDto.Age;
+        userEntity.Gender = updateDto.Gender ?? userEntity.Gender;
 
 
         return userEntity;

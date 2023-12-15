@@ -41,7 +41,6 @@ public class AuthController:CustomControllerBase
     }
 
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> CreateTokenByRefreshToken(string refreshToken)
     {
         var result = await _authenticationService.CreateTokenByRefreshToken(refreshToken);

@@ -64,9 +64,14 @@ public class UserService:GenericService<User>,IUserService
         if (emailExist)
             return CustomResponseDto<User>.Fail(ResponseMessages.UserMailExist, ResponseCodes.Duplicate);
 
+        var tempData = userEntity.Email;
         userEntity = AppUserMapper.UpdateUser(userEntity, updateDto);
 
-        await SendUpdateReqToBusinessAsync(updateDto, accessToken);
+        if (userEntity.Email != tempData)
+            await SendUpdateReqToBusinessAsync(updateDto, accessToken);
+
+        
+        
         
         _userRepository.Update(userEntity);
         await _unitOfWork.CommitAsync();

@@ -27,16 +27,16 @@
         <form action="@Url.Action("SaveProfile", "Profile")" method="POST">
             <div class="partial">
                 <input type="text" name="name" placeholder="@Model.Name">
-                <input type="text" name="surname" placeholder="@Model.LastName">
+                <input type="text" name="LastName" placeholder="@Model.LastName">
             </div>
             <input type="email" name="email" placeholder="@Model.Email">
             <div class="partial">
                 <div class="birth_date">
                     <p style="color:#808285; font-weight:700;">Birth Date: </p>
                 @{
-                    DateTime currentDate = DateTime.Now;
-                    string dateString = Model.BirthDate;
-                    string format = "dd.MM.yyyy";
+                    var currentDate = DateTime.Now;
+                    var dateString = Model.BirthDate;
+                    var format = "dd.MM.yyyy";
                     DateTime? parsedDate = null;
 
                     if (DateTime.TryParseExact(dateString, format, null, DateTimeStyles.None, out var result))
@@ -44,9 +44,9 @@
                         parsedDate = result;
                     }
 
-                    int currentDay = currentDate.Day;
-                    int currentMonth = currentDate.Month;
-                    int currentYear = currentDate.Year;
+                    var currentDay = currentDate.Day;
+                    var currentMonth = currentDate.Month;
+                    var currentYear = currentDate.Year;
 
                     if (parsedDate.HasValue)
                     {
@@ -56,22 +56,23 @@
                         currentYear = parsedDate.Value.Year;
                     }
                 }
+                <input type="hidden" id="birthdateInput" name="birthdate" value="@Model.BirthDate" />
 
-                <select id="birthMonth" name="birthMonth">
-                    @for (int i = 1; i <= 12; i++)
+                    <select id="birthMonth" name="birthMonth" onchange="updateBirthdate()">
+                    @for (var i = 1; i <= 12; i++)
                     {
                         <option value="@i" @(i == currentMonth ? "selected" : "")>@i</option>
                     }
                 </select>
 
-                <select id="birthDay" name="birthDay">
-                    @for (int i = 1; i <= 31; i++)
+                <select id="birthDay" name="birthDay" onchange="updateBirthdate()">
+                    @for (var i = 1; i <= 31; i++)
                     {
                         <option value="@i" @(i == currentDay ? "selected" : "")>@i</option>
                     }
                 </select>
 
-                <select id="birthYear" name="birthYear">
+                <select id="birthYear" name="birthYear" onchange="updateBirthdate()">
                     @for (int i = currentYear; i >= currentYear - 100; i--)
                     {
                         <option value="@i" @(i == currentYear ? "selected" : "")>@i</option>
@@ -79,11 +80,12 @@
                 </select>   
                 </div>
                 <div class="gender">
-                    <p style="color:#808285; font-weight:700;">Sex: </p>
-                    <input type="radio" id="male" name="gender" value="Male">
+                <p style="color:#808285; font-weight:700;">Sex: </p>
+                    <input type="radio" id="male" name="gender" value="true" @(Model.Gender == true ? "checked" : "")>
                     <p>Male</p>
-                    <input type="radio" id="female" name="gender" value="Female">
+                    <input type="radio" id="female" name="gender" value="false" @(Model.Gender == false ? "checked" : "")>
                     <p>Female</p>
+
                 </div>
             </div>
             <button type="submit" class="save-button">Save</button>
@@ -109,4 +111,14 @@
     </div>
     <button type="submit" class="reset-button">Reset Password</button>
 </div>
+<script>
+    function updateBirthdate() {
+        var birthDay = document.getElementById("birthDay").value;
+        var birthMonth = document.getElementById("birthMonth").value;
+        var birthYear = document.getElementById("birthYear").value;
+
+        var formattedDate = birthDay + "." + birthMonth + "." + birthYear;
+        document.getElementById("birthdateInput").value = formattedDate;
+    }
+</script>
 </body>

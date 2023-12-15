@@ -15,8 +15,7 @@ public class User:Base
     public List<Order> Orders { get; set; } = new List<Order>();
     [Column(TypeName = "varchar(120)")]
     public string Email { get; set; } = string.Empty;
-
-    public int Age { get; set; } = 0;
-    public string BirthDate { get; set; } = string.Empty;
+    public string? BirthDate { get; set; } = string.Empty;
+    public bool? Gender { get; set; } = null;
 
 }

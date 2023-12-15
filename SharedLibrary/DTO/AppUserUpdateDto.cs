@@ -8,5 +8,5 @@ public class AppUserUpdateDto
     public string Name { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string BirthDate { get; set; } = string.Empty;
-    public int Age { get; set; } = 0;
+    public bool? Gender { get; set; }
 }

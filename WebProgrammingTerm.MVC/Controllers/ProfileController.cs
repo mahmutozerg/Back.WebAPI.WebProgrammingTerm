@@ -22,7 +22,6 @@ public class ProfileController : Controller
             Response.Cookies["accessToken"].Expires = DateTime.Now.AddDays(-1);
             Response.Cookies["refreshToken"].Expires = DateTime.Now.AddDays(-1);
 
-            // Redirect the user to the login page or another appropriate page
             return RedirectToAction("SignIn", "Account");
 
         }
@@ -33,18 +32,39 @@ public class ProfileController : Controller
     
     
     [HttpPost]
-    public async Task<ActionResult> SaveProfile(AppUserUpdateDto appUserUpdateDto)
+    public async Task<ActionResult> SaveProfile(AppUserUpdateDto appUserUpdateDto,string birthdate)
     {
-        var token = Request.Cookies["accessToken"]?.Value;
+        var accessToken = Request.Cookies["accessToken"]?.Value;
+        var refreshToken = Request.Cookies["refreshToken"]?.Value;
+        
+        if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken))
+            return RedirectToAction("SignIn", "Account");
 
-        var userJson = await UserServices.UpdateUserProfile(appUserUpdateDto,token);
+        
+        var userJson = await UserServices.UpdateUserProfile(appUserUpdateDto,accessToken);
 
         if (!userJson.HasValues)
             return RedirectToAction("SignIn", "Account");
         
+        var userRefreshTokenJson =await UserServices.CreateTokenByRefreshToken(refreshToken);
+        Response.Cookies["accessToken"].Expires = DateTime.Now.AddDays(-1);
+        Response.Cookies["refreshToken"].Expires = DateTime.Now.AddDays(-1);
+        if (!userRefreshTokenJson.HasValues)
+        {
+            return RedirectToAction("SignIn", "Account");
+        }
+
+        var cookies = UserServices.AddCookies(userRefreshTokenJson);
+        foreach (var cookie in cookies)
+        {
+            Response.Cookies.Add(cookie);
+        }
+        appUserUpdateDto.BirthDate = birthdate;
+
+
         
-        var userData = userJson["data"];
-        var user = userData.ToObject<User>();
+        
+
         return RedirectToAction("ProfileIndex");
 
     }

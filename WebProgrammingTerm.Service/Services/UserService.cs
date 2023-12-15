@@ -39,6 +39,20 @@ public class UserService:GenericService<User>,IUserService
 
     }
 
+    private static async Task SendUpdateReqToBusinessAsync(AppUserUpdateDto updateDto,string accessToken)
+    {
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            var content = new StringContent(JsonConvert.SerializeObject(updateDto), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(UpdateUserUrl,content);
+
+            if (response is null)
+                throw new Exception(ResponseMessages.UserNotFound);
+            
+        }
+
+    }
     public async Task<CustomResponseDto<User>> UpdateUserAsync(AppUserUpdateDto updateDto, ClaimsIdentity claimsIdentity,string accessToken)
     {
         var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -52,15 +66,7 @@ public class UserService:GenericService<User>,IUserService
 
         userEntity = AppUserMapper.UpdateUser(userEntity, updateDto);
 
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            var content = new StringContent(JsonConvert.SerializeObject(updateDto), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(UpdateUserUrl,content);
-
-            if (response is null)
-                throw new Exception(ResponseMessages.UserNotFound);
-        }
+        await SendUpdateReqToBusinessAsync(updateDto, accessToken);
         
         _userRepository.Update(userEntity);
         await _unitOfWork.CommitAsync();

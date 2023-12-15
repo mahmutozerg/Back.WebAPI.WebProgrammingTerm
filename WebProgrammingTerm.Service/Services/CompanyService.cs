@@ -42,20 +42,12 @@ public class CompanyService:GenericService<Company>,ICompanyService
 
     }
 
-    public async Task<CustomResponseDto<CompanyUserDto>> AddAsync(CompanyAddDto companyAddDto, string createdBy,string token)
+    private static async Task<string> SendCreateUserReqToAuthServer(Company companyEntity,string createdBy,string accessToken)
     {
-        var companyEntity = await _companyRepository.Where(c => c != null && c.Name == companyAddDto.Name&& !c.IsDeleted).SingleOrDefaultAsync();
-        
-        if (companyEntity is not null)
-            throw new Exception(ResponseMessages.CompanyExist);
-
-        companyEntity = CompanyMapper.ToCompany(companyAddDto);
-
-        
         using (var client = new HttpClient())
         {
 
-             var createUserRequestData = new
+            var createUserRequestData = new
             {
                 email = companyEntity.Name.Normalize().Replace(" ","")+"@example.com",
                 password = "!"+companyEntity.Name[0].ToString().Normalize().Replace(" ","").ToLowerInvariant()+companyEntity.Name[1..].Normalize().Replace(" ","").ToUpperInvariant()+"0"
@@ -77,20 +69,34 @@ public class CompanyService:GenericService<Company>,ICompanyService
             };
             var  userRoleJsonData = JsonConvert.SerializeObject(userRoleRequestData);
             content = new StringContent(userRoleJsonData, Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
             response = await client.PostAsync(BaseUrl+AddRole,content);
             if (!response.IsSuccessStatusCode)
                 throw new Exception(response.Content.ToString());
-            
-            await base.AddAsync(companyEntity, createdBy);
-            await _unitOfWork.CommitAsync();
-            return CustomResponseDto<CompanyUserDto>.Success(new CompanyUserDto()
-            {
-                UserMail = createUserRequestData.email,
-                
-            }, 200);
+
+
+            return createUserRequestData.email;
         }
+    }
+    public async Task<CustomResponseDto<CompanyUserDto>> AddAsync(CompanyAddDto companyAddDto, string createdBy,string accessToken)
+    {
+        var companyEntity = await _companyRepository.Where(c => c != null && c.Name == companyAddDto.Name&& !c.IsDeleted).SingleOrDefaultAsync();
+        
+        if (companyEntity is not null)
+            throw new Exception(ResponseMessages.CompanyExist);
+
+        companyEntity = CompanyMapper.ToCompany(companyAddDto);
+
+        var mail =await SendCreateUserReqToAuthServer(companyEntity, createdBy, accessToken);
+        await base.AddAsync(companyEntity, createdBy);
+        await _unitOfWork.CommitAsync();
+        return CustomResponseDto<CompanyUserDto>.Success(new CompanyUserDto()
+        {
+            UserMail = mail
+                
+        }, 200);
+
     }
 
 }

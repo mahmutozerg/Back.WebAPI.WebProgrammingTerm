@@ -73,6 +73,9 @@ public class AccountController : Controller
          *todo giris okeyse tokenleri setle
          *todo uyarı yazılarını duzenle
          */
+        if (!result.HasValues)
+            return RedirectToAction("Home", "Home");
+        
         if (!result["errors"].HasValues)
         {
             var cookies = UserServices.AddCookies(result);

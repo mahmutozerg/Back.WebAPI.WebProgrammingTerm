@@ -19,9 +19,10 @@ namespace WebProgrammingTerm.MVC.Services
                 if (response.IsSuccessStatusCode)
                    return JObject.Parse(await response.Content.ReadAsStringAsync());
                 
-                return null;
 
             }
+
+            return new JObject();
 
         }
     }

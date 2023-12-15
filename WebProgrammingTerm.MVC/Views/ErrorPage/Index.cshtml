@@ -1,0 +1,24 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+<head>
+    <title>404 | Not Found</title>
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/errorPage.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<div class="column">
+    <div class="white-area">
+        <img class="opps" src="../../Content/WebAssets/opps.png">
+        <h2>404-PAGE NOT FOUND</h2>
+        <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
+        <a href="@Url.Action("Home","Home")"><img class="button" src="../../Content/WebAssets/goToHomepageButton.svg"></a>
+        <img class="bookerr-logo" src="../../Content/WebAssets/BOOKERRLogo_Pink.svg">
+    </div>
+</div>
+</body>

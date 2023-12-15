@@ -120,6 +120,7 @@
         <Compile Include="Controllers\AboutUsController.cs" />
         <Compile Include="Controllers\AccountController.cs" />
         <Compile Include="Controllers\ContactController.cs" />
+        <Compile Include="Controllers\ErrorPageController.cs" />
         <Compile Include="Controllers\HomeController.cs" />
         <Compile Include="Controllers\ProfileController.cs" />
         <Compile Include="Global.asax.cs">
@@ -210,6 +211,7 @@
         <Content Include="Views\Account\SignIn.cshtml" />
         <Content Include="Views\Account\SignUp.cshtml" />
         <Content Include="Views\Contact\ContactIndex.cshtml" />
+        <Content Include="Views\ErrorPage\Index.cshtml" />
         <Content Include="Views\Home\Booker.cshtml" />
         <Content Include="Views\Home\Test.cshtml" />
         <Content Include="Views\Profile\ProfileIndex.cshtml" />

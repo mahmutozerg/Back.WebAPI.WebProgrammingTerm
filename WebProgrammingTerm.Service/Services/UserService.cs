@@ -67,12 +67,10 @@ public class UserService:GenericService<User>,IUserService
         var tempData = userEntity.Email;
         userEntity = AppUserMapper.UpdateUser(userEntity, updateDto);
 
+        //checks if user updated its email if yes we should also update it in authserver
         if (userEntity.Email != tempData)
             await SendUpdateReqToBusinessAsync(updateDto, accessToken);
 
-        
-        
-        
         _userRepository.Update(userEntity);
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<User>.Success(userEntity, ResponseCodes.Updated);

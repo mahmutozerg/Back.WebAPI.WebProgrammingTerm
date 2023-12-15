@@ -14,13 +14,17 @@ public class RouteConfig
             defaults: new { controller = "Home", action = "Home" }
         );
 
-        // Route for the Login controller
         routes.MapRoute(
             name: "ProfileRoute",
             url: "profile",
             defaults: new { controller = "Profile", action = "ProfileIndex" }
         );
-        
+        routes.MapRoute(
+            name: "NotFoundPageRoute",
+            url: "notfound",
+            defaults: new { controller = "ErrorPage", action = "Index" }
+        );
+
         routes.MapRoute(
             name: "SignInRoute",
             url: "signin",

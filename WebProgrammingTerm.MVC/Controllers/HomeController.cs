@@ -12,16 +12,19 @@ namespace WebProgrammingTerm.MVC.Controllers
     {
         private readonly ProductServices _productServices = new ProductServices();
          public async Task<ActionResult> Home()
-        {
-            var jsonResult = await _productServices.GetProductsFromApi(1);
-            var jsonResult2 = await _productServices.GetProductsFromApi(3); 
-
-            if (jsonResult is not null)
-            {
-                ViewData["test"] = jsonResult["data"].ToString();
-                ViewData["test2"] = jsonResult2["data"].ToString();
-            }
-            return View("Booker");
+         { 
+             var rand = new Random(); 
+             // we have around 30k products each carousel contans 20 product so range is 1-1500
+             var topSalesResultJson = await _productServices.GetProductsFromApi(rand.Next(1,1500)); 
+             
+             var newArrivedResultJson = await _productServices.GetProductsFromApi(rand.Next(1,1500));
+             
+             if (!topSalesResultJson.HasValues || !newArrivedResultJson.HasValues)
+                return View("Index","Error");
+             
+             ViewData["test"] = topSalesResultJson["data"].ToString(); 
+             ViewData["test2"] = newArrivedResultJson["data"].ToString(); 
+             return View("Booker");
         }
 
     }

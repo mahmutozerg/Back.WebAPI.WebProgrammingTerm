@@ -17,12 +17,13 @@ public class ProfileController : Controller
             return RedirectToAction("SignIn", "Account");
         
         var userJson = await UserServices.GetUserProfileInfo(token);
+        
         if (!userJson.HasValues)
         {
             Response.Cookies["accessToken"].Expires = DateTime.Now.AddDays(-1);
             Response.Cookies["refreshToken"].Expires = DateTime.Now.AddDays(-1);
 
-            return RedirectToAction("SignIn", "Account");
+            return RedirectToAction("Index", "ErrorPage");
 
         }
         var userData = userJson["data"];
@@ -44,15 +45,16 @@ public class ProfileController : Controller
         var userJson = await UserServices.UpdateUserProfile(appUserUpdateDto,accessToken);
 
         if (!userJson.HasValues)
-            return RedirectToAction("SignIn", "Account");
+            return RedirectToAction("Index", "ErrorPage");
         
         var userRefreshTokenJson =await UserServices.CreateTokenByRefreshToken(refreshToken);
+        
         Response.Cookies["accessToken"].Expires = DateTime.Now.AddDays(-1);
         Response.Cookies["refreshToken"].Expires = DateTime.Now.AddDays(-1);
+        
         if (!userRefreshTokenJson.HasValues)
-        {
-            return RedirectToAction("SignIn", "Account");
-        }
+            return RedirectToAction("Index", "ErrorPage");
+        
 
         var cookies = UserServices.AddCookies(userRefreshTokenJson);
         foreach (var cookie in cookies)

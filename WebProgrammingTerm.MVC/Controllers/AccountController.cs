@@ -61,9 +61,6 @@ public class AccountController : Controller
     {
         if (string.CompareOrdinal(signUpDto.Password, signUpDto.ConfirmPassword) != 0)
         {
-            ViewData["email"] = signUpDto.Email;
-            ViewData["FirstName"] = signUpDto.FirstName;
-            ViewData["LastName"] = signUpDto.LastName;
             ModelState.AddModelError("Password","Password and Confirm Password must match");
             return View(signUpDto);
         }
@@ -98,11 +95,9 @@ public class AccountController : Controller
             }
             
         }
-        if (!ViewData.ModelState.ContainsKey("mail"))
-                ViewData["email"] = signUpDto.Email;
+
             
-        ViewData["FirstName"] = signUpDto.FirstName;
-        ViewData["LastName"] = signUpDto.LastName;
+
         return View(signUpDto);
     }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using SharedLibrary.DTO;
 using SharedLibrary.Models;
 using WebProgrammingTerm.MVC.Models;
@@ -15,8 +16,12 @@ public class ProfileController : Controller
     {
         if (TempData["ModelState"] is ModelStateDictionary modelState)
             ModelState.Merge(modelState);
-        
 
+        if (TempData.ContainsKey("PasswordChanged"))
+            ViewData["PasswordChanged"] = true;
+
+
+        
         var token = Request.Cookies["accessToken"]?.Value;
         
         if (token is null) 
@@ -107,17 +112,14 @@ public class ProfileController : Controller
             Response.Cookies["accessToken"].Expires = DateTime.Now.AddDays(-1);
             Response.Cookies["refreshToken"].Expires = DateTime.Now.AddDays(-1); 
             
-            /*
-                    !!! Uncomment this if you don't want user to login after the password change
-                    if you uncomment it user will continue to its session with new tokens 
-            
             var cookies =UserServices.AddCookies(jsonObject);
             
             foreach (var cookie in cookies)
             {
                 Response.Cookies.Add(cookie);
             }
-            */
+            TempData["PasswordChanged"] = true;
+
         }
         else
         {
@@ -126,11 +128,22 @@ public class ProfileController : Controller
                 if (error.ToString().Contains("ssword")  )
                     ModelState.AddModelError("Password",$"{error}");
             }
+            TempData["ModelState"] = ModelState;
+
         }
-        TempData["ModelState"] = ModelState;
+
 
         return RedirectToAction("ProfileIndex");
 
 
+    }
+
+
+
+    [HttpGet]
+    public ActionResult Addresses()
+    {
+
+        return View();
     }
 }

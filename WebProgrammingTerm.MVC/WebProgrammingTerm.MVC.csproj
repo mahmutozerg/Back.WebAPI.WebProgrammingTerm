@@ -134,6 +134,7 @@
     </ItemGroup>
     <ItemGroup>
         <Content Include="Content\BookerrCSS\about_us.css" />
+        <Content Include="Content\BookerrCSS\address.css" />
         <Content Include="Content\BookerrCSS\AdvertCardCaurosel.css" />
         <Content Include="Content\BookerrCSS\contact.css" />
         <Content Include="Content\BookerrCSS\errorPage.css" />
@@ -215,6 +216,7 @@
         <Content Include="Views\ErrorPage\Index.cshtml" />
         <Content Include="Views\Home\Booker.cshtml" />
         <Content Include="Views\Home\Test.cshtml" />
+        <Content Include="Views\Profile\Addresses.cshtml" />
         <Content Include="Views\Profile\ProfileIndex.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">

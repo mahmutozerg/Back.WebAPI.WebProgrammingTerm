@@ -1,0 +1,166 @@
+﻿@model dynamic
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/profile.css?v25">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/address.css?v25">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="profile_section">
+
+        <div class="link_holder">
+            <h2 id="profile_header">Profile</h2>
+            <div class="profile_sections">
+                <a href="@Url.Action("ProfileIndex")"><button type="button">Profile Details</button></a>
+                <a href="#"><button type="button">My Addresses</button></a>
+                <a href="#"><button type="button">Nav Link</button></a>
+                <a href="#"><button type="button">Nav Link</button></a>
+                <a href="#"><button type="button">Nav Link</button></a>
+            </div>
+        </div>
+
+
+
+        <div class="user_information">
+            <div class="address-header"><h2>My Addresses</h2>
+            </div>
+
+            <div class="address">
+                <div class="my_address">
+                    <div class="home">
+                    <h3 style="margin-top: -7%; margin-left: -5%; font-size: 16px;">Home</h3>
+                    <content>
+                        <p style="margin-left: -5%; font-size: 14px; font-weight: 500;">Denizkoskler Mahallesi Kuzu Sokak 
+                            Bilmemne Sitesi No:15/6 34310 
+                            Avcılar/İstanbul
+                            546*******
+                            </p>
+                            <div style="margin-top:-15px;"><a href="" style="color:#F47878 ;margin-left:95%;"><i class="fa-regular fa-trash-can"></i></a>
+                            </div>
+                    </content>
+
+                    </div>
+                    <div class="office">
+                    <h3 style="margin-top: -7%;  margin-left: -5%; font-size: 16px;">Office</h3>
+                    <content>
+                        <p style="margin-left: -5%; font-size: 14px; font-weight: 500;">Resitpasa Caddesi No:46 İnci 
+                            Fotoğrafçılık Avcılar/İstanbul
+                            546*******
+                        </p>
+                        <div style="margin-top:-15px;"><a href="" style="color:#F47878 ;margin-left:95%;"><i class="fa-regular fa-trash-can"></i></a>
+                        </div>
+                    </content>
+                    </div>
+                    <div class="addition">
+                        <a href="#" class="addition-link">+</a>
+                    </div>
+                </div>
+                <div class="add-address"><h2>Add Addresses</h2>
+                </div>
+                <input type="text" class="title-input" style="margin-bottom: 1%;" placeholder="Address Title">
+                <input type="text" class="address-input" style="height: 20%; border-radius: 15px;" placeholder="Address">
+
+                <div class="address-bars">
+                    <div class="city-bar">
+                        <select id="city" name="city" placeholder ="Test">
+                            <option value="1">Adana</option>
+                            <option value="2">Adıyaman</option>
+                            <option value="3">Afyonkarahisar</option>
+                            <option value="4">Ağrı</option>
+                            <option value="5">Amasya</option>
+                            <option value="6">Ankara</option>
+                            <option value="7">Antalya</option>
+                            <option value="8">Ardahan</option>
+                            <option value="9">Artvin</option>
+                            <option value="10">Aydın</option>
+                            <option value="11">Balıkesir</option>
+                            <option value="12">Bartın</option>
+                            <option value="13">Batman</option>
+                            <option value="14">Bayburt</option>
+                            <option value="15">Bilecik</option>
+                            <option value="16">Bingöl</option>
+                            <option value="17">Bitlis</option>
+                            <option value="18">Bolu</option>
+                            <option value="19">Burdur</option>
+                            <option value="20">Bursa</option>
+                            <option value="21">Çanakkale</option>
+                            <option value="22">Çankırı</option>
+                            <option value="23">Çorum</option>
+                            <option value="24">Denizli</option>
+                            <option value="25">Diyarbakır</option>
+                            <option value="26">Düzce</option>
+                            <option value="27">Edirne</option>
+                            <option value="28">Elazığ</option>
+                            <option value="29">Erzincan</option>
+                            <option value="30">Erzurum</option>
+                            <option value="31">Eskişehir</option>
+                            <option value="32">Gaziantep</option>
+                            <option value="33">Giresun</option>
+                            <option value="34">Gümüşhane</option>
+                            <option value="35">Hakkari</option>
+                            <option value="36">Hatay</option>
+                            <option value="37">Iğdır</option>
+                            <option value="38">Isparta</option>
+                            <option value="39">İstanbul</option>
+                            <option value="40">İzmir</option>
+                            <option value="41">Kahramanmaraş</option>
+                            <option value="42">Karabük</option>
+                            <option value="43">Karaman</option>
+                            <option value="44">Kars</option>
+                            <option value="45">Kastamonu</option>
+                            <option value="46">Kayseri</option>
+                            <option value="47">Kilis</option>
+                            <option value="48">Kırıkkale</option>
+                            <option value="49">Kırklareli</option>
+                            <option value="50">Kırşehir</option>
+                            <option value="51">Kocaeli</option>
+                            <option value="52">Konya</option>
+                            <option value="53">Kütahya</option>
+                            <option value="54">Malatya</option>
+                            <option value="55">Manisa</option>
+                            <option value="56">Mardin</option>
+                            <option value="57">Mersin</option>
+                            <option value="58">Muğla</option>
+                            <option value="59">Muş</option>
+                            <option value="60">Nevşehir</option>
+                            <option value="61">Niğde</option>
+                            <option value="62">Ordu</option>
+                            <option value="63">Osmaniye</option>
+                            <option value="64">Rize</option>
+                            <option value="65">Sakarya</option>
+                            <option value="66">Samsun</option>
+                            <option value="67">Siirt</option>
+                            <option value="68">Sinop</option>
+                            <option value="69">Sivas</option>
+                            <option value="70">Şanlıurfa</option>
+                            <option value="71">Şırnak</option>
+                            <option value="72">Tekirdağ</option>
+                            <option value="73">Tokat</option>
+                            <option value="74">Trabzon</option>
+                            <option value="75">Tunceli</option>
+                            <option value="76">Uşak</option>
+                            <option value="77">Van</option>
+                            <option value="78">Yalova</option>
+                            <option value="79">Yozgat</option>
+                            <option value="80">Zonguldak</option>
+                        </select>
+                    </div>
+                    <div class="zipcode-bar">
+                        <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code">
+                    </div>
+                </div>
+
+
+                
+                <button type="submit" class="save-button">Save</button>
+            </div>
+            
+        </div>
+    </div>
+
+</body>

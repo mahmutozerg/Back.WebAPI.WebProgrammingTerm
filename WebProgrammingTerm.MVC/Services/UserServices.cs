@@ -27,7 +27,6 @@ public static class UserServices
  
             var content = new StringContent(string.Empty, Encoding.UTF8, "application/json");
 
- 
             var response = await client.PostAsync(CreateTokenByRefreshTokenUrl+"?refreshToken="+Uri.EscapeDataString(refreshToken),content);
 
             if (response.IsSuccessStatusCode)

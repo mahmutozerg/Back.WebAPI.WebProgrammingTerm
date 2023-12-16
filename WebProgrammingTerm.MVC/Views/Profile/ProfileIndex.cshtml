@@ -2,7 +2,7 @@
 @model WebProgrammingTerm.MVC.Models.UserModels
 
 <head>
-    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v13">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v24">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -14,142 +14,177 @@
 
 </head>
 <body>
-<div class="profile_section">
-    <div class="link_holder">
-        <h2 id="profile_header">Profile</h2>
-        <div class="profile_sections">
-            <a href="#"><button type="button">Profile Details</button></a>
-            <a href="#"><button type="button">Nav Link</button></a>
-            <a href="#"><button type="button">Nav Link</button></a>
-            <a href="#"><button type="button">Nav Link</button></a>
-            <a href="#"><button type="button">Nav Link</button></a>
-        </div>
-    </div>
-
-    <div class="user_information">
-        <h2>Profile Details</h2>
-        <form action="@Url.Action("SaveProfile", "Profile")" method="POST">
-            <div class="partial">
-                <input type="text" name="name" placeholder="@Model.User.Name">
-                <input type="text" name="LastName" placeholder="@Model.User.LastName">
+    
+    @if (ViewData["PasswordChanged"] is bool passwordChanged && passwordChanged)
+    {
+        <div class="popup-container" id="popup" >
+            <div class="popup-content">
+                <div class="checkmark">✔</div>
+                <p>Password Changed</p>
+                <button class="close-btn" onclick="closePopup()">Close</button>
             </div>
-            <input type="email" name="email" placeholder="@Model.User.Email">
-            <div class="partial">
-                <div class="birth_date">
-                    <p style="color:#808285; font-weight:700;">Birth Date: </p>
-                @{
-                    var currentDate = DateTime.Now;
-                    var dateString = Model.User.BirthDate;
-                    const string format = "d.M.yyyy";
-                    DateTime? parsedDate = null;
+        </div>
 
-                    if (DateTime.TryParseExact(dateString, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out var result))
+        <script>
+            // Call the showPopup function when the condition is true
+            showPopup();
+        </script>
+    }
+
+    <div class="mainContent">
+        
+        <div class="profileContent">
+                <div class="profile_section">
+                    <div class="link_holder">
+                        <div class="profile_sections">
+                            <a href="@Url.Action("ProfileIndex","Profile")"><button type="button" style="color: white; background-color: #808285">Profile Details</button></a>
+                            <a href="@Url.Action("Addresses","Profile")"><button type="button">My Addresses</button></a>
+                            <a href="#"><button type="button">Nav Link</button></a>
+                            <a href="#"><button type="button">Nav Link</button></a>
+                            <a href="#"><button type="button" style="padding-bottom: 1%">Nav Link</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user_information">
+                    <h2>Profile Details</h2>
+                    <form action="@Url.Action("SaveProfile", "Profile")" method="POST">
+                        <div class="partial">
+                            <input type="text" name="name" placeholder="@Model.User.Name">
+                            <input type="text" name="LastName" placeholder="@Model.User.LastName">
+                        </div>
+                            <input type="email" name="email" placeholder="@Model.User.Email">
+
+                        <div class="partial">
+                            <div class="birth_date">
+                                <p style="color:#808285; font-weight:700;">Birth Date: </p>
+                            @{
+                                var currentDate = DateTime.Now;
+                                var dateString = Model.User.BirthDate;
+                                const string format = "d.M.yyyy";
+                                DateTime? parsedDate = null;
+        
+                                if (DateTime.TryParseExact(dateString, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out var result))
+                                {
+                                    parsedDate = result;
+                                }
+        
+                                var currentDay = currentDate.Day;
+                                var currentMonth = currentDate.Month;
+                                var currentYear = currentDate.Year;
+        
+                                if (parsedDate.HasValue)
+                                {
+                                    // User's birthdate is parsed successfully
+                                    currentDay = parsedDate.Value.Day;
+                                    currentMonth = parsedDate.Value.Month;
+                                    currentYear = parsedDate.Value.Year;
+                                }
+                            }
+                            <input type="hidden" id="birthdateInput" name="birthdate" value="@Model.User.BirthDate" />
+        
+                            <select id="birthDay" name="birthDay" onchange="updateBirthdate()">
+                                @for (var i = 1; i <= 31; i++)
+                                {
+                                    <option value="@i" @(i == currentDay ? "selected" : "")>@i</option>
+                                }
+                            </select>
+                            <select id="birthMonth" name="birthMonth" onchange="updateBirthdate()">
+                                @for (var i = 1; i <= 12; i++)
+                                {
+                                    <option value="@i" @(i == currentMonth ? "selected" : "")>@i</option>
+                                }
+                            </select>
+        
+                            <select id="birthYear" name="birthYear" onchange="updateBirthdate()">
+                                @for (var i = DateTime.Now.Year; i >= DateTime.Now.Year - 100; i--)
+                                {
+                                    <option value="@i" @(i == currentYear ? "selected" : "")>@i</option>
+                                }
+        
+                            </select>   
+                            </div>
+                            <div class="gender">
+                            <p style="color:#808285; font-weight:700;">Sex: </p>
+                                <input type="radio" id="male" name="gender" value="true" @(Model.User.Gender == true ? "checked" : "")>
+                                <p>Male</p>
+                                <input type="radio" id="female" name="gender" value="false" @(Model.User.Gender == false ? "checked" : "")>
+                                <p>Female</p>
+        
+                            </div>
+                        </div>
+                        <button type="submit" class="save-button">Save</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class ="passwordContainer">
+                <form action="@Url.Action("UpdatePassword", "Profile")" method="POST">
+                @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Count > 0)
+                {
+                    foreach (var error in ViewData.ModelState["Password"].Errors)
                     {
-                        parsedDate = result;
-                    }
-
-                    var currentDay = currentDate.Day;
-                    var currentMonth = currentDate.Month;
-                    var currentYear = currentDate.Year;
-
-                    if (parsedDate.HasValue)
-                    {
-                        // User's birthdate is parsed successfully
-                        currentDay = parsedDate.Value.Day;
-                        currentMonth = parsedDate.Value.Month;
-                        currentYear = parsedDate.Value.Year;
+                        <div class="password-error" id="password-error">
+                            <span>@error.ErrorMessage</span>
+                        </div>
                     }
                 }
-                <input type="hidden" id="birthdateInput" name="birthdate" value="@Model.User.BirthDate" />
-
-                <select id="birthDay" name="birthDay" onchange="updateBirthdate()">
-                    @for (var i = 1; i <= 31; i++)
-                    {
-                        <option value="@i" @(i == currentDay ? "selected" : "")>@i</option>
-                    }
-                </select>
-                <select id="birthMonth" name="birthMonth" onchange="updateBirthdate()">
-                    @for (var i = 1; i <= 12; i++)
-                    {
-                        <option value="@i" @(i == currentMonth ? "selected" : "")>@i</option>
-                    }
-                </select>
-
-
-
-                <select id="birthYear" name="birthYear" onchange="updateBirthdate()">
-                    @for (var i = DateTime.Now.Year; i >= DateTime.Now.Year - 100; i--)
-                    {
-                        <option value="@i" @(i == currentYear ? "selected" : "")>@i</option>
-                    }
-
-                </select>   
+                <div class="password-change-form">
+                    <h2>Reset Password</h2>
+                    <div class="password-input">
+                        @Html.PasswordFor(m => Model.UserUpdatePasswordDto.OldPassword, new { id = "current-password", placeholder = "Old Password*", required = "required" })
+                        <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('current-password')">
+                            <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
+                        </a>
+                        <div class="password-toggle" onclick="togglePassword('current-password')"></div>
+                    </div>
+        
+                    <div class="password-input">
+                        @Html.PasswordFor(m => Model.UserUpdatePasswordDto.NewPassword, new { id = "password", placeholder = "New Password*", required = "required" })
+                        <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('password')">
+                            <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
+                        </a>
+                        <div class="password-toggle" onclick="togglePassword('password')"></div>
+                    </div>
+        
+                    <div class="password-input">
+                        @Html.PasswordFor(m => Model.UserUpdatePasswordDto.NewPasswordConfirm, new { id = "confirmPassword", placeholder = "Confirm New Password*", required = "required" })
+                        <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('confirmPassword')">
+                            <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
+                        </a>
+                        <div class="password-toggle" onclick="togglePassword('password')"></div>        
+                    </div>
+                    <button type="submit" class="reset-button">Reset Password</button>
                 </div>
-                <div class="gender">
-                <p style="color:#808285; font-weight:700;">Sex: </p>
-                    <input type="radio" id="male" name="gender" value="true" @(Model.User.Gender == true ? "checked" : "")>
-                    <p>Male</p>
-                    <input type="radio" id="female" name="gender" value="false" @(Model.User.Gender == false ? "checked" : "")>
-                    <p>Female</p>
-
-                </div>
+            </form>
+        
+        
             </div>
-            <button type="submit" class="save-button">Save</button>
-        </form>
     </div>
-</div>
-<form action="@Url.Action("UpdatePassword", "Profile")" method="POST">
-    @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Count > 0)
-    {
-        foreach (var error in ViewData.ModelState["Password"].Errors)
-        {
-            <div class="password-error" id="password-error">
-                <span>@error.ErrorMessage</span>
-            </div>
+
+
+    <script>
+        function updateBirthdate() {
+            var birthDay = document.getElementById("birthDay").value;
+            var birthMonth = document.getElementById("birthMonth").value;
+            var birthYear = document.getElementById("birthYear").value;
+
+            var formattedDate = birthDay + "." + birthMonth + "." + birthYear;
+            document.getElementById("birthdateInput").value = formattedDate;
         }
-    }
-    <div class="password-change-form">
-        <h2>Reset Password</h2>
-        <div class="password-input">
-            @Html.PasswordFor(m => Model.UserUpdatePasswordDto.OldPassword, new { id = "current-password", placeholder = "Old Password*", required = "required" })
-            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('current-password')">
-                <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
-            </a>
-            <div class="password-toggle" onclick="togglePassword('current-password')"></div>
-        </div>
-
-        <div class="password-input">
-            @Html.PasswordFor(m => Model.UserUpdatePasswordDto.NewPassword, new { id = "password", placeholder = "New Password*", required = "required" })
-            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('password')">
-                <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
-            </a>
-            <div class="password-toggle" onclick="togglePassword('password')"></div>
-        </div>
-
-        <div class="password-input">
-            @Html.PasswordFor(m => Model.UserUpdatePasswordDto.NewPasswordConfirm, new { id = "confirmPassword", placeholder = "Confirm New Password*", required = "required" })
-            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('confirmPassword')">
-                <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
-            </a>
-            <div class="password-toggle" onclick="togglePassword('password')"></div>        
-            </div>
-        <button type="submit" class="reset-button">Reset Password</button>
-    </div>
-</form>
-<script>
-    function updateBirthdate() {
-        var birthDay = document.getElementById("birthDay").value;
-        var birthMonth = document.getElementById("birthMonth").value;
-        var birthYear = document.getElementById("birthYear").value;
-
-        var formattedDate = birthDay + "." + birthMonth + "." + birthYear;
-        document.getElementById("birthdateInput").value = formattedDate;
-    }
-    
-        $(document).ready(function () {
-            $('form').submit(function () {
-                $('#password-error').remove();
+        
+            $(document).ready(function () {
+                $('form').submit(function () {
+                    $('#password-error').remove();
+                });
             });
-        });
-</script>
+        
+        
+            function showPopup() {
+                document.getElementById('popup').style.display = 'block';
+            }
+        
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+            }
+    </script>
 </body>

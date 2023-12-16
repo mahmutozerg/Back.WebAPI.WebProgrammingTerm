@@ -199,12 +199,8 @@ d
 .WebProgrammingTerm.MVC/Views/Home/About.cshtml,9\3\93b3fbc2032d5114acf093d2a6db615b2034b1f3
 b
 2WebProgrammingTerm.MVC/Content/bootstrap-theme.css,2\e\2ed7b8555bb45bb5529c4172b059065fd92cf1d7
-\
-,WebProgrammingTerm.MVC/Content/bootstrap.css,6\9\69f1a6af3860f2d954a682629408b4752f4ea51a
 `
 0WebProgrammingTerm.MVC/Views/Home/Contact.cshtml,6\1\6129f98586a2784bf761d8828ad9ee87b84c9192
-W
-'WebProgrammingTerm.MVC/Content/Site.css,a\c\ace4b06920856d18b6269a2c6c3ec1176e863762
 S
 #SharedLibrary/DTO/DepotUpdateDto.cs,f\9\f94982f13bd5c00ecdf8d299dc9d7893d618b1ae
 V
@@ -335,8 +331,6 @@ L
 SharedLibrary/Models/User.cs,3\8\38c41a2b7958581f67483304ffaeda81f6143c46
 b
 2WebProgrammingTerm.Service/Services/UserService.cs,8\f\8f5ddb26b3adf6b433d77bc9681608c515b1a84d
-b
-2WebProgrammingTerm.MVC/Views/Account/SignIn.cshtml,3\f\3f326d5cd199bf1eb49977b7621b1e2ee5d1ce5b
 z
 JWebProgrammingTerm.MVC/Scripts/BookerrScripts/ClientSidePasswordCompare.js,6\4\6467ea57644487af897cf5d9579c77cdab96ac28
 [
@@ -347,19 +341,3 @@ e
 5WebProgrammingTerm.Auth.Core/Services/IUserService.cs,7\c\7c00fd1cf7243d22ebf5462aa7ff7b288fd7b506
 i
 9WebProgrammingTerm.Auth.API/Controllers/UserController.cs,7\b\7b75efd1d30005d0b2a7525087e43dcc5d78b88e
-g
-7WebProgrammingTerm.Auth.Service/Services/UserService.cs,1\f\1fb570be72b065670cfc9d4b37728d33efaef3db
-_
-/WebProgrammingTerm.MVC/Services/UserServices.cs,5\f\5f267c55456b2370ae8145e0910a735fcd53fb5c
-g
-7WebProgrammingTerm.MVC/Controllers/AccountController.cs,b\5\b58a7da381c336f8e0465db138ab014d34b0cc4b
-e
-5WebProgrammingTerm.MVC/Content/BookerrCSS/sign_up.css,b\f\bf0e286f484f37cb0267be71cd76c314856764ee
-e
-5WebProgrammingTerm.MVC/Content/BookerrCSS/profile.css,1\3\13b16ee8139290e08bd4628230c0f12193760b0e
-h
-8WebProgrammingTerm.MVC/Views/Profile/ProfileIndex.cshtml,b\0\b0ffa75d2cff0e7401fcaea5c9268bb8a2ef916b
-b
-2WebProgrammingTerm.MVC/Views/Account/SignUp.cshtml,b\c\bcd5dff5c6d3078dee81ee719838178576f94738
-g
-7WebProgrammingTerm.MVC/Controllers/ProfileController.cs,1\9\191d45dcf109c5f119182b5fbc026b5842c6d9d7

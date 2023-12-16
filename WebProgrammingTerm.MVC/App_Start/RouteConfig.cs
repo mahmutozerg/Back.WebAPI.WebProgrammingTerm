@@ -20,6 +20,11 @@ public class RouteConfig
             defaults: new { controller = "Profile", action = "ProfileIndex" }
         );
         routes.MapRoute(
+            name: "AddressConfig",
+            url: "profile/adresses",
+            defaults: new { controller = "Profile", action = "Addresses" }
+        );
+        routes.MapRoute(
             name: "NotFoundPageRoute",
             url: "notfound",
             defaults: new { controller = "ErrorPage", action = "Index" }

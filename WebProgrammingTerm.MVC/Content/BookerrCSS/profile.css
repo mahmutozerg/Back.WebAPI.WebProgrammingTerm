@@ -11,22 +11,23 @@
 }
 
 .image-button {
-    display: inline-block; /* Resmin buton içinde düzgün görünmesi için */
-    width: 30px; /* Resmin genişliği */
-    height: 30px; /* Resmin yüksekliği */
-    background-color: transparent; /* Arka plan rengi şeffaf yapılır */
-    border: none; /* Kenarlık olmaması için */
-    position: relative;
-    left: 450px;
-    top: -28px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    left: 47%;
+    margin-top: 2%;
+    
 }
 
 .image-button:hover {
     opacity: 0.7; /* Butonun üzerine gelindiğinde opaklığını düşürme örneği */
 }
 
-.partial input,.password-input input {
-    width: 100%;
+.partial input,.password-input input{
+    width: 80%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 50px;
@@ -60,14 +61,10 @@ select {
 
 /* new Code*/
 div.profile_section{
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-}
+    width: 22%;
+    height: 10%;
+    position: relative;
+ }
 
 div.profile_section > div{
     width: auto;
@@ -104,6 +101,11 @@ div.profile_section > div.link_holder > h2{
 div.profile_section > div > div.profile_sections > a{
     width: 100%;
     height: auto;
+    color: black;
+    font-weight: 500;
+    font-family: Montserrat ;
+    margin-top: 1%;
+
 }
 
 div.profile_section > div > div.profile_sections > a > button{
@@ -112,11 +114,7 @@ div.profile_section > div > div.profile_sections > a > button{
     font-size: 20px;
     background-color: transparent;
     border: 0;
-    text-align: left;
-    padding: 20px;
 	margin-bottom: -2px;
-	margin-top:-2px;
-
 }
 
 div.profile_section > div > div.profile_sections > a:hover > button{
@@ -126,23 +124,26 @@ div.profile_section > div > div.profile_sections > a:hover > button{
 }
 
 
-div.profile_section > div.user_information{
+div.user_information{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     width: 700px;
+    position: relative;
+    left: 5%;
 }
 
-div.profile_section > div.user_information > h2{
+div.user_information > h2{
+    position: relative;
     width: 500px;
     text-align: left;
 	font-size:35px;
-	margin-top: 110px;
-	margin-left:-90px;
+    right: 6%;
+
 }
 
-div.profile_section > div.user_information > form{
+ div.user_information > form{
     width: 600px; /*name surname bar boyutları*/
     height: auto;
     display: flex;
@@ -153,23 +154,20 @@ div.profile_section > div.user_information > form{
 
 }
 
-div.profile_section > div.user_information > form > div.partial{
+div.user_information > form > div.partial{
     width: 100%;
 }
 
-div.profile_section > div.user_information > form > div.partial > input{
-    width: 50%;
-}
 
-div.profile_section > div.user_information > form > div.partial{
+div.user_information > form > div.partial{
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: row;
     gap: 20px;
+    flex-wrap: nowrap;
 }
 
-div.profile_section > div.user_information > form > div.partial >  div.birth_date{
+ div.user_information > form > div.partial >  div.birth_date{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -179,13 +177,13 @@ div.profile_section > div.user_information > form > div.partial >  div.birth_dat
 
 }
 
-div.profile_section > div.user_information > form > div.partial >  div.birth_date > select{
+div.user_information > form > div.partial >  div.birth_date > select{
     width: 70px;
     height: 32px;
     background-color: #E6E7E8;
 }
 
-div.profile_section > div.user_information > form > div.partial > div.gender{
+div.user_information > form > div.partial > div.gender{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -198,12 +196,12 @@ div.profile_section > div.user_information > form > div.partial > div.gender{
 
 }
 
-div.profile_section > div.user_information > form > div.partial > div.gender > input{
+div.user_information > form > div.partial > div.gender > input{
     margin-bottom: 4px;
 
 }
 
-div.profile_section > div.user_information > form > button.save-button {
+ div.user_information > form > button.save-button {
     width: 33%;
     height: 35px;
     font-size: 13px;
@@ -216,7 +214,7 @@ div.profile_section > div.user_information > form > button.save-button {
 	margin-left:400px;
 }
 
-div.profile_section > div.user_information > form > button.save-button:hover {
+ div.user_information > form > button.save-button:hover {
     background-color: #808285;
 }
 
@@ -225,8 +223,10 @@ div.profile_section > div.user_information > form > button.save-button:hover {
 div.password-change-form > h2{
     width: 500px;
     text-align: center;
-	font-size:35px;
-	margin: 110px auto 0 auto; /*tam ortalamak için*/
+    font-size: 35px;
+    position: absolute;
+    left: -11%;
+    top: -30%;
 
 }
 
@@ -238,10 +238,8 @@ div.password-change-form > h2{
 
 .password-input {
     display: block; /* Alt alta sıralanması için display: block */
-    width: 33%; 
-    max-width: 400px; /* bar genişliği */
-    margin: 0 auto 15px; 
-	margin-left:40%;
+    max-width: 60%; 
+    padding-bottom: 3%;
 }
 
 .password-change-form > input {
@@ -260,7 +258,9 @@ div.password-change-form > h2{
 }
 
 div.password-change-form > button.reset-button {
-    width: 13%;
+    width: 25%;
+    position: relative;
+    left: -9%;
     height: 35px;
     font-size: 13px;
 	font-weight:700;
@@ -269,10 +269,85 @@ div.password-change-form > button.reset-button {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-	margin-left:300px;
 	margin-top:12px;
 }
 
 div.password-change-form > button.reset-button:hover {
+    
     background-color: #808285;
+}
+.popup-container {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkmark {
+    width: 80px;
+    height: 80px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+.profileContent
+{
+    width: 1080px;
+    display: inline-flex;
+    position: relative;
+}
+.passwordContainer
+{
+    width: 600px;
+    position: relative;
+    left: 32%;
+    top: 10%;
+    
+}
+
+input, select, textarea {
+    max-width: 100%;
+}
+.profileContent input[type="text"]
+{
+    max-width: 50%;
+}
+.mainContent
+{
+    display: inline-block;
+    position: relative;
+    left: 15%;
+    width: 990px;
+    overflow: hidden;
+}
+
+h2
+{
+    font-weight: 700;
 }

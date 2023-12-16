@@ -32,14 +32,10 @@ public class LocationService:GenericService<Location>,ILocationService
             throw new Exception(ResponseMessages.LocationNotFound);
 
         locationEntity.UserId = updatedBy;
-        locationEntity.Country =  string.IsNullOrWhiteSpace(locationUpdateDto.Country) ? locationEntity.Country : locationUpdateDto.Country;
-        locationEntity.Street =  string.IsNullOrWhiteSpace(locationUpdateDto.Street) ? locationEntity.Street : locationUpdateDto.Street;
-        locationEntity.PostalCode = locationUpdateDto.PostalCode == 0 ? locationEntity.PostalCode : locationUpdateDto.PostalCode;
-        locationEntity.No = locationUpdateDto.No == 0 ? locationEntity.No : locationUpdateDto.No;
-        locationEntity.PhoneNumber =  string.IsNullOrWhiteSpace(locationUpdateDto.PhoneNumber) ? locationEntity.PhoneNumber : locationUpdateDto.PhoneNumber;
-
         locationEntity.UpdatedBy = updatedBy;
 
+        LocationMapper.Update(ref locationEntity,locationUpdateDto);
+        
         _locationRepository.Update(locationEntity);
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<Location>.Success(locationEntity, ResponseCodes.Updated);

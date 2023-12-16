@@ -38,7 +38,7 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
             throw new Exception(ResponseMessages.DepotNotFound);
 
          
-        var productDetailEntity = ProductDetailMapper.toProductDetail(productDetailAddDto);
+        var productDetailEntity = ProductDetailMapper.ToProductDetail(productDetailAddDto);
         
         productDetailEntity.Depot = depotEntity;
         //productDetailEntity.ProductId = productEntity.Id;
@@ -60,14 +60,9 @@ public class ProductDetailService:GenericService<ProductDetail>,IProductDetailSe
             throw new Exception(ResponseMessages.ProductDetailNotFound);
 
 
-        productDetailEntity.Author = string.IsNullOrWhiteSpace(productDetailUpdateDto.Author) ? productDetailEntity.Author : productDetailUpdateDto.Author;
-        productDetailEntity.PublishDate = string.IsNullOrWhiteSpace(productDetailUpdateDto.PublishDate) ? productDetailEntity.PublishDate : productDetailUpdateDto.PublishDate;
-        productDetailEntity.Publisher = string.IsNullOrWhiteSpace(productDetailUpdateDto.Publisher) ? productDetailEntity.Publisher : productDetailUpdateDto.Publisher;
-        productDetailEntity.Language = string.IsNullOrWhiteSpace(productDetailUpdateDto.Language) ? productDetailEntity.Language : productDetailUpdateDto.Language;
-        productDetailEntity.Size = string.IsNullOrWhiteSpace(productDetailUpdateDto.Size) ? productDetailEntity.Size : productDetailUpdateDto.Size;
-        productDetailEntity.Page = string.IsNullOrWhiteSpace(productDetailUpdateDto.Page) ? productDetailEntity.Page : productDetailUpdateDto.Page;
-        productDetailEntity.UpdatedAt = DateTime.Now;
+        ProductDetailMapper.Update(productDetailUpdateDto,ref productDetailEntity);
         productDetailEntity.UpdatedBy = updatedBy;
+        
         _productDetailRepository.Update(productDetailEntity);
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<ProductDetail>.Success(productDetailEntity, ResponseCodes.Updated);

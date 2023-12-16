@@ -48,9 +48,18 @@ public class UserService:GenericService<User>,IUserService
          * For that we need a bearer token(client token) which we are going to get from authentication service
          * User/AddById endpoint is authorized with a policy according to that so only a authserver client can reach there
          */
+
+        await SendReqToBusinessApiAddById(user, createUserDto);
+        
+        
+        return Response<User>.Success(user,200);
+    }
+
+    private async Task  SendReqToBusinessApiAddById(User user, CreateUserDto createUserDto)
+    {
         using (var client = new HttpClient())
         {
-            var url = "https://localhost:7082/api/User/AddById";
+            const string url = "https://localhost:7082/api/User/AddById";
  
             var requestData = new UserAddDto()
             {
@@ -60,9 +69,9 @@ public class UserService:GenericService<User>,IUserService
                 LastName = createUserDto.LastName
             };
 
-            string jsonData = JsonConvert.SerializeObject(requestData);
+            var jsonData = JsonConvert.SerializeObject(requestData);
 
-            HttpContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             
             var clientToken =  _authenticationService.CreateTokenByClient(
                 new ClientLoginDto() 
@@ -76,11 +85,7 @@ public class UserService:GenericService<User>,IUserService
             if (response.StatusCode != HttpStatusCode.Created)
                 throw new Exception("Authserver cannot reach api  ");
         }
-
-        
-        return Response<User>.Success(user,200);
     }
-
     public async Task<Response<UserAppDto>> GetUserByNameAsync(string userName)
     {
         var user = await _userManager.FindByNameAsync(userName);
@@ -142,9 +147,13 @@ public class UserService:GenericService<User>,IUserService
         var userEntity = await _userManager.FindByIdAsync(userId);
         if (userEntity == null) 
             return Response<NoDataDto>.Fail("User not found", 404, true);
+        
+        // Normally we dont have username field but Identity forces us to have one
+        // se i decided to  take user's mail to be email => test@example.com(email) => test(username)
 
         userEntity.Email = string.IsNullOrEmpty(appUserUpdateDto.Email) ? userEntity.Email: appUserUpdateDto.Email;
         userEntity.UserName = userEntity.Email.Split('@')[0];
+        
         try
         {
             await _userManager.UpdateAsync(userEntity);
@@ -156,5 +165,26 @@ public class UserService:GenericService<User>,IUserService
 
         }
         
+    }
+
+    public async Task<Response<TokenDto>> UpdateUserPassword(UserUpdatePasswordDto userUpdatePasswordDto, ClaimsIdentity claimsIdentity)
+    {
+        var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (userId == null)
+            return Response<TokenDto>.Fail("User not found", 404,true);
+        
+        var userEntity = await _userManager.FindByIdAsync(userId);
+
+        var passwordChangeResult = await _userManager.ChangePasswordAsync(userEntity,userUpdatePasswordDto.OldPassword,userUpdatePasswordDto.NewPassword);
+
+        if (!passwordChangeResult.Succeeded)
+            return Response<TokenDto>.Fail(passwordChangeResult.Errors.Select(x => x.Description).ToList(), 400);
+        
+        var token = await _tokenService.CreateTokenAsync(userEntity);
+            
+        return Response<TokenDto>.Success(token,202);
+
+
     }
 }

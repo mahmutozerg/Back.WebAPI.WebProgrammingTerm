@@ -43,6 +43,16 @@ namespace SharedLibrary.Mappers
             return productAddDto;
             
         }
+
+        public static void Update(ProductUpdateDto productUpdateDto, ref Product productEntity)
+        {
+            productEntity.Price = productUpdateDto.Price == 0f ? productEntity.Price : productUpdateDto.Price;
+            productEntity.Name =  string.IsNullOrWhiteSpace(productUpdateDto.Name) ? productEntity.Name : productUpdateDto.Name;
+            productEntity.ImagePath =  string.IsNullOrWhiteSpace(productUpdateDto.ImagePath) ? productEntity.ImagePath : productUpdateDto.ImagePath;
+            productEntity.Stock = productUpdateDto.Stock == 0 ? productEntity.Stock : productUpdateDto.Stock;
+            productEntity.DiscountRate = productUpdateDto.DiscountRate == 0f ? productEntity.DiscountRate : productUpdateDto.DiscountRate;
+
+        }
     }
 }
 

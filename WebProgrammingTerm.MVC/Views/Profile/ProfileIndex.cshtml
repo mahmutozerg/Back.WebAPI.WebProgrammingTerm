@@ -1,13 +1,17 @@
 ﻿@using System.Globalization
-@model SharedLibrary.Models.User
+@model WebProgrammingTerm.MVC.Models.UserModels
 
 <head>
-    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v2">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v13">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="../../Scripts/BookerrScripts/ClientSidePasswordCompare.js?v2"></script>
+    <script src="../../Scripts/BookerrScripts/TogglePassword.js"></script>
+
 </head>
 <body>
 <div class="profile_section">
@@ -26,17 +30,17 @@
         <h2>Profile Details</h2>
         <form action="@Url.Action("SaveProfile", "Profile")" method="POST">
             <div class="partial">
-                <input type="text" name="name" placeholder="@Model.Name">
-                <input type="text" name="LastName" placeholder="@Model.LastName">
+                <input type="text" name="name" placeholder="@Model.User.Name">
+                <input type="text" name="LastName" placeholder="@Model.User.LastName">
             </div>
-            <input type="email" name="email" placeholder="@Model.Email">
+            <input type="email" name="email" placeholder="@Model.User.Email">
             <div class="partial">
                 <div class="birth_date">
                     <p style="color:#808285; font-weight:700;">Birth Date: </p>
                 @{
                     var currentDate = DateTime.Now;
-                    var dateString = Model.BirthDate;
-                    var format = "d.M.yyyy";
+                    var dateString = Model.User.BirthDate;
+                    const string format = "d.M.yyyy";
                     DateTime? parsedDate = null;
 
                     if (DateTime.TryParseExact(dateString, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out var result))
@@ -56,7 +60,7 @@
                         currentYear = parsedDate.Value.Year;
                     }
                 }
-                <input type="hidden" id="birthdateInput" name="birthdate" value="@Model.BirthDate" />
+                <input type="hidden" id="birthdateInput" name="birthdate" value="@Model.User.BirthDate" />
 
                 <select id="birthDay" name="birthDay" onchange="updateBirthdate()">
                     @for (var i = 1; i <= 31; i++)
@@ -83,9 +87,9 @@
                 </div>
                 <div class="gender">
                 <p style="color:#808285; font-weight:700;">Sex: </p>
-                    <input type="radio" id="male" name="gender" value="true" @(Model.Gender == true ? "checked" : "")>
+                    <input type="radio" id="male" name="gender" value="true" @(Model.User.Gender == true ? "checked" : "")>
                     <p>Male</p>
-                    <input type="radio" id="female" name="gender" value="false" @(Model.Gender == false ? "checked" : "")>
+                    <input type="radio" id="female" name="gender" value="false" @(Model.User.Gender == false ? "checked" : "")>
                     <p>Female</p>
 
                 </div>
@@ -94,25 +98,44 @@
         </form>
     </div>
 </div>
+<form action="@Url.Action("UpdatePassword", "Profile")" method="POST">
+    @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Count > 0)
+    {
+        foreach (var error in ViewData.ModelState["Password"].Errors)
+        {
+            <div class="password-error" id="password-error">
+                <span>@error.ErrorMessage</span>
+            </div>
+        }
+    }
+    <div class="password-change-form">
+        <h2>Reset Password</h2>
+        <div class="password-input">
+            @Html.PasswordFor(m => Model.UserUpdatePasswordDto.OldPassword, new { id = "current-password", placeholder = "Old Password*", required = "required" })
+            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('current-password')">
+                <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
+            </a>
+            <div class="password-toggle" onclick="togglePassword('current-password')"></div>
+        </div>
 
-<div class="password-change-form">
-    <h2>Reset Password</h2>
-    <div class="password-input">
-        <input type="password" id="current-password" placeholder="Current Password*">
-        <div class="password-toggle" onclick="togglePassword('current-password')"></div>
-    </div>
+        <div class="password-input">
+            @Html.PasswordFor(m => Model.UserUpdatePasswordDto.NewPassword, new { id = "password", placeholder = "New Password*", required = "required" })
+            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('password')">
+                <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
+            </a>
+            <div class="password-toggle" onclick="togglePassword('password')"></div>
+        </div>
 
-    <div class="password-input">
-        <input type="password" id="new-password" placeholder="New Password*">
-        <div class="password-toggle" onclick="togglePassword('new-password')"></div>
+        <div class="password-input">
+            @Html.PasswordFor(m => Model.UserUpdatePasswordDto.NewPasswordConfirm, new { id = "confirmPassword", placeholder = "Confirm New Password*", required = "required" })
+            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('confirmPassword')">
+                <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
+            </a>
+            <div class="password-toggle" onclick="togglePassword('password')"></div>        
+            </div>
+        <button type="submit" class="reset-button">Reset Password</button>
     </div>
-
-    <div class="password-input">
-        <input type="password" id="confirm-new-password" placeholder="Confirm New Password*">
-        <div class="password-toggle" onclick="togglePassword('confirm-new-password')"></div>
-    </div>
-    <button type="submit" class="reset-button">Reset Password</button>
-</div>
+</form>
 <script>
     function updateBirthdate() {
         var birthDay = document.getElementById("birthDay").value;
@@ -122,5 +145,11 @@
         var formattedDate = birthDay + "." + birthMonth + "." + birthYear;
         document.getElementById("birthdateInput").value = formattedDate;
     }
+    
+        $(document).ready(function () {
+            $('form').submit(function () {
+                $('#password-error').remove();
+            });
+        });
 </script>
 </body>

@@ -19,7 +19,7 @@ public static class UserServices
     private const string GetUserBasicInfo = "https://localhost:7082/api/User/GetById";
     private const string UpdateUserInfo = "https://localhost:7082/api/User/Update";
     private const string CreateTokenByRefreshTokenUrl = "https://localhost:7049/api/Auth/CreateTokenByRefreshToken";
-
+    private const string UpdateUserPasswordUrl = "https://localhost:7049/api/User/UpdateUserPassword";
     public static async Task<JObject> CreateTokenByRefreshToken(string refreshToken)
     {
         using (var client = new HttpClient())
@@ -90,18 +90,6 @@ public static class UserServices
 
     }
 
-    public static TokenDto GeTokenInfo(JObject jsonResult)
-    {
-        return new TokenDto()
-        {
-            AccessToken = jsonResult["data"]["accessToken"].ToString(),
-            AccessTokenExpiration = DateTime.TryParse(jsonResult["data"]["accessTokenExpiration"]!.ToString(), out var expirationDate) ? expirationDate : DateTime.MinValue,
-            RefreshToken = jsonResult["data"]["refreshToken"].ToString(),
-            RefreshTokenExpiration = DateTime.TryParse(jsonResult["data"]["refreshTokenExpiration"].ToString(), out var ex) ? ex : DateTime.MinValue,
-            
-            
-        };
-    }
     public static List<HttpCookie> AddCookies(JObject jsonResult)
     {
         try
@@ -143,8 +131,7 @@ public static class UserServices
 
         return null;
     }
-
-
+    
     public static async Task<JObject> GetUserProfileInfo(string accessToken)
     {
         using (var client = new HttpClient())
@@ -197,6 +184,23 @@ public static class UserServices
 
         return new JObject();
     }
+
+    public static async Task<JObject> UpdateUserPassword(UserUpdatePasswordDto userUpdatePasswordDto, string token)
+    {
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            var jsonData = JsonConvert.SerializeObject(userUpdatePasswordDto);
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync(UpdateUserPasswordUrl, content);
+
+
+            return JObject.Parse(await response.Content.ReadAsStringAsync());
+
+        }
+
+        return new JObject();    }
     private static bool IsValidUser(string email, string password)
     {
         try
@@ -209,4 +213,18 @@ public static class UserServices
             return false;
         }
     }
+    
+    public static TokenDto GeTokenInfo(JObject jsonResult)
+    {
+        return new TokenDto()
+        {
+            AccessToken = jsonResult["data"]["accessToken"].ToString(),
+            AccessTokenExpiration = DateTime.TryParse(jsonResult["data"]["accessTokenExpiration"]!.ToString(), out var expirationDate) ? expirationDate : DateTime.MinValue,
+            RefreshToken = jsonResult["data"]["refreshToken"].ToString(),
+            RefreshTokenExpiration = DateTime.TryParse(jsonResult["data"]["refreshTokenExpiration"].ToString(), out var ex) ? ex : DateTime.MinValue,
+            
+            
+        };
+    }
+
 }

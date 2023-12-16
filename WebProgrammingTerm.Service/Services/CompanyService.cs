@@ -35,6 +35,7 @@ public class CompanyService:GenericService<Company>,ICompanyService
         
         companyEntity.Name = string.IsNullOrWhiteSpace(companyUpdateDto.Name) ? companyEntity.Name : companyUpdateDto.Name;
         companyEntity.Contact = string.IsNullOrWhiteSpace(companyUpdateDto.Contact) ? companyEntity.Contact : companyUpdateDto.Contact;
+        
         companyEntity.UpdatedBy = updatedBy;
         _companyRepository.Update(companyEntity);
         await _unitOfWork.CommitAsync();

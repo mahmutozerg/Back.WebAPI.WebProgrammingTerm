@@ -15,7 +15,7 @@ public static class CompanyUserMapper
         return companyDto;
     }
 
-    public static CompanyUser ToCompany(CompanyUserDto companyUserDto,string id)
+    public static CompanyUser ToCompanyUser(CompanyUserDto companyUserDto,string id)
     {
         var company = new CompanyUser()
         {

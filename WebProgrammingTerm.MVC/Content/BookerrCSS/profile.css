@@ -5,6 +5,25 @@
 
     color: #F47878; /* Hover durumunda metin rengi */
 }
+.password-error {
+    color: red;
+    font-size: 14px;
+}
+
+.image-button {
+    display: inline-block; /* Resmin buton içinde düzgün görünmesi için */
+    width: 30px; /* Resmin genişliği */
+    height: 30px; /* Resmin yüksekliği */
+    background-color: transparent; /* Arka plan rengi şeffaf yapılır */
+    border: none; /* Kenarlık olmaması için */
+    position: relative;
+    left: 450px;
+    top: -28px;
+}
+
+.image-button:hover {
+    opacity: 0.7; /* Butonun üzerine gelindiğinde opaklığını düşürme örneği */
+}
 
 .partial input,.password-input input {
     width: 100%;

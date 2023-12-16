@@ -28,8 +28,6 @@ public class UserCommentService:GenericService<UserComments>,IUserCommentService
     public async Task<CustomResponseDto<UserComments>> UpdateAsync(UserCommentUpdateDto userCommentUpdateDto, ClaimsIdentity claimsIdentity)
     {
         var updatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var userEntity = await _userService.GetUserWithComments(updatedBy);
-        var productEntity = await _productService.GetProductWithCompany(userCommentUpdateDto.ProductId);
         
         var userCommentEntity = await _userCommentRepository.Where(uc =>
             uc != null && uc.ProductId == userCommentUpdateDto.ProductId && uc.UserId == updatedBy && !uc.IsDeleted).FirstOrDefaultAsync();

@@ -74,7 +74,7 @@ public class AccountController : Controller
          *todo uyarı yazılarını duzenle
          */
         if (!result.HasValues)
-            return RedirectToAction("Home", "Home");
+            return RedirectToAction("Index", "ErrorPage");
         
         if (!result["errors"].HasValues)
         {
@@ -83,9 +83,7 @@ public class AccountController : Controller
             {
                 Response.Cookies.Add(cookie);
             }
-
             return RedirectToAction("Home", "Home");
-
         }
 
         foreach (var error in result["errors"])
@@ -95,7 +93,7 @@ public class AccountController : Controller
 
             if (error.ToString().Contains("Username") || error.ToString().Contains("ail"))
             {
-                ModelState.AddModelError("mail",$"{"Email already exist"}");
+                ModelState.AddModelError("mail","Email already exist");
 
             }
             
@@ -107,4 +105,7 @@ public class AccountController : Controller
         ViewData["LastName"] = signUpDto.LastName;
         return View(signUpDto);
     }
+
+
+
 }

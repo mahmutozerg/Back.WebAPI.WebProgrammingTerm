@@ -27,10 +27,10 @@
                 <div class="login-error">
                     <span>@ViewData.ModelState["LoginError"].Errors[0].ErrorMessage</span>
                 </div>
-                for (var i = 0; i < ViewData.ModelState["LoginError"].Errors.Count; ++i)
+                foreach (var error in ViewData.ModelState["LoginError"].Errors)
                 {
                     <div class="login-error">
-                        <span>@ViewData.ModelState["LoginError"].Errors[i].ErrorMessage</span>
+                        <span>@error.ErrorMessage</span>
                     </div>
                 }
             }
@@ -38,23 +38,21 @@
             <!-- Display Validation Errors for Mail -->
             @if (ViewData.ModelState["mail"] != null && ViewData.ModelState["mail"].Errors.Count > 0)
             {
-                for (var i = 0; i < ViewData.ModelState["mail"].Errors.Count; ++i)
+                foreach (var error in ViewData.ModelState["mail"].Errors)
                 {
                     <div class="mail-error">
-                        <span>@ViewData.ModelState["mail"].Errors[i].ErrorMessage</span>
+                        <span>@error.ErrorMessage</span>
                     </div>
                 }
-
             }
             @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Count > 0)
             {
-                for (var i = 0; i < ViewData.ModelState["Password"].Errors.Count; ++i)
+                foreach (var error in ViewData.ModelState["Password"].Errors)
                 {
-                    <div class="mail-error">
-                        <span>@ViewData.ModelState["Password"].Errors[i].ErrorMessage</span>
+                    <div class="password-error" id ="password-error">
+                        <span>@error.ErrorMessage</span>
                     </div>
                 }
-
             }
             <form action="@Url.Action("SignUp", "Account")" method="post">
                 <div class="bar">
@@ -70,30 +68,25 @@
                     <br>
                     <div class="password-bar">
                         @Html.PasswordFor(m => m.Password, new { id = "password", placeholder = "Password*", required = "required" })
-                            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('password')">
+                        <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('password')">
                             <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
                         </a>
                     </div>
                     <div class="confirm-password-bar">
                         @Html.PasswordFor(m => m.ConfirmPassword, new { id = "confirmPassword", placeholder = "Confirm Password*", required = "required" })
-                            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('confirmPassword')">
+                        <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('confirmPassword')">
                             <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Confirm Password Button Image">
                         </a>
                     </div>
-                    <div class="terms">
-                        <!-- Your checkbox input fields go here -->
-                    </div>
+
                     <div class="sign-button-img">
                         <input type="submit" value="Sign Up">
                     </div>
                     <br>
-                    <div class="continue">
-                        <!-- Your "Continue with Google" and "Sign In" links go here -->
-                    </div>
+
                     <br>
                 </div>
             </form>
-            <!-- Form Ends Here -->
         </div>
 
         <div class="book-img">

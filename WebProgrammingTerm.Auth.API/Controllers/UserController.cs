@@ -63,5 +63,13 @@ public class UserController:CustomControllerBase
         return CreateActionResult(user);
     }
 
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> UpdateUserPassword(UserUpdatePasswordDto userUpdateDto)
+    {
+        var user = await _userService.UpdateUserPassword(userUpdateDto,(ClaimsIdentity)User.Identity);
+
+        return CreateActionResult(user);
+    }
 
 }

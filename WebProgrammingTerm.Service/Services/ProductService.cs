@@ -33,12 +33,8 @@ public class ProductService:GenericService<Product>,IProductService
 
         if (productEntity is null)
             throw new Exception(ResponseMessages.ProductNotFound);
-        
-        productEntity.Price = productUpdateDto.Price == 0f ? productEntity.Price : productUpdateDto.Price;
-        productEntity.Name =  string.IsNullOrWhiteSpace(productUpdateDto.Name) ? productEntity.Name : productUpdateDto.Name;
-        productEntity.ImagePath =  string.IsNullOrWhiteSpace(productUpdateDto.ImagePath) ? productEntity.ImagePath : productUpdateDto.ImagePath;
-        productEntity.Stock = productUpdateDto.Stock == 0 ? productEntity.Stock : productUpdateDto.Stock;
-        productEntity.DiscountRate = productUpdateDto.DiscountRate == 0f ? productEntity.DiscountRate : productUpdateDto.DiscountRate;
+
+        ProductMapper.Update(productUpdateDto, ref productEntity);
         productEntity.UpdatedBy = updatedBy;
         
         _productRepository.Update(productEntity);
@@ -72,13 +68,15 @@ public class ProductService:GenericService<Product>,IProductService
             productEntity.Company = companyUserEntity.Company;
         }
         
-        var productDetailEntity = await _productDetailService.CreateAsync(ProductDetailMapper.toProductDetail(productAddDto),claimsIdentity);
+        var productDetailEntity = await _productDetailService.CreateAsync(ProductDetailMapper.ToProductDetail(productAddDto),claimsIdentity);
+        
         productEntity.ImagePath = productAddDto.ImagePath;
         productEntity.CreatedBy = createdBy;
         productEntity.UpdatedAt = DateTime.Now;
         productEntity.UpdatedBy = createdBy;
         productEntity.ProductDetail = productDetailEntity;
         productEntity.Category = productAddDto.Category;
+        
         await _productRepository.AddAsync(productEntity);
         await _unitOfWork.CommitAsync();
         return CustomResponseDto<Product>.Success(productEntity, ResponseCodes.Created);
@@ -103,11 +101,8 @@ public class ProductService:GenericService<Product>,IProductService
     public async Task<CustomResponseListDataDto<ProductGetDto>> GetProductsByPage(int page)
     {
         var products = await _productRepository.GetProducstByPage(page);
-        List<ProductGetDto> dtos = new List<ProductGetDto>();
-        foreach (var product in products)
-        {
-            dtos.Add(ProductMapper.ToAddDto(product));
-        }
+        var  dtos = products.Select(product => ProductMapper.ToAddDto(product)).ToList();
+        
         return  CustomResponseListDataDto<ProductGetDto>.Success(dtos,200);
     }
 }

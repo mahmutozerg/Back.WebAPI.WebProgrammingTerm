@@ -33,4 +33,12 @@ public static class DepotMapper
 
         return company;
     }
+
+    public static void Upadte(ref Depot depotEntity, DepotUpdateDto depotUpdateDto)
+    {
+        depotEntity.City = string.IsNullOrWhiteSpace(depotUpdateDto.City) ? depotEntity.City : depotUpdateDto.City;
+        depotEntity.Street = string.IsNullOrWhiteSpace(depotUpdateDto.Street) ? depotEntity.Street : depotUpdateDto.Street;
+        depotEntity.Country = string.IsNullOrWhiteSpace(depotUpdateDto.Country) ? depotEntity.Country : depotUpdateDto.Country;
+        depotEntity.Contact = string.IsNullOrWhiteSpace(depotUpdateDto.Contact) ? depotEntity.Contact : depotUpdateDto.Contact;
+    }
 }

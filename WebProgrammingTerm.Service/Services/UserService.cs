@@ -118,11 +118,13 @@ public class UserService:GenericService<User>,IUserService
     {
         var userEntity= await _userRepository
             .Where(u => u != null && u.Id == id && !u.IsDeleted)
-            .Include(u=>u.Orders)
+            .Include(u=>u!.Orders)
             .FirstOrDefaultAsync();
         if (userEntity is null)
             throw new Exception(ResponseMessages.UserNotFound);
 
 
-        return userEntity;    }
+        return userEntity;    
+        
+    }
 }

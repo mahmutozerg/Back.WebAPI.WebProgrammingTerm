@@ -14,4 +14,5 @@ public interface IUserService
     Task<Response<NoDataDto>> AddRoleToUser(string userEmail, string roleName);
 
     Task<Response<NoDataDto>> UpdateUser(AppUserUpdateDto appUserUpdateDto,ClaimsIdentity claimsIdentity);
+    Task<Response<TokenDto>> UpdateUserPassword(UserUpdatePasswordDto userUpdatePasswordDto,ClaimsIdentity claimsIdentity);
 }

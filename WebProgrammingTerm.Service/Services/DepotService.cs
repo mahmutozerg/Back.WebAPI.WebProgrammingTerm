@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using SharedLibrary.DTO;
+using SharedLibrary.Mappers;
 using SharedLibrary.Models;
 using WebProgrammingTerm.Core;
 
@@ -28,10 +29,8 @@ public class DepotService:GenericService<Depot>,IDepotService
         if (depotEntity is null)
             throw new Exception(ResponseMessages.DepotNotFound);
         
-        depotEntity.City = string.IsNullOrWhiteSpace(depotUpdateDto.City) ? depotEntity.City : depotUpdateDto.City;
-        depotEntity.Street = string.IsNullOrWhiteSpace(depotUpdateDto.Street) ? depotEntity.Street : depotUpdateDto.Street;
-        depotEntity.Country = string.IsNullOrWhiteSpace(depotUpdateDto.Country) ? depotEntity.Country : depotUpdateDto.Country;
-        depotEntity.Contact = string.IsNullOrWhiteSpace(depotUpdateDto.Contact) ? depotEntity.Contact : depotUpdateDto.Contact;
+        
+        DepotMapper.Upadte(ref depotEntity,depotUpdateDto);
         depotEntity.UpdatedBy = updatedBy;
         _depotRepository.Update(depotEntity);
         await _unitOfWork.CommitAsync();

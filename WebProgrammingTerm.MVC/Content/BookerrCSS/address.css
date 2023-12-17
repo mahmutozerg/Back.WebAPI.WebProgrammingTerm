@@ -1,5 +1,5 @@
 
-div.profile_section > div.user_information > div.address > div.my_address {
+ div.address > div.my_address {
     display: flex;
     align-items: center;
     justify-content: space-around; 
@@ -9,53 +9,46 @@ div.profile_section > div.user_information > div.address > div.my_address {
 
 }
 
-div.profile_section > div.user_information > div.address > div.my_address > div.home,
-div.profile_section > div.user_information > div.address > div.my_address > div.office {
-    width: 45%;
-    height: 50%;
+ div.address > div.my_address > div.addressInfo
+ {
+    width: 100%;
+    height: 100%;
     padding: 20px;
     border-radius: 10px;
     background-color: #E6E7E8;
 }
 
-div.profile_section > div.user_information > div.address > div.my_address > div.addition {
+ div.address > div.my_address > div.addition {
     width: 12%;
     padding: 31px;
     border-radius: 10px;
     background-color: #E6E7E8;
     cursor: pointer; 
 }
-
-
-
-
-
-
-div.profile_section > div.user_information > div.address > div.my_address > div.addition > a {
+ 
+ div.address > div.my_address > div.addition > a {
     text-decoration: none;
     font-weight: 700;
     text-align: center;
     color: #F47878; /* Rengi pembe olacak */
-    font-size: 30; /* Boyutu biraz büyüdü */
+    font-size: 30px; /* Boyutu biraz büyüdü */
 }
 
-div.profile_section > div.user_information > div.address-header  {
-    width: auto;
-    height: auto;
+ div.address-header  {
+    max-width: 25%;
     font-size: 23px;
-    margin-left: -63%;
-    margin-top:33%;
+
 }
 
-div.profile_section > div.user_information > div.address > div.add-address {
+ div.address > div.add-address  > h2{
     width: auto;
     height: auto;
     font-size: 23px;
  
 }
 
-input {
-    width: 100%;
+.add-address input {
+    width: 95%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 50px;
@@ -66,61 +59,77 @@ input {
 }
 
 
-div.profile_section > div.user_information > div.address > div.address-bars {
+ div.address > div.address-bars {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
 }
 
-div.profile_section > div.user_information > div.address > div.address-bars > div.city-bar,
-div.profile_section > div.user_information > div.address > div.address-bars > div.zipcode-bar {
+ div.add-address > div.address-bars > div.city-bar,
+ div.add-address > div.address-bars > div.zipcode-bar {
     width: 48%;
 }
-
-div.profile_section > div.user_information > div.address > div.address-bars > div.city-bar select,
-div.profile_section > div.user_information > div.address > div.address-bars > div.zipcode-bar input {
-    width: 100%;
+ div.add-address > div.address-bars > div.zipcode-bar
+ {
+     position: relative;
+     left: 1.5%;
+ }
+ div.add-address > div.address-bars > div.city-bar select,
+ div.add-address > div.address-bars > div.zipcode-bar input {
+    width: 95%;
     height: 35px;
     font-size: 13px;
     padding: 5px;
     margin-bottom: 1%;
 }
 
-div.profile_section > div.user_information > div.address > div.address-bars > div.city-bar label,
-div.profile_section > div.user_information > div.address > div.address-bars > div.zipcode-bar label {
+ div.add-address > div.address-bars > div.city-bar label,
+ div.add-address > div.address-bars > div.zipcode-bar label {
     margin-bottom: 5px;
 }
 
-div.profile_section > div.user_information > div.address > button.save-button {
-    width: 28%;
-    height: 35px;
-    font-size: 13px;
-    font-weight: 700;
-    background-color: #F47878;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-left:72%;
-    margin-top: 1%;
+ div.add-address > button.save-button {
+     width: 25%;
+     height: 8%;
+     font-size: 13px;
+     font-weight: 700;
+     background-color: #F47878;
+     color: white;
+     border: none;
+     border-radius: 50px;
+     cursor: pointer;
+     position: inherit;
+     left: 70%;
 }
 
-div.profile_section > div.user_information > div.address > button.save-button:hover {
+ div.add-address > button.save-button:hover {
     background-color: #808285;
     color: white; /* Rengi pembe olacak */
 
 }
 
-div.profile_section{
-    width: 100%;
-    height: 600px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 25px;
-}
 
 
+ .address
+ {
+     display: flex;
+     flex-direction: column;
+     position: relative;
+     left: 3%;
+     margin-top: 10%;
+ }
 
-
+ .mainContent
+ {
+     display: inline-block;
+     position: relative;
+     left: 15%;
+     width: 990px;
+     overflow: hidden;
+     height: 550px;
+ }
+ .address-bars
+ {
+     display: flex;
+ }

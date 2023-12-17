@@ -163,7 +163,11 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("Country")
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
@@ -177,17 +181,7 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("No")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<int>("PostalCode")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Street")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
@@ -199,6 +193,10 @@ namespace WebProgrammingTerm.Repository.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("ZipCode")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
@@ -294,7 +292,7 @@ namespace WebProgrammingTerm.Repository.Migrations
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
-                        .HasColumnType("varchar(250)");
+                        .HasColumnType("varchar(450)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -389,9 +387,6 @@ namespace WebProgrammingTerm.Repository.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(50)");
-
-                    b.Property<int?>("Age")
-                        .HasColumnType("int");
 
                     b.Property<string>("BirthDate")
                         .HasColumnType("nvarchar(max)");

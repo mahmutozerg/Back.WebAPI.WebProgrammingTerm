@@ -26,4 +26,10 @@ public class LocationController:CustomControllerBase
     {
         return CreateActionResult(await _locationService.UpdateAsync(locationUpdateDto,(ClaimsIdentity)User.Identity));
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetLocations()
+    {
+        return CreateActionResult(await _locationService.GetLocationsAsync((ClaimsIdentity)User.Identity));
+    }
 }

@@ -15,8 +15,9 @@ public class Product:Base
 
     public string Name { get; set; } = string.Empty;
     public int Stock { get; set; } = 0;
-    public ProductDetail ProductDetail { get; set; }
-    [Column(TypeName = "varchar(250)")]
+    [JsonIgnore] public ProductDetail ProductDetail { get; set; }
+    
+    [Column(TypeName = "varchar(450)")]
     public string ImagePath { get; set; } = string.Empty;
     public float DiscountRate { get; set; } = 0f;
     

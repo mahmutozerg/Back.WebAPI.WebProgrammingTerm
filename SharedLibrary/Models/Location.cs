@@ -1,27 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using SharedLibrary.Models;
 
-namespace SharedLibrary.Models;
 
 public class Location:Base
 {
     [JsonIgnore]
+
     public User User { get; set; } = new User();
     
     public string UserId { get; set; } = string.Empty;
-    
-    [Column(TypeName = "varchar(50)")]
-    public string Country { get; set; } = string.Empty;
-    
-    [Column(TypeName = "varchar(50)")]
-    public string Street { get; set; } = string.Empty;
-    
-    public int PostalCode { get; set; } = 0;
-    
-    public int No { get; set; } = 0;
-    
-    
-    [Column(TypeName = "varchar(20)")]
-    public string PhoneNumber { get; set; } = string.Empty;
 
+    [Column(TypeName = "varchar(50)")]
+    public int ZipCode { get; set; } = 0;
+
+    [Column(TypeName = "varchar(250)")] 
+    public string Address { get; set; } = string.Empty;
+     
+    [Column(TypeName = "varchar(50)")] 
+    public string Title { get; set; } = string.Empty;
+    
+    [Column(TypeName = "varchar(50)")] public string City { get; set; } = string.Empty;
 }

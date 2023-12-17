@@ -60,4 +60,12 @@ public class LocationService:GenericService<Location>,ILocationService
 
         return CustomResponseDto<Location>.Success(locationEntity, ResponseCodes.Created);
     }
+
+    public async Task<CustomResponseDto<List<Location>?>> GetLocationsAsync(ClaimsIdentity claimsIdentity)
+    {
+        var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        var locations = await _locationRepository.Where(l => l.UserId == userId && !l.IsDeleted).ToListAsync();
+        return CustomResponseDto<List<Location>?>.Success(locations, ResponseCodes.Ok);
+    }
 }

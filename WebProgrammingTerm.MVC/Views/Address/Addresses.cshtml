@@ -1,8 +1,8 @@
-﻿@model dynamic
+﻿@model WebProgrammingTerm.MVC.Models.AddressModel
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/profile.css?v25">
-    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/address.css?v25">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/profile.css?v27">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/address.css?v32">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -11,63 +11,47 @@
 </head>
 
 <body>
-    <div class="profile_section">
-
-        <div class="link_holder">
-            <h2 id="profile_header">Profile</h2>
-            <div class="profile_sections">
-                <a href="@Url.Action("ProfileIndex")"><button type="button">Profile Details</button></a>
-                <a href="#"><button type="button">My Addresses</button></a>
-                <a href="#"><button type="button">Nav Link</button></a>
-                <a href="#"><button type="button">Nav Link</button></a>
-                <a href="#"><button type="button">Nav Link</button></a>
+    <div class="mainContent">
+        <div class="profileContent"style="height: 100%">
+            <div class="profile_section">
+                <div class="link_holder">
+                    <div class="profile_sections">
+                        <a href="@Url.Action("ProfileIndex","Profile")"><button type="button" >Profile Details</button></a>
+                        <a href="@Url.Action("Addresses","Address")"><button type="button" style="color: white; background-color: #808285">My Addresses</button></a>
+                        <a href="#"><button type="button">Nav Link</button></a>
+                        <a href="#"><button type="button">Nav Link</button></a>
+                        <a href="#"><button type="button" style="padding-bottom: 1%">Nav Link</button></a>
+                    </div>
+                </div>
             </div>
-        </div>
-
-
-
-        <div class="user_information">
-            <div class="address-header"><h2>My Addresses</h2>
-            </div>
-
             <div class="address">
                 <div class="my_address">
-                    <div class="home">
-                    <h3 style="margin-top: -7%; margin-left: -5%; font-size: 16px;">Home</h3>
-                    <content>
-                        <p style="margin-left: -5%; font-size: 14px; font-weight: 500;">Denizkoskler Mahallesi Kuzu Sokak 
-                            Bilmemne Sitesi No:15/6 34310 
-                            Avcılar/İstanbul
-                            546*******
-                            </p>
-                            <div style="margin-top:-15px;"><a href="" style="color:#F47878 ;margin-left:95%;"><i class="fa-regular fa-trash-can"></i></a>
-                            </div>
-                    </content>
-
-                    </div>
-                    <div class="office">
-                    <h3 style="margin-top: -7%;  margin-left: -5%; font-size: 16px;">Office</h3>
-                    <content>
-                        <p style="margin-left: -5%; font-size: 14px; font-weight: 500;">Resitpasa Caddesi No:46 İnci 
-                            Fotoğrafçılık Avcılar/İstanbul
-                            546*******
-                        </p>
-                        <div style="margin-top:-15px;"><a href="" style="color:#F47878 ;margin-left:95%;"><i class="fa-regular fa-trash-can"></i></a>
+                    @foreach (var location in Model.locations)
+                    {
+                        <div class="addressInfo" id = "@location.Id">
+                            <h3 style=" font-size: 16px; font-weight: 700">@location.Title</h3>
+                            <content>
+                                <p style=" font-size: 14px; font-weight: 500;">@location.Address @location.City
+                                    @location.ZipCode 
+                                </p>
+                                <div style="margin-top:-15px;"><a href="" style="color:#F47878 ;margin-left:95%;"><i class="fa-regular fa-trash-can"></i></a>
+                                </div>
+                            </content>
                         </div>
-                    </content>
-                    </div>
-                    <div class="addition">
-                        <a href="#" class="addition-link">+</a>
+                    }
+                    <div class="addition" onclick="ShowAddress()">
+                        <a href="#" class="addition-link" >+</a>
                     </div>
                 </div>
-                <div class="add-address"><h2>Add Addresses</h2>
-                </div>
+                
+                
+            <div class="add-address" style ="display: none;">
+                <h2>Add Addresses</h2>
                 <input type="text" class="title-input" style="margin-bottom: 1%;" placeholder="Address Title">
-                <input type="text" class="address-input" style="height: 20%; border-radius: 15px;" placeholder="Address">
-
-                <div class="address-bars">
+                <input type="text" class="address-input" style="height: 40%; border-radius: 15px;margin-bottom: 2%" placeholder="Address">
+                <div class="address-bars" style="margin-bottom: 2%">
                     <div class="city-bar">
-                        <select id="city" name="city" placeholder ="Test">
+                        <select id="city" name="city" placeholder="Test">
                             <option value="1">Adana</option>
                             <option value="2">Adıyaman</option>
                             <option value="3">Afyonkarahisar</option>
@@ -154,13 +138,29 @@
                         <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code">
                     </div>
                 </div>
-
-
-                
                 <button type="submit" class="save-button">Save</button>
             </div>
+
+            </div>
+
+        </div>
+        
+    
             
         </div>
-    </div>
+
+<script>
+
+    function HideAddress() 
+    {
+        let address = document.querySelector("body > div > div > div.address > div.add-address");   
+        address.style.display = "none";
+    }
+    function ShowAddress() 
+    {
+        let address = document.querySelector("body > div > div > div.address > div.add-address");   
+        address.style.display = "";
+    }
+</script>
 
 </body>

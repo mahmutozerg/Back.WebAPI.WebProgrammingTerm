@@ -9,3 +9,12 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.csproj.CopyComplete
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.pdb
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.Buffers.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.Memory.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.Numerics.Vectors.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.Text.Encodings.Web.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.Text.Json.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.Threading.Tasks.Extensions.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.ValueTuple.dll

@@ -10,12 +10,11 @@ public static class LocationMapper
         var location = new Location()
         {
             Id = Guid.NewGuid().ToString(),
-            PhoneNumber = locationDto.PhoneNumber,
-            Country = locationDto.Country,
-            No = locationDto.No,
-            PostalCode = locationDto.PostalCode,
-            Street = locationDto.Street,
-            CreatedAt = DateTime.Now
+            Address = locationDto.Address,
+            CreatedAt = DateTime.Now,
+            Title = locationDto.Title,
+            City = locationDto.City,
+            ZipCode = locationDto.ZipCode
  
         };
 
@@ -24,10 +23,9 @@ public static class LocationMapper
 
     public static void Update(ref Location locationEntity,  LocationUpdateDto locationUpdateDto)
     {
-        locationEntity.Country =  string.IsNullOrWhiteSpace(locationUpdateDto.Country) ? locationEntity.Country : locationUpdateDto.Country;
-        locationEntity.Street =  string.IsNullOrWhiteSpace(locationUpdateDto.Street) ? locationEntity.Street : locationUpdateDto.Street;
-        locationEntity.PostalCode = locationUpdateDto.PostalCode == 0 ? locationEntity.PostalCode : locationUpdateDto.PostalCode;
-        locationEntity.No = locationUpdateDto.No == 0 ? locationEntity.No : locationUpdateDto.No;
-        locationEntity.PhoneNumber =  string.IsNullOrWhiteSpace(locationUpdateDto.PhoneNumber) ? locationEntity.PhoneNumber : locationUpdateDto.PhoneNumber;
+        locationEntity.City =  string.IsNullOrWhiteSpace(locationUpdateDto.City) ? locationEntity.City : locationUpdateDto.City;
+        locationEntity.Address =  string.IsNullOrWhiteSpace(locationUpdateDto.Address) ? locationEntity.Address : locationUpdateDto.Address;
+        locationEntity.ZipCode = locationUpdateDto.ZipCode == 0 ? locationEntity.ZipCode : locationUpdateDto.ZipCode;
+        locationEntity.Title =  string.IsNullOrWhiteSpace(locationUpdateDto.Title) ? locationEntity.Title : locationUpdateDto.Title;
     }
 }

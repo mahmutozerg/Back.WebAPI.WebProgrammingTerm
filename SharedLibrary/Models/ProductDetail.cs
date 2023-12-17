@@ -5,8 +5,8 @@ namespace SharedLibrary.Models;
 
 public class ProductDetail:Base
 {
-    [JsonIgnore]
-    public Product Product { get; set; }
+    [JsonIgnore] public Product Product { get; set; } = new();
+    
     [Column(TypeName = "varchar(50)")]
 
     public string ProductId { get; set; } = string.Empty;

@@ -4,18 +4,18 @@ namespace SharedLibrary.DTO;
 
 public class LocationDto
 {
-    [Required(ErrorMessage = "Country field is required")]
-    public string Country { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Street field is required")]
-    public string Street { get; set; } = string.Empty;
+    [Required(ErrorMessage = "Zip code field is required")]
+     public int ZipCode { get; set; } = 0;
 
-    [Required(ErrorMessage = "PostalCode field is required")]
-     public int PostalCode { get; set; } = 0;
+     [Required(ErrorMessage = "Address field is required")]
+     public string Address { get; set; } = string.Empty;
+     
+     [Required(ErrorMessage = "Title field is required")]
+     public string Title { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "No field is required")]
-    public int No { get; set; } = 0;
+     
+     [Required(ErrorMessage = "City field is required")]
 
-    [Required(ErrorMessage = "PhoneNumber field is required")]
-     public string PhoneNumber { get; set; } = string.Empty;
+     public string City { get; set; }
 }

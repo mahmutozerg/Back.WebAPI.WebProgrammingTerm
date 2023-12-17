@@ -35,7 +35,6 @@ public class ProfileController : Controller
             Response.Cookies["refreshToken"].Expires = DateTime.Now.AddDays(-1);
 
             return RedirectToAction("Index", "ErrorPage");
-
         }
         
         var userData = userJson["data"];
@@ -131,19 +130,8 @@ public class ProfileController : Controller
             TempData["ModelState"] = ModelState;
 
         }
-
-
         return RedirectToAction("ProfileIndex");
-
-
     }
+    
 
-
-
-    [HttpGet]
-    public ActionResult Addresses()
-    {
-
-        return View();
-    }
 }

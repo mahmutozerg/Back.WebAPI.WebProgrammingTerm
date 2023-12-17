@@ -119,6 +119,7 @@
         <Compile Include="App_Start\RouteConfig.cs" />
         <Compile Include="Controllers\AboutUsController.cs" />
         <Compile Include="Controllers\AccountController.cs" />
+        <Compile Include="Controllers\AddressController.cs" />
         <Compile Include="Controllers\ContactController.cs" />
         <Compile Include="Controllers\ErrorPageController.cs" />
         <Compile Include="Controllers\HomeController.cs" />
@@ -126,9 +127,11 @@
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
         </Compile>
+        <Compile Include="Models\AddressModel.cs" />
         <Compile Include="Models\SignUpDto.cs" />
         <Compile Include="Models\UserModels.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Services\AddressServices.cs" />
         <Compile Include="Services\ProductServices.cs" />
         <Compile Include="Services\UserServices.cs" />
     </ItemGroup>
@@ -212,11 +215,11 @@
         <Content Include="Views\AboutUs\AboutUsIndex.cshtml" />
         <Content Include="Views\Account\SignIn.cshtml" />
         <Content Include="Views\Account\SignUp.cshtml" />
+        <Content Include="Views\Address\Addresses.cshtml" />
         <Content Include="Views\Contact\ContactIndex.cshtml" />
         <Content Include="Views\ErrorPage\Index.cshtml" />
         <Content Include="Views\Home\Booker.cshtml" />
         <Content Include="Views\Home\Test.cshtml" />
-        <Content Include="Views\Profile\Addresses.cshtml" />
         <Content Include="Views\Profile\ProfileIndex.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">

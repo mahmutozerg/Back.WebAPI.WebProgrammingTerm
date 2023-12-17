@@ -1,5 +1,6 @@
 ﻿@using Newtonsoft.Json
 @using Newtonsoft.Json.Linq
+@using System.Globalization;
 
 
 @{
@@ -10,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/AdvertCardCaurosel.css">
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/ProductCard.css">
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/ProductCardCarosel.css">
-    <link rel="stylesheet" type="text/css" href="../../Content/WebAssets/">
 
     <script src="/Scripts/BookerrScripts/AdvertCarousel.js?v4" defer></script>
     <script src="/Scripts/BookerrScripts/ProductCardCarousel.js?v3" defer></script>
@@ -50,12 +50,18 @@
                         {
                             <div class="product-carousel-item">
                                 <div class="card" style="width: 18rem;">
-                                    <img src="/Content/WebAssets/img3.jpg" class="card-img-top" alt="productImage">
+                                    <img src="@item["imagePath"]" class="card-img-top" alt="productImage" >
                                     <div class="card-body">
                                         <p class="card-text">
                                             <strong class="card-title">
                                                 <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color:inherit">
-                                                    @item["publisher"]</a><br />
+                                                    @{
+                                                        var name = item["publisher"].ToString().Replace("-", " ");
+                                                        var titleCaseName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
+
+                                                    }
+                                                    @titleCaseName
+                                                </a><br />
                                             </strong>
                                              @{
                                                  var truncatedName = item["name"].ToString().Length > 60
@@ -88,58 +94,66 @@
             
         </div>
     </div>
-    <div class="productCarousel">
-        <h5 class="Title" style="color: black; font-size: 20px;padding:20px;"><strong>New Products</strong></h5>
-        <div class="product-carousel-inner">
-            @{
-                jsonData = ViewData["test2"]?.ToString();  
+<div class="productCarousel">
+    <h5 class="Title" style="color: black; font-size: 20px;padding:20px;"><strong>New Products</strong></h5>
+    <div class="product-carousel-inner">
+        @{
+            jsonData = ViewData["test2"]?.ToString();  
             
-                if (!string.IsNullOrEmpty(jsonData))
+            if (!string.IsNullOrEmpty(jsonData))
+            {
+                try
                 {
-                    try
+                    var jsonArray = JArray.Parse(jsonData);
+                    int ct = 0;
+                    foreach (var item in jsonArray)
                     {
-                        var jsonArray = JArray.Parse(jsonData);
-                        int ct = 0;
-                        foreach (var item in jsonArray)
-                        {
-                            <div class="product-carousel-item">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="/Content/WebAssets/img3.jpg" class="card-img-top" alt="productImage">
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            <strong class="card-title">
-                                                <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color:inherit">
-                                                    @item["publisher"]</a><br />
-                                            </strong>
-                                            @{
-                                                var truncatedName = item["name"].ToString().Length > 60
-                                                    ? item["name"].ToString().Substring(0, 57) + "..."
-                                                    : item["name"].ToString();
-                                            }
-                                            @truncatedName                                          
-                                            <div class="carosel-product-info">
-                                                <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                                    <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                                                </a>
-                                                <p class="carosel-product-info-text">@item["price"]₺</p>
-                                            </div>
-                                        </p>
-                                    </div>
+                        <div class="product-carousel-item">
+                            <div class="card" style="width: 18rem;">
+                            <img src="@item["imagePath"]" class="card-img-top" alt="productImage" >
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <strong class="card-title">
+                                            <a href="../UnderDevelopement/UnderDevelopementPage.html" style="color:inherit">
+                                                @{
+                                                    var name = item["publisher"].ToString().Replace("-", " ");
+                                                    var titleCaseName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
+                                                
+                                                }
+                                                @titleCaseName
+                                            </a>
+                                            <br />
+                                        </strong>
+                                        @{
+                                            var truncatedName = item["name"].ToString().Length > 60
+                                                ? item["name"].ToString().Substring(0, 57) + "..."
+                                                : item["name"].ToString();
+                                        }
+                                        @truncatedName                                          
+                                        <div class="carosel-product-info">
+                                            <a href="../UnderDevelopement/UnderDevelopementPage.html">
+                                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
+                                            </a>
+                                            <p class="carosel-product-info-text">@item["price"]₺</p>
+                                        </div>
+                                    </p>
                                 </div>
                             </div>
-                        }
-                    }
-                    catch (JsonReaderException ex)
-                    {
-                        <p>Error parsing JSON array: @ex.Message</p>
+                        </div>
                     }
                 }
-                else
+                catch (JsonReaderException ex)
                 {
-                    <p>No JSON data available.</p>
+                    <p>Error parsing JSON array: @ex.Message</p>
                 }
             }
+            else
+            {
+                <p>No JSON data available.</p>
+            }
+        }
 
-        </div>
     </div>
+</div>
+
 </body>

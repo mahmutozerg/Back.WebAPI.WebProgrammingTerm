@@ -22,7 +22,7 @@ public class RouteConfig
         routes.MapRoute(
             name: "AddressConfig",
             url: "profile/adresses",
-            defaults: new { controller = "Profile", action = "Addresses" }
+            defaults: new { controller = "Address", action = "Addresses" }
         );
         routes.MapRoute(
             name: "NotFoundPageRoute",

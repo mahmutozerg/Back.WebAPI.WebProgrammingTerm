@@ -46,8 +46,7 @@
             var carouselInner = document.querySelector("body > div > div > div.address > div.my_address");
             var slides = document.querySelectorAll("body > div > div > div.address > div.my_address > .addressInfo");
 
-            console.log(carouselInner);
-            console.log(slides.length);
+
 
             if (!carouselInner || slides.length === 0) {
                 console.error("Carousel elements not found within container:", carouselInner);
@@ -57,8 +56,7 @@
             var totalSlides = slides.length;
             var slideWidth = slides[0].clientWidth;
             
-            console.log(totalSlides);
-            console.log(slideWidth)
+
             if (index < 0) {
                 index = totalSlides - 1;
             } else if (index >= totalSlides) {

@@ -16,12 +16,12 @@ public class LocationController:CustomControllerBase
         _locationService = locationService;
     }
     
-    [HttpPost("[action]")]
+    [HttpPut]
     public async Task<IActionResult> Add( LocationDto locationDto)
     {
         return CreateActionResult(await _locationService.AddAsync(locationDto,(ClaimsIdentity)User.Identity));
     }
-    [HttpPost("[action]")]
+    [HttpPost]
     public async Task<IActionResult> Update(LocationUpdateDto locationUpdateDto)
     {
         return CreateActionResult(await _locationService.UpdateAsync(locationUpdateDto,(ClaimsIdentity)User.Identity));

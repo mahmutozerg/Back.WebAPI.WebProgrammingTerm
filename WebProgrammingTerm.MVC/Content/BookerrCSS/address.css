@@ -1,8 +1,6 @@
 
  div.address > div.my_address {
     display: flex;
-    align-items: center;
-    justify-content: space-around; 
     flex-direction: row;
     gap: 10px;
     padding: 5px;
@@ -113,11 +111,12 @@
 
  .address
  {
-     display: flex;
-     flex-direction: column;
      position: relative;
      left: 3%;
      margin-top: 10%;
+     overflow: hidden;
+     transition: transform 0.5s ease-in-out;
+
  }
 
  .mainContent
@@ -127,9 +126,96 @@
      left: 15%;
      width: 990px;
      overflow: hidden;
-     height: 550px;
+     height: 990px;
  }
  .address-bars
  {
      display: flex;
  }
+
+
+ .product-carousel-inner {
+     padding-left: 2%;
+     padding-right: 4%;
+     display: flex;
+     transition: transform 0.5s ease-in-out;
+ }
+
+
+
+ .carousel-next-btn {
+     position: absolute;
+     top: 14%;
+     left: 80%;
+
+ }
+
+ .carousel-prev-btn {
+     position: absolute;
+     top: 14%;
+ }
+
+
+ .carousel-prev-btn,
+ .carousel-next-btn {
+     background: transparent;
+     border: none;
+     cursor: pointer;
+     padding: 0;
+ }
+
+ .product-carousel-item {
+     position: relative;
+     box-sizing: border-box;
+     object-fit: cover;
+     max-height: 100%;
+     max-width: 50%;
+     margin-right: 5%;
+ }
+
+ .card-title {
+     color: #000000;
+     font-weight: bold;
+     text-decoration: underline;
+ }
+
+ .card-text {
+     padding: auto;
+     color: #000000;
+     text-decoration: none;
+ }
+
+ .card-img-top {
+      height: 25%;
+     max-width: 75%;
+     display: block;
+     margin: 0 auto;
+ }
+
+ .carosel-product-info {
+     height: 40%;
+      max-height: 10%;
+ }
+
+ .add-to-cart-image {
+     display: block;
+     max-width: 55%;
+     max-height: 100%;
+     margin-left: auto;
+      margin-right: 4.75%;
+     margin-top: -2%;
+ 
+ }
+
+
+ .carosel-product-info-text {
+     color: #000000;
+     font-size: larger;
+     width: 40%;
+     height: 50%;
+     /* Set a specific height, using 'vh' (viewport height) as an example */
+     max-height: 80%;
+     margin-top: -14%;
+ }
+ 
+ 

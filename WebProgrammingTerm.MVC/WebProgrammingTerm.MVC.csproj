@@ -194,6 +194,8 @@
         <Content Include="fonts\glyphicons-halflings-regular.svg" />
         <Content Include="Global.asax" />
         <Content Include="Content\Site.css" />
+        <Content Include="Scripts\BookerrScripts\AddressCarosel.js" />
+        <Content Include="Scripts\BookerrScripts\AddressPage.js" />
         <Content Include="Scripts\BookerrScripts\AdvertCarousel.js" />
         <Content Include="Scripts\BookerrScripts\BirthDate.js" />
         <Content Include="Scripts\BookerrScripts\ClientSidePasswordCompare.js" />

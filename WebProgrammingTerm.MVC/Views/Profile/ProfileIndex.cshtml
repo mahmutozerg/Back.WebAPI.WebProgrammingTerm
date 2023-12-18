@@ -26,7 +26,6 @@
         </div>
 
         <script>
-            // Call the showPopup function when the condition is true
             showPopup();
         </script>
     }
@@ -49,10 +48,10 @@
                     <h2>Profile Details</h2>
                     <form action="@Url.Action("SaveProfile", "Profile")" method="POST">
                         <div class="partial">
-                            <input type="text" name="name" placeholder="@Model.User.Name">
-                            <input type="text" name="LastName" placeholder="@Model.User.LastName">
+                            <input type="text" name="name" value="@Model.User.Name">
+                            <input type="text" name="LastName" value="@Model.User.LastName">
                         </div>
-                            <input type="email" name="email" placeholder="@Model.User.Email">
+                            <input type="email" name="email" value="@Model.User.Email">
 
                         <div class="partial">
                             <div class="birth_date">
@@ -172,19 +171,19 @@
             document.getElementById("birthdateInput").value = formattedDate;
         }
         
-            $(document).ready(function () {
-                $('form').submit(function () {
-                    $('#password-error').remove();
-                });
+        $(document).ready(function () {
+            $('form').submit(function () {
+                $('#password-error').remove();
             });
-        
-        
-            function showPopup() {
-                document.getElementById('popup').style.display = 'block';
-            }
-        
-            function closePopup() {
-                document.getElementById('popup').style.display = 'none';
-            }
+        });
+    
+    
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+    
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
     </script>
 </body>

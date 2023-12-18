@@ -165,7 +165,7 @@ public static class UserServices
 
                 if (value == null) 
                     continue;
-                JToken jToken = JToken.FromObject(value);
+                var jToken = JToken.FromObject(value);
                 jsonObject[property.Name] = jToken;
             }
 

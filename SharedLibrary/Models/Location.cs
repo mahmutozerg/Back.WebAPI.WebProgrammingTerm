@@ -20,5 +20,5 @@ public class Location:Base
     [Column(TypeName = "varchar(50)")] 
     public string Title { get; set; } = string.Empty;
     
-    [Column(TypeName = "varchar(50)")] public string City { get; set; } = string.Empty;
+    [Column(TypeName = "nvarchar(50)")] public string City { get; set; } = string.Empty;
 }

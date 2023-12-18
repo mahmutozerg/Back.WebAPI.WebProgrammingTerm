@@ -28,4 +28,15 @@ public static class LocationMapper
         locationEntity.ZipCode = locationUpdateDto.ZipCode == 0 ? locationEntity.ZipCode : locationUpdateDto.ZipCode;
         locationEntity.Title =  string.IsNullOrWhiteSpace(locationUpdateDto.Title) ? locationEntity.Title : locationUpdateDto.Title;
     }
+
+    public static LocationDto ToLocationDto(LocationUpdateDto locationUpdateDto)
+    {
+        return new LocationDto()
+        {
+            Address = locationUpdateDto.Address,
+            City = locationUpdateDto.City,
+            Title = locationUpdateDto.Title,
+            ZipCode = locationUpdateDto.ZipCode
+        };
+    }
 }

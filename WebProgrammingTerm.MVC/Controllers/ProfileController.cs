@@ -18,10 +18,9 @@ public class ProfileController : Controller
             ModelState.Merge(modelState);
 
         if (TempData.ContainsKey("PasswordChanged"))
+        
             ViewData["PasswordChanged"] = true;
 
-
-        
         var token = Request.Cookies["accessToken"]?.Value;
         
         if (token is null) 

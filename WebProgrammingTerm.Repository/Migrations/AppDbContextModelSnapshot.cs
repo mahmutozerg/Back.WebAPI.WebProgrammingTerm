@@ -22,6 +22,55 @@ namespace WebProgrammingTerm.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Location", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Locations");
+                });
+
             modelBuilder.Entity("OrderProduct", b =>
                 {
                     b.Property<string>("OrdersId")
@@ -156,55 +205,6 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Depots");
-                });
-
-            modelBuilder.Entity("SharedLibrary.Models.Location", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("varchar(250)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("SharedLibrary.Models.Order", b =>
@@ -517,6 +517,17 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.ToTable("UserFavorites");
                 });
 
+            modelBuilder.Entity("Location", b =>
+                {
+                    b.HasOne("SharedLibrary.Models.User", "User")
+                        .WithMany("Locations")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("OrderProduct", b =>
                 {
                     b.HasOne("SharedLibrary.Models.Order", null)
@@ -551,20 +562,9 @@ namespace WebProgrammingTerm.Repository.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SharedLibrary.Models.Location", b =>
-                {
-                    b.HasOne("SharedLibrary.Models.User", "User")
-                        .WithMany("Locations")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("SharedLibrary.Models.Order", b =>
                 {
-                    b.HasOne("SharedLibrary.Models.Location", "Location")
+                    b.HasOne("Location", "Location")
                         .WithMany()
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)

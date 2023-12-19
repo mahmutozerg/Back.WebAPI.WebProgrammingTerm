@@ -10,7 +10,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <script src="~/Scripts/BookerrScripts/AddressCarosel.js?v6" defer></script>
-    <script src="~/Scripts/BookerrScripts/AddressPage.js?v9"></script>
+    <script src="~/Scripts/BookerrScripts/AddressPage.js?v11"></script>
 </head>
 
 <body>
@@ -50,16 +50,38 @@
                 @foreach (var location in Model.locations)
                 {
                     <div class="addressInfo" >
+
                         <h3 style=" font-size: 16px; font-weight: 700">@location.Title</h3>
                         <content>
                             <p style=" font-size: 14px; font-weight: 500;">@location.Address @location.City
                                 @location.ZipCode
                             </p>
                             <div style="position: relative;left: 22px; " >
-                                <a  style="color:#F47878 ;margin-left:60%; cursor: pointer"><i class="fa-solid fa-pen" onclick='ShowAddressInfo(@Model.locations.IndexOf(location), "@location.Id", "@location.Title", "@location.Address", "@location.City", "@location.ZipCode")'></i></a>
+                                <a  style="color:#F47878 ;margin-left:60%; cursor: pointer"><i class="fa-solid fa-pen" onclick='SetClickedIndex(@Model.locations.IndexOf(location)) ;ShowAddressInfo(@Model.locations.IndexOf(location), "@location.Id", "@location.Title", "@location.Address", "@location.City", "@location.ZipCode")'></i></a>
                             </div>
-                            <div style="margin-top:5px;"><a style="color:#F47878 ;margin-left:95%;"><i class="fa-regular fa-trash-can" ></i></a>
+                            
+                            <form action="@Url.Action("DeleteAddress")" method="POST" id="deleteForm">
+                                @Html.Hidden("locationIdToDelete", "")
+
+                                <div style="margin-top:5px;">
+                                    <a style="color:#F47878; margin-left:95%; cursor: pointer" onclick="confirmDelete(@Model.locations.IndexOf(location),'@location.Id');">
+                                        <button type="button" class="save-button" style="border: none; background: none; padding: 0;">
+                                            <i class="fas fa-trash-can" style="color: inherit;"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </form>
+
+
+                            <div class="popup-container" id="confirmationPopup" style="display: none;">
+                                <div class="popup-content">
+                                    <div class="warning-sign">⚠️</div>
+                                    <p>Are you sure you want to delete @location.Title  </p>
+                                    <button class="close-btn" onclick="confirmAndSubmit()">Yes</button>
+                                    <button class="close-btn" style="background-color: red" onclick="closeConfirmationPopup()">No</button>
+                                </div>
                             </div>
+
                         </content>
                         
                     </div>
@@ -93,7 +115,7 @@
                 </form>
             </div>
             @{
-                if (ViewData["show"] is bool show_ && show_ && ViewData["PopUpMessage"].ToString() != "Address created")
+                if (ViewData["show"] is bool show_ && show_ && ViewData["PopUpMessage"].ToString() != "Address created" && ViewData["PopUpMessage"].ToString() !="Your address successfully deleted")
                 {
                     int.TryParse( ViewData["index"].ToString(),out var index);
                     var loc = Model.locations[index];

@@ -11,4 +11,5 @@ public interface ILocationService:IGenericService<Location>
     Task<CustomResponseDto<Location>> AddAsync(LocationDto locationDto, ClaimsIdentity claimsIdentity);
 
     Task<CustomResponseDto<List<Location>?>> GetLocationsAsync(ClaimsIdentity claimsIdentity);
+    Task<CustomResponseNoDataDto> Delete(string id,ClaimsIdentity claimsIdentity);
 }

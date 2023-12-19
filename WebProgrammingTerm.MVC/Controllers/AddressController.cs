@@ -17,6 +17,7 @@ public class AddressController : Controller
             return RedirectToAction("SignIn", "Account");
         
         var locationJson = await AddressServices.GetUserLocation(token);
+        
         if (!locationJson.HasValues)
             return RedirectToAction("Index", "ErrorPage");
 
@@ -33,10 +34,7 @@ public class AddressController : Controller
 
             TempData.TryGetValue("index", out var index);
             ViewData["index"] = index;
-            
-
         }
-
 
         return View(new AddressModel()
         {
@@ -52,8 +50,6 @@ public class AddressController : Controller
         if (token is  null)
             return RedirectToAction("SignIn", "Account");
 
-
-        
         if (addressModel.clickedIndex >= 0)
         {
             int.TryParse(addressModel.locationUpdateDto.City,out var cityId);
@@ -89,6 +85,29 @@ public class AddressController : Controller
         }
 
         TempData["show"] = true;
+
+        return RedirectToAction("Addresses");
+    }
+
+
+    [HttpPost]
+    public async Task<ActionResult> DeleteAddress(string locationIdToDelete)
+    {
+        var token = Request.Cookies["accessToken"]?.Value;
+        if (token is  null)
+            return RedirectToAction("SignIn", "Account");
+        
+
+        var jObject = await AddressServices.DeleteUserLocation(locationIdToDelete, token);
+        if (!jObject.HasValues  )
+            return RedirectToAction("Index", "ErrorPage");
+
+        if (jObject["errors"]!.HasValues) 
+            return RedirectToAction("Addresses");
+        
+        TempData["show"] = true;
+        TempData["PopUpMessage"] = "Your address successfully deleted";
+        
 
         return RedirectToAction("Addresses");
     }

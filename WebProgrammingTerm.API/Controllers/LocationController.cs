@@ -32,4 +32,10 @@ public class LocationController:CustomControllerBase
     {
         return CreateActionResult(await _locationService.GetLocationsAsync((ClaimsIdentity)User.Identity));
     }
+
+    [HttpDelete]
+    public async Task<IActionResult> Delete([FromQuery] string id)
+    {
+        return CreateActionResult(await _locationService.Delete(id, (ClaimsIdentity)User.Identity));
+    }
 }

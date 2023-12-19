@@ -68,4 +68,24 @@ public class LocationService:GenericService<Location>,ILocationService
         var locations = await _locationRepository.Where(l => l.UserId == userId && !l.IsDeleted).ToListAsync();
         return CustomResponseDto<List<Location>?>.Success(locations, ResponseCodes.Ok);
     }
+
+    public async Task<CustomResponseNoDataDto> Delete(string id, ClaimsIdentity claimsIdentity)
+    {
+        var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var locationEntity = await _locationRepository.Where(l =>
+            l != null && l.UserId == userId && l.Id == id  && !l.IsDeleted).SingleOrDefaultAsync();
+
+        if (locationEntity is null)
+            throw new Exception(ResponseMessages.LocationNotFound);
+
+
+        locationEntity.UpdatedAt = DateTime.Now;
+        locationEntity.UpdatedBy = userId;
+        
+        _locationRepository.Remove(locationEntity);
+
+        await _unitOfWork.CommitAsync();
+
+        return CustomResponseNoDataDto.Success(200);
+    }
 }

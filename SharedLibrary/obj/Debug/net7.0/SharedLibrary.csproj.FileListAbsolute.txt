@@ -10,3 +10,4 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net7.0\refint\SharedLibrary.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net7.0\SharedLibrary.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net7.0\ref\SharedLibrary.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net7.0\SharedLibrary.sourcelink.json

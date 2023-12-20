@@ -34,3 +34,4 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\obj\Debug\net7.0\refint\WebProgrammingTerm.Auth.Service.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\obj\Debug\net7.0\WebProgrammingTerm.Auth.Service.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\obj\Debug\net7.0\ref\WebProgrammingTerm.Auth.Service.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Service\obj\Debug\net7.0\WebProgrammingTerm.Auth.Service.sourcelink.json

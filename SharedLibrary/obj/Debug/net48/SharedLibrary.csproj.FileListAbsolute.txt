@@ -18,3 +18,4 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.csproj.CopyComplete
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.pdb
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.sourcelink.json

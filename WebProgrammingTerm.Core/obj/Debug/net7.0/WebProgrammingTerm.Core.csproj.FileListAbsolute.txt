@@ -17,3 +17,4 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\obj\Debug\net7.0\refint\WebProgrammingTerm.Core.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\obj\Debug\net7.0\WebProgrammingTerm.Core.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\obj\Debug\net7.0\ref\WebProgrammingTerm.Core.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Core\obj\Debug\net7.0\WebProgrammingTerm.Core.sourcelink.json

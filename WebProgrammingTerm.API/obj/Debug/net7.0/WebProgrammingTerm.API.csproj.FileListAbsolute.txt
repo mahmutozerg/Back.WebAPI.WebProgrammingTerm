@@ -94,3 +94,4 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.genruntimeconfig.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\ref\WebProgrammingTerm.API.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.sourcelink.json

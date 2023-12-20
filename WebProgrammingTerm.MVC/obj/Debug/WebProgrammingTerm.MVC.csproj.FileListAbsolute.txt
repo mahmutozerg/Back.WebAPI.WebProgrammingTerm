@@ -1,3 +1,4 @@
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\bin\WebProgrammingTerm.MVC.dll.config
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\bin\WebProgrammingTerm.MVC.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\bin\WebProgrammingTerm.MVC.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\bin\roslyn\csc.exe
@@ -84,4 +85,3 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\obj\Debug\WebProgrammingTerm.MVC.csproj.CopyComplete
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\obj\Debug\WebProgrammingTerm.MVC.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\obj\Debug\WebProgrammingTerm.MVC.pdb
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\bin\WebProgrammingTerm.MVC.dll.config

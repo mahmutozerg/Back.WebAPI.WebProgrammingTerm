@@ -28,10 +28,10 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.AssemblyInfoInputs.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.AssemblyInfo.cs
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.csproj.CoreCompileInputs.cache
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.sourcelink.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.csproj.CopyComplete
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\refint\WebProgrammingTerm.Auth.Repository.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.genruntimeconfig.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\ref\WebProgrammingTerm.Auth.Repository.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.sourcelink.json

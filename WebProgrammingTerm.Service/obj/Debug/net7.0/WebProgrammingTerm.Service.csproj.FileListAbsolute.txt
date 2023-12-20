@@ -14,9 +14,9 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Service\obj\Debug\net7.0\WebProgrammingTerm.Service.AssemblyInfoInputs.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Service\obj\Debug\net7.0\WebProgrammingTerm.Service.AssemblyInfo.cs
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Service\obj\Debug\net7.0\WebProgrammingTerm.Service.csproj.CoreCompileInputs.cache
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Service\obj\Debug\net7.0\WebProgrammingTerm.Service.sourcelink.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Service\obj\Debug\net7.0\WebProgrammingTerm.Service.csproj.CopyComplete
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Service\obj\Debug\net7.0\WebProgrammingTerm.Service.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Service\obj\Debug\net7.0\refint\WebProgrammingTerm.Service.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Service\obj\Debug\net7.0\WebProgrammingTerm.Service.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Service\obj\Debug\net7.0\ref\WebProgrammingTerm.Service.dll
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Service\obj\Debug\net7.0\WebProgrammingTerm.Service.sourcelink.json

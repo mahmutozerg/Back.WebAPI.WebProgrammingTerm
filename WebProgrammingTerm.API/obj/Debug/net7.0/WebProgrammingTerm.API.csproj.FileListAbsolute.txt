@@ -80,13 +80,13 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.csproj.CoreCompileInputs.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets\msbuild.WebProgrammingTerm.API.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets\msbuild.build.WebProgrammingTerm.API.props
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.WebProgrammingTerm.API.props
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.WebProgrammingTerm.API.props
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets.pack.json
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets.build.json
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\scopedcss\bundle\WebProgrammingTerm.API.styles.css
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.csproj.CopyComplete
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.dll

@@ -20,7 +20,7 @@ namespace WebProgrammingTerm.MVC.Controllers
              var newArrivedResultJson = await _productServices.GetProductsFromApi(rand.Next(1,1500));
              
              if (!topSalesResultJson.HasValues || !newArrivedResultJson.HasValues)
-                return View("Index","Error");
+                 return RedirectToAction("Index", "ErrorPage");
              
              ViewData["test"] = topSalesResultJson["data"].ToString(); 
              ViewData["test2"] = newArrivedResultJson["data"].ToString(); 

@@ -69,6 +69,7 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"), options =>
     {
         options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
+        options.EnableRetryOnFailure();
     });
 });
 builder.Services.AddAuthentication(opt =>

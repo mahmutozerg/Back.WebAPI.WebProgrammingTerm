@@ -102,7 +102,7 @@
         @{
             jsonData = ViewData["test2"]?.ToString();  
             
-                if (!string.IsNullOrEmpty(jsonData))
+if (!string.IsNullOrEmpty(jsonData))
                 {
                     try
                     {
@@ -110,37 +110,38 @@
         
                         foreach (var item in jsonArray)
                         {
-                            <a src="#" href="@Url.Action("Index", "Product", new { id = item["productId"] })">
+                            <a src="#" href="@Url.Action("Index","Product",new {id = item["productId"]})">
+                                
                             <div class="product-carousel-item">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="@item["imagePath"]" class="card-img-top" alt="productImage" >
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            <strong class="card-title">
-                                                <a href="@Url.Action("Index","Product",new {id = item["productId"]})" style="color:inherit">
-                                                    @{
-                                                        var name = item["publisher"].ToString().Replace("-", " ");
-                                                        var titleCaseName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
+                            <div class="card" style="width: 18rem;" >
+                                <img src="@item["imagePath"]" class="card-img-top" alt="productImage" >
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <strong class="card-title">
+                                            <a  style="color:inherit">
+                                                @{
+                                                    var name = item["publisher"].ToString().Replace("-", " ");
+                                                    var titleCaseName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
 
-                                                    }
-                                                    @titleCaseName
-                                                </a><br />
-                                            </strong>
-                                             @{
-                                                 var truncatedName = item["name"].ToString().Length > 60
-                                                     ? item["name"].ToString().Substring(0, 57) + "..."
-                                                     : item["name"].ToString();
-                                             }
-                                             @truncatedName       
-                                            <div class="carosel-product-info">
-                                                <a href="../UnderDevelopement/UnderDevelopementPage.html">
-                                                    <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                                                </a>
-                                                <p class="carosel-product-info-text">@item["price"]₺</p>
-                                            </div>
-                                        </p>
-                                    </div>
+                                                }
+                                                @titleCaseName
+                                            </a><br />
+                                        </strong>
+                                         @{
+                                             var truncatedName = item["name"].ToString().Length > 60
+                                                 ? item["name"].ToString().Substring(0, 57) + "..."
+                                                 : item["name"].ToString();
+                                         }
+                                         @truncatedName       
+                                        <div class="carosel-product-info">
+                                            <a href="#" onclick="addToCart('@item["productId"]')">
+                                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
+                                            </a>
+                                            <p class="carosel-product-info-text">@item["price"]₺</p>
+                                        </div>
+                                    </p>
                                 </div>
+                            </div>
                             </div>
 
                             </a>

@@ -21,7 +21,8 @@ namespace WebProgrammingTerm.MVC.Controllers
                  return RedirectToAction("Index", "ErrorPage");
              
              ViewData["test"] = topSalesResultJson["data"].ToString(); 
-             ViewData["test2"] = newArrivedResultJson["data"].ToString(); 
+             ViewData["test2"] = newArrivedResultJson["data"].ToString();
+             ViewData["token"] = Request.Cookies["accessToken"]?.Value ?? "";
              return View("Booker");
         }
 

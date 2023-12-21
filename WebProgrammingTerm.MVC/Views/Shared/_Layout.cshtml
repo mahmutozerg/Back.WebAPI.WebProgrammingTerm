@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/Header.css?v2">
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/Footer.css?v1">
-    <script src="../../Scripts/BookerrScripts/CartScript.js?v10"></script>
+    <script src="../../Scripts/BookerrScripts/CartScript.js?v14"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -47,7 +47,7 @@
                     <img src="../../Content/WebAssets/BOOKERRLogo_Pink.svg">
                 </a>
             </div>
-
+            
             <div class="search-bar">
                 <input type="text" placeholder="Search">
                 <a href="#E6E7E8">
@@ -61,7 +61,14 @@
             </div>
 
             <div class="sepet-image">
-                <a href="#" onclick="SenRequestForAddToCart()">
+                @{
+                    var token = "";
+                    if (Request.Cookies["accessToken"]?.Value !=null)
+                    {
+                        token = Request.Cookies["accessToken"].Value;
+                    }
+                }
+                <a href="#" onclick="SenRequestForAddToCart('@token')">
                     <img src="../../Content/WebAssets/CartIcon.svg">
                 </a>
             </div>

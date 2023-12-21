@@ -80,23 +80,15 @@ function initializeCarousel(containerClass) {
 
         function prevSlide(container) {
             showSlide(container, currentIndex - 1);
-            removeThumbnail(currentIndex);
         }
 
         function nextSlide(container) {
             showSlide(container, currentIndex + 1);
-            removeThumbnail(currentIndex);
         }
 
         // Initial display
         showSlide(container, currentIndex);
     }
 
-    function removeThumbnail(index) {
-        // Function to remove the thumbnail based on the index
-        var thumbnails = container.querySelectorAll('.thumbnail');
-        if (thumbnails.length > index) {
-            thumbnails[index].parentNode.removeChild(thumbnails[index]);
-        }
-    }
+
 }

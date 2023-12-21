@@ -16,11 +16,13 @@ public class UserService:GenericService<User>,IUserService
 {
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IUserFavoritesRepository _favoritesRepository;
     private const string UpdateUserUrl = "https://localhost:7049/api/User/UpdateUser";
-    public UserService(IUnitOfWork unitOfWork, IUserRepository userRepository) : base(userRepository,unitOfWork)
+    public UserService(IUnitOfWork unitOfWork, IUserRepository userRepository, IUserFavoritesRepository favoritesRepository) : base(userRepository,unitOfWork)
     {
         _unitOfWork = unitOfWork;
         _userRepository = userRepository;
+        _favoritesRepository = favoritesRepository;
     }
 
     public async Task<CustomResponseDto<User>> AddUserAsync(UserAddDto userAddDto,ClaimsIdentity claimsIdentity)
@@ -93,7 +95,7 @@ public class UserService:GenericService<User>,IUserService
     {
         var user= await _userRepository
             .Where(u => u != null && u.Id == id && !u.IsDeleted)
-            .Include(u=>u!.Favorites)
+            .Include(u=>u!.Favorites )
             .SingleOrDefaultAsync();
 
         if (user is null)
@@ -129,4 +131,14 @@ public class UserService:GenericService<User>,IUserService
         return userEntity;    
         
     }
+    public async Task<List<UserFavorites?>> GetFavorites(string userId)
+    {
+        var userEntity = await _favoritesRepository
+            .Where(f => f != null  && f.UserId == userId && !f.IsDeleted).ToListAsync();
+
+
+        return userEntity;
+
+    }
+    
 }

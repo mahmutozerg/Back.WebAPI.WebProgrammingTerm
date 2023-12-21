@@ -21,23 +21,36 @@ public class ProductController : Controller
             return RedirectToAction("Index", "ErrorPage");
 
 
-        var userJsonObject = await FavoritesService.GetFavorites(accessToken);
-        
-        if (!userJsonObject.HasValues)
-            return RedirectToAction("Index", "ErrorPage");
-
-        if (userJsonObject["errors"].HasValues)
-            return RedirectToAction("Index", "ErrorPage");
-
-        
-        var model = new ProductModel()
+        if (accessToken is not null)
         {
-            ProductWGetDto = productJsonObject["data"].ToObject<ProductWCommentDto>(),
-            UserFavoritesDto = userJsonObject["data"].ToObject<UserFavoritesListDto>()
-        };
-        return View(model);
+            var userJsonObject = await FavoritesService.GetFavorites(accessToken);
+        
+            if (!userJsonObject.HasValues)
+                return RedirectToAction("Index", "ErrorPage");
+
+            if (userJsonObject["errors"].HasValues)
+                return RedirectToAction("Index", "ErrorPage");
+            var model = new ProductModel()
+            {
+                ProductWGetDto = productJsonObject["data"].ToObject<ProductWCommentDto>(),
+                UserFavoritesDto = userJsonObject["data"].ToObject<UserFavoritesListDto>()
+            };
+            return View(model);
+
+        }
+        else
+        {
+            var model = new ProductModel()
+            {
+                ProductWGetDto = productJsonObject["data"].ToObject<ProductWCommentDto>(),
+                UserFavoritesDto = new UserFavoritesListDto()
+            };
+            return View(model);
+        }
+        
     }
-    
-    
+
+
+
  
 }

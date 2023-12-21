@@ -7,6 +7,7 @@ function getCartItems() {
     return cartItems
 }
 function addToCart(productId) {
+
     var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
     cartItems.push(productId);
@@ -14,38 +15,52 @@ function addToCart(productId) {
     localStorage.setItem('cart', JSON.stringify(cartItems));
     
     console.log('Product added to cart:', productId);
-
 }
 
-function SenRequestForAddToCart()
-{   
+function SenRequestForAddToCart(token)
+{
+    if (token === "")
+    {
+        window.location.href = "http://localhost:5000/signin";
+        return;
+    }
+    
     let cartItems =getCartItems()
-    $.ajax({
-        type: 'POST',
-        url: '/Cart/add',
-        data: { productIds: cartItems },
-        success: function (data) {
-            console.log('Product added to cart on the server.');
+    if (cartItems.length >0)
+    {
+        $.ajax({
+            type: 'POST',
+            url: '/Cart/add',
+            data: { productIds: cartItems },
+            success: function (data) {
 
-            localStorage.removeItem('cart');
-            console.log('Cart cleared');
+                console.log('Cart cleared');
+                removeCartFromLocal()
+            },
+            error: function (error) {
+                console.error('Error adding product to cart on the server.');
+            }
+        });
 
-            console.log('Cart cleared after adding the product to the server.');
-        },
-        error: function (error) {
-            console.error('Error adding product to cart on the server.');
-        }
-    });
+    }
 
-    localStorage.removeItem('cart');
-    console.log('Cart cleared');
 
 }
 
+function  removeCartFromLocal()
+{
+    localStorage.removeItem('cart');
 
-function addToFavorites(productId) {
+}
+
+function addToFavorites(productId,token) {
 
 
+    if (token === "")
+    {
+        window.location.href = "http://localhost:5000/signin";
+        return;
+    }
 
     $.ajax({
         type: 'POST',

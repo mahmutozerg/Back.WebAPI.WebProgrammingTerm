@@ -27,7 +27,7 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
     public async Task<CustomResponseDto<UserFavorites>> UpdateAsync(UserFavoritesDto userFavoritesDto, ClaimsIdentity claimsIdentity)
     {
         var updatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var productExist = await _productService.Where(p => p.Id == userFavoritesDto.ProductId && !p.IsDeleted)
+        var productExist = await _productService.Where(p => p != null && p.Id == userFavoritesDto.ProductId && !p.IsDeleted)
             .AsNoTracking().AnyAsync();
         
         if (!productExist)
@@ -38,7 +38,7 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
         if (userEntity is null)
             throw new Exception(ResponseMessages.UserNotFound);
 
-        var favoriteEntity = await _userFavoritesRepository.Where(uf => uf.UserId == updatedBy).SingleOrDefaultAsync();
+        var favoriteEntity = await _userFavoritesRepository.Where(uf => uf != null && uf.UserId == updatedBy && uf.ProductId == userFavoritesDto.ProductId ).SingleOrDefaultAsync();
         favoriteEntity.IsDeleted = !favoriteEntity.IsDeleted;
         
         _userFavoritesRepository.Update(favoriteEntity);
@@ -78,12 +78,12 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
 
     public async Task<CustomResponseDto<UserFavoritesListDto>> GetAsync(ClaimsIdentity claimsIdentity)
     {
-        var userEntity = await _userService.GetUserWithFavorites(claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        var userFavoritesEntity = await _userService.GetFavorites(claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
-        if (userEntity is null)
+        if (userFavoritesEntity is null)
             throw new Exception(ResponseMessages.UserNotFound);
 
-        var dto = UserFavoriteMapper.ToUserFavoritesListDto(userEntity.Favorites);
+        var dto = UserFavoriteMapper.ToUserFavoritesListDto(userFavoritesEntity);
 
 
         return CustomResponseDto<UserFavoritesListDto>.Success(dto, 200);

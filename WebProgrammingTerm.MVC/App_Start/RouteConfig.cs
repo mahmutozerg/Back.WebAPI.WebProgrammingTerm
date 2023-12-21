@@ -55,7 +55,7 @@ public class RouteConfig
             url: "product/{id}",
             defaults: new { controller = "Product", action = "Index" }
         );
-        
+ 
  
         routes.MapRoute(
             name: "AddToCartRoute",

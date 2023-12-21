@@ -16,7 +16,7 @@ public static class UserFavoriteMapper
         return userFavorite;
     }
     
-    public static UserFavoritesListDto ToUserFavoritesListDto(List<UserFavorites> userFavorites)
+    public static UserFavoritesListDto ToUserFavoritesListDto(List<UserFavorites?> userFavorites)
     {
 
         var userFavorite = new UserFavoritesListDto();

@@ -17,7 +17,7 @@ function ShowAddressInfo(index,id, title, address, city, zipcode) {
 
     
     document.getElementById("clickedIndex").value = index;
-        console.log(document.getElementById("clickedIndex").value);
+    console.log(document.getElementById("clickedIndex").value);
     document.getElementById("title-input").value = title;
     document.getElementById("address-input").value = address;
     document.getElementById("zipcode").value = zipcode;

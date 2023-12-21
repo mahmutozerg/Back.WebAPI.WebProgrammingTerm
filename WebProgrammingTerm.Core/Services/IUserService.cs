@@ -13,4 +13,6 @@ public interface IUserService:IGenericService<User>
     Task<User?> GetUserWithFavorites(string id);
     Task<User> GetUserWithLocations(string id);
     Task<User> GetUserWithOrders(string id);
+    Task<List<UserFavorites?>> GetFavorites(string userId);
+
 }

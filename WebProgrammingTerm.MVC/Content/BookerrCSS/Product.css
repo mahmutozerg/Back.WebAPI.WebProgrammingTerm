@@ -1,0 +1,308 @@
+.product-container
+{
+	display: flex;
+}
+
+.product-carousel-inner {
+	display:flex;
+    padding-left: 2%;
+    padding-right: 2%;
+    height: 70%;
+    transition: transform 0.5s ease-in-out;
+	z-index:1;
+
+}
+
+.productCarousel {
+    margin-top: 3%;
+    width: 30%;
+    height: 80%;
+    margin-left: 15%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-next-btn {
+    position: absolute;
+    top: 40%;
+    right: 8%;
+    /* Adjust the right distance as needed */
+    transform: translateY(-50%);
+    transform: translatex(50%);
+
+}
+
+.carousel-prev-btn {
+    position: absolute;
+    top: 40%;
+    left: 8%;
+    /* Adjust the right distance as needed */
+    transform: translateY(-50%);
+    transform: translatex(-50%);
+
+}
+
+
+.carousel-prev-btn,
+.carousel-next-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+ .product-carousel-item {
+    box-sizing: border-box;
+    object-fit: cover;
+    height: 100%;
+    width: 75%;
+    margin-right: 5%;
+}
+
+ .product-carousel-item img {
+    width: 100%;
+	height:100%;
+	margin-left:55px;
+	border-radius:15px;
+	border:1px solid #808285;
+}
+.card-title {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.card-text {
+    padding: auto;
+    color: #000000;
+    text-decoration: none;
+}
+
+.card-img-top {
+    /* Adjust this value to your desired width */
+    height: 25%;
+    max-width: 75%;
+    display: block;
+    margin: 0 auto;
+}
+
+.carosel-product-info {
+    height: 40%;
+    /* Set a specific height, using 'vh' (viewport height) as an example */
+    max-height: 10%;
+}
+
+.add-to-cart-image {
+    display: block;
+    max-width: 55%;
+    max-height: 100%;
+    margin-left: auto;
+    /* Move the image to the right */
+    margin-right: 4.75%;
+    margin-top: -2%;
+    /* Adjust the value as needed to move the image up */
+
+}
+
+
+.carosel-product-info-text {
+    color: #000000;
+    font-size: larger;
+    width: 40%;
+    height: 50%;
+    /* Set a specific height, using 'vh' (viewport height) as an example */
+    max-height: 80%;
+    margin-top: -14%;
+}
+
+.small-image-container {
+	 padding-left:2%;
+    width: 100%;
+	height:30%;
+	}
+
+  .small-image {
+    display: inline-block;
+    width: 30%;
+    height: 30%;
+	float:left;
+	margin-right:3.1%;
+  }
+
+  .small-image img {
+    width: 100%;
+    height: auto;
+  }
+
+.thumbnail-container {
+    display: flex;
+	z-index:2;
+    margin-top: 1%;
+    text-align: center;
+	height: 10%;
+	width: 300px;
+    margin-left: 76px;
+}
+
+.thumbnail {
+	position:relative;
+    width: 15%;
+    height: 100%;
+    margin: 0 5px;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.thumbnail.active {
+    opacity: 1;
+}
+
+.books-info{
+	height:90%;
+	width:30%;
+}
+
+.info{
+	margin-top:35px;
+}
+
+.info p{
+	font-size:20px;
+	margin-top:-8px;
+}
+
+.stars{
+	display:flex;
+}
+
+.ort{
+	font-weight:bold;
+	margin-right:5px;
+}
+
+.ratings{
+    margin-right:10px;
+}
+
+.ratings i{
+    color:#cecece;
+    font-size:15px;
+}
+
+.rating-color{
+    color:#fbc634 !important;
+}
+
+.review-count{
+    margin-bottom:2px;
+    font-size:16px !important;
+	float:right;
+}
+
+.small-ratings i{
+  color:#cecece;   
+}
+
+.review-stat{
+    font-size:18px;
+    margin-bottom:2px;
+}
+
+.details{
+	margin-top:20px;
+}
+
+.details h6{
+    font-size:16px !important;
+	margin-bottom:-5px;
+	}
+
+.details p{
+	margin-bottom:5px;
+}
+
+.price{
+	color:#F47878;
+	float:right;
+	margin-right:100px;
+	margin-top:-40px;
+}
+
+.add-to-cart{
+	width:200px;
+	height:70px;
+	margin-top:42px;
+	}
+	
+.add-to-cart img{
+	width:235px;
+	height:70px;
+	}
+
+.user-reviews{
+	margin-left:247px;
+	margin-right:247px;
+	height:auto;
+}
+
+.comment-box{
+	height:fit-content;
+	width:1000px;
+}
+
+.box h3{
+	margin-left:20px;
+	margin-top:10px;
+	font-size:14px;
+	width:150px;
+}
+
+.box p{
+	margin-left:15px;
+	margin-top:2px;
+}
+
+.box {
+    border-radius: 15px;
+    border: 1px solid #E6E7E8;
+    width: 900px;
+    height: 100px;
+    background-color: #E6E7E8;
+    display: inline-block;
+    margin: 5px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out; /* Add transition for smooth effect */
+	
+}
+
+.box:hover {
+    border-radius: 15px;
+    border: 1px solid #E6E7E8;
+    width: 900px; /* Increase the width on hover */
+    height: auto; /* Increase the height on hover */
+	min-height:100px;
+    background-color: #E6E7E8;
+    display: inline-block;
+    margin: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	cursor:pointer;
+}
+
+/* Add this to prevent other boxes from moving */
+.box:not(:hover) {
+    width: 900px !important;
+    height: 100px !important;
+    margin: 5px !important;
+    box-shadow: none !important;
+}
+
+.box i{
+	margin-top:-15px;
+	float:right;
+	margin-right:15px;
+	margin-left:-12px;
+}
+
+
+

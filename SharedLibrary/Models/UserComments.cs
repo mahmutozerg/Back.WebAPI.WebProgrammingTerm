@@ -6,7 +6,7 @@ namespace SharedLibrary.Models;
 public class UserComments:Base
 {
     [JsonIgnore]
-    public User User { get; set; } = new User();
+    public User? User { get; set; } = new User();
     [Column(TypeName = "varchar(50)")]
 
     public string UserId { get; set; } = string.Empty;

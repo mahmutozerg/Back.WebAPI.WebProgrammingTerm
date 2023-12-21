@@ -76,7 +76,7 @@ public class UserService:GenericService<User>,IUserService
         return CustomResponseDto<User>.Success(userEntity, ResponseCodes.Updated);
     }
 
-    public async Task<User> GetUserWithComments(string id)
+    public async Task<User?> GetUserWithComments(string id)
     {
         var user= await _userRepository
             .Where(u => u != null && u.Id == id && !u.IsDeleted)
@@ -89,7 +89,7 @@ public class UserService:GenericService<User>,IUserService
         return user;
     }
 
-    public async Task<User> GetUserWithFavorites(string id)
+    public async Task<User?> GetUserWithFavorites(string id)
     {
         var user= await _userRepository
             .Where(u => u != null && u.Id == id && !u.IsDeleted)
@@ -99,7 +99,9 @@ public class UserService:GenericService<User>,IUserService
         if (user is null)
             new Exception(ResponseMessages.UserNotFound);
 
-        return user;    }
+        return user;
+        
+    }
 
     public async Task<User> GetUserWithLocations(string id)
     {

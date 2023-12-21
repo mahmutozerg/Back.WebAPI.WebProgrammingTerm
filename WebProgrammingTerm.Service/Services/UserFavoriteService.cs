@@ -58,7 +58,7 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
         if (!productExist)
             throw new Exception(ResponseMessages.ProductNotFound);
         
-        var favoritesEntity = await _userFavoritesRepository.Where(uf => uf != null && uf.UserId == createdBy).SingleOrDefaultAsync();
+        var favoritesEntity = await _userFavoritesRepository.Where(uf => uf != null && uf.UserId == createdBy && uf.ProductId == userFavoritesDto.ProductId).SingleOrDefaultAsync();
         
         if (favoritesEntity is not null)
             return await UpdateAsync(userFavoritesDto, claimsIdentity);
@@ -74,5 +74,19 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
         await _userService.UpdateAsync(userEntity,createdBy);
 
         return CustomResponseDto<UserFavorites>.Success(favoritesEntity, ResponseCodes.Created);
+    }
+
+    public async Task<CustomResponseDto<UserFavoritesListDto>> GetAsync(ClaimsIdentity claimsIdentity)
+    {
+        var userEntity = await _userService.GetUserWithFavorites(claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+        if (userEntity is null)
+            throw new Exception(ResponseMessages.UserNotFound);
+
+        var dto = UserFavoriteMapper.ToUserFavoritesListDto(userEntity.Favorites);
+
+
+        return CustomResponseDto<UserFavoritesListDto>.Success(dto, 200);
+
     }
 }

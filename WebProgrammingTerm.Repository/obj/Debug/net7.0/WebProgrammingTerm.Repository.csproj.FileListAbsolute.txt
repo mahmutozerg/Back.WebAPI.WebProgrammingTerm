@@ -13,7 +13,6 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\obj\Debug\net7.0\WebProgrammingTerm.Repository.AssemblyInfoInputs.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\obj\Debug\net7.0\WebProgrammingTerm.Repository.AssemblyInfo.cs
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\obj\Debug\net7.0\WebProgrammingTerm.Repository.csproj.CoreCompileInputs.cache
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\obj\Debug\net7.0\WebProgrammingTerm.Repository.sourcelink.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\obj\Debug\net7.0\WebProgrammingTerm.Repository.csproj.CopyComplete
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\obj\Debug\net7.0\WebProgrammingTerm.Repository.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Repository\obj\Debug\net7.0\refint\WebProgrammingTerm.Repository.dll

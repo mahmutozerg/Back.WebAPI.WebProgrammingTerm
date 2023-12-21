@@ -15,4 +15,18 @@ public static class UserFavoriteMapper
 
         return userFavorite;
     }
+    
+    public static UserFavoritesListDto ToUserFavoritesListDto(List<UserFavorites> userFavorites)
+    {
+
+        var userFavorite = new UserFavoritesListDto();
+
+        foreach (var favorites in userFavorites)
+        {
+            userFavorite.UserFavoritesDtos.Add(favorites.ProductId);
+        }
+
+
+        return userFavorite;
+    }
 }

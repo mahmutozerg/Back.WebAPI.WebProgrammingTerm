@@ -51,6 +51,24 @@ public class RouteConfig
             defaults: new { controller = "Contact", action = "ContactIndex" }
         );
         routes.MapRoute(
+            name: "ProductPage",
+            url: "product/{id}",
+            defaults: new { controller = "Product", action = "Index" }
+        );
+        
+ 
+        routes.MapRoute(
+            name: "AddToCartRoute",
+            url: "cart/add",
+            defaults: new { controller = "Cart", action = "AddToCart" }
+        );
+        
+        routes.MapRoute(
+            name: "AddToFavoritesPage",
+            url: "Favorites",
+            defaults: new { controller = "Favorites", action = "Index" }
+        );
+        routes.MapRoute(
             name: "Default",
             url: "{controller}/{action}/{id}",
             defaults: new { controller = "Home", action = "home", id = UrlParameter.Optional }

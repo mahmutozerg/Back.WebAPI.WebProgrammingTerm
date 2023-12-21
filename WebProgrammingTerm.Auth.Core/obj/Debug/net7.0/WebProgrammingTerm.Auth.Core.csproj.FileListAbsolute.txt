@@ -20,7 +20,6 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.AssemblyInfoInputs.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.AssemblyInfo.cs
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.csproj.CoreCompileInputs.cache
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.sourcelink.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.csproj.CopyComplete
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\WebProgrammingTerm.Auth.Core.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Core\obj\Debug\net7.0\refint\WebProgrammingTerm.Auth.Core.dll

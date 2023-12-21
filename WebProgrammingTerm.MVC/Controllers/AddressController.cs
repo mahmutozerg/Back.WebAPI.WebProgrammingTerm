@@ -10,6 +10,7 @@ namespace WebProgrammingTerm.MVC.Controllers;
 public class AddressController : Controller
 {
     // GET
+    private AddressModel model =new AddressModel();
     public async Task<ActionResult> Addresses()
     {
         var token = Request.Cookies["accessToken"]?.Value;
@@ -36,10 +37,8 @@ public class AddressController : Controller
             ViewData["index"] = index;
         }
 
-        return View(new AddressModel()
-        {
-            locations = locations
-        });
+        model.locations = locations;
+        return View(model);
     }
 
     [HttpPost]

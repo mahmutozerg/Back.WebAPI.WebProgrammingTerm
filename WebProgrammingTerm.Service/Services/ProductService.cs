@@ -17,12 +17,14 @@ public class ProductService:GenericService<Product>,IProductService
     private readonly ICompanyUserService _companyUserService;
     private readonly ICompanyService _companyService;
     private readonly IProductDetailService _productDetailService;
-    public ProductService(IUnitOfWork unitOfWork, IProductRepository productRepository , ICompanyUserService companyUserService, ICompanyService companyService, IProductDetailService productDetailService) : base(productRepository, unitOfWork)
+    private readonly IUserCommentRepository _userCommentRepository;
+    public ProductService(IUnitOfWork unitOfWork, IProductRepository productRepository , ICompanyUserService companyUserService, ICompanyService companyService, IProductDetailService productDetailService, IUserCommentRepository userCommentRepository) : base(productRepository, unitOfWork)
     {
         _productRepository = productRepository;
         _companyUserService = companyUserService;
         _companyService = companyService;
         _productDetailService = productDetailService;
+        _userCommentRepository = userCommentRepository;
         _unitOfWork = unitOfWork;
     }
 
@@ -104,5 +106,20 @@ public class ProductService:GenericService<Product>,IProductService
         var  dtos = products.Select(product => ProductMapper.ToAddDto(product)).ToList();
         
         return  CustomResponseListDataDto<ProductGetDto>.Success(dtos,200);
+    }
+
+    public async Task<CustomResponseDto<ProductWCommentDto>> GetProductWithComments(string id)
+    {
+        var products = await _productRepository.Where(p => p != null && !p.IsDeleted && p.Id == id).Include(p=>p.ProductDetail)
+            .Include(p => p.Company).SingleOrDefaultAsync();
+
+        if (products is null)
+            throw new Exception(ResponseMessages.ProductNotFound);
+        var comments = await _userCommentRepository.Where(u => u != null && u.ProductId == id && !u.IsDeleted).ToListAsync();
+        if (comments is null)
+            throw new Exception(ResponseMessages.ProductNotFound);
+
+        return CustomResponseDto<ProductWCommentDto>.Success(ProductMapper.Enhance(products, comments),
+            ResponseCodes.Ok);
     }
 }

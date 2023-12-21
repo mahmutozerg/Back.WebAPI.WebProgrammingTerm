@@ -160,7 +160,6 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.API\obj\Debug\net7.0\WebProgrammingTerm.Auth.API.csproj.CoreCompileInputs.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.API\obj\Debug\net7.0\WebProgrammingTerm.Auth.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.API\obj\Debug\net7.0\WebProgrammingTerm.Auth.API.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.API\obj\Debug\net7.0\WebProgrammingTerm.Auth.API.sourcelink.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.API\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.API\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.API\obj\Debug\net7.0\staticwebassets\msbuild.WebProgrammingTerm.Auth.API.Microsoft.AspNetCore.StaticWebAssets.props

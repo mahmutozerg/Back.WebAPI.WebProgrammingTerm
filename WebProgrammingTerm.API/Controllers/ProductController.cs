@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedLibrary.DTO;
+using SharedLibrary.Models;
 using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
@@ -40,5 +41,14 @@ public class ProductController:CustomControllerBase
     {
         var aA = await _productService.GetProductsByPage(page);
         return CreateActionResult(aA);
+    }
+    
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetProduct(string id)
+    {
+
+        var a = await _productService.GetProductWithComments(id);
+
+        return CreateActionResult(a);
     }
 }

@@ -26,4 +26,11 @@ public class UserFavoritesController:CustomControllerBase
     {
          return CreateActionResult(await _userFavoriteService.UpdateAsync(userFavoritesDto,(ClaimsIdentity)User.Identity));
     }
+    
+    
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetFavorites()
+    {
+        return CreateActionResult(await _userFavoriteService.GetAsync((ClaimsIdentity)User.Identity));
+    }
 }

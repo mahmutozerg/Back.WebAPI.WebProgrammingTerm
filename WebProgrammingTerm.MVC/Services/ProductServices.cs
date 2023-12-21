@@ -5,11 +5,11 @@ using Newtonsoft.Json.Linq;
 
 namespace WebProgrammingTerm.MVC.Services
 {
-    public class ProductServices
+    public static class ProductServices
     {
-        private string Url = "https://localhost:7082/api/Product";
+        private static string Url = "https://localhost:7082/api/Product";
         
-        public async Task<JObject> GetProductsFromApi(int page =1)
+        public static async Task<JObject> GetProductsFromApi(int page =1)
         {
             using (var client = new HttpClient())
             {
@@ -18,8 +18,22 @@ namespace WebProgrammingTerm.MVC.Services
 
                 if (response.IsSuccessStatusCode)
                    return JObject.Parse(await response.Content.ReadAsStringAsync());
-                
+            }
 
+            return new JObject();
+
+        }
+        
+        
+        public static async Task<JObject> GetProduct(string id)
+        {
+            using (var client = new HttpClient())
+            {
+                var a= Url + $"/{Uri.EscapeDataString(id)}";
+                var response = await client.GetAsync(Url+$"/{Uri.EscapeDataString(id)}");
+
+                if (response.IsSuccessStatusCode)
+                    return JObject.Parse(await response.Content.ReadAsStringAsync());
             }
 
             return new JObject();

@@ -80,7 +80,6 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.csproj.CoreCompileInputs.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\WebProgrammingTerm.API.sourcelink.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.API\obj\Debug\net7.0\staticwebassets\msbuild.WebProgrammingTerm.API.Microsoft.AspNetCore.StaticWebAssets.props

@@ -100,18 +100,19 @@ public static class UserServices
                 
                 Expires = tokenDto.AccessTokenExpiration,
                 Value = tokenDto.AccessToken,
-                HttpOnly = true,
-                Secure = true, // Set to true if using HTTPS
+                Secure = true, 
+                SameSite = SameSiteMode.None
+
                 
             };
 
-            // Handle the refresh token as needed
             var refreshTokenCookie = new HttpCookie("refreshToken")
             {
                 Expires = tokenDto.RefreshTokenExpiration,
                 Value = tokenDto.RefreshToken,
-                HttpOnly = true,
-                Secure = true, // Set to true if using HTTPS
+                Secure = true, 
+                SameSite = SameSiteMode.None
+
             };
 
             var cookies = new List<HttpCookie>

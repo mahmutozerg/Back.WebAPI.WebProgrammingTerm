@@ -1,4 +1,3 @@
-C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\bin\WebProgrammingTerm.MVC.dll.config
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\bin\WebProgrammingTerm.MVC.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\bin\WebProgrammingTerm.MVC.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.MVC\bin\roslyn\csc.exe

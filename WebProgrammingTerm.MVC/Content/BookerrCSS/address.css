@@ -113,6 +113,7 @@
  .address
  {
      position: relative;
+     width: 100%;
      left: 3%;
      margin-top: 10%;
      overflow: hidden;

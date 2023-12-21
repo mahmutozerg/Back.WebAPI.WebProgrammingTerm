@@ -120,18 +120,23 @@
         <Compile Include="Controllers\AboutUsController.cs" />
         <Compile Include="Controllers\AccountController.cs" />
         <Compile Include="Controllers\AddressController.cs" />
+        <Compile Include="Controllers\CartController.cs" />
         <Compile Include="Controllers\ContactController.cs" />
         <Compile Include="Controllers\ErrorPageController.cs" />
+        <Compile Include="Controllers\FavoritesController.cs" />
         <Compile Include="Controllers\HomeController.cs" />
+        <Compile Include="Controllers\ProductController.cs" />
         <Compile Include="Controllers\ProfileController.cs" />
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
         </Compile>
         <Compile Include="Models\AddressModel.cs" />
+        <Compile Include="Models\ProductModel.cs" />
         <Compile Include="Models\SignUpDto.cs" />
         <Compile Include="Models\UserModels.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Services\AddressServices.cs" />
+        <Compile Include="Services\FavoritesService.cs" />
         <Compile Include="Services\ProductServices.cs" />
         <Compile Include="Services\UserServices.cs" />
     </ItemGroup>
@@ -143,6 +148,8 @@
         <Content Include="Content\BookerrCSS\errorPage.css" />
         <Content Include="Content\BookerrCSS\Footer.css" />
         <Content Include="Content\BookerrCSS\Header.css" />
+        <Content Include="Content\BookerrCSS\Heart.css" />
+        <Content Include="Content\BookerrCSS\Product.css" />
         <Content Include="Content\BookerrCSS\ProductCard.css" />
         <Content Include="Content\BookerrCSS\ProductCardCarosel.css" />
         <Content Include="Content\BookerrCSS\profile.css" />
@@ -198,8 +205,10 @@
         <Content Include="Scripts\BookerrScripts\AddressPage.js" />
         <Content Include="Scripts\BookerrScripts\AdvertCarousel.js" />
         <Content Include="Scripts\BookerrScripts\BirthDate.js" />
+        <Content Include="Scripts\BookerrScripts\CartScript.js" />
         <Content Include="Scripts\BookerrScripts\ClientSidePasswordCompare.js" />
         <Content Include="Scripts\BookerrScripts\ProductCardCarousel.js" />
+        <Content Include="Scripts\BookerrScripts\ProductPageCarosel.js" />
         <Content Include="Scripts\BookerrScripts\TogglePassword.js" />
         <Content Include="Scripts\bootstrap.js" />
         <Content Include="Scripts\bootstrap.min.js" />
@@ -218,9 +227,12 @@
         <Content Include="Views\Account\SignIn.cshtml" />
         <Content Include="Views\Account\SignUp.cshtml" />
         <Content Include="Views\Address\Addresses.cshtml" />
+        <Content Include="Views\Cart\AddToCart.cshtml" />
         <Content Include="Views\Contact\ContactIndex.cshtml" />
         <Content Include="Views\ErrorPage\Index.cshtml" />
+        <Content Include="Views\Favorites\Index.cshtml" />
         <Content Include="Views\Home\Booker.cshtml" />
+        <Content Include="Views\Product\Index.cshtml" />
         <Content Include="Views\Profile\ProfileIndex.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">

@@ -12,4 +12,7 @@ public interface IProductService:IGenericService<Product>
     Task<Product> GetProductWithCompany(string productId);
 
     Task<CustomResponseListDataDto<ProductGetDto>> GetProductsByPage(int page);
+    
+    Task<CustomResponseDto<ProductWCommentDto>> GetProductWithComments(string id);
+
 }

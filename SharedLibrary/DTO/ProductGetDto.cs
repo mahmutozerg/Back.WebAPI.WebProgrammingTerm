@@ -5,4 +5,5 @@ namespace SharedLibrary.DTO;
 public class ProductGetDto:ProductAddDto
 {
     public Company Company { get; set; }
+    public string ProductId { get; set; }
 }

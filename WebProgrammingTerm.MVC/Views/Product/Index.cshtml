@@ -1,0 +1,182 @@
+﻿@model WebProgrammingTerm.MVC.Models.ProductModel
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Product.css?v2">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Footer.css">
+	<link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Heart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+	 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="../../Scripts/BookerrScripts/ProductPageCarosel.js?v14" ></script>
+
+</head>
+
+
+<body>
+<div class = "product-container">
+	<div class="productCarousel">
+		<div class="product-carousel-inner">
+
+			<div class="product-carousel-item" id="product1">
+				<img src="@Model.ProductWGetDto.ImagePath" alt="Image 1" id="product1Image">
+			</div>
+
+			<div class="product-carousel-item" id="product2">
+				<img src="@Model.ProductWGetDto.ImagePath.Replace("1/1", "2/2")" alt="Image 2" id="product2Image">
+			</div>
+
+			<div class="product-carousel-item" id="product3">
+				<img src="@Model.ProductWGetDto.ImagePath.Replace("1/1", "2/2")" alt="Image 3" id="product3Image">
+			</div>
+
+		</div>
+	</div>
+	
+	<div class="books-info">
+		<div class = "info">
+			<h2> @Model.ProductWGetDto.Name </h2>
+			<p>@Model.ProductWGetDto.Author</p>
+			
+		</div>
+		<div class="stars">
+			<p class="ort">3.8</p>
+			<div class="ratings">
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star"></i>
+			</div>
+			<p class="review-count">| @Model.ProductWGetDto.UserComments.Count<p>
+		</div>
+		<div class="details">
+			<h6>Category</h6><p>@Model.ProductWGetDto.Category</p>
+			<h6>Publisher</h6><p> @Model.ProductWGetDto.Publisher</p>
+			<h6>Publish Date</h6> <p> @Model.ProductWGetDto.PublishDate</p>
+			<h6>Author</h6> <p> @Model.ProductWGetDto.Author</p>
+			<h6>Language</h6> <p> @Model.ProductWGetDto.Language</p>
+			<h6>Page</h6> <p>@Model.ProductWGetDto.Page</p>
+		</div>
+		<div class="price">
+			<h1>@Model.ProductWGetDto.Price₺</h1>
+		</div>
+		<div class="add-to-cart">
+			 <a href="#" onclick="addToCart('@Model.ProductWGetDto.ProductId')">
+                <img src="../../Content/WebAssets/Addtocart.svg">
+            </a>
+		</div>
+		<div class="heartbox">
+			@{
+            	var fill = "none";
+            	foreach (var dto in Model.UserFavoritesDto.UserFavoritesDtos.Where(dto => Model.ProductWGetDto.ProductId  == dto))
+            	{
+            		fill = "#E2264D";
+            	}
+			}
+			<!-- if (fill != "none") { <text>checked</text> } bu eger kullanıcı favorilediyse checklenmesinis saglıyor  -->
+			<input type="checkbox" class="checkbox" id="checkbox" @if (fill != "none") { <text>checked</text> }  onclick="addToFavorites('@Model.ProductWGetDto.ProductId')"/>
+			<label for="checkbox">
+
+				<svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+					<g id="Group" fill="@fill" fill-rule="evenodd" transform="translate(467 392)">
+						<path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>
+						<circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>
+
+						<g id="heartgroup7" opacity="0" transform="translate(7 6)">
+							<circle id="heart1" fill="#9CD8C3" cx="2" cy="6" r="2"/>
+							<circle id="heart2" fill="#8CE8C3" cx="5" cy="2" r="2"/>
+						</g>
+
+						<g id="heartgroup6" opacity="0" transform="translate(0 28)">
+							<circle id="heart1" fill="#CC8EF5" cx="2" cy="7" r="2"/>
+							<circle id="heart2" fill="#91D2FA" cx="3" cy="2" r="2"/>
+						</g>
+
+						<g id="heartgroup3" opacity="0" transform="translate(52 28)">
+							<circle id="heart2" fill="#9CD8C3" cx="2" cy="7" r="2"/>
+							<circle id="heart1" fill="#8CE8C3" cx="4" cy="2" r="2"/>
+						</g>
+
+						<g id="heartgroup2" opacity="0" transform="translate(44 6)">
+							<circle id="heart2" fill="#CC8EF5" cx="5" cy="6" r="2"/>
+							<circle id="heart1" fill="#CC8EF5" cx="2" cy="2" r="2"/>
+						</g>
+
+						<g id="heartgroup5" opacity="0" transform="translate(14 50)">
+							<circle id="heart1" fill="#91D2FA" cx="6" cy="5" r="2"/>
+							<circle id="heart2" fill="#91D2FA" cx="2" cy="2" r="2"/>
+						</g>
+
+						<g id="heartgroup4" opacity="0" transform="translate(35 50)">
+							<circle id="heart1" fill="#F48EA7" cx="6" cy="5" r="2"/>
+							<circle id="heart2" fill="#F48EA7" cx="2" cy="2" r="2"/>
+						</g>
+
+						<g id="heartgroup1" opacity="0" transform="translate(24)">
+							<circle id="heart1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>
+							<circle id="heart2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>
+						</g>
+					</g>
+				</svg>
+			</label>
+		</div>
+	</div>
+</div>
+
+<div class="user-reviews">
+	<div class="review">
+		<h2>Reviews</h2>
+	</div>
+	
+	<div class="comment-box">
+		<div class="box">
+			<h3>Ege Kıran</h3>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color"></i>
+			<p>Çok güzel kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg 
+			hsdkgfskah gfhgdsh foısudhftap kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg h
+			sdkgfskah gfhgdsh foısudhftap kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg hsdkgfskah 
+			gfhgdsh foısudhftap kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg hsdkgfskah gfhgdsh foısudhftap</p>
+
+		</div>
+		<div class="box">
+			<h3>Ege Kıran</h3>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star "></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color" ></i>
+			<p>Rezalet</p>
+		</div>
+		<div class="box">
+			<h3>Ege Kıran</h3>
+				<i class="fa fa-star "></i>
+				<i class="fa fa-star "></i>
+				<i class="fa fa-star "></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star rating-color"></i>
+			<p>Bayıldım</p>
+		</div>
+		<div class="box">
+			<h3>Ege Kıran</h3>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color"></i>
+				<i class="fa fa-star rating-color"></i>
+			<p>Bayıldım</p>
+		</div>
+	</div>
+</div>	
+<script>
+
+	initializeCarousel("productCarousel");
+</script>
+
+</body>

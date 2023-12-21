@@ -38,7 +38,8 @@ namespace SharedLibrary.Mappers
                 PublishDate = product.ProductDetail.PublishDate,
                 Publisher = product.ProductDetail.Publisher,
                 Stock = product.Stock,
-                Company = product.Company
+                Company = product.Company,
+                ProductId = product.Id
             };
             return productAddDto;
             
@@ -52,6 +53,36 @@ namespace SharedLibrary.Mappers
             productEntity.Stock = productUpdateDto.Stock == 0 ? productEntity.Stock : productUpdateDto.Stock;
             productEntity.DiscountRate = productUpdateDto.DiscountRate == 0f ? productEntity.DiscountRate : productUpdateDto.DiscountRate;
 
+        }
+        
+        
+        public static ProductWCommentDto Enhance(Product product,List<UserComments> userCommentsList)
+        {
+
+            var productAddDto = new ProductWCommentDto()
+            {
+                Author = product.ProductDetail.Author,
+                Category = product.Category,
+                DepotId = product.ProductDetail.DepotId,
+                DiscountRate = product.DiscountRate,
+                ImagePath = product.ImagePath,
+                Language = product.ProductDetail.Language,
+                Name = product.Name,
+                Price = product.Price,
+                Page = product.ProductDetail.Page,
+                PublishDate = product.ProductDetail.PublishDate,
+                Publisher = product.ProductDetail.Publisher,
+                Stock = product.Stock,
+                Company = product.Company,
+                ProductId = product.Id,
+                UserComments = new List<UserComments>()
+            };
+            if (userCommentsList is not null && userCommentsList.Count >0)
+            {
+                productAddDto.UserComments.AddRange(userCommentsList);
+
+            }
+            return productAddDto;
         }
     }
 }

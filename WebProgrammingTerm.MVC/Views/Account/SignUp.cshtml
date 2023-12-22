@@ -1,13 +1,13 @@
 ﻿@model WebProgrammingTerm.MVC.Models.SignUpDto
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/sign_up.css?v3">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/sign_up.css?6">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../../Scripts/BookerrScripts/ClientSidePasswordCompare.js?v2"></script>
+    <script src="../../Scripts/BookerrScripts/ClientSidePasswordCompare.js?v6"></script>
     <script src="../../Scripts/BookerrScripts/TogglePassword.js"></script>
 
 
@@ -15,84 +15,84 @@
 
 <body>
 <br><br>
-    <div class="sign-up">
-        <div class="button-items">
-            <div class="sign-info">
-                <p style="font-size:50px;"><strong>Sign Up</strong></p>
-            </div>
-            <br><br>
 
-            @if (ViewData.ModelState["LoginError"] != null && ViewData.ModelState["LoginError"].Errors.Count > 0)
-            {
-                <div class="login-error">
-                    <span>@ViewData.ModelState["LoginError"].Errors[0].ErrorMessage</span>
-                </div>
-                foreach (var error in ViewData.ModelState["LoginError"].Errors)
-                {
-                    <div class="login-error">
-                        <span>@error.ErrorMessage</span>
-                    </div>
-                }
-            }
+    <div class ="mainContent">
+        
+       <div class="sign-up">
+           <div class="button-items">
+               <div class="sign-info">
+                   <p style="font-size:50px;"><strong>Sign Up</strong></p>
+               </div>
+               <br><br>
 
-            <!-- Display Validation Errors for Mail -->
-            @if (ViewData.ModelState["mail"] != null && ViewData.ModelState["mail"].Errors.Count > 0)
-            {
-                foreach (var error in ViewData.ModelState["mail"].Errors)
-                {
-                    <div class="mail-error">
-                        <span>@error.ErrorMessage</span>
-                    </div>
-                }
-            }
-            @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Count > 0)
-            {
-                foreach (var error in ViewData.ModelState["Password"].Errors)
-                {
-                    <div class="password-error" id ="password-error">
-                        <span>@error.ErrorMessage</span>
-                    </div>
-                }
-            }
-            <form action="@Url.Action("SignUp", "Account")" method="post">
-                <div class="bar">
-                    <div id="name-bar">
-                        @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name*", required = "required" })
-                        @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name*", required = "required" })
-                    </div>
-                    <br>
-                    <div class="email-bar">
-                        @Html.TextBoxFor(m => m.Email, new { placeholder = "E-Mail*", required = "required",type="email" })
-                        <a href="#E6E7E8"></a>
-                    </div>
-                    <br>
-                    <div class="password-bar">
-                        @Html.PasswordFor(m => m.Password, new { id = "password", placeholder = "Password*", required = "required" })
-                        <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('password')">
-                            <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
-                        </a>
-                    </div>
-                    <div class="confirm-password-bar">
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { id = "confirmPassword", placeholder = "Confirm Password*", required = "required" })
-                        <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('confirmPassword')">
-                            <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Confirm Password Button Image">
-                        </a>
-                    </div>
+               @if (ViewData.ModelState["LoginError"] != null && ViewData.ModelState["LoginError"].Errors.Count > 0)
+               {
+                   <div class="login-error">
+                       <span>@ViewData.ModelState["LoginError"].Errors[0].ErrorMessage</span>
+                   </div>
+                   foreach (var error in ViewData.ModelState["LoginError"].Errors)
+                   {
+                       <div class="login-error">
+                           <span>@error.ErrorMessage</span>
+                       </div>
+                   }
+               }
+               <form action="@Url.Action("SignUp", "Account")" method="post" id = "signupForm">
+                   <div class="bar">
+                       <div id="name-bar">
+                           @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name*", required = "required" })
+                           @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name*", required = "required" })
+                       </div>
+                       <br>
+                       <div class="email-bar">
+                           @Html.TextBoxFor(m => m.Email, new { placeholder = "E-Mail*", required = "required",type="email" })
+                           <a href="#E6E7E8"></a>
+                       </div>
+                       <br>
+                       <div class="password-bar">
+                           @Html.PasswordFor(m => m.Password, new { id = "password", placeholder = "Password*", required = "required" })
+                           <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('password')">
+                               <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
+                           </a>
+                       </div>
+                       <div class="confirm-password-bar">
+                           @Html.PasswordFor(m => m.ConfirmPassword, new { id = "confirmPassword", placeholder = "Confirm Password*", required = "required" })
+                           <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('confirmPassword')">
+                               <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Confirm Password Button Image">
+                           </a>
+                       </div>
+                           @if (ViewData.ModelState["mail"] != null && ViewData.ModelState["mail"].Errors.Count > 0)
+                           {
+                               foreach (var error in ViewData.ModelState["mail"].Errors)
+                               {
+                                   <div class="mail-error" style="font-family: Montserrat; font-weight: 500;font-size:15px;">
+                                       <span>*@error.ErrorMessage</span>
+                                   </div>
+                               }
+                           }
+                           @if (ViewData.ModelState["Password"] != null && ViewData.ModelState["Password"].Errors.Count > 0)
+                           {
+                               foreach (var error in ViewData.ModelState["Password"].Errors)
+                               {
+                                   <div class="password-error" id ="password-error" style="font-family: Montserrat; font-weight: 500;font-size:15px;">
+                                       <span>*@error.ErrorMessage</span>
+                                   </div>
+                               }
+                           }
+                           <input type="submit" value="Sign Up" style="margin-top: 15px">
+                       <br>
 
-                    <div class="sign-button-img">
-                        <input type="submit" value="Sign Up">
-                    </div>
-                    <br>
+                       <br>
+                   </div>
+               </form>
+           </div>
 
-                    <br>
-                </div>
-            </form>
-        </div>
-
-        <div class="book-img">
-            <div class="book-item">
-                <img src="../../Content/WebAssets/bookvector.svg" alt="Book Image">
-            </div>
-        </div>
+           <div class="book-img">
+               <div class="book-item">
+                   <img src="../../Content/WebAssets/bookvector.svg" alt="Book Image">
+               </div>
+           </div>
+       </div>
+     
     </div>
 </body>

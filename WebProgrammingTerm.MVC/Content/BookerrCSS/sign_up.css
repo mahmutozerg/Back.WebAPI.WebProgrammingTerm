@@ -1,47 +1,70 @@
  
 .sign-up {
-	width: 150%;
+    width: 150%;
     display: flex;
     align-items: center;
     padding: 0 20px;
+    position: relative;
+    left: 15%;
+    max-height: 100%;
 }
 .password-error {
     color: red; 
-    font-size: 14px; 
+    font-size: 15px; 
 }
 
 .mail-error {
     color: red; 
-    font-size: 14px;
+    font-size: 15px;
 }
 .button-items {
 	flex: 1;
-	max-width: 45%;
+	max-width: fit-content;
 }
-
+.mainContent
+{
+    display: inline-block;
+    position: relative;
+    left: 15%;
+    width: 990px;
+    overflow: hidden;
+    height: 990px;
+}
 .book-img{
 	display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
+    position: relative;
+    left: 3.60%;
 }
 
 .sign-info {
     width: 80%;
     display: flex;
     flex-direction: column;
-	margin-left: 370px;
+	margin-left: 120px;
 }
 .bar {
-    width: 70%;
+    width: 450px;
 	display: flex;
     flex-direction: column;
     position: relative;
     top: 15%;
     padding-bottom: 1%;
-    padding-left: 30%;
 }
-
+body > div > div > div.button-items > form > div > input[type=submit]
+{
+    width: 33%;
+    height: 35px;
+    font-size: 13px;
+    font-weight: 700;
+    background-color: #F47878;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
 #name-bar {
 	display:flex;
 	gap: 5%;
@@ -109,8 +132,8 @@
     background-color: transparent; /* Arka plan rengi şeffaf yapılır */
     border: none; /* Kenarlık olmaması için */
 	position: relative;
-	left: 450px;
-	top: -28px;
+    left: 412px;
+    top: -31px;
 }
 
 .image-button:hover {

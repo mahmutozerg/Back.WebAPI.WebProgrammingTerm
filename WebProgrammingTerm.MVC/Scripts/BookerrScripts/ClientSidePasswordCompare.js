@@ -1,5 +1,5 @@
 ﻿$(document).ready(function() {
-    $('form').submit(function() {
+    $('signupForm').submit(function() {
         var password = $('#password').val();
         var confirmPassword = $('#confirmPassword').val();
 

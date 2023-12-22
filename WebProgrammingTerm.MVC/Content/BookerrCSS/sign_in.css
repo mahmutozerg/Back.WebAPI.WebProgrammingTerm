@@ -102,6 +102,7 @@ body > div > div > div.button-items > form > div > div.account{
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
+
 }
 
 .book-item img {

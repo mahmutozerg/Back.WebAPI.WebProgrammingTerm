@@ -23,7 +23,7 @@ public static class UserFavoriteMapper
 
         foreach (var favorites in userFavorites)
         {
-            userFavorite.UserFavoritesDtos.Add(favorites.ProductId);
+            userFavorite.ProductIds.Add(favorites.ProductId);
         }
 
 

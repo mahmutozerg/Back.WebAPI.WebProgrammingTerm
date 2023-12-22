@@ -52,11 +52,14 @@ public class RouteConfig
         );
         routes.MapRoute(
             name: "ProductPage",
-            url: "product/{id}",
+            url: "product/productsId/{id}",
             defaults: new { controller = "Product", action = "Index" }
         );
- 
- 
+        routes.MapRoute(
+            name: "ProductSearchRoute",
+            url: "product/search/{searchTerm}",
+            defaults: new { controller = "Product", action = "Search" }
+        );
         routes.MapRoute(
             name: "AddToCartRoute",
             url: "cart/add",

@@ -39,12 +39,16 @@ public class UserFavoriteService:GenericService<UserFavorites>,IUserFavoriteServ
             throw new Exception(ResponseMessages.UserNotFound);
 
         var favoriteEntity = await _userFavoritesRepository.Where(uf => uf != null && uf.UserId == updatedBy && uf.ProductId == userFavoritesDto.ProductId ).SingleOrDefaultAsync();
-        favoriteEntity.IsDeleted = !favoriteEntity.IsDeleted;
+        if (favoriteEntity == null) 
+            throw new Exception(ResponseMessages.Notfound);
         
+        favoriteEntity.IsDeleted = !favoriteEntity.IsDeleted;
+
         _userFavoritesRepository.Update(favoriteEntity);
         await _unitOfWork.CommitAsync();
 
         return CustomResponseDto<UserFavorites>.Success(favoriteEntity, ResponseCodes.Updated);
+
     }
 
     public async Task<CustomResponseDto<UserFavorites>> AddAsync(UserFavoritesDto userFavoritesDto, ClaimsIdentity claimsIdentity)

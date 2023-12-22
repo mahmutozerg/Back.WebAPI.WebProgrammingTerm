@@ -75,7 +75,7 @@
 				if (Request.Cookies["accessToken"]?.Value != null)
 				{
 					token = Request.Cookies["accessToken"]?.Value;
-					foreach (var dto in Model.UserFavoritesDto.UserFavoritesDtos.Where(dto => Model.ProductWGetDto.ProductId  == dto))
+					foreach (var dto in Model.UserFavoritesDto.ProductIds.Where(dto => Model.ProductWGetDto.ProductId  == dto))
 					{
 						fill = "#E2264D";
 					}

@@ -110,7 +110,7 @@ public class AuthenticationService:IAuthenticationService
     
     public async Task<Response<NoDataDto>> RevokeRefreshToken(string _refreshToken)
     {
-        var refreshToken = await _refreshTokenService.Where(r => r.Token == _refreshToken).FirstOrDefaultAsync();
+        var refreshToken = await _refreshTokenService.Where(r => r != null && r.Token == _refreshToken).FirstOrDefaultAsync();
         if (refreshToken is null)
             return Response<NoDataDto>.Fail("Refresh token does not exist", 404,true);
         

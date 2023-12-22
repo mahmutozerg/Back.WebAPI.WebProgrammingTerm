@@ -41,7 +41,7 @@ public class UserService:GenericService<User>,IUserService
 
     }
 
-    private static async Task SendUpdateReqToBusinessAsync(AppUserUpdateDto updateDto,string accessToken)
+    private static async Task SendUpdateReqToAuthAsync(AppUserUpdateDto updateDto,string accessToken)
     {
         using (var client = new HttpClient())
         {
@@ -58,11 +58,12 @@ public class UserService:GenericService<User>,IUserService
     public async Task<CustomResponseDto<User>> UpdateUserAsync(AppUserUpdateDto updateDto, ClaimsIdentity claimsIdentity,string accessToken)
     {
         var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        
         var userEntity = await _userRepository.Where(u => u != null && u.Id == userId && !u.IsDeleted).SingleOrDefaultAsync();
-
-        var emailExist = await _userRepository.Where(u => u != null && u.Email == updateDto.Email && !u.IsDeleted).AnyAsync();
         if (userEntity is null)
             return CustomResponseDto<User>.Fail(ResponseMessages.UserNotFound, ResponseCodes.NotFound);
+        
+        var emailExist = await _userRepository.Where(u => u != null && u.Email == updateDto.Email && !u.IsDeleted).AnyAsync();
         if (emailExist)
             return CustomResponseDto<User>.Fail(ResponseMessages.UserMailExist, ResponseCodes.Duplicate);
 
@@ -71,7 +72,7 @@ public class UserService:GenericService<User>,IUserService
 
         //checks if user updated its email if yes we should also update it in authserver
         if (userEntity.Email != tempData)
-            await SendUpdateReqToBusinessAsync(updateDto, accessToken);
+            await SendUpdateReqToAuthAsync(updateDto, accessToken);
 
         _userRepository.Update(userEntity);
         await _unitOfWork.CommitAsync();

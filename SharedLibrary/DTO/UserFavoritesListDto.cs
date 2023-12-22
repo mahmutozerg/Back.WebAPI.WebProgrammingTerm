@@ -2,5 +2,5 @@
 
 public class UserFavoritesListDto
 {
-    public List<string> UserFavoritesDtos { get; set; } = new List<string>();
+    public List<string> ProductIds { get; set; } = new List<string>();
 }

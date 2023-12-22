@@ -49,6 +49,12 @@ public class ProductController : Controller
         }
         
     }
+    public async Task<ActionResult> Search(string searchTerm)
+    {
+        var a = searchTerm;
+
+        return  RedirectToAction("Index");
+    }
 
 
 

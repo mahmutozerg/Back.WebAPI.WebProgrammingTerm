@@ -48,11 +48,12 @@
                 </a>
             </div>
             
-            <div class="search-bar">
-                <input type="text" placeholder="Search">
-                <a href="#E6E7E8">
-                </a>
-            </div>
+                @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+                {
+                <div class="search-bar">
+                    <input type="text" name="searchTerm" placeholder="Search">
+                </div>
+                }
 
             <div class="profile-image">
                 <a href=@Url.Action("ProfileIndex", "Profile")>

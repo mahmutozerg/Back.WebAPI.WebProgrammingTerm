@@ -26,7 +26,7 @@ public class LocationService:GenericService<Location>,ILocationService
     public async Task<CustomResponseDto<Location>> UpdateAsync(LocationUpdateDto locationUpdateDto, ClaimsIdentity claimsIdentity)
     {
         var updatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var locationEntity = await _locationRepository.Where(p => p.Id == locationUpdateDto.Id && !p.IsDeleted).FirstOrDefaultAsync();
+        var locationEntity = await _locationRepository.Where(l => l != null && l.Id == locationUpdateDto.Id && l.UserId == updatedBy &&!l.IsDeleted).FirstOrDefaultAsync();
 
         if (locationEntity is null)
             throw new Exception(ResponseMessages.LocationNotFound);
@@ -65,7 +65,7 @@ public class LocationService:GenericService<Location>,ILocationService
     {
         var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        var locations = await _locationRepository.Where(l => l.UserId == userId && !l.IsDeleted).ToListAsync();
+        var locations = await _locationRepository.Where(l => l != null && l.UserId == userId && !l.IsDeleted).ToListAsync();
         return CustomResponseDto<List<Location>?>.Success(locations, ResponseCodes.Ok);
     }
 

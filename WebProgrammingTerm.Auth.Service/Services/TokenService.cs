@@ -61,7 +61,7 @@ public class TokenService:ITokenService
 
     public ClientTokenDto CreateTokenByClient(Client client)
     {
-        var accesTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
+        var accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
         var securityKey = SignService.GetSymmetricSecurityKey(_tokenOptions.SecurityKey);
 
         var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
@@ -69,7 +69,7 @@ public class TokenService:ITokenService
         var jwtSecurityToken = new JwtSecurityToken(
             
             issuer: _tokenOptions.Issuer,
-            expires: accesTokenExpiration,
+            expires: accessTokenExpiration,
             notBefore: DateTime.Now,
             signingCredentials: signingCredentials,
             claims: GetClaimsByClient(client)
@@ -81,7 +81,7 @@ public class TokenService:ITokenService
         var tokendto = new ClientTokenDto
         {
             AccesToken = token,
-            AccesTokenExpiration = accesTokenExpiration
+            AccesTokenExpiration = accessTokenExpiration
         };
 
         return tokendto;    

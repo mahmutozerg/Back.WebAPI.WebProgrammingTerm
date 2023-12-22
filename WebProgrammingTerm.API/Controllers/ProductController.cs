@@ -51,4 +51,14 @@ public class ProductController:CustomControllerBase
 
         return CreateActionResult(a);
     }
+    
+    
+    [HttpGet("{name}/{page:int}")]
+    public async Task<IActionResult> GetProductByName(int page ,string name)
+    {
+
+        var a = await _productService.GetProductByName(page, name);
+
+        return CreateActionResult(a);
+    }
 }

@@ -98,6 +98,7 @@ builder.Services.AddAuthorization(options =>
     
     options.AddPolicy("AdminBypassAuthServerPolicy", policy =>
         policy.Requirements.Add(new AdminClientIdBypassRequirement("authserver")));
+    
     options.AddPolicy("JSClientPolicy", policy =>
         policy.Requirements.Add(new ClientIdRequirement("jsclient")));
     

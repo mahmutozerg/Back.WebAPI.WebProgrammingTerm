@@ -33,6 +33,15 @@ public class OrderService:GenericService<Order>,IOrderService
     {
         var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         
+        var locationEntity = await _locationService.Where(l => l != null && l.Id == orderAddDto.LocationId && !l.IsDeleted).FirstOrDefaultAsync();
+        
+        if (locationEntity is null)
+            throw new Exception(ResponseMessages.LocationNotFound);
+        
+        var userEntity = await _userService.GetUserWithOrders(createdBy);
+        if (userEntity is null)
+            throw new Exception(ResponseMessages.UserNotFound);
+        
         var productList = new List<Product>();
 
         foreach (var productIdVariable in orderAddDto.ProductIdList.ToHashSet())
@@ -46,13 +55,9 @@ public class OrderService:GenericService<Order>,IOrderService
             productList.Add(product);
         }
 
-        var locationEntity = await _locationService.Where(l => l != null && l.Id == orderAddDto.LocationId && !l.IsDeleted).FirstOrDefaultAsync();
-        if (locationEntity is null)
-            throw new Exception(ResponseMessages.LocationNotFound);
 
-        var userEntity = await _userService.GetUserWithOrders(createdBy);
-        if (userEntity is null)
-            throw new Exception(ResponseMessages.UserNotFound);
+
+
         
         var orderEntity = OrderMapper.ToOrder(orderAddDto);
         orderEntity.User = userEntity;
@@ -63,7 +68,7 @@ public class OrderService:GenericService<Order>,IOrderService
         orderEntity.OrderDetail = new OrderDetail()
         {
             Tax = 0.18f,
-            PaymentMethod = "CC"
+            PaymentMethod = "Cash"
         };
         await _orderRepository.AddAsync(orderEntity);
         await _unitOfWork.CommitAsync();

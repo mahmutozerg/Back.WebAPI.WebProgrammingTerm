@@ -149,6 +149,7 @@
         <Content Include="Content\BookerrCSS\Footer.css" />
         <Content Include="Content\BookerrCSS\Header.css" />
         <Content Include="Content\BookerrCSS\Heart.css" />
+        <Content Include="Content\BookerrCSS\HomePage.css" />
         <Content Include="Content\BookerrCSS\Product.css" />
         <Content Include="Content\BookerrCSS\ProductCard.css" />
         <Content Include="Content\BookerrCSS\ProductCardCarosel.css" />

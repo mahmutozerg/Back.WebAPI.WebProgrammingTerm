@@ -11,12 +11,20 @@
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/AdvertCardCaurosel.css">
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/ProductCard.css">
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/ProductCardCarosel.css">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/HomePage.css">
     <script src="/Scripts/BookerrScripts/AdvertCarousel.js?v4" defer></script>
     <script src="/Scripts/BookerrScripts/ProductCardCarousel.js?v3" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
+<div class="popup-container" id="popup" style="display: none">
+    <div class="popup-content">
+        <div class="checkmark">✔</div>
+        <p>Product added to cart</p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+</div>
 
 <div class="advertCarousel">
        
@@ -70,7 +78,7 @@
                                          }
                                          @truncatedName       
                                         <div class="carosel-product-info">
-                                            <a href="#" onclick="addToCart('@item["productId"]')">
+                                            <a href="#" onclick="showPopup();addToCart('@item["productId"]')">
                                                 <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
                                             </a>
                                             <p class="carosel-product-info-text">@item["price"]₺</p>
@@ -96,13 +104,13 @@
             
         </div>
     </div>
-<div class="productCarousel">
-    <h5 class="Title" style="color: black; font-size: 20px;padding:20px;"><strong>New Products</strong></h5>
-    <div class="product-carousel-inner">
+    <div class="productCarousel">
+        <h5 class="Title" style="color: black; font-size: 20px;padding:20px;"><strong>New Products</strong></h5>
+        <div class="product-carousel-inner">
         @{
             jsonData = ViewData["test2"]?.ToString();  
             
-if (!string.IsNullOrEmpty(jsonData))
+                if (!string.IsNullOrEmpty(jsonData))
                 {
                     try
                     {
@@ -134,7 +142,7 @@ if (!string.IsNullOrEmpty(jsonData))
                                          }
                                          @truncatedName       
                                         <div class="carosel-product-info">
-                                            <a href="#" onclick="addToCart('@item["productId"]')">
+                                            <a href="#" onclick="showPopup();addToCart('@item["productId"]')">
                                                 <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
                                             </a>
                                             <p class="carosel-product-info-text">@item["price"]₺</p>
@@ -161,4 +169,13 @@ if (!string.IsNullOrEmpty(jsonData))
     </div>
 </div>
 
+<script>
+    function showPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
+    
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
 </body>

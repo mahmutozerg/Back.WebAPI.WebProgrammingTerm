@@ -12,6 +12,25 @@
 	z-index:1;
 
 }
+.popup-container {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .productCarousel {
     margin-top: 3%;
@@ -26,7 +45,7 @@
     position: absolute;
     top: 40%;
     right: 8%;
-    /* Adjust the right distance as needed */
+
     transform: translateY(-50%);
     transform: translatex(50%);
 
@@ -36,7 +55,6 @@
     position: absolute;
     top: 40%;
     left: 8%;
-    /* Adjust the right distance as needed */
     transform: translateY(-50%);
     transform: translatex(-50%);
 
@@ -79,7 +97,6 @@
 }
 
 .card-img-top {
-    /* Adjust this value to your desired width */
     height: 25%;
     max-width: 75%;
     display: block;
@@ -88,7 +105,6 @@
 
 .carosel-product-info {
     height: 40%;
-    /* Set a specific height, using 'vh' (viewport height) as an example */
     max-height: 10%;
 }
 
@@ -97,10 +113,8 @@
     max-width: 55%;
     max-height: 100%;
     margin-left: auto;
-    /* Move the image to the right */
     margin-right: 4.75%;
     margin-top: -2%;
-    /* Adjust the value as needed to move the image up */
 
 }
 
@@ -110,7 +124,6 @@
     font-size: larger;
     width: 40%;
     height: 50%;
-    /* Set a specific height, using 'vh' (viewport height) as an example */
     max-height: 80%;
     margin-top: -14%;
 }
@@ -272,15 +285,15 @@
     display: inline-block;
     margin: 5px;
     overflow: hidden;
-    transition: all 0.3s ease-in-out; /* Add transition for smooth effect */
+    transition: all 0.3s ease-in-out;
 	
 }
 
 .box:hover {
     border-radius: 15px;
     border: 1px solid #E6E7E8;
-    width: 900px; /* Increase the width on hover */
-    height: auto; /* Increase the height on hover */
+    width: 900px; 
+    height: auto;
 	min-height:100px;
     background-color: #E6E7E8;
     display: inline-block;
@@ -289,7 +302,7 @@
 	cursor:pointer;
 }
 
-/* Add this to prevent other boxes from moving */
+
 .box:not(:hover) {
     width: 900px !important;
     height: 100px !important;

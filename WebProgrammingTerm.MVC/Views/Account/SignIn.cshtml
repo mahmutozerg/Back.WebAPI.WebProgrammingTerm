@@ -1,59 +1,60 @@
 ﻿@model SharedLibrary.DTO.LoginDto
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/sign_in.css?v13">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/sign_in.css?v14">
     <script src="../../Scripts/BookerrScripts/TogglePassword.js"></script>
 
 </head>
 
 <body>
     <br><br>
-
-    <div class="sign-in">
-        <div class="button-items">
-            <div class="sign-info">
-                <p style="font-size:50px;"><strong>Sign In</strong></p>
-            </div>
-            <br><br>
-            <form action="@Url.Action("SignIn", "Account")" method="post">
-                @if (ViewData.ModelState["LoginError"] != null && ViewData.ModelState["LoginError"].Errors.Count > 0)
-                {
-                    <div class="login-error">
-                        <span>@ViewData.ModelState["LoginError"].Errors[0].ErrorMessage</span>
-                    </div>
-                }
-                <div class="bar">
-                    <div class="email-bar">
-                        @Html.TextBoxFor(m => m.Email, new { placeholder = "E-Mail*", required = "required" ,type ="email" })
-                        <a href="#E6E7E8"></a>
-                    </div>
-                    <br>
-                    <div class="password-bar">
-                        @Html.PasswordFor(m => m.Password, new { id = "password",placeholder = "Password*", required = "required" })
-                            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('password')">
-                            <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
-                        </a>
-                    </div>
-                    <div class="sign-button-img">
-                        <input type="submit" value="Sign In">
-                    </div>
+    <div class = "mainContent" style="height: 520px">
+        <div class="sign-in">
+            <div class="button-items">
+                <div class="sign-info">
+                    <p style="font-size:50px;"><strong>Sign In</strong></p>
                 </div>
-            </form>
-            <br>
-            <div class="account">
-                <p>Do not have an account?<a href="@Url.Action("SignUp")"> Create an account</a></p>
+                <br><br>
+                <form action="@Url.Action("SignIn", "Account")" method="post">
+
+                    <div class="bar">
+                        <div class="email-bar">
+                            @Html.TextBoxFor(m => m.Email, new { placeholder = "E-Mail*", required = "required" ,type ="email" })
+                            <a href="#E6E7E8"></a>
+                        </div>
+                        <br>
+                        <div class="password-bar">
+                            @Html.PasswordFor(m => m.Password, new { id = "password",placeholder = "Password*", required = "required" })
+                            <a href="#E6E7E8" class="image-button" onclick="togglePasswordVisibility('password')">
+                                <img src="../../Content/WebAssets/hidepasswdbutton.svg" alt="Password Button Image">
+                            </a>
+                        </div>
+                        <input type="submit" value="Sign In"style="margin-bottom: 15px" >
+                        @if (ViewData.ModelState["LoginError"] != null && ViewData.ModelState["LoginError"].Errors.Count > 0)
+                        {
+                            <div class="login-error">
+                                <span style="font-family: Montserrat; font-weight: 500;font-size:20px; ">*@ViewData.ModelState["LoginError"].Errors[0].ErrorMessage</span>
+                            </div>
+                        }
+                        <div class="account">
+                            <p>Do not have an account? <a href="@Url.Action("SignUp")" style="text-decoration: underline; color: #F47878"> Create an account</a></p>
+                        </div>
+                    </div>
+
+                </form>
+                <br>
+
+                <br>
+
             </div>
-            <br>
-            <div class="continue">
-                <img src="../../Content/WebAssets/continuewithgooglebutton.svg" alt="Sign in Button Image" />
-                <a href="https://www.google.com.tr/?hl=tr"></a>
+    
+            <div class="book-img">
+                <div class="book-item">
+                    <img src="../../Content/WebAssets/bookvector.svg" alt="Book Image">
+                </div>
             </div>
         </div>
 
-        <div class="book-img">
-            <div class="book-item">
-                <img src="../../Content/WebAssets/bookvector.svg" alt="Book Image">
-            </div>
-        </div>
+        
     </div>
 </body>

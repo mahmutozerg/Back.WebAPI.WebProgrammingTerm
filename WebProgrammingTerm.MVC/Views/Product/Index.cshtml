@@ -2,7 +2,7 @@
 
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Product.css?v5">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Product.css?v6">
     <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Footer.css">
 	<link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Heart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -10,13 +10,21 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 	 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="../../Scripts/BookerrScripts/ProductPageCarosel.js?v15" ></script>
+	<script src="../../Scripts/BookerrScripts/ProductPageCarosel.js?v15" ></script>
+	<script src="../../Scripts/BookerrScripts/AddressPage.js" ></script>
 
 </head>
 
 
 <body>
-<div class = "product-container">
+<div class="popup-container" id="popup" style="display:none;" >
+    <div class="popup-content">
+        <div class="checkmark">✔</div>
+        <p>Product added to cart</p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+</div>
+<div class="product-container">
 	<div class="productCarousel">
 		<div class="product-carousel-inner">
 
@@ -25,21 +33,19 @@
 			</div>
 
 			<div class="product-carousel-item" id="product2">
-				<img src="@Model.ProductWGetDto.ImagePath.Replace("1/1", "2/2")" alt="Image 2" id="product2Image">
+				<img src="@Model.ProductWGetDto.ImagePath" alt="Image 2" id="product2Image">
 			</div>
-
 			<div class="product-carousel-item" id="product3">
-				<img src="@Model.ProductWGetDto.ImagePath.Replace("1/1", "3/3")" alt="Image 3" id="product3Image">
+				<img src="@Model.ProductWGetDto.ImagePath" alt="Image 3" id="product3Image">
 			</div>
-
 		</div>
 	</div>
-	
+
 	<div class="books-info">
-		<div class = "info">
+		<div class="info">
 			<h2> @Model.ProductWGetDto.Name </h2>
 			<p>@Model.ProductWGetDto.Author</p>
-			
+
 		</div>
 		<div class="stars">
 			<p class="ort">3.8</p>
@@ -50,32 +56,39 @@
 				<i class="fa fa-star rating-color"></i>
 				<i class="fa fa-star"></i>
 			</div>
-			<p class="review-count">| @Model.ProductWGetDto.UserComments.Count<p>
+			<p class="review-count">| @Model.ProductWGetDto.UserComments.Count
+			<p>
 		</div>
 		<div class="details">
-			<h6>Category</h6><p>@Model.ProductWGetDto.Category</p>
-			<h6>Publisher</h6><p> @Model.ProductWGetDto.Publisher</p>
-			<h6>Publish Date</h6> <p> @Model.ProductWGetDto.PublishDate</p>
-			<h6>Author</h6> <p> @Model.ProductWGetDto.Author</p>
-			<h6>Language</h6> <p> @Model.ProductWGetDto.Language</p>
-			<h6>Page</h6> <p>@Model.ProductWGetDto.Page</p>
+			<h6>Category</h6>
+			<p>@Model.ProductWGetDto.Category</p>
+			<h6>Publisher</h6>
+			<p> @Model.ProductWGetDto.Publisher</p>
+			<h6>Publish Date</h6>
+			<p> @Model.ProductWGetDto.PublishDate</p>
+			<h6>Author</h6>
+			<p> @Model.ProductWGetDto.Author</p>
+			<h6>Language</h6>
+			<p> @Model.ProductWGetDto.Language</p>
+			<h6>Page</h6>
+			<p>@Model.ProductWGetDto.Page</p>
 		</div>
 		<div class="price">
 			<h1>@Model.ProductWGetDto.Price₺</h1>
 		</div>
 		<div class="add-to-cart">
-			 <a href="#" onclick="addToCart('@Model.ProductWGetDto.ProductId')">
-                <img src="../../Content/WebAssets/Addtocart.svg">
-            </a>
+			<a href="#" onclick="showPopup();addToCart('@Model.ProductWGetDto.ProductId')">
+				<img src="../../Content/WebAssets/Addtocart.svg">
+			</a>
 		</div>
 		<div class="heartbox">
 			@{
-            	var fill = "none";
+				var fill = "none";
 				var token = "";
 				if (Request.Cookies["accessToken"]?.Value != null)
 				{
 					token = Request.Cookies["accessToken"]?.Value;
-					foreach (var dto in Model.UserFavoritesDto.ProductIds.Where(dto => Model.ProductWGetDto.ProductId  == dto))
+					foreach (var dto in Model.UserFavoritesDto.ProductIds.Where(dto => Model.ProductWGetDto.ProductId == dto))
 					{
 						fill = "#E2264D";
 					}
@@ -83,7 +96,12 @@
 
 			}
 			<!-- if (fill != "none") { <text>checked</text> } bu eger kullanıcı favorilediyse checklenmesinis saglıyor  -->
-			<input type="checkbox" class="checkbox" id="checkbox" @if (fill != "none" && token!= "") { <text>checked</text> }  onclick="addToFavorites('@Model.ProductWGetDto.ProductId','@token')"/>
+			<input type="checkbox" class="checkbox" id="checkbox"
+			       @if (fill != "none" && token != "")
+			       {
+				       <text>checked</text>
+			       }
+			       onclick="addToFavorites('@Model.ProductWGetDto.ProductId','@token')"/>
 			<label for="checkbox">
 
 				<svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
@@ -136,50 +154,50 @@
 	<div class="review">
 		<h2>Reviews</h2>
 	</div>
-	
+
 	<div class="comment-box">
 		<div class="box">
 			<h3>Ege Kıran</h3>
-				<i class="fa fa-star"></i>
-				<i class="fa fa-star rating-color"></i>
-				<i class="fa fa-star rating-color"></i>
-				<i class="fa fa-star rating-color"></i>
-				<i class="fa fa-star rating-color"></i>
-			<p>Çok güzel kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg 
-			hsdkgfskah gfhgdsh foısudhftap kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg h
-			sdkgfskah gfhgdsh foısudhftap kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg hsdkgfskah 
-			gfhgdsh foısudhftap kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg hsdkgfskah gfhgdsh foısudhftap</p>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star rating-color"></i>
+			<i class="fa fa-star rating-color"></i>
+			<i class="fa fa-star rating-color"></i>
+			<i class="fa fa-star rating-color"></i>
+			<p>Çok güzel kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg
+				hsdkgfskah gfhgdsh foısudhftap kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg h
+				sdkgfskah gfhgdsh foısudhftap kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg hsdkgfskah
+				gfhgdsh foısudhftap kisjhrejlhgjfdlhgsldhgjldfhg jlsdhglsdfhglsdhgdfhsjglgjshfdkjsad hksgfhsakdfgsdkafg hsdkgfskah gfhgdsh foısudhftap</p>
 
 		</div>
 		<div class="box">
 			<h3>Ege Kıran</h3>
-				<i class="fa fa-star"></i>
-				<i class="fa fa-star "></i>
-				<i class="fa fa-star"></i>
-				<i class="fa fa-star rating-color"></i>
-				<i class="fa fa-star rating-color" ></i>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star "></i>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star rating-color"></i>
+			<i class="fa fa-star rating-color"></i>
 			<p>Rezalet</p>
 		</div>
 		<div class="box">
 			<h3>Ege Kıran</h3>
-				<i class="fa fa-star "></i>
-				<i class="fa fa-star "></i>
-				<i class="fa fa-star "></i>
-				<i class="fa fa-star"></i>
-				<i class="fa fa-star rating-color"></i>
+			<i class="fa fa-star "></i>
+			<i class="fa fa-star "></i>
+			<i class="fa fa-star "></i>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star rating-color"></i>
 			<p>Bayıldım</p>
 		</div>
 		<div class="box">
 			<h3>Ege Kıran</h3>
-				<i class="fa fa-star rating-color"></i>
-				<i class="fa fa-star rating-color"></i>
-				<i class="fa fa-star rating-color"></i>
-				<i class="fa fa-star rating-color"></i>
-				<i class="fa fa-star rating-color"></i>
+			<i class="fa fa-star rating-color"></i>
+			<i class="fa fa-star rating-color"></i>
+			<i class="fa fa-star rating-color"></i>
+			<i class="fa fa-star rating-color"></i>
+			<i class="fa fa-star rating-color"></i>
 			<p>Bayıldım</p>
 		</div>
 	</div>
-</div>	
+</div>
 <script>
 
 	initializeCarousel("productCarousel");

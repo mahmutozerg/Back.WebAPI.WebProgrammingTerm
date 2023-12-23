@@ -81,6 +81,8 @@ public class RouteConfig
             url: "Favorites",
             defaults: new { controller = "Favorites", action = "Index" }
         );
+        
+
         routes.MapRoute(
             name: "Default",
             url: "{controller}/{action}/{id}",

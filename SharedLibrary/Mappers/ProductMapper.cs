@@ -61,6 +61,7 @@ namespace SharedLibrary.Mappers
 
             var productAddDto = new ProductWCommentDto()
             {
+                ProductDetail = product.ProductDetail,
                 Author = product.ProductDetail.Author,
                 Category = product.Category,
                 DepotId = product.ProductDetail.DepotId,

@@ -148,6 +148,7 @@
         <Content Include="Content\BookerrCSS\AdvertCardCaurosel.css" />
         <Content Include="Content\BookerrCSS\contact.css" />
         <Content Include="Content\BookerrCSS\errorPage.css" />
+        <Content Include="Content\BookerrCSS\Favorites.css" />
         <Content Include="Content\BookerrCSS\Footer.css" />
         <Content Include="Content\BookerrCSS\Header.css" />
         <Content Include="Content\BookerrCSS\Heart.css" />
@@ -236,7 +237,7 @@
         <Content Include="Views\Cart\Index.cshtml" />
         <Content Include="Views\Contact\ContactIndex.cshtml" />
         <Content Include="Views\ErrorPage\Index.cshtml" />
-        <Content Include="Views\Favorites\Index.cshtml" />
+        <Content Include="Views\Favorites\MyFavorites.cshtml" />
         <Content Include="Views\Home\Booker.cshtml" />
         <Content Include="Views\Product\Index.cshtml" />
         <Content Include="Views\Profile\ProfileIndex.cshtml" />

@@ -72,4 +72,15 @@ public class OrderService:GenericService<Order>,IOrderService
 
         return CustomResponseDto<Order>.Success(orderEntity, ResponseCodes.Created);
     }
+
+    public async Task<CustomResponseListDataDto<Order>> GetUserOrdersAsync(ClaimsIdentity claimsIdentity)
+    {
+        var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+
+        var order = await _orderRepository.Where(o => o != null && o.UserId == userId && !o.IsDeleted).Include(o=>o.Products).AsNoTracking().ToListAsync();
+        
+        
+        return CustomResponseListDataDto<Order>.Success(order,ResponseCodes.Ok);
+    }
 }

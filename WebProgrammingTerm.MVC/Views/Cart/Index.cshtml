@@ -19,7 +19,10 @@
     
 <div class="mainContent" style="height: fit-content">
     
-    <div class="profile_section" style="height: 100%">
+    @if (Model.Products.Count > 0)
+    {
+        
+        <div class="profile_section" style="height: 100%">
     
         <div class="link_holder" style="height: auto;">
             <h2 id="profile_header" style="margin-top: -195%; margin-left:-135%;  width: auto;">Order</h2>
@@ -62,12 +65,7 @@
                 }
             }
         </div>
-        
-
-        @if (Model.Products.Count > 0)
-        {
-            
-            <hr style=" border-color: black; margin-top: 1.5%; border-width: 1px; ">
+        <hr style=" border-color: black; margin-top: 1.5%; border-width: 1px; ">
 
             <p style="margin-top:1%; margin-left: 65%;">Product Total &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 &nbsp;@totalPrice₺</p>
@@ -79,10 +77,8 @@
 
             <p style=" margin-left: 57%; font-size:20px; font-weight:700;">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Total
                 Price: &nbsp; &nbsp; &nbsp; &nbsp;@totalPrice₺</p>
-        }
- 
-        @if (Model.Locations.Count > 0)
-        {
+        
+
             <div class="address">
                 <div class="my_address">
 
@@ -106,9 +102,6 @@
 
             </div>
 
-        }
-
-    
         @if (Model.Products.Count > 0)
         {
                 
@@ -169,6 +162,12 @@
         }
 
         </div>
+
+        
+    }
+
+
+
     </div>
 <script>
     function removeProduct(productId) {

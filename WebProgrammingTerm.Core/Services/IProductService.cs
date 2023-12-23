@@ -14,8 +14,6 @@ public interface IProductService:IGenericService<Product>
     Task<CustomResponseListDataDto<ProductGetDto>> GetProductsByPage(int page);
     Task<CustomResponseListDataDto<ProductGetDto>> GetProductByName(int page,string name);
     
-
-    
     Task<CustomResponseDto<ProductWCommentDto>> GetProductWithComments(string id);
     
     

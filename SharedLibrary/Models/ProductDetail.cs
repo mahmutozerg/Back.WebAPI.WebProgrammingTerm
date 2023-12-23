@@ -1,15 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SharedLibrary.Models;
 
 public class ProductDetail:Base
 {
-    [JsonIgnore] public Product Product { get; set; } = new();
+    [JsonIgnore] 
+    public Product Product { get; set; } = new();
     
     [Column(TypeName = "varchar(50)")]
-
     public string ProductId { get; set; } = string.Empty;
+    
     [JsonIgnore]
     public Depot Depot { get; set; } = new Depot();
     [Column(TypeName = "varchar(50)")]

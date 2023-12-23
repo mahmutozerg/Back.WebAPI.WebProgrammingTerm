@@ -8,4 +8,5 @@ namespace WebProgrammingTerm.Core.Services;
 public interface IOrderService:IGenericService<Order>
 {
      Task<CustomResponseDto<Order>> AddAsync(OrderAddDto orderAddDto, ClaimsIdentity claimsIdentity);
+     Task<CustomResponseListDataDto<Order>> GetUserOrdersAsync(ClaimsIdentity claimsIdentity);
 }

@@ -79,6 +79,8 @@ function addToFavorites(productId,token) {
             console.log('Cart cleared after adding the product to the server.');
         },
         error: function (error) {
+            if (data.redir)
+                window.location.href  = redir;
             console.error('Error adding product to cart on the server.');
         }
     });

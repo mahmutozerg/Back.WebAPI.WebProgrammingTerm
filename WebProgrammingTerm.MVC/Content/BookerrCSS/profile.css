@@ -59,7 +59,6 @@ select {
 }
 
 
-/* new Code*/
 div.profile_section{
 
  }
@@ -67,7 +66,6 @@ div.profile_section{
 div.profile_section > div{
     width: auto;
     height: 400px;
-    /* border: 2px solid red; */
 }
 
 div.profile_section > div > div.profile_sections{

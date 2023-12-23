@@ -21,4 +21,11 @@ public class OrderController:CustomControllerBase
     {
         return CreateActionResult(await _orderService.AddAsync(orderAddDto,(ClaimsIdentity)User.Identity));
     }
+    
+    
+    [HttpGet("[action]")]
+    public async Task<IActionResult> Get()
+    {
+        return CreateActionResult(await _orderService.GetUserOrdersAsync((ClaimsIdentity)User.Identity));
+    }
 }

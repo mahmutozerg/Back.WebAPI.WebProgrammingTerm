@@ -110,7 +110,8 @@ public class ProductService:GenericService<Product>,IProductService
 
     public async Task<CustomResponseDto<ProductWCommentDto>> GetProductWithComments(string id)
     {
-        var products = await _productRepository.Where(p => p != null && !p.IsDeleted && p.Id == id).Include(pd=>pd.ProductDetail)
+        var products = await _productRepository.Where(p => p != null && !p.IsDeleted && p.Id == id)
+            .Include(pd=>pd.ProductDetail)
             .Include(p => p.Company).SingleOrDefaultAsync();
 
         if (products is null)

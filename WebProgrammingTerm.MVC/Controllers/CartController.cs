@@ -51,21 +51,46 @@ public class CartController : Controller
     public async Task<ActionResult> Index()
     {
         var accessToken = Request.Cookies["accessToken"]?.Value;
-
-
+        
         if (accessToken is null)
             return RedirectToAction("SignIn", "Account");
         
-        var a = TempData.Peek("CartContent") as CartModel;
-        return View("Index",model:a);
+        var model = TempData.Peek("CartContent") as CartModel;
+        return View("Index", model ?? new CartModel());
     }
     
     [HttpPost]
     public async Task<ActionResult> Index( CartModel cartModel)
     {
-        var a = cartModel;
+        
+        var accessToken = Request.Cookies["accessToken"]?.Value;
+        
+        if (accessToken is null)
+            return RedirectToAction("SignIn", "Account");
+        
+        var model = TempData["CartContent"] as CartModel;
 
-        return View("Index",model:a);
+        if (model == null)
+            return RedirectToAction("Index", "ErrorPage");
+        
+        var orderAddDto = new OrderAddDto()
+        {
+            LocationId = cartModel.ClickedLocation,
+            PaymentCard = cartModel.CCNumber,
+            ProductIdList = model.Products.Select(p => p.ProductId).ToList(),
+            Shipment = "BookerrExpress"
+        };
+
+        var result = await CartServices.AddToFavorites(orderAddDto, accessToken);
+
+        if (!result.HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+        if (result["errors"].HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+
+        TempData.Clear();
+        return RedirectToAction("Home","Home");
+
     }
 
     

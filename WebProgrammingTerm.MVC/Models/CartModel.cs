@@ -8,9 +8,9 @@ public class CartModel
 {
     public List<ProductWCommentDto> Products { get; set; } = new List<ProductWCommentDto>();
     public List<Location> Locations { get; set; } = new List<Location>();
-    
+
     [Required(ErrorMessage = "Please select an Address.")]
-    public string ClickedLocation { get; set; } = string.Empty;
+    public string ClickedLocation { get; set; } = "";
 
     [Required(ErrorMessage = "First Name is required.")]
     public string FirstNameCC { get; set; } = string.Empty;

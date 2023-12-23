@@ -54,10 +54,7 @@ public class OrderService:GenericService<Order>,IOrderService
             }
             productList.Add(product);
         }
-
-
-
-
+        
         
         var orderEntity = OrderMapper.ToOrder(orderAddDto);
         orderEntity.User = userEntity;

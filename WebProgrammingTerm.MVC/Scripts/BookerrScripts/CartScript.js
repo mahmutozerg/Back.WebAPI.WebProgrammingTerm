@@ -33,8 +33,6 @@ function SenRequestForAddToCart(token)
             url: '/Cart/add',
             data: { productIds: cartItems },
             success: function (data) {
-
-                console.log('Cart cleared');
                 
                 if (data.redir)
                     window.location.href = data.redir;
@@ -44,6 +42,10 @@ function SenRequestForAddToCart(token)
             }
         });
 
+    }else
+    {
+        console.log("aaa")
+        window.location.href = "cart/checkout";
     }
 
 

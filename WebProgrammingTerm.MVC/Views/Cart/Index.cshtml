@@ -64,7 +64,9 @@
         </div>
         
 
-        
+        @if (Model.Products.Count > 0)
+        {
+            
             <hr style=" border-color: black; margin-top: 1.5%; border-width: 1px; ">
 
             <p style="margin-top:1%; margin-left: 65%;">Product Total &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -77,88 +79,94 @@
 
             <p style=" margin-left: 57%; font-size:20px; font-weight:700;">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Total
                 Price: &nbsp; &nbsp; &nbsp; &nbsp;@totalPrice₺</p>
+        }
+ 
+        @if (Model.Locations.Count > 0)
+        {
+            <div class="address">
+                <div class="my_address">
 
-                <div class="address">
-                    <div class="my_address">
-        
-                        @foreach (var location in Model.Locations)
-                        {
-                            @Html.HiddenFor(m=>m.ClickedLocation)
-                            <div class="addressInfo" id="@location.Id" >
-                                <a style="text-decoration: none; color: black; cursor:pointer;" onclick="highLightAddress('@location.Id');SetClickedLocation('@location.Id')">
-                                    <h3 style=" font-size: 16px; font-weight: 700">@location.Title</h3>
-                                    <content>
-                                        <p style=" font-size: 14px; font-weight: 500;">@location.Address @location.City
-                                            @location.ZipCode
-                                        </p>
-                                    </content>
-                                </a>
-                            </div>
-                        }
-                        <div class="addition" >
-                            <a href="@Url.Action("Addresses","Address")" target = "_blank"class="addition-link">+</a>
+                    @foreach (var location in Model.Locations)
+                    {
+                        <div class="addressInfo" id="@location.Id" >
+                            <a style="text-decoration: none; color: black; cursor:pointer;" onclick="highLightAddress('@location.Id');SetClickedLocation('@location.Id')">
+                                <h3 style=" font-size: 16px; font-weight: 700">@location.Title</h3>
+                                <content>
+                                    <p style=" font-size: 14px; font-weight: 500;">@location.Address @location.City
+                                        @location.ZipCode
+                                    </p>
+                                </content>
+                            </a>
                         </div>
+                    }
+                    <div class="addition" >
+                        <a href="@Url.Action("Addresses","Address")" target = "_blank"class="addition-link">+</a>
                     </div>
-
                 </div>
 
-        
-            <div class="payment-section">
-                <h2 style="font-size: 32px; margin-top: 3%;">Payment</h2>
-                
-                <form action="@Url.Action("Index", "Cart")" method="POST">
-                    
-                    <div class="payment-fields">
-                        <div class="cardinfo">
-                            
-                            @Html.TextBoxFor(m=>m.FirstNameCC,new {type="text", id="name" ,placeholder="First Name" ,name="name", required="required",
-                                style="width: 48%; padding: 13px; margin-bottom: 1.5%;"})
-                            
-                             @Html.TextBoxFor(m=>m.LastNameCC,new {type="text", id="surname", placeholder="Last Name", name="surname", required="required",
-                                 style="width: 48%;  margin-top: -7.5%; padding: 13px;"})
-                            
-                            
-                            @Html.TextBoxFor(m=>m.CCNumber, new {type="number", id="cardNumber", placeholder="Credit Card Number", name="required",
-                                required="reqiured", style="width: 48%; padding: 13px;"})
-                            
-                            
-                            @Html.TextBoxFor(m=>m.CVC, new {type="number", id="cvv", placeholder="CVC", name="cvv", required = "required",
-                                style="width: 48%;  margin-top: -6%; padding: 13px;"})
-               
-                        </div>
-                    </div>
-                    
-                    <div class="card_date">
-                        <p style="color:#808285; width:24%; font-weight:700; font-size:20px; margin-top:3%;">Card Expiration:
-                        </p>
-                        <div style=" margin-top: -5%;">
-                            <select id="cardMonth" name="cardMonth" style="width: 8%; margin-left: 27%;">
-                                @for (var i = 1; i <= 12; i++)
-                                {
-                                    <option >@i</option>
-                                }
-                            </select>
-                            <select id="cardYear" name="cardYear" style="width: 10%; margin-left: 0.5%;">
-                                @for (var i = 2045; i >= DateTime.Now.Year; i--)
-                                {
-                                    <option value="@i">@i</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-        
-        
-        
-                    <input type="radio" id="agreement" name="agreement" required="required"
-                        style="width: 7%; height: 7%; margin-top: 5%; margin-left: -1%; accent-color: grey;">
-                    <p style="margin-top: -4%; margin-left: 6%;">
-                        I have read and approve the <a href="#" style="color: blue;">Distance Sales Agreement.</a>
-                    </p>
-                    <button type="submit" class="save-button">Confirm Order</button>
-
-                </form>
-
             </div>
+
+        }
+
+    
+        @if (Model.Products.Count > 0)
+        {
+                
+            <div class="payment-section">
+            <h2 style="font-size: 32px; margin-top: 3%;">Payment</h2>
+            <form action="@Url.Action("Index", "Cart")" method="POST" onsubmit="return validateForm()">
+                
+                <div class="payment-fields">
+                    <div class="cardinfo">
+                        @Html.HiddenFor(m => m.ClickedLocation, new { @required = "required" })
+
+                        @Html.TextBoxFor(m=>m.FirstNameCC,new {type="text", id="name" ,placeholder="First Name" ,name="name", required="required",
+                            style="width: 48%; padding: 13px; margin-bottom: 1.5%;"})
+                        
+                         @Html.TextBoxFor(m=>m.LastNameCC,new {type="text", id="surname", placeholder="Last Name", name="surname", required="required",
+                             style="width: 48%;  margin-top: -7.5%; padding: 13px;"})
+                        
+                        
+                        @Html.TextBoxFor(m=>m.CCNumber, new {type="number", id="cardNumber", placeholder="Credit Card Number", name="required",
+                            required="reqiured", style="width: 48%; padding: 13px;"})
+                        
+                        
+                        @Html.TextBoxFor(m=>m.CVC, new {type="number", id="cvv", placeholder="CVC", name="cvv", required = "required",
+                            style="width: 48%;  margin-top: -6%; padding: 13px;"})
+           
+                    </div>
+                </div>
+                
+                <div class="card_date">
+                    <p style="color:#808285; width:24%; font-weight:700; font-size:20px; margin-top:3%;">Card Expiration:
+                    </p>
+                    <div style=" margin-top: -5%;">
+                        <select id="cardMonth" name="cardMonth" style="width: 8%; margin-left: 27%;">
+                            @for (var i = 1; i <= 12; i++)
+                            {
+                                <option >@i</option>
+                            }
+                        </select>
+                        <select id="cardYear" name="cardYear" style="width: 10%; margin-left: 0.5%;">
+                            @for (var i = 2045; i >= DateTime.Now.Year; i--)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <input type="radio" id="agreement" name="agreement" required="required"
+                    style="width: 7%; height: 7%; margin-top: 5%; margin-left: -1%; accent-color: grey;">
+                <p style="margin-top: -4%; margin-left: 6%;">
+                    I have read and approve the <a href="#" style="color: blue;">Distance Sales Agreement.</a>
+                </p>
+                <button type="submit" class="save-button">Confirm Order</button>
+
+            </form>
+
+        </div>
+    
+        }
 
         </div>
     </div>
@@ -199,17 +207,35 @@
             {
                 allElements[i].style.borderColor = "#4cae4c";
             }else
-                {                    
-                    allElements[i].style.borderColor = "#E6E7E8";
-
-                    
-                }
+            {                    
+                allElements[i].style.borderColor = "#E6E7E8";
+            }
         }
     }
     function  SetClickedLocation(value)
     {
         document.getElementById("ClickedLocation").value = value;
     
+    }
+    
+    function validateForm() {
+        var form = document.querySelector('form');
+            var clickedLocation = document.getElementById("ClickedLocation").value;
+
+        if (clickedLocation === "") {
+            alert("Please select a home address before submitting the form.");
+            return false; 
+
+        }
+        
+        if (form.checkValidity())
+        {
+            localStorage.removeItem('cart')
+            return true; 
+        } else 
+        {
+            return false; 
+        }
     }
 </script>
 </body>

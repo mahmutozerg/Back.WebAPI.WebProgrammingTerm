@@ -68,7 +68,7 @@ public class OrderService:GenericService<Order>,IOrderService
         orderEntity.OrderDetail = new OrderDetail()
         {
             Tax = 0.18f,
-            PaymentMethod = "Cash"
+            PaymentMethod = orderAddDto.PaymentCard
         };
         await _orderRepository.AddAsync(orderEntity);
         await _unitOfWork.CommitAsync();

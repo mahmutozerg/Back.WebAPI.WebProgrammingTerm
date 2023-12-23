@@ -157,7 +157,6 @@ public static class UserServices
 
             var type = typeof(AppUserUpdateDto);
 
-            // Get all public properties of the type
             var properties = type.GetProperties();
 
             foreach (var property in properties)

@@ -62,10 +62,16 @@ public class UserService:GenericService<User>,IUserService
         var userEntity = await _userRepository.Where(u => u != null && u.Id == userId && !u.IsDeleted).SingleOrDefaultAsync();
         if (userEntity is null)
             return CustomResponseDto<User>.Fail(ResponseMessages.UserNotFound, ResponseCodes.NotFound);
+
+
+        if (updateDto.Email != userEntity.Email)
+        {
+            var emailExist = await _userRepository.Where(u => u != null && u.Email == updateDto.Email && !u.IsDeleted).AnyAsync();
         
-        var emailExist = await _userRepository.Where(u => u != null && u.Email == updateDto.Email && !u.IsDeleted).AnyAsync();
-        if (emailExist)
-            return CustomResponseDto<User>.Fail(ResponseMessages.UserMailExist, ResponseCodes.Duplicate);
+            if (emailExist)
+                return CustomResponseDto<User>.Fail(ResponseMessages.UserMailExist, ResponseCodes.Duplicate);
+
+        }
 
         var tempData = userEntity.Email;
         userEntity = AppUserMapper.UpdateUser(userEntity, updateDto);

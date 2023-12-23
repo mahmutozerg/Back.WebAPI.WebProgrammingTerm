@@ -35,7 +35,9 @@ function SenRequestForAddToCart(token)
             success: function (data) {
 
                 console.log('Cart cleared');
-                removeCartFromLocal()
+                
+                if (data.redir)
+                    window.location.href = data.redir;
             },
             error: function (error) {
                 console.error('Error adding product to cart on the server.');

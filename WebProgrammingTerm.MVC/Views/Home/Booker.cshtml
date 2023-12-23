@@ -14,17 +14,18 @@
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/HomePage.css">
     <script src="/Scripts/BookerrScripts/AdvertCarousel.js?v4" defer></script>
     <script src="/Scripts/BookerrScripts/ProductCardCarousel.js?v3" defer></script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-<div class="popup-container" id="popup" style="display: none">
-    <div class="popup-content">
-        <div class="checkmark">✔</div>
-        <p>Product added to cart</p>
-        <button class="close-btn" onclick="closePopup()">Close</button>
+    <div class="popup-container" id="popup" style="display: none">
+        <div class="popup-content">
+            <div class="checkmark">✔</div>
+            <p>Product added to cart</p>
+            <button class="close-btn" onclick="closePopup()">Close</button>
+        </div>
     </div>
-</div>
 
 <div class="advertCarousel">
        
@@ -78,7 +79,7 @@
                                          }
                                          @truncatedName       
                                         <div class="carosel-product-info">
-                                            <a href="#" onclick="showPopup();addToCart('@item["productId"]')">
+                                            <a  style = "cursor: pointer"onclick="showPopup();addToCart('@item["productId"]')">
                                                 <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
                                             </a>
                                             <p class="carosel-product-info-text">@item["price"]₺</p>
@@ -142,7 +143,7 @@
                                          }
                                          @truncatedName       
                                         <div class="carosel-product-info">
-                                            <a href="#" onclick="showPopup();addToCart('@item["productId"]')">
+                                            <a style="cursor:pointer;" onclick="showPopup();addToCart('@item["productId"]')">
                                                 <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
                                             </a>
                                             <p class="carosel-product-info-text">@item["price"]₺</p>

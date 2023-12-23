@@ -7,7 +7,16 @@
      transition: transform 0.5s ease-in-out;
 
 }
-
+#priceText
+{
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+    left: 80%;
+    top: 73%;
+    font-size: 20px;
+    font-weight: bold;
+}
  div.address > div.my_address > div.addressInfo
  {
     width: 100%;
@@ -15,8 +24,11 @@
     padding: 20px;
     border-radius: 10px;
     background-color: #E6E7E8;
+    border: 1px solid #E6E7E8;
 }
-
+ div.address > div.my_address > div.addressInfo:hover {
+     border-color: #4cae4c;
+ }
  div.address > div.my_address > div.addition {
     width: 12%;
     padding: 31px;

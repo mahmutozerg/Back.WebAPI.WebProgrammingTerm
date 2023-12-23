@@ -1,0 +1,99 @@
+
+
+#productContent
+{
+    width: auto; 
+    display: flex;
+    height: 150px; 
+    border-radius: 10px; 
+    background-color: #E6E7E8; 
+    margin-bottom: 20px;
+}
+#productInfo > p
+{
+    width: fit-content;
+}
+.tcan{
+    position: relative;
+    width: fit-content;
+    left: 95%;
+    top: 75%;
+
+}
+
+#productImage
+{
+    width: 9%;
+    height: 85%;
+    background-color: #696969;
+    margin-top: 1.2%;
+    margin-left: 1%;
+    border-radius: 6px;
+    margin-right: 2%;
+}
+body > div > div > div.productcontainer
+{
+    height: fit-content;
+}
+#productImage > a > img{
+    border-radius: 6px;
+    height: 100%;
+
+}
+#productInfo
+{
+    max-width: 65%;
+    max-height: 100%;
+    margin-top: 2%;
+    margin-left: 1%;
+    font-weight: 500;
+    font-family: Montserrat;
+}
+
+body > div > div > div.payment-section > form > div.payment-fields {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#name ,#surname {
+    width: 48%;
+}
+input[type=text],input[type=number]
+{
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    background-color: #E6E7E8;
+    color: #000000;
+}
+body > div > div > div.payment-section > form > button
+{
+
+    width: 25%;
+    height: 8%;
+    font-size: 13px;
+    font-weight: 700;
+    background-color: #F47878;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    position: inherit;
+    left: 70%;
+}
+
+body > div > div > div.address
+{
+    height: 250px;
+    position: relative;
+    left: -0.5%;
+}

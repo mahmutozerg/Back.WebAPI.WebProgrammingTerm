@@ -2,7 +2,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/profile.css?v27">
-    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/address.css?v36">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/address.css?v38">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -49,7 +49,7 @@
 
                 @foreach (var location in Model.locations)
                 {
-                    <div class="addressInfo" >
+                    <div class="addressInfo" id = "@location.Id">
 
                         <h3 style=" font-size: 16px; font-weight: 700">@location.Title</h3>
                         <content>
@@ -128,5 +128,7 @@
 
     </div>
 </div>
+<script>
 
-</body>
+</script>
+</body> 

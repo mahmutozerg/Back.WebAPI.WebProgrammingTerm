@@ -78,7 +78,15 @@ public class OrderService:GenericService<Order>,IOrderService
         var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
 
-        var order = await _orderRepository.Where(o => o != null && o.UserId == userId && !o.IsDeleted).Include(o=>o.Products).AsNoTracking().ToListAsync();
+        var order = await _orderRepository
+            .Where(o => o != null && o.UserId == userId && !o.IsDeleted)
+            .Include(o=>o.OrderDetail)
+            .Include(p=>p.Location)
+            .Include(o=>o.Products)
+            .ThenInclude(p=> p.ProductDetail)
+            .OrderByDescending(o=>o.CreatedAt)
+            .AsNoTracking()
+            .ToListAsync();
         
         
         return CustomResponseListDataDto<Order>.Success(order,ResponseCodes.Ok);

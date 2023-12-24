@@ -76,6 +76,13 @@ public class RouteConfig
             url: "cart/delete/{id}",
             defaults: new { controller = "Cart", action = "Remove" }
         );
+        
+        routes.MapRoute(
+            name: "Orders",
+            url: "orders/MyOrders",
+            defaults: new { controller = "Cart", action = "MyOrders" }
+        );
+        
         routes.MapRoute(
             name: "AddToFavoritesPage",
             url: "Favorites",

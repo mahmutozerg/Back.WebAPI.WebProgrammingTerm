@@ -39,5 +39,19 @@ namespace WebProgrammingTerm.MVC.Services
             return new JObject();
 
         }
+
+        public static async Task<JObject> GetProductFromName(string name,int page)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(Url + $"/{Uri.EscapeDataString(name)}/{page}");
+
+                if (response.IsSuccessStatusCode)
+                    return JObject.Parse(await response.Content.ReadAsStringAsync());
+            }
+
+            return new JObject();
+        }
     }
+    
 }

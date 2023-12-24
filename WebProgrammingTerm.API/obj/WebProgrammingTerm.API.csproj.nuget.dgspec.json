@@ -49,10 +49,6 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
-            },
-            "System.Text.Json": {
-              "target": "Package",
-              "version": "[8.0.0, )"
             }
           },
           "imports": [
@@ -79,10 +75,6 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
-            },
-            "System.Text.Json": {
-              "target": "Package",
-              "version": "[8.0.0, )"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"

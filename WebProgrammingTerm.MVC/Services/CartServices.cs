@@ -10,10 +10,11 @@ namespace WebProgrammingTerm.MVC.Services;
 public static class CartServices
 {
     private static readonly string AddUrl = "https://localhost:7082/api/Order/Add";
+    private static readonly string GetUrl = "https://localhost:7082/api/Order/Get";
     
     
     
-    public static async Task<JObject> AddToFavorites(OrderAddDto orderAddDto,string accessToken)
+    public static async Task<JObject> AddToCart(OrderAddDto orderAddDto,string accessToken)
     {
         using (var client = new HttpClient())
         {
@@ -26,5 +27,18 @@ public static class CartServices
         }
         return new JObject();
 
+    }
+
+    public static async Task<JObject> GetOrders(string accessToken)
+    {
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
+            var response = await client.GetAsync(GetUrl);
+            if (response.IsSuccessStatusCode)
+                return JObject.Parse(await response.Content.ReadAsStringAsync());
+        }
+        return new JObject();
     }
 }

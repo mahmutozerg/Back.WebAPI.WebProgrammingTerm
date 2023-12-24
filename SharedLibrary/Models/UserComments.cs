@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SharedLibrary.Models;
 
@@ -12,7 +12,7 @@ public class UserComments:Base
     public string UserId { get; set; } = string.Empty;
     
     [JsonIgnore]
-    public Product Product { get; set; } = new Product();
+    public Product? Product { get; set; } = new Product();
     [Column(TypeName = "varchar(50)")]
 
     public string ProductId { get; set; } = string.Empty;

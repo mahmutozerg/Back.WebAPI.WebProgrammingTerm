@@ -1,0 +1,46 @@
+﻿.mainContent
+{
+    display:flex;
+    position: relative;
+    left: 15%;
+    width: 990px;
+    overflow: hidden;
+    height: fit-content;
+}
+.profileContent {
+    width: fit-content;
+    display: inline-flex;
+    position: relative;
+}
+
+
+.ordersContainer
+{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    margin-top: 7.8%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 5%;
+
+}
+
+.orderContainer
+{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: auto;
+}
+
+.orderText
+{
+    font-family:  Montserrat;
+    font-weight: bold;
+    height: fit-content;
+    width: fit-content;
+    font-size: 20px;
+}

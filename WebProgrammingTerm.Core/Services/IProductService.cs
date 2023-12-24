@@ -9,7 +9,7 @@ public interface IProductService:IGenericService<Product>
     Task<CustomResponseDto<Product>> UpdateAsync(ProductUpdateDto productUpdateDto,ClaimsIdentity claimsIdentity);
     Task<CustomResponseDto<Product>> AddAsync(ProductAddDto productAddDto,ClaimsIdentity claimsIdentity);
 
-    Task<Product> GetProductWithCompany(string productId);
+    Task<Product?> GetProductWithCompany(string productId);
 
     Task<CustomResponseListDataDto<ProductGetDto>> GetProductsByPage(int page);
     Task<CustomResponseListDataDto<ProductGetDto>> GetProductByName(int page,string name);

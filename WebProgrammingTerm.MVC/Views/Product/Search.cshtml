@@ -1,0 +1,207 @@
+﻿@using System.Globalization
+@model List<SharedLibrary.DTO.ProductGetDto>
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/HomePage.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+
+<body>
+
+<div class="mainContent">
+	<div class="popup-container" id="popup" style="display: none">
+		<div class="popup-content">
+			<div class="checkmark">✔</div>
+			<p>Product added to cart</p>
+			<button class="close-btn" onclick="closePopup()">Close</button>
+		</div>
+	</div>
+	
+    <div class="both">
+        <div class="filterMenu">
+	        <div class="filters">
+                <h2 class="filter_header">Novel</h2>
+    				<div class="nov-all">
+    					<div class="novel_header">
+    						<div class="publish">
+    							<h4>Publisher</h4>
+    							<div class="publishers">
+    								<div class="form-check">
+    									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    									<label class="form-check-label" for="flexCheckDefault"> 
+    									Default checkbox
+    									</label>
+    								</div>
+    								<div class="form-check">
+    									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    									<label class="form-check-label" for="flexCheckDefault"> 
+    									Default checkbox
+    									</label>
+    								</div>
+    								
+    								<div class="form-check">
+    									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    									<label class="form-check-label" for="flexCheckDefault"> 
+    									Default checkbox
+    									</label>
+    								</div>
+    								
+    								<div class="form-check">
+    									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    									<label class="form-check-label" for="flexCheckDefault"> 
+    									Default checkbox
+    									</label>
+    								</div>
+    								
+    									<div class="form-check">
+    									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    									<label class="form-check-label" for="flexCheckDefault"> 
+    									Default checkbox
+    									</label>
+    								</div>			
+    								
+    								<div class="form-check">
+    									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    									<label class="form-check-label" for="flexCheckDefault"> 
+    									Default checkbox
+    									</label>
+    								</div>	
+    
+    								<div class="form-check">
+    									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    									<label class="form-check-label" for="flexCheckDefault"> 
+    									Default checkbox
+    									</label>
+    								</div>		
+    
+    								<div class="form-check">
+    									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    									<label class="form-check-label" for="flexCheckDefault"> 
+    									Default checkbox
+    									</label>
+    								</div>	
+    
+    								<div class="form-check">
+    									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    									<label class="form-check-label" for="flexCheckDefault"> 
+    									Default checkbox
+    									</label>
+    								</div>		
+    
+    								<div class="form-check">
+    									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    									<label class="form-check-label" for="flexCheckDefault"> 
+    									Default checkbox
+    									</label>
+    								</div>
+    							</div>
+    						</div>
+    						<div class="lan">
+    							<h4>Language</h4>
+    								<div class="languages">
+    									<div class="form-check">
+    										<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    										<label class="form-check-label" for="flexCheckDefault"> 
+    										Default checkbox
+    										</label>
+    									</div>
+    									<div class="form-check">
+    										<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+    										<label class="form-check-label" for="flexCheckDefault"> 
+    										Default checkbox
+    										</label>
+    									</div>
+    								</div>
+    						</div>
+    						
+    						<div class="pri">
+    							<h4>Price</h4>
+    							<div class="price">
+    
+    							
+    							</div>
+    						</div>
+    						
+    					</div>
+    				</div>		
+    		</div>
+    		
+    	</div>
+    </div>
+    	
+	<div class="products_container">
+	        
+		<div class="products" id = "products">
+            
+			@foreach (var product in Model)
+			{
+				<div class="product-carousel-item">
+					<a src="#" href="@Url.Action("Index","Product",new {id = product.ProductId})">
+						<div class="card" style="width: 18rem;">
+							<img src="@product.ImagePath" class="card-img-top" alt="productImage">
+							<div class="card-body">
+								<p class="card-text">
+									<strong class="card-title">
+										<a style="color:inherit">
+											@{
+												var name = product.ProductDetail.Publisher.Replace("-", " ");
+												var titleCaseName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
+
+											}
+											@titleCaseName
+										</a><br/>
+									</strong>
+									@{
+										var truncatedName = product.Name.Length > 35
+											? product.Name.Substring(0, 32) + "..."
+											: product.Name;
+									}
+									@truncatedName
+									<div class="carosel-product-info">
+										<p class="carosel-product-info-text" style="margin-right: 5px">@product.Price₺</p>
+										
+										<a style="cursor: pointer"onclick="showPopup();addToCart('@product.ProductId')">
+											<img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
+										</a>
+									</div>
+								</p>
+							</div>
+						</div>
+					</a>
+				</div>
+
+			}
+				
+		</div>
+	</div>
+</div>
+	<div class="buttons" style="width: 5% ; height: 5%; display: flex;position:relative;left: 52%;margin-top: 5%;">
+		<a class="left_button" href ="@Url.Action("Search","Product",new {searchTerm= ViewData["searchterm"].ToString(),page= int.Parse(ViewData["page"].ToString())-1})" style="width: 50%;height: 100%;margin-right: 10%">
+			<img src = "../../Content/WebAssets/arrow_left.svg"/>
+		</a>
+		<a href="@Url.Action("Search","Product",new {searchTerm= ViewData["searchterm"].ToString(),page= int.Parse(ViewData["page"].ToString())+1})" class="right_button" style="width: 50%;height: 100%">
+        	<img src = "../../Content/WebAssets/arrow_right.svg"/>
+        </a>
+	</div>
+<script>
+    function showPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
+    
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+	
+
+</script>
+
+</body>

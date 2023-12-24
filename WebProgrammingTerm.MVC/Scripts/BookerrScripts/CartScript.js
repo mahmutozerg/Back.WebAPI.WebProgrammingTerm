@@ -33,7 +33,7 @@ function SenRequestForAddToCart(token)
             url: '/Cart/add',
             data: { productIds: cartItems },
             success: function (data) {
-                
+                console.log(data.redir)
                 if (data.redir)
                     window.location.href = data.redir;
             },
@@ -45,7 +45,7 @@ function SenRequestForAddToCart(token)
     }else
     {
         console.log("aaa")
-        window.location.href = "cart/checkout";
+        window.location.href = "http://localhost:5000/cart/checkout";
     }
 
 
@@ -71,17 +71,11 @@ function addToFavorites(productId,token) {
         url: '/Favorites',
         data: { productId: productId},
         success: function (data) {
-            console.log('Product added to cart on the server.');
 
-            localStorage.removeItem('cart');
-            console.log('Cart cleared');
-            
-            console.log('Cart cleared after adding the product to the server.');
         },
         error: function (error) {
             if (data.redir)
                 window.location.href  = redir;
-            console.error('Error adding product to cart on the server.');
         }
     });
 

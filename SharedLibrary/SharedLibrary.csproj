@@ -11,11 +11,13 @@
     <ItemGroup>
       <Reference Include="System.ComponentModel.DataAnnotations" Condition="'$(TargetFramework)' == 'net48'" />
       <Reference Include="System.Net.Http" Condition="'$(TargetFramework)' == 'net48'" />
+      <Reference Include="System.Text.Json" Condition="'$(TargetFramework)' == 'net48'">
+        <HintPath>..\..\..\..\AppData\Local\Temp\Temporary ASP.NET Files\root\5177e5db\89c0df88\assembly\dl3\7f56a4f9\76204684_bf32da01\System.Text.Json.DLL</HintPath>
+      </Reference>
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-      <PackageReference Include="System.Text.Json" Version="8.0.0" />
     </ItemGroup>
 
 </Project>

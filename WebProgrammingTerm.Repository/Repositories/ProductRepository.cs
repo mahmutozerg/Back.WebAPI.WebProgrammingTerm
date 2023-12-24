@@ -22,26 +22,20 @@ public class ProductRepository:GenericRepository<Product>,IProductRepository
 
     public async Task<List<Product>> GetProductsByName(int page, string name)
     {
-        var splitName = name.Split(" ");
         
-        var products = new List<Product>();
 
-        foreach (var namefrac in splitName)
-        {
-            var query = await _products
-                .Where(p => p.Stock >= 0 && !p.IsDeleted &&
-                            p.Name.Contains(namefrac))
-                .Skip((20/splitName.Length) * (page - 1))
-                .Take(20/splitName.Length)
-                .Include(p => p.ProductDetail)
-                .Include(p => p.Company)
-                .AsNoTracking()
-                .ToListAsync();
+        var query = await _products
+            .Where(p => p.Stock >= 0 && !p.IsDeleted &&
+                        p.Name.Contains(name))
+            .Skip((21) * (page - 1))
+            .Take(21)
+            .Include(p => p.ProductDetail)
+            .Include(p => p.Company)
+            .AsNoTracking()
+            .ToListAsync();
             
-            products.AddRange(query);
 
-        }
 
-        return products.ToHashSet().ToList();;
+        return query.ToHashSet().ToList();;
     }
 }

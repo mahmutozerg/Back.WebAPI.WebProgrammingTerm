@@ -78,15 +78,14 @@ public class ProductService:GenericService<Product>,IProductService
 
     }
 
-    public async Task<Product> GetProductWithCompany(string productId)
+    public async Task<Product?> GetProductWithCompany(string productId)
     {
         var product = await _productRepository
             .Where(p => p != null && p.Id == productId && !p.IsDeleted)
             .Include(c=>c!.Company)
             .SingleOrDefaultAsync();
 
-        if (product is null)
-            throw new Exception(ResponseMessages.ProductNotFound);
+
 
         return product;
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedLibrary.DTO;
 using SharedLibrary.Models;
+using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.Services;
 
 namespace WebProgrammingTerm.API.Controllers;
@@ -51,7 +52,18 @@ public class ProductController:CustomControllerBase
 
         return CreateActionResult(a);
     }
-    
+    [HttpGet("[action]/{id}")]
+    public async Task<IActionResult> GetPureProduct(string id)
+    {
+
+        var product = await _productService.GetProductWithCompany(id);
+        if (product is null)
+        {
+            return CreateActionResult(CustomResponseDto<Product>.Fail(ResponseMessages.ProductNotFound,
+                ResponseCodes.NotFound));
+        }
+        return CreateActionResult(CustomResponseDto<Product>.Success(product,ResponseCodes.Ok));
+    }
     
     [HttpGet("{name}/{page:int}")]
     public async Task<IActionResult> GetProductByName(int page ,string name)

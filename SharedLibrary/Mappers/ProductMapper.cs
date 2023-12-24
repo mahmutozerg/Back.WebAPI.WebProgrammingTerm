@@ -39,7 +39,8 @@ namespace SharedLibrary.Mappers
                 Publisher = product.ProductDetail.Publisher,
                 Stock = product.Stock,
                 Company = product.Company,
-                ProductId = product.Id
+                ProductId = product.Id,
+                ProductDetail = product.ProductDetail
             };
             return productAddDto;
             

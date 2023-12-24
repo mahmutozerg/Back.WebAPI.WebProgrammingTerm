@@ -1,0 +1,115 @@
+﻿@using System.Globalization
+@model List<SharedLibrary.Models.Order>
+
+<head>
+    
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v26">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/MyOrders.css?v1">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/ProductCard.css">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/ProductCardCarosel.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+        
+</head>
+
+<body>
+<div class="mainContent">
+    <div class="popup-container" id="popup" style="display: none">
+        <div class="popup-content">
+            <div class="checkmark">✔</div>
+            <p>Product added to cart</p>
+            <button class="close-btn" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+    <div class="profileContent">
+        <div class="profile_section">
+            <div class="link_holder">
+                <div class="profile_sections">
+                    <a href="@Url.Action("ProfileIndex", "Profile")"><button type="button" >Profile Details</button></a>
+                    <a href="@Url.Action("Addresses", "Address")"><button type="button">My Addresses</button></a>
+                    <a href="@Url.Action("Index", "Favorites")"><button type="button" >My Favorites</button></a>
+                    <a href="@Url.Action("MyOrders","Cart")"><button type="button" style="color: white; background-color: #808285">My Orders</button></a>
+                    <a href="#"><button type="button" style="padding-bottom: 1%">Nav Link</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ordersContainer">
+        @foreach (var order in Model)
+        {
+            var total = 0f;
+            <div class="orderText">
+                <p>Shipped To @order.Location.Title</p>
+                <p>Paid With @order.OrderDetail.PaymentMethod</p>
+            </div>
+            <div class="orderContainer">
+                
+                @foreach (var product in order.Products)
+                {
+                    <a src="#" href="@Url.Action("Index", "Product", new { id = product.Id })">
+
+                        <div class="product-carousel-item" style="margin-bottom: 5%">
+                            <div class="card" style="width: 18rem;">
+                                <img src="@product.ImagePath" class="card-img-top" alt="productImage">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <strong class="card-title">
+                                            <a style="color:inherit">
+                                                @{
+                                                    var name = product.ProductDetail.Publisher.Replace("-", " ");
+                                                    var titleCaseName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
+
+                                                }
+                                                @titleCaseName
+                                            </a><br/>
+                                        </strong>
+                                        @{
+                                            var truncatedName = product.Name.Length > 60
+                                                ? product.Name.Substring(0, 57) + "..."
+                                                : product.Name;
+                                        }
+                                        @truncatedName
+                                        <div class="carosel-product-info">
+                                            <a style="cursor: pointer"onclick="showPopup();addToCart('@product.Id')">
+                                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
+                                            </a>
+                                            <p class="carosel-product-info-text">@product.Price₺</p>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </a>
+                    total += product.Price;
+
+                }
+            </div>
+
+        }
+        
+    </div>
+</div>
+
+<script>
+
+    function showPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
+    
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+</script>
+
+</body>
+
+
+
+

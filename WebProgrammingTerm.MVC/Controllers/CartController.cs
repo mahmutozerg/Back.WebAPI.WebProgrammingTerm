@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using SharedLibrary.DTO;
+using SharedLibrary.Models;
 using WebProgrammingTerm.MVC.Models;
 using WebProgrammingTerm.MVC.Services;
 
@@ -48,7 +49,7 @@ public class CartController : Controller
         return Json(new { success = true,redir=@Url.Action("Index")});
     }
     
-    public async Task<ActionResult> Index()
+    public  ActionResult Index()
     {
         var accessToken = Request.Cookies["accessToken"]?.Value;
         
@@ -81,7 +82,7 @@ public class CartController : Controller
             Shipment = "BookerrExpress"
         };
 
-        var result = await CartServices.AddToFavorites(orderAddDto, accessToken);
+        var result = await CartServices.AddToCart(orderAddDto, accessToken);
 
         if (!result.HasValues)
             return RedirectToAction("Index", "ErrorPage");
@@ -108,4 +109,32 @@ public class CartController : Controller
         TempData["CartContent"] = model;
         return Json(new { success = true,redir=@Url.Action("Index")});
     }
+
+    [HttpGet]
+    public async Task<ActionResult> MyOrders()
+    {
+        var accessToken = Request.Cookies["accessToken"]?.Value;
+
+        if (accessToken is null)
+        {
+            return RedirectToAction("SignIn", "Account");
+        }
+        
+        var ordersObject = await CartServices.GetOrders(accessToken);
+
+        if (!ordersObject.HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+
+        if (ordersObject["errors"].HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+
+
+        var orders = ordersObject["data"].ToObject<List<Order>>();
+
+     
+        return View(model:orders);
+    }
+
+
+
 }

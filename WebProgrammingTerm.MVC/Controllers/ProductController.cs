@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using SharedLibrary.DTO;
@@ -49,11 +50,31 @@ public class ProductController : Controller
         }
         
     }
-    public async Task<ActionResult> Search(string searchTerm)
+    public async Task<ActionResult> Search(string searchTerm = "",int page = 1)
     {
-        var a = searchTerm;
 
-        return  RedirectToAction("Index");
+        if (page < 1)
+        {
+            page = 1;
+        }
+        var productObject = await ProductServices.GetProductFromName(searchTerm, page);
+
+        if (!productObject.HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+
+        if (productObject["errors"].HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+
+
+        ViewData["searchterm"] = searchTerm;
+        ViewData["page"] = page;
+        var products = productObject["data"].ToObject<List<ProductGetDto>>();
+
+        if (products is null)
+        {
+            products = new List<ProductGetDto>();
+        }
+        return View(products);
     }
 
 

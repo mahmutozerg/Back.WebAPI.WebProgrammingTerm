@@ -16,7 +16,6 @@ public class Product:Base
     public string Name { get; set; } = string.Empty;
     public int Stock { get; set; } = 0;
     
-    [JsonIgnore] 
     public ProductDetail ProductDetail { get; set; }
     
     [Column(TypeName = "varchar(450)")]

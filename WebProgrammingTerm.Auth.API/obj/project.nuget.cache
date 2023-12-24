@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SDrVG1mdYBMaajVGBQn25yQ37zMv9IpdXjb8QbRINJ22pu5JgzASQhfezYIxqV136iwF70IFYqoao4JA47JK0g==",
+  "dgSpecHash": "WSb9Mt3iydwVmqucVtRrvTfterhQ1om0YolEzEtm6gWwgznSH5ZM4jPQxC57STnv4Sb+L11EU1ryMYqimyz11g==",
   "success": true,
   "projectFilePath": "C:\\Users\\karak\\OneDrive\\Masaüstü\\Back.WebAPI.WebProgrammingTerm\\WebProgrammingTerm.Auth.API\\WebProgrammingTerm.Auth.API.csproj",
   "expectedPackageFiles": [
@@ -80,8 +80,8 @@
     "C:\\Users\\karak\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\system.text.encoding.codepages\\5.0.0\\system.text.encoding.codepages.5.0.0.nupkg.sha512",
-    "C:\\Users\\karak\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
-    "C:\\Users\\karak\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
+    "C:\\Users\\karak\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
+    "C:\\Users\\karak\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\karak\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"

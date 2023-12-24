@@ -199,7 +199,8 @@ public static class UserServices
 
         }
 
-        return new JObject();    }
+        return new JObject();    
+    }
     private static bool IsValidUser(string email, string password)
     {
         try

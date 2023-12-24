@@ -102,11 +102,13 @@ public class UserService:GenericService<User>,IUserService
     {
         var user= await _userRepository
             .Where(u => u != null && u.Id == id && !u.IsDeleted)
-            .Include(u=>u!.Favorites )
+            .Include(u => u!.Favorites.OrderBy(f => f.UpdatedAt))
             .SingleOrDefaultAsync();
 
         if (user is null)
             new Exception(ResponseMessages.UserNotFound);
+        
+        
 
         return user;
         
@@ -141,7 +143,9 @@ public class UserService:GenericService<User>,IUserService
     public async Task<List<UserFavorites?>> GetFavorites(string userId)
     {
         var userEntity = await _favoritesRepository
-            .Where(f => f != null  && f.UserId == userId && !f.IsDeleted).ToListAsync();
+            .Where(f => f != null  && f.UserId == userId && !f.IsDeleted)
+            .OrderByDescending(f=>f.UpdatedAt)
+            .ToListAsync();
 
 
         return userEntity;

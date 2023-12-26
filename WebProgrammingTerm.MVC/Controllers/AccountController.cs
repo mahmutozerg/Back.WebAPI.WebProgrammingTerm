@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using SharedLibrary.DTO;
 using WebProgrammingTerm.MVC.Models;
@@ -102,5 +104,36 @@ public class AccountController : Controller
     }
 
 
+    [HttpGet]
+    public ActionResult SignOut()
+    {
+        var token = Request.Cookies["accessToken"]?.Value;
+        var rtoken = Request.Cookies["refreshToken"]?.Value;
 
+        if (token is not null)
+        {
+            var accessTokenCookie = new HttpCookie("accessToken")
+            {
+                Expires = DateTime.Now.AddDays(-1),
+                Path = "/",
+                HttpOnly = true,
+                Secure = true,
+            };
+            Response.Cookies.Add(accessTokenCookie);
+        }
+
+        if (rtoken is not null)
+        {
+            var refreshTokenCookie = new HttpCookie("refreshToken")
+            {
+                Expires = DateTime.Now.AddDays(-1),
+                Path = "/",
+                HttpOnly = true,
+                Secure = true,
+            };
+            Response.Cookies.Add(refreshTokenCookie);
+        }
+
+        return RedirectToAction("Home", "Home");
+    }
 }

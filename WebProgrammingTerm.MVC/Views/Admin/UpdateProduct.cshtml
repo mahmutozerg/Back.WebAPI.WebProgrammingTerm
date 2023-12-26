@@ -1,0 +1,72 @@
+﻿@model SharedLibrary.DTO.ProductUpdateDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<head>
+        <link rel="stylesheet" type="text/css" href="~/Content/BookerrCSS/AdminProductUpdate.css?v1">
+
+    
+</head>
+
+<body>
+
+<div class="mainContent">
+    <form action="@Url.Action("UpdateProduct", "Admin")" method="POST">
+        
+        <p>Name:</p>
+        @Html.TextBoxFor(m=>m.Name ,new { @class = "name-input", id = "name-input", value =Model.Name, required = "required" })
+        <p>Image Url:</p>
+        @Html.TextBoxFor(m=>m.ImagePath ,new { @class = "image-input", id = "image-input", value =Model.ImagePath, required = "required" })
+        
+        <p>Category:</p>
+        @Html.TextBoxFor(m=>m.Category ,new { @class = "categ-input", id = "categ-input", value =Model.Category, required = "required" })
+        
+        <p>Author:</p>
+        @Html.TextBoxFor(m=>m.Author ,new { @class = "author-input", id = "author-input", value =Model.Author, required = "required" })
+        
+         <p>Stock:</p>
+        @Html.TextBoxFor(m=>m.Stock ,new { @class = "stock-input", id = "stock-input", value =Model.Stock, required = "required" , type = "number" })
+        
+        <p>Price:</p>
+        @Html.TextBoxFor(m => m.Price, new { @class = "price-input", id = "price-input", value = Model.Price, required = "required", type = "number", step = "any" })
+        
+       
+
+        <p>Discount Rate:</p>
+        @Html.TextBoxFor(m=>m.DiscountRate ,new { @class = "dr-input", id = "dr-input", value =Model.DiscountRate, required = "required" , type = "number", step = "any" })
+        
+        <p>Publish Date:</p>
+        @Html.TextBoxFor(m=>m.PublishDate ,new { @class = "pd-input", id = "pd-input", value =Model.PublishDate, required = "required" })
+        
+        <p>Publisher:</p>
+        @Html.TextBoxFor(m=>m.Publisher ,new { @class = "p-input", id = "p-input", value =Model.Publisher, required = "required" })
+
+        <p>Language:</p>
+        @Html.TextBoxFor(m=>m.Language ,new { @class = "lang-input", id = "lang-input", value =Model.Language, required = "required" })
+        
+        <p>Size:</p>
+        @Html.TextBoxFor(m=>m.Size ,new { @class = "s-input", id = "s-input", value =Model.Size, required = "required" })        
+        
+        <p>Page:</p>
+        @Html.TextBoxFor(m=>m.Page ,new { @class = "page-input", id = "page-input", value =Model.Page, required = "required" })
+        
+        <p>Is Deleted: (For deletion see previous page, Use it for remove soft delete)</p>
+        <label>
+            @Html.CheckBoxFor(m => m.IsDeleted, new { @class = "isd-input", id = "isd-input" }) Toggle IsDeleted
+        </label>
+        @Html.HiddenFor(m=>m.TargetProductId,new {value = Model.TargetProductId})
+        @Html.HiddenFor(m=>m.DepotId,new {value = Model.DepotId})
+
+        <button type="submit" class="save-button">Save</button>
+    </form>
+    
+    
+    
+</div>
+
+
+
+</body>

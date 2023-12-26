@@ -118,7 +118,13 @@
 
 }
 
+.info-image {
+    font-family: Montserrat;
+    color: #808285;
+    display: flex;
+    font-size: 20px;
 
+}
 .carosel-product-info-text {
     color: #000000;
     font-size: larger;

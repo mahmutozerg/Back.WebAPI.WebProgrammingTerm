@@ -13,7 +13,26 @@ public class RouteConfig
             url: "home",
             defaults: new { controller = "Home", action = "Home" }
         );
-
+        routes.MapRoute(
+            name: "AdminRoute",
+            url: "admin",
+            defaults: new { controller = "Admin", action = "Index" }
+        );
+        routes.MapRoute(
+            name: "AdminProductsRoute",
+            url: "admin/products",
+            defaults: new { controller = "Admin", action = "Products" }
+        );
+        routes.MapRoute(
+            name: "AdminProductUpdateRoute",
+            url: "admin/products/update/{id}",
+            defaults: new { controller = "Admin", action = "UpdateProduct" }
+        );
+        routes.MapRoute(
+            name: "AdminProductDeleteRoute",
+            url: "admin/products/delete/{id}",
+            defaults: new { controller = "Admin", action = "UpdateProduct" }
+        );
         routes.MapRoute(
             name: "ProfileRoute",
             url: "profile",
@@ -27,7 +46,7 @@ public class RouteConfig
         routes.MapRoute(
             name: "NotFoundPageRoute",
             url: "notfound",
-            defaults: new { controller = "ErrorPage", action = "Index" }
+            defaults: new { controller = "ErrorPage", action = "Products" }
         );
 
         routes.MapRoute(

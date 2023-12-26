@@ -81,17 +81,12 @@ public class ProductService:GenericService<Product>,IProductService
     public async Task<Product?> GetProductWithCompany(string productId)
     {
         var product = await _productRepository
-            .Where(p => p != null && p.Id == productId && !p.IsDeleted)
-            .Include(c=>c!.Company)
+            .Where(p => p != null && p.Id == productId)
+            .Include(p=>p.ProductDetail)
+            .Include(p=>p!.Company)
             .SingleOrDefaultAsync();
-
-
-
         return product;
-
-
     }
-
     public async Task<CustomResponseListDataDto<ProductGetDto>> GetProductsByPage(int page)
     {
         var products = await _productRepository.GetProducstByPage(page);
@@ -109,7 +104,7 @@ public class ProductService:GenericService<Product>,IProductService
 
     public async Task<CustomResponseDto<ProductWCommentDto>> GetProductWithComments(string id)
     {
-        var products = await _productRepository.Where(p => p != null && !p.IsDeleted && p.Id == id)
+        var products = await _productRepository.Where(p => p != null  && p.Id == id)
             .Include(pd=>pd.ProductDetail)
             .Include(p => p.Company).SingleOrDefaultAsync();
 
@@ -122,5 +117,24 @@ public class ProductService:GenericService<Product>,IProductService
 
         return CustomResponseDto<ProductWCommentDto>.Success(ProductMapper.Enhance(products, comments),
             ResponseCodes.Ok);
+    }
+
+    public async Task<CustomResponseNoDataDto> DeleteProductById(string id)
+    {
+        var product = await _productRepository.Where(p => p != null && p.Id == id && !p.IsDeleted)
+            .Include(p=>p.ProductDetail)
+            .SingleOrDefaultAsync();
+
+        if (product is null)
+            return CustomResponseNoDataDto.Fail(ResponseCodes.NotFound,ResponseMessages.ProductNotFound);
+
+
+        product.IsDeleted = true;
+        product.ProductDetail.IsDeleted = true;
+
+        _productRepository.Update(product);
+        await _unitOfWork.CommitAsync();
+        
+        return CustomResponseNoDataDto.Success(ResponseCodes.Ok);
     }
 }

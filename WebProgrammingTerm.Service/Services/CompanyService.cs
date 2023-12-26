@@ -17,13 +17,15 @@ public class CompanyService:GenericService<Company>,ICompanyService
 {
     private readonly ICompanyRepository _companyRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IUserService _userService;
     private const string BaseUrl = "https://localhost:7049/api";
     private const string CreateUser = "/User/CreateUser";
     private const string AddRole = "/Admin/AddUserToRole";
-     public CompanyService(IUnitOfWork unitOfWork, ICompanyRepository companyRepository) : base(companyRepository,unitOfWork)
+     public CompanyService(IUnitOfWork unitOfWork, ICompanyRepository companyRepository, IUserService userService) : base(companyRepository,unitOfWork)
     {
         _unitOfWork = unitOfWork;
         _companyRepository = companyRepository;
+        _userService = userService;
     }
 
     public  async Task<CustomResponseDto<Company>> UpdateAsync(CompanyUpdateDto companyUpdateDto,string updatedBy)
@@ -39,6 +41,7 @@ public class CompanyService:GenericService<Company>,ICompanyService
         companyEntity.UpdatedBy = updatedBy;
         _companyRepository.Update(companyEntity);
         await _unitOfWork.CommitAsync();
+        
         return CustomResponseDto<Company>.Success(companyEntity,ResponseCodes.Updated);
 
     }

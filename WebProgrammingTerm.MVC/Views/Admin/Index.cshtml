@@ -1,0 +1,23 @@
+﻿@model dynamic
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v26">
+</head>
+<body>
+<div class="mainContent">
+    <div class="profileContent">
+        <div class="profile_section">
+            <div class="link_holder">
+                <div class="profile_sections">
+                    <a href="@Url.Action("Products", "Admin")"><button type="button"  >Products</button></a>
+                    <a href="@Url.Action("Addresses", "Address")"><button type="button">My Addresses</button></a>
+                    <a href="@Url.Action("Index", "Favorites")"><button type="button">My Favorites</button></a>
+                    <a href="@Url.Action("MyOrders", "Cart")"><button type="button">My Orders</button></a>
+                    <a href="@Url.Action("SignOut", "Account")"><button type="button">Sign Out</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>

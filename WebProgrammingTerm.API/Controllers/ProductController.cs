@@ -17,7 +17,7 @@ public class ProductController:CustomControllerBase
     }
     
     [HttpPost]
-    [Authorize(Roles = "CompanyUser,Admin,Company")]
+    [Authorize(Roles = "Admin,Company")]
 
     public async Task<IActionResult> Add( ProductAddDto productAddDto)
     {
@@ -28,12 +28,11 @@ public class ProductController:CustomControllerBase
     }
     
     [HttpPut]
-    [Authorize(Roles = "CompanyUser,Admin,Company")]
+    [Authorize(Roles = "Admin,Company")]
 
     public async Task<IActionResult> Update(ProductUpdateDto productUpdateDto)
     {
- 
-         return CreateActionResult(await _productService.UpdateAsync(productUpdateDto,(ClaimsIdentity)User.Identity));
+        return CreateActionResult(await _productService.UpdateAsync(productUpdateDto,(ClaimsIdentity)User.Identity));
      }
     
     
@@ -70,7 +69,15 @@ public class ProductController:CustomControllerBase
     {
 
         var a = await _productService.GetProductByName(page, name);
+        return CreateActionResult(a);
+    }
+    
+    [HttpDelete]
+    [Authorize(Roles = "Admin,Company")]
+    public async Task<IActionResult> DeleteProductById([FromQuery]string id)
+    {
 
+        var a = await _productService.DeleteProductById(id);
         return CreateActionResult(a);
     }
 }

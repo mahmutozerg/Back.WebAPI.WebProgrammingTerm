@@ -1,0 +1,139 @@
+﻿@using System.Globalization
+@model List<SharedLibrary.DTO.ProductGetDto>
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/HomePage.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Products.css">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v26">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+	    .search-barp {
+			width: fit-content;
+			position: absolute;
+			margin-top: 10%;
+			z-index: 2;
+			margin-left: 2%;
+        }
+	    .search-barp input[type="text"] {
+            background-color: #E6E7E8;
+            border-radius: 300px;
+            border: 4px solid rgba(0, 0, 0, 0);
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="mainContent" style="display: flex">
+
+	<div class="profileContent" style="width: fit-content">
+		<div class="profile_section">
+			<div class="link_holder">
+				<div class="profile_sections">
+					<a href="@Url.Action("Products", "Admin")"><button type="button" style="color: white; background-color: #808285">Products</button></a>
+					<a href="@Url.Action("Addresses", "Address")"><button type="button">My Addresses</button></a>
+					<a href="@Url.Action("Index", "Favorites")"><button type="button">My Favorites</button></a>
+					<a href="@Url.Action("MyOrders", "Cart")"><button type="button">My Orders</button></a>
+					<a href="@Url.Action("SignOut", "Account")"><button type="button">Sign Out</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="products_container">
+	@using (Html.BeginForm("Products", "Admin", FormMethod.Get, new { @class = "custom-form",position="absolute" }))
+	{
+	    <div class="search-barp">
+	        <input type="text" name="name" placeholder="Search">
+	    </div>
+	}
+		<div class="products" id="products">
+
+			@foreach (var product in Model)
+			{
+				<div class="product-carousel-item">
+					<a src="#" href="@Url.Action("Index", "Product", new { id = product.ProductId })">
+						<div class="card" style="width: 18rem; height:100% ">
+							<img src="@product.ImagePath" class="card-img-top" alt="productImage">
+							<div class="card-body">
+								<p class="card-text">
+									<strong class="card-title">
+										<a style="color:inherit">
+											@{
+												var name = product.ProductDetail.Publisher.Replace("-", " ");
+												var titleCaseName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
+
+											}
+											@titleCaseName
+										</a><br/>
+									</strong>
+									@{
+										var truncatedName = product.Name.Length > 35
+											? product.Name.Substring(0, 32) + "..."
+											: product.Name;
+									}
+									@truncatedName
+									<div class="carosel-product-info">
+										<div class="info-image" style="margin-right: 5px">
+											<a href="@Url.Action("UpdateProduct", "Admin", new { id = product.ProductId })" style="text-decoration: underline; color: #F47878"> Update </a>
+										</div>
+										<div class="info-image">
+											<a style="text-decoration: underline; color: #F47878; cursor: pointer" onclick="showConfirmationPopup()"> Delete </a>
+										</div>
+									</div>
+								</p>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="popup-container" id="confirmationPopup" style="display: none;">
+					<div class="popup-content">
+						<div class="warning-sign">⚠️</div>
+						<p>Are you sure you want to delete @product.Name </p>
+						<button class="close-btn" onclick="sendDeletePostRequest('@product.ProductId')">Yes</button>
+						<button class="close-btn" style="background-color: red" onclick="closeConfirmationPopup()">No</button>
+					</div>
+				</div>
+			}
+
+		</div>
+	</div>
+
+</div>
+	<div class="buttons" style="width: 5% ; height: 5%; display: flex;position:relative;left: 52%;margin-top: 5%;">
+		<a href="@Url.Action("Products","Admin",new {name= ViewData["AdminProductName"].ToString(),page= int.Parse(ViewData["AdminProductPage"].ToString())-1})" class="right_button" style="width: 50%;height: 100%">
+			<img src = "../../Content/WebAssets/arrow_left.svg"/>
+		</a>
+		<a href="@Url.Action("Products","Admin",new {name= ViewData["AdminProductName"].ToString(),page= int.Parse(ViewData["AdminProductPage"].ToString())+1})" class="right_button" style="width: 50%;height: 100%">
+        	<img src = "../../Content/WebAssets/arrow_right.svg"/>
+        </a>
+	</div>
+<script>
+
+function showConfirmationPopup() {
+    document.getElementById("confirmationPopup").style.display = "block";
+}
+function closeConfirmationPopup() {
+    document.getElementById("confirmationPopup").style.display = "none";
+}
+function sendDeletePostRequest(clickedId) {
+	$.ajax({
+		type: "POST",
+		url: '@Url.Action("DeleteProduct", "Admin")',
+		data: {id:clickedId},
+		success: function(response) {
+
+			console.log("Post request successful");
+			closeConfirmationPopup();
+		},
+		error: function(error) {
+			console.error("Error in post request", error);
+		}
+	});
+}
+</script>
+
+</body>

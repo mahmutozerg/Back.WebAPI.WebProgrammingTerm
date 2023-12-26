@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/Header.css?v2">
     <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/Footer.css?v1">
-    <script src="../../Scripts/BookerrScripts/CartScript.js?v18"></script>
+    <script src="~/Scripts/BookerrScripts/CartScript.js?v18"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -21,7 +21,7 @@
     <header>
         <div id="topLayer">
             <div id="layout">
-                <img src="../../Content/WebAssets/LineforTop@2x.png" style="opacity: 0.6;">
+                <img src="~/Content/WebAssets/LineforTop@2x.png" style="opacity: 0.6;">
                 <h1 align="center">
                     <font face="Montserrat" size="5" style="color:rgb(19, 19, 19);">Up to 50% discounts for World Book
                         Day!
@@ -44,7 +44,7 @@
 
             <div class="bookerr-image">
                 <a href="@Url.Action("Home", "Home")">
-                    <img src="../../Content/WebAssets/BOOKERRLogo_Pink.svg">
+                    <img src="~/Content/WebAssets/BOOKERRLogo_Pink.svg">
                 </a>
             </div>
             
@@ -57,7 +57,7 @@
 
             <div class="profile-image">
                 <a href=@Url.Action("ProfileIndex", "Profile")>
-                    <img src="../../Content/WebAssets/ProfileIcon.svg">
+                    <img src="~/Content/WebAssets/ProfileIcon.svg">
                 </a>
             </div>
 
@@ -70,7 +70,7 @@
                     }
                 }
                 <a href="#" onclick="SenRequestForAddToCart('@token')">
-                    <img src="../../Content/WebAssets/CartIcon.svg">
+                    <img src="~/Content/WebAssets/CartIcon.svg">
                 </a>
             </div>
         </div>

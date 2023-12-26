@@ -58,12 +58,12 @@ public class UserService:GenericService<User>,IUserService
     public async Task<CustomResponseDto<User>> UpdateUserAsync(AppUserUpdateDto updateDto, ClaimsIdentity claimsIdentity,string accessToken)
     {
         var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
         var userEntity = await _userRepository.Where(u => u != null && u.Id == userId && !u.IsDeleted).SingleOrDefaultAsync();
+        
         if (userEntity is null)
             return CustomResponseDto<User>.Fail(ResponseMessages.UserNotFound, ResponseCodes.NotFound);
 
-
+    
         if (updateDto.Email != userEntity.Email)
         {
             var emailExist = await _userRepository.Where(u => u != null && u.Email == updateDto.Email && !u.IsDeleted).AnyAsync();
@@ -82,6 +82,7 @@ public class UserService:GenericService<User>,IUserService
 
         _userRepository.Update(userEntity);
         await _unitOfWork.CommitAsync();
+
         return CustomResponseDto<User>.Success(userEntity, ResponseCodes.Updated);
     }
 

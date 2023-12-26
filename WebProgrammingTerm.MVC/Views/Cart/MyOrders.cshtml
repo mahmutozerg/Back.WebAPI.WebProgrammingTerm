@@ -33,7 +33,7 @@
                     <a href="@Url.Action("Addresses", "Address")"><button type="button">My Addresses</button></a>
                     <a href="@Url.Action("Index", "Favorites")"><button type="button" >My Favorites</button></a>
                     <a href="@Url.Action("MyOrders","Cart")"><button type="button" style="color: white; background-color: #808285">My Orders</button></a>
-                    <a href="#"><button type="button" style="padding-bottom: 1%">Nav Link</button></a>
+                    <a href="@Url.Action("SignOut","Account")"><button type="button">Sign Out</button></a>
                 </div>
             </div>
         </div>
@@ -75,10 +75,8 @@
                                         }
                                         @truncatedName
                                         <div class="carosel-product-info">
-                                            <a style="cursor: pointer"onclick="showPopup();addToCart('@product.Id')">
-                                                <img src="/Content/WebAssets/Addtocart.svg" class="add-to-cart-image" alt="addToCartImage">
-                                            </a>
-                                            <p class="carosel-product-info-text">@product.Price₺</p>
+
+                                            <p class="carosel-product-info-text" style="margin-top: 15px">@product.Price₺</p>
                                         </div>
                                     </p>
                                 </div>

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SharedLibrary.DTO;
 
 namespace WebProgrammingTerm.MVC.Services
 {
@@ -52,6 +55,43 @@ namespace WebProgrammingTerm.MVC.Services
 
             return new JObject();
         }
+        
+        public static async Task<JObject> UpdateProduct(ProductUpdateDto productUpdateDto,string accessToken)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                var jsonData = JsonConvert.SerializeObject(productUpdateDto);
+                var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                var response = await client.PutAsync(Url,content);
+
+                if (response.IsSuccessStatusCode)
+                    return JObject.Parse(await response.Content.ReadAsStringAsync());
+            }
+
+            return new JObject();
+
+        }
+        
+        
+        public static async Task<JObject> DeleteProductById(string id,string accessToken)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
+                var response = await client.DeleteAsync(Url + $"?id={Uri.EscapeDataString(id)}");
+
+                if (response.IsSuccessStatusCode)
+                    return JObject.Parse(await response.Content.ReadAsStringAsync());
+            }
+
+            return new JObject();
+
+        }
     }
+    
+
     
 }

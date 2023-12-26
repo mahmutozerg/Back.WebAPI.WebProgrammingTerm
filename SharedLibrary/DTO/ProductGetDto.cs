@@ -8,4 +8,6 @@ public class ProductGetDto:ProductAddDto
     public string ProductId { get; set; }
 
     public ProductDetail ProductDetail { get; set; }
+
+    public bool IsDeleted { get; set; } = false;
 }

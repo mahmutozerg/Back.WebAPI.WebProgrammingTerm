@@ -23,6 +23,5 @@ public class Base
     [Column(TypeName = "datetime2")]
     public DateTime UpdatedAt { get; set; } =DateTime.Now;
     
-    [JsonIgnore]
     public bool IsDeleted { get; set; } = false;
 }

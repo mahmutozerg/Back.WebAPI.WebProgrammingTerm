@@ -36,6 +36,8 @@ public class ProductController : Controller
                 ProductWGetDto = productJsonObject["data"].ToObject<ProductWCommentDto>(),
                 UserFavoritesDto = userJsonObject["data"].ToObject<UserFavoritesListDto>()
             };
+            model.ProductWGetDto.Size = productJsonObject["data"]["productDetail"]["size"].ToString();
+
             return View(model);
 
         }

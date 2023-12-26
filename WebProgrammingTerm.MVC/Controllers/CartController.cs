@@ -90,7 +90,7 @@ public class CartController : Controller
             return RedirectToAction("Index", "ErrorPage");
 
         TempData.Clear();
-        return RedirectToAction("Home","Home");
+        return RedirectToAction("MyOrders");
 
     }
 

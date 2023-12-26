@@ -78,16 +78,20 @@
 			<p> @Model.ProductWGetDto.Language</p>
 			<h6>Page</h6>
 			<p>@Model.ProductWGetDto.Page</p>
+			<h6>Size</h6>
+            <p>@Model.ProductWGetDto.Size</p>
 		</div>
 		<div class="price">
 			<h1>@Model.ProductWGetDto.Price₺</h1>
 		</div>
-		<div class="add-to-cart">
-			<a style="cursor: pointer" onclick="showPopup();addToCart('@Model.ProductWGetDto.ProductId')">
-				<img src="../../Content/WebAssets/Addtocart.svg">
-			</a>
-		</div>
-		<div class="heartbox">
+		@if (!Model.ProductWGetDto.IsDeleted)
+		{
+			<div class="add-to-cart">
+				<a style="cursor: pointer" onclick="showPopup();addToCart('@Model.ProductWGetDto.ProductId')">
+					<img src="../../Content/WebAssets/Addtocart.svg">
+				</a>
+			</div>
+					<div class="heartbox">
 			@{
 				var fill = "none";
 				var token = "";
@@ -153,6 +157,9 @@
 				</svg>
 			</label>
 		</div>
+
+		}
+
 	</div>
 </div>
 

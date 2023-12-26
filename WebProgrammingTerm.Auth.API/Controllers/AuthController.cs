@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedLibrary.DTO;
@@ -55,4 +56,16 @@ public class AuthController:CustomControllerBase
 
         return CreateActionResult(result);
     }
+     
+     
+     [HttpGet]
+     [Authorize]
+     public async Task<IActionResult> GetRole()
+     {
+         var claimsIdentity = (ClaimsIdentity)User.Identity;
+         var role = claimsIdentity.FindFirst(ClaimTypes.Role)?.Value;
+         
+         
+         return CreateActionResult(Response<string?>.Success(role,200));
+     }
 }

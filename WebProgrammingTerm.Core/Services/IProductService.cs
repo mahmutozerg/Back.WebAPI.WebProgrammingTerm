@@ -16,6 +16,10 @@ public interface IProductService:IGenericService<Product>
     
     Task<CustomResponseDto<ProductWCommentDto>> GetProductWithComments(string id);
     
+    Task<CustomResponseNoDataDto> DeleteProductById(string id);
+
+    
+    
     
 
 }

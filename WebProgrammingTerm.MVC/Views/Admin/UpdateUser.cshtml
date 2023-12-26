@@ -13,7 +13,7 @@
 <body>
 
 <div class="mainContent">
-    <form action="@Url.Action("UpdateProduct", "Admin")" method="POST">
+    <form action="@Url.Action("UpdateUser", "Admin")" method="POST">
         
         <p>Name:</p>
         @Html.TextBoxFor(m=>m.Name ,new { @class = "name-input", id = "name-input", value =Model.Name})

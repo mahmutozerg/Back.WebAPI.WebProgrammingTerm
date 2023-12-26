@@ -12,8 +12,6 @@ public class CompanyUser:Base
     public User User { get; set; } = new User();
     public string UserId { get; set; } = string.Empty;
     
-    [Column(TypeName = "varchar(120)")]
 
-    public string Email { get; set; } = string.Empty;
 
 }

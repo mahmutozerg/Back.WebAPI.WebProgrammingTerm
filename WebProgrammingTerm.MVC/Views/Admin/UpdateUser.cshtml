@@ -1,0 +1,45 @@
+﻿@model SharedLibrary.Models.User
+
+
+@{
+    ViewBag.Title = "title";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/BookerrCSS/AdminProductUpdate.css?v1">
+</head>
+
+<body>
+
+<div class="mainContent">
+    <form action="@Url.Action("UpdateProduct", "Admin")" method="POST">
+        
+        <p>Name:</p>
+        @Html.TextBoxFor(m=>m.Name ,new { @class = "name-input", id = "name-input", value =Model.Name})
+
+        <p>Last Name:</p>
+        @Html.TextBoxFor(m=>m.LastName ,new { @class = "lastname-input", id = "lastname-input", value =Model.LastName})
+        
+         <p>BirthDate: (dd.mm.yyyy)</p>
+        @Html.TextBoxFor(m=>m.BirthDate ,new { @class = "BirthDate-input", id = "BirthDate-input", value =Model.BirthDate })
+        
+         <p>Email (if user is also company it will be updated to)</p>
+        @Html.TextBoxFor(m=>m.Email ,new { @class = "BirthDate-input", id = "BirthDate-input", value =Model.Email ,required="required"})
+
+                
+        <p>Is Deleted: (For deletion see previous page, Use it for remove soft delete)</p>
+        <label>
+            @Html.CheckBoxFor(m => m.IsDeleted, new { @class = "isd-input", id = "isd-input" }) Toggle IsDeleted
+        </label>
+        @Html.HiddenFor(m=>m.Id,new {value = Model.Id})
+        <button type="submit" class="save-button">Save</button>
+    </form>
+    
+    
+    
+</div>
+
+
+
+</body>

@@ -55,6 +55,7 @@ public class UserService:GenericService<User>,IUserService
         return Response<User>.Success(user,200);
     }
 
+    
     private async Task  SendReqToBusinessApiAddById(User user, CreateUserDto createUserDto)
     {
         using (var client = new HttpClient())

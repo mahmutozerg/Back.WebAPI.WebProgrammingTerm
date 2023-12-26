@@ -20,7 +20,8 @@ public class AdminController : Controller
 
         if (roleObject["data"].ToObject<string>() != "Admin")
             return RedirectToAction("Home", "Home");
-        return View();
+
+        return RedirectToAction("Products");
     }
     
     public async Task<ActionResult> Products(string name="", int page=1)
@@ -48,6 +49,7 @@ public class AdminController : Controller
         return View(products);
     }
     
+
     public async Task<ActionResult> UpdateProduct(string id)
     {
 
@@ -123,5 +125,96 @@ public class AdminController : Controller
         var responseData = new {success = true, redir = @Url.Action("Products" ) };
         return Json(responseData);
 
+    }
+    
+    
+    public async Task<ActionResult> Users(string email="", int page=1)
+    {
+        if (page < 1)
+        {
+            page = 1;
+        }
+        var accessToken = Request.Cookies["accessToken"]?.Value;
+
+        if (accessToken is null)
+            return RedirectToAction("Home", "Home");
+
+        var roleObject = await AdminServices.GetRole(accessToken);
+
+        if (roleObject["data"].ToObject<string>() != "Admin")
+            return RedirectToAction("Home", "Home");
+
+
+        var usersObject = await AdminServices.GetUsersByEmail(email, page, accessToken);
+        var users = usersObject["data"].ToObject<List<User>>();
+
+        ViewData["AdminUserPage"] = page;
+        ViewData["AdminUserEmail"] = email;
+        return View(users);
+    }
+    
+    public async Task<ActionResult> UpdateUser(string id)
+    {
+
+        var accessToken = Request.Cookies["accessToken"]?.Value;
+
+        if (accessToken is null)
+            return RedirectToAction("Home", "Home");
+
+        var roleObject = await AdminServices.GetRole(accessToken);
+
+        if (roleObject["data"].ToObject<string>() != "Admin")
+            return RedirectToAction("Home", "Home");
+
+        var userObject = await AdminServices.GetUserById(id,accessToken);
+
+        if (!userObject.HasValues) 
+            return RedirectToAction("Index", "ErrorPage");
+
+
+        if (userObject["errors"].HasValues)
+        {
+            return RedirectToAction("Index", "ErrorPage");
+        }
+
+        var User = userObject["data"].ToObject<User>();
+
+        
+        return View(User);
+    }
+
+    
+    [HttpPost]
+    public async Task<ActionResult> UpdateUser(User user)
+    {
+
+        var accessToken = Request.Cookies["accessToken"]?.Value;
+
+        if (accessToken is null)
+            return RedirectToAction("Home", "Home");
+
+        var roleObject = await AdminServices.GetRole(accessToken);
+
+        if (roleObject["data"].ToObject<string>() != "Admin")
+            return RedirectToAction("Home", "Home");
+
+
+        var userUpdateDto = new AppUserUpdateDto()
+        {
+            Id = user.Id,
+            BirthDate = user.BirthDate,
+            Email = user.Email,
+            Gender = user.Gender,
+            LastName = user.LastName,
+            Name = user.Name,
+            IsDeleted = user.IsDeleted
+        };
+
+        var userUpdateObject =await UserServices.UpdateUserProfile(userUpdateDto, accessToken);
+        if (!userUpdateObject.HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+
+
+        return userUpdateObject["errors"].HasValues ? RedirectToAction("Index", "ErrorPage") : RedirectToAction("Users");
     }
 }

@@ -17,16 +17,19 @@ public class UserService:GenericService<User>,IUserService
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUserFavoritesRepository _favoritesRepository;
+    private readonly ICompanyService _companyService;
     private const string UpdateUserUrl = "https://localhost:7049/api/User/UpdateUser";
-    public UserService(IUnitOfWork unitOfWork, IUserRepository userRepository, IUserFavoritesRepository favoritesRepository) : base(userRepository,unitOfWork)
+    public UserService(IUnitOfWork unitOfWork, IUserRepository userRepository, IUserFavoritesRepository favoritesRepository, ICompanyService companyService) : base(userRepository,unitOfWork)
     {
         _unitOfWork = unitOfWork;
         _userRepository = userRepository;
         _favoritesRepository = favoritesRepository;
+        _companyService = companyService;
     }
 
     public async Task<CustomResponseDto<User>> AddUserAsync(UserAddDto userAddDto,ClaimsIdentity claimsIdentity)
     {
+
         var createdBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var userExist = await _userRepository.AnyAsync(u => u != null && u.Email == userAddDto.Email);
         if (userExist)
@@ -53,11 +56,22 @@ public class UserService:GenericService<User>,IUserService
                 throw new Exception(ResponseMessages.UserNotFound);
             
         }
-
     }
     public async Task<CustomResponseDto<User>> UpdateUserAsync(AppUserUpdateDto updateDto, ClaimsIdentity claimsIdentity,string accessToken)
     {
-        var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userId = "";
+        if (string.IsNullOrEmpty(updateDto.Id))
+        {
+            userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        }
+        else
+        {
+             userId = updateDto.Id;
+        }
+        var isCompany = claimsIdentity.FindFirst(ClaimTypes.Role)?.Value;
+      
+
         var userEntity = await _userRepository.Where(u => u != null && u.Id == userId && !u.IsDeleted).SingleOrDefaultAsync();
         
         if (userEntity is null)
@@ -67,19 +81,46 @@ public class UserService:GenericService<User>,IUserService
         if (updateDto.Email != userEntity.Email)
         {
             var emailExist = await _userRepository.Where(u => u != null && u.Email == updateDto.Email && !u.IsDeleted).AnyAsync();
-        
+            
             if (emailExist)
                 return CustomResponseDto<User>.Fail(ResponseMessages.UserMailExist, ResponseCodes.Duplicate);
 
-        }
+            if (isCompany is null or "Admin")
+            {
+                var name = userEntity.Email.Split("@")[0];
+                var  companyEntity = await _companyService.Where(c => c != null && c.Name == name && !c.IsDeleted).SingleOrDefaultAsync();
+                if (companyEntity is not null )
+                {
+                    var company = await _companyService.GetCompanyByName(userEntity.Email.Split("@")[0]);
+                    company.Name = updateDto.Email.Split("@")[0];
+                    await _companyService.UpdateAsync(company, userId);
 
+                }
+                
+            }
+
+        }
+        if (updateDto.IsDeleted)
+        {
+            var name = userEntity.Email.Split("@")[0];
+            var  companyEntity = await _companyService.Where(c => c != null && c.Name == name && !c.IsDeleted).SingleOrDefaultAsync();
+
+            if (companyEntity is not null)
+            {
+                await _companyService.ToggleDeleteCompanyById(companyEntity.Id);
+
+            }
+        }
         var tempData = userEntity.Email;
         userEntity = AppUserMapper.UpdateUser(userEntity, updateDto);
 
         //checks if user updated its email if yes we should also update it in authserver
         if (userEntity.Email != tempData)
+        {
             await SendUpdateReqToAuthAsync(updateDto, accessToken);
 
+        }
+        userEntity.UpdatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         _userRepository.Update(userEntity);
         await _unitOfWork.CommitAsync();
 

@@ -24,6 +24,17 @@ public class RouteConfig
             defaults: new { controller = "Admin", action = "Products" }
         );
         routes.MapRoute(
+            name: "AdminUsersRoute",
+            url: "admin/users",
+            defaults: new { controller = "Admin", action = "Users" }
+        );
+        
+        routes.MapRoute(
+            name: "AdminUserUpdateRoute",
+            url: "admin/products/update/{id}",
+            defaults: new { controller = "Admin", action = "UpdateUser" }
+        );
+        routes.MapRoute(
             name: "AdminProductUpdateRoute",
             url: "admin/products/update/{id}",
             defaults: new { controller = "Admin", action = "UpdateProduct" }

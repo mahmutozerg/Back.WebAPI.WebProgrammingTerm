@@ -1,0 +1,105 @@
+﻿@model List<SharedLibrary.Models.User>
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/HomePage.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Products.css">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v26">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <style>
+        p{
+            font-family: Montserrat;
+            font-weight: 500;
+            font-size: 20px;
+        }
+        .Users
+        {
+            margin-top: 120px;
+            margin-left: 50px;
+        }
+        
+		.search-barp {
+			width: fit-content;
+			position: absolute;
+			z-index: 2;
+			margin-left: 4%;
+			margin-top: 8%;
+		}
+		.search-barp input[type="text"] {
+			background-color: #E6E7E8;
+			border-radius: 300px;
+			border: 4px solid rgba(0, 0, 0, 0);
+			width: 100%;
+			box-sizing: border-box;
+			font-size: 16px;
+		}
+    </style>
+</head>
+
+<body>
+
+<div class="mainContent" style="display: flex">
+	<div class="profileContent" style="width: fit-content">
+		<div class="profile_section">
+			<div class="link_holder">
+				<div class="profile_sections">
+					<a href="@Url.Action("Products", "Admin")"><button type="button" >Products</button></a>
+					<a href="@Url.Action("Addresses", "Address")"><button type="button" style="color: white; background-color: #808285">Users</button></a>
+					<a href="@Url.Action("Index", "Favorites")"><button type="button">My Favorites</button></a>
+					<a href="@Url.Action("MyOrders", "Cart")"><button type="button">My Orders</button></a>
+					<a href="@Url.Action("SignOut", "Account")"><button type="button">Sign Out</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+			@using (Html.BeginForm("Users", "Admin", FormMethod.Get, new { @class = "custom-form",position="absolute" }))
+            {
+                <div class="search-barp">
+                    <input type="text" name="email" placeholder="Search">
+                </div>
+            }
+	<div class="Users">
+
+		@foreach (var user in Model)
+		{
+
+			<div class="user">
+				<p> @user.Email</p>
+				
+				<div class="carosel-product-info">
+					<div class="info-image" style="margin-right: 5px">
+						<a href="@Url.Action("UpdateUser",new {id = @user.Id})" style="text-decoration: underline; color: #F47878"> Update </a>
+					</div>
+					<div class="info-image">
+						<a style="text-decoration: underline; color: #F47878; cursor: pointer" onclick="showConfirmationPopup()"> Delete </a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="popup-container" id="confirmationPopup" style="display: none;">
+				<div class="popup-content">
+					<div class="warning-sign">⚠️</div>
+					<p>Are you sure you want to delete @user.Email </p>
+					<button class="close-btn" onclick="sendDeletePostRequest('@user.Id')">Yes</button>
+					<button class="close-btn" style="background-color: red" onclick="closeConfirmationPopup()">No</button>
+				</div>
+			</div>
+		}
+	</div>
+</div>
+<script>
+
+function showConfirmationPopup() {
+    document.getElementById("confirmationPopup").style.display = "block";
+}
+function closeConfirmationPopup() {
+    document.getElementById("confirmationPopup").style.display = "none";
+}
+function sendDeletePostRequest(clickedId) {
+
+}
+</script>
+
+</body>

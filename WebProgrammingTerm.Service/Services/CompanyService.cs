@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Security.Claims;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -16,16 +17,16 @@ namespace WebProgrammingTerm.Service.Services;
 public class CompanyService:GenericService<Company>,ICompanyService
 {
     private readonly ICompanyRepository _companyRepository;
+    private readonly IProductRepository _productRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IUserService _userService;
     private const string BaseUrl = "https://localhost:7049/api";
     private const string CreateUser = "/User/CreateUser";
     private const string AddRole = "/Admin/AddUserToRole";
-     public CompanyService(IUnitOfWork unitOfWork, ICompanyRepository companyRepository, IUserService userService) : base(companyRepository,unitOfWork)
+     public CompanyService(IUnitOfWork unitOfWork, ICompanyRepository companyRepository, IProductRepository productRepository) : base(companyRepository,unitOfWork)
     {
         _unitOfWork = unitOfWork;
         _companyRepository = companyRepository;
-        _userService = userService;
+        _productRepository = productRepository;
     }
 
     public  async Task<CustomResponseDto<Company>> UpdateAsync(CompanyUpdateDto companyUpdateDto,string updatedBy)
@@ -44,6 +45,33 @@ public class CompanyService:GenericService<Company>,ICompanyService
         
         return CustomResponseDto<Company>.Success(companyEntity,ResponseCodes.Updated);
 
+    }
+
+    public async Task<Company?> GetCompanyByName(string name)
+    {
+        var companyEntity = await _companyRepository.Where(c => c != null && c.Name == name && !c.IsDeleted).SingleOrDefaultAsync();
+
+        return companyEntity;
+    }
+
+    public async Task<CustomResponseNoDataDto> ToggleDeleteCompanyById(string id)
+    {
+        var  companyEntity = await _companyRepository.Where(c => c != null && c.Id == id).SingleOrDefaultAsync();
+        companyEntity.IsDeleted = true;
+
+        var companyProducts = await _productRepository
+            .Where(p => p != null && p.Company.Id == companyEntity.Id )
+            .Include(p => p.ProductDetail)
+            .ToListAsync();
+        foreach (var product in companyProducts)
+        {
+            product.IsDeleted = !product.IsDeleted;
+            product.ProductDetail.IsDeleted = !product.ProductDetail.IsDeleted;
+        }
+
+        _companyRepository.Update(companyEntity);
+        await _unitOfWork.CommitAsync();
+        return CustomResponseNoDataDto.Success(ResponseCodes.Ok);
     }
 
     private static async Task<string> SendCreateUserReqToAuthServer(Company companyEntity,string createdBy,string accessToken)
@@ -66,6 +94,8 @@ public class CompanyService:GenericService<Company>,ICompanyService
             if (!response.IsSuccessStatusCode)
                 throw new Exception(response.Content.ToString());
 
+            
+            
             var userRoleRequestData = new
             {
                 userMail = createUserRequestData.email,

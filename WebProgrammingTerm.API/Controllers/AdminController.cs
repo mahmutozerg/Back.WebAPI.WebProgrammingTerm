@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SharedLibrary.DTO;
 using SharedLibrary.Mappers;
+using SharedLibrary.Models;
+using WebProgrammingTerm.Core;
 using WebProgrammingTerm.Core.Repositories;
 using WebProgrammingTerm.Core.Services;
 
@@ -41,6 +45,36 @@ public class AdminController:CustomControllerBase
         return CreateActionResult(CustomResponseListDataDto<ProductGetDto>.Success(dtos,200));
         
     }
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetUsersByEmail([FromQuery]int page=1,[FromQuery]string? email ="")
+    {
+
+        if (string.IsNullOrEmpty(email))
+        {
+            var users = await _userRepository.Where(u => u != null)
+                .Skip(20 * (page - 1))
+                .Take(20)
+                .ToListAsync();
+            return CreateActionResult(CustomResponseListDataDto<User>.Success(users,ResponseCodes.Ok));
+
+        }
+        else
+        {            
+            var users = await _userRepository.Where(u => u != null && u.Email.Contains(email))
+                .Skip(20 * (page - 1))
+                .Take(20)
+                .ToListAsync();
+            return CreateActionResult(CustomResponseListDataDto<User>.Success(users,ResponseCodes.Ok));
+            
+        }
+    }
     
-    
+    [HttpGet("[action]/{id}")]
+    public async Task<IActionResult> GetUserById(string id)
+    {
+
+        var user = await _userRepository.Where(u => u != null && u.Id == id).SingleOrDefaultAsync();
+
+        return CreateActionResult(CustomResponseDto<User>.Success(user, ResponseCodes.Ok));
+    }
 }

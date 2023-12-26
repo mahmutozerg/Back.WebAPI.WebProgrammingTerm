@@ -57,13 +57,6 @@ public class CompanyController:CustomControllerBase
         return CreateActionResult(CustomResponseListDataDto<Company>.Success(entities,ResponseCodes.Ok));
 
     }
-    [HttpPost("[action]")]
-    [Authorize(Roles = "Company")]
-    public async Task<IActionResult> CreateCompanyUser(CompanyUserDto companyUserDto)
-    {
-        var claimsIdentity = (ClaimsIdentity)User.Identity;
-        var accessToken = await HttpContext.GetTokenAsync("access_token");
-        return CreateActionResult(await _companyUserService.AddAsync(companyUserDto,(ClaimsIdentity)User.Identity,accessToken));
-    }
+
     
 }

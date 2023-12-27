@@ -27,12 +27,12 @@ public class RouteConfig
         );
         routes.MapRoute(
             name: "AdminProductUpdateRoute",
-            url: "admin/products/update/{id}",
+            url: "products/update/{id}",
             defaults: new { controller = "Admin", action = "UpdateProduct" }
         );
         routes.MapRoute(
             name: "AdminProductDeleteRoute",
-            url: "admin/products/delete/{id}",
+            url: "products/delete/{id}",
             defaults: new { controller = "Admin", action = "DeleteProduct" }
         );
         routes.MapRoute(
@@ -53,7 +53,16 @@ public class RouteConfig
             defaults: new { controller = "Admin", action = "UpdateUser" }
         );
 
-
+        routes.MapRoute(
+            name: "CompanyRoute",
+            url: "company",
+            defaults: new { controller = "Company", action = "Index" }
+        );
+        routes.MapRoute(
+            name: "CompanyProductsRoute",
+            url: "company/products",
+            defaults: new { controller = "Company", action = "Products" }
+        );
         routes.MapRoute(
             name: "ProfileRoute",
             url: "profile",

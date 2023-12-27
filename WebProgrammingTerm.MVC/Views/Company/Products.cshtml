@@ -1,0 +1,111 @@
+﻿@using System.Globalization
+@model List<SharedLibrary.Models.Product>
+
+
+<head>
+    
+    
+	    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/HomePage.css">
+        <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Products.css">
+        <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v27">
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</head>
+
+<body>
+<div class="mainContent" style="display: flex">
+	<div class="profileContent" style="width: fit-content;">
+		<div class="profile_section" style="width: fit-content">
+			<div class="link_holder">
+				<div class="profile_sections">
+					<a href="@Url.Action("Products", "Company")"><button type="button" style="color: white; background-color: #808285">Company Products</button></a>
+					<a href="@Url.Action("Users", "Admin")"><button type="button">Users</button></a>
+					<a href="@Url.Action("AddCompany", "Admin")"><button type="button">Add Company</button></a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+    
+	<div class="products_container">
+		<div class="products" id="products">
+    
+			@foreach (var product in Model)
+			{
+				<div class="product-carousel-item">
+					<a src="#" href="@Url.Action("Index", "Product", new { id = product.Id })">
+						<div class="card" style="width: 18rem; height:100% ">
+							<img src="@product.ImagePath" class="card-img-top" alt="productImage">
+							<div class="card-body">
+								<p class="card-text">
+									<strong class="card-title">
+										<a style="color:inherit">
+											@{
+												var name = product.ProductDetail.Publisher.Replace("-", " ");
+												var titleCaseName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
+    
+											}
+											@titleCaseName
+										</a><br/>
+									</strong>
+									@{
+										var truncatedName = product.Name.Length > 35
+											? product.Name.Substring(0, 32) + "..."
+											: product.Name;
+									}
+									@truncatedName
+									<div class="carosel-product-info">
+										<div class="info-image" style="margin-right: 5px">
+											<a href="@Url.Action("UpdateProduct", "Admin", new { id = product.Id })" style="text-decoration: underline; color: #F47878"> Update </a>
+										</div>
+										<div class="info-image">
+											<a style="text-decoration: underline; color: #F47878; cursor: pointer" onclick="showConfirmationPopup('@product.Id')"> Delete </a>
+										</div>
+									</div>
+								</p>
+							</div>
+						</div>
+					</a>
+					<div class="popup-container" id="confirmationPopup_@product.Id" style="display: none;">
+						<div class="popup-content">
+							<div class="warning-sign">⚠️</div>
+							<p>Are you sure you want to delete @product.Name </p>
+							<button class="close-btn" onclick="sendDeletePostRequest('@product.Id')">Yes</button>
+							<button class="close-btn" style="background-color: red" onclick="closeConfirmationPopup('@product.Id')">No</button>
+						</div>
+					</div>
+				</div>
+			}
+    
+		</div>
+	</div>
+    
+</div>
+
+<script>
+
+function showConfirmationPopup(productId) {
+    document.getElementById("confirmationPopup_" + productId).style.display = "block";
+}
+
+function closeConfirmationPopup(productId) {
+    document.getElementById("confirmationPopup_" + productId).style.display = "none";
+}
+
+function sendDeletePostRequest(clickedId) {
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("DeleteProduct", "Admin")',
+        data: { id: clickedId },
+        success: function (response) {
+            console.log("Post request successful");
+			window.location.href = '@Url.Action("Products","Company")'
+            closeConfirmationPopup(clickedId);
+        },
+        error: function (error) {
+            console.error("Error in post request", error);
+        }
+    });
+}
+</script>
+</body>

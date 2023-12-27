@@ -12,7 +12,7 @@ public static class CompanyServices
 {
     
     private const string AddCompanyUrl = "https://localhost:7082/api/Company/Add";
-
+    private const string GetCompanyProductsUrl = "https://localhost:7082/api/Company/GetCompanyProducts";
     public static async Task<JObject> AddCompany(CompanyAddDto companyAddDto,string accessToken)
     {
         using (var client = new HttpClient())
@@ -22,6 +22,19 @@ public static class CompanyServices
             var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
             var response = await client.PostAsync(AddCompanyUrl,content);
+            if (response.IsSuccessStatusCode)
+                return JObject.Parse(await response.Content.ReadAsStringAsync());
+        }
+        return new JObject();
+    }
+    
+    public static async Task<JObject> GetCompanyProducts(string accessToken)
+    {
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
+            var response = await client.GetAsync(GetCompanyProductsUrl);
             if (response.IsSuccessStatusCode)
                 return JObject.Parse(await response.Content.ReadAsStringAsync());
         }

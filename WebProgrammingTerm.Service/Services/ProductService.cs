@@ -31,6 +31,17 @@ public class ProductService:GenericService<Product>,IProductService
         var updatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var productEntity = await GetProductWithCompany(productUpdateDto.TargetProductId);
 
+        var role = claimsIdentity.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (role =="Company")
+        {
+            var companyEntity = await _companyService.GetCompanyByName(claimsIdentity.FindFirst(ClaimTypes.Name).Value);
+            if (productEntity.CompanyId != companyEntity.Id)
+            {
+                throw new Exception(ResponseMessages.ProductNotFound);
+
+            }
+        }
         if (productEntity is null)
             throw new Exception(ResponseMessages.ProductNotFound);
 

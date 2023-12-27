@@ -59,7 +59,8 @@ public class AdminController : Controller
 
         var roleObject = await AdminServices.GetRole(accessToken);
 
-        if (roleObject["data"].ToObject<string>() != "Admin")
+        var role = roleObject["data"].ToObject<string>();
+        if (role != "Admin" && role!="Company")
             return RedirectToAction("Home", "Home");
 
         var productObject = await ProductServices.GetProduct(id);
@@ -90,7 +91,8 @@ public class AdminController : Controller
 
         var roleObject = await AdminServices.GetRole(accessToken);
 
-        if (roleObject["data"].ToObject<string>() != "Admin")
+        var role = roleObject["data"].ToObject<string>();
+        if (role != "Admin" && role!="Company")
             return RedirectToAction("Home", "Home");
 
 
@@ -101,7 +103,11 @@ public class AdminController : Controller
 
         if (updateResultObject["errors"].HasValues)
             return RedirectToAction("Index", "ErrorPage");
+
+        if (role == "Company")
+            return RedirectToAction("Index", "Company");
             
+        
         
         return RedirectToAction("Products");
     }
@@ -116,7 +122,8 @@ public class AdminController : Controller
 
         var roleObject = await AdminServices.GetRole(accessToken);
 
-        if (roleObject["data"].ToObject<string>() != "Admin")
+        var role = roleObject["data"].ToObject<string>();
+        if (role != "Admin" && role!="Company")
             return RedirectToAction("Home", "Home");
 
         var deleteResult = await ProductServices.DeleteProductById(id, accessToken);

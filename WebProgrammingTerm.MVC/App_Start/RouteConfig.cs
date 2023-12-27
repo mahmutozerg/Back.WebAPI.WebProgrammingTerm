@@ -134,7 +134,6 @@ public class RouteConfig
             defaults: new { controller = "Favorites", action = "Index" }
         );
         
-
         routes.MapRoute(
             name: "Default",
             url: "{controller}/{action}/{id}",

@@ -11,7 +11,6 @@ function addToCart(productId) {
     var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
     cartItems.push(productId);
-
     localStorage.setItem('cart', JSON.stringify(cartItems));
     
     console.log('Product added to cart:', productId);

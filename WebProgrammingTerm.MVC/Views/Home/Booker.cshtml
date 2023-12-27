@@ -65,6 +65,7 @@
                                         <strong class="card-title">
                                             <a  style="color:inherit">
                                                 @{
+                      
                                                     var name = item["publisher"].ToString().Replace("-", " ");
                                                     var titleCaseName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name);
 
@@ -75,7 +76,7 @@
                                          @{
                                              var truncatedName = item["name"].ToString().Length > 60
                                                  ? item["name"].ToString().Substring(0, 57) + "..."
-                                                 : item["name"].ToString();
+                                                 : item["name"].ToString().PadRight(60-item["name"].ToString().Length);
                                          }
                                          @truncatedName       
                                         <div class="carosel-product-info">

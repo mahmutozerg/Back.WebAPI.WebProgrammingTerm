@@ -76,8 +76,7 @@ public class OrderService:GenericService<Order>,IOrderService
     public async Task<CustomResponseListDataDto<Order>> GetUserOrdersAsync(ClaimsIdentity claimsIdentity)
     {
         var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-
+        
         var order = await _orderRepository
             .Where(o => o != null && o.UserId == userId && !o.IsDeleted)
             .Include(o=>o.OrderDetail)

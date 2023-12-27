@@ -104,7 +104,6 @@ public class ProfileController : Controller
             Response.Cookies["refreshToken"].Expires = DateTime.Now.AddDays(-1);
             RedirectToAction("Index", "ErrorPage");
         }
-
         if (!jsonObject["errors"]!.HasValues)
         {
             Response.Cookies["accessToken"].Expires = DateTime.Now.AddDays(-1);

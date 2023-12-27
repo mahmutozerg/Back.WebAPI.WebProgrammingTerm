@@ -108,7 +108,6 @@ public class UserService:GenericService<User>,IUserService
         if (userEntity.Email != tempData)
         {
             await SendUpdateReqToAuthAsync(updateDto, accessToken);
-
         }
         userEntity.UpdatedBy = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         _userRepository.Update(userEntity);

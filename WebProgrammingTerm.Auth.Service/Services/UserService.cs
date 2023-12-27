@@ -138,14 +138,15 @@ public class UserService:GenericService<User>,IUserService
 
         if (userId == null)
             return Response<NoDataDto>.Fail("User not found", 404, true);
-
+        
         var userEntityExist = await _userManager.FindByNameAsync(appUserUpdateDto.Email.Split('@')[0]);
-        if (userEntityExist is not null)
+        var userEntityAgain = await _userManager.FindByIdAsync(userId);
+        if (userEntityExist is not null && userEntityAgain is  null)
         {
             return Response<NoDataDto>.Fail("Email already taken", 409, true);
 
         }
-        var userEntity = await _userManager.FindByIdAsync(userId);
+        var userEntity = await _userManager.FindByIdAsync(appUserUpdateDto.Id);
         if (userEntity == null) 
             return Response<NoDataDto>.Fail("User not found", 404, true);
         

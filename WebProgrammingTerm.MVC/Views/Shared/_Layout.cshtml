@@ -48,7 +48,7 @@
                 </a>
             </div>
             
-                @using (Html.BeginForm("Search", "Product", FormMethod.Get))
+                @using (Html.BeginForm("Search", "Product", FormMethod.Post))
                 {
                     <div class="search-bar">
                         <input type="text" name="searchTerm" placeholder="Search">

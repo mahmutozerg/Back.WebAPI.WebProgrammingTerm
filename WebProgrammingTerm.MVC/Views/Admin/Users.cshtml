@@ -46,7 +46,7 @@
 			<div class="link_holder">
 				<div class="profile_sections">
 					<a href="@Url.Action("Products", "Admin")"><button type="button" >Products</button></a>
-					<a href="@Url.Action("Addresses", "Address")"><button type="button" style="color: white; background-color: #808285">Users</button></a>
+					<a href="@Url.Action("Users", "Admin")"><button type="button" style="color: white; background-color: #808285">Users</button></a>
 					<a href="@Url.Action("Index", "Favorites")"><button type="button">My Favorites</button></a>
 					<a href="@Url.Action("MyOrders", "Cart")"><button type="button">My Orders</button></a>
 					<a href="@Url.Action("SignOut", "Account")"><button type="button">Sign Out</button></a>
@@ -54,12 +54,12 @@
 			</div>
 		</div>
 	</div>
-			@using (Html.BeginForm("Users", "Admin", FormMethod.Get, new { @class = "custom-form",position="absolute" }))
-            {
-                <div class="search-barp">
-                    <input type="text" name="email" placeholder="Search">
-                </div>
-            }
+	@using (Html.BeginForm("Users", "Admin", FormMethod.Get, new { @class = "custom-form",position="absolute" }))
+	{
+		<div class="search-barp">
+			<input type="text" name="email" placeholder="Search">
+		</div>
+	}
 	<div class="Users">
 
 		@foreach (var user in Model)
@@ -89,6 +89,14 @@
 		}
 	</div>
 </div>
+	<div class="buttons" style="width: 5% ; height: 5%; display: flex;position:relative;left: 52%;margin-top: 5%;">
+		<a href="@Url.Action("Users","Admin",new {name= ViewData["AdminUserEmail"].ToString(),page= int.Parse(ViewData["AdminUserPage"].ToString())-1})" class="right_button" style="width: 50%;height: 100%">
+			<img src = "../../Content/WebAssets/arrow_left.svg"/>
+		</a>
+		<a href="@Url.Action("Users","Admin",new {name= ViewData["AdminUserEmail"].ToString(),page= int.Parse(ViewData["AdminUserPage"].ToString())+1})" class="right_button" style="width: 50%;height: 100%">
+        	<img src = "../../Content/WebAssets/arrow_right.svg"/>
+        </a>
+	</div>
 <script>
 
 function showConfirmationPopup(userId) {

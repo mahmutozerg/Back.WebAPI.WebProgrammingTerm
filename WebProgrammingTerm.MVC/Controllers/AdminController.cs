@@ -49,7 +49,6 @@ public class AdminController : Controller
         return View(products);
     }
     
-
     public async Task<ActionResult> UpdateProduct(string id)
     {
 
@@ -248,5 +247,48 @@ public class AdminController : Controller
 
 
         return userUpdateObject["errors"].HasValues ? RedirectToAction("Index", "ErrorPage") : RedirectToAction("Users");
+    }
+    
+    
+    [HttpPost]
+    public async Task<ActionResult> AddCompany(CompanyAddDto companyAddDto)
+    {
+
+        var accessToken = Request.Cookies["accessToken"]?.Value;
+
+        if (accessToken is null)
+            return RedirectToAction("Home", "Home");
+
+        var roleObject = await AdminServices.GetRole(accessToken);
+
+        if (roleObject["data"].ToObject<string>() != "Admin")
+            return RedirectToAction("Home", "Home");
+
+        var companyObject = await CompanyServices.AddCompany(companyAddDto, accessToken);
+
+        if (!companyObject.HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+        if (companyObject["errors"].HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+
+        return View();
+
+    }
+    
+    public async Task<ActionResult> AddCompany()
+    {
+
+        var accessToken = Request.Cookies["accessToken"]?.Value;
+
+        if (accessToken is null)
+            return RedirectToAction("Home", "Home");
+
+        var roleObject = await AdminServices.GetRole(accessToken);
+
+        if (roleObject["data"].ToObject<string>() != "Admin")
+            return RedirectToAction("Home", "Home");
+        
+        return View();
+
     }
 }

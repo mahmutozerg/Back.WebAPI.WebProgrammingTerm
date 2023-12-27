@@ -3,18 +3,30 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/profile.css">
-    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/address.css?v38">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/address.css?v39">
     <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/order.css?v3">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="../../Scripts/BookerrScripts/CartPage.js" ></script>
-    <script src="../../Scripts/BookerrScripts/AddressCarosel.js"></script>
-
+    <script src="../../Scripts/BookerrScripts/AddressCarosel.js?v7"></script>
+    <style>
+        
+         .carousel-next-btn {
+             position: absolute;
+             margin-top: 7%;
+             left: 85%;
+        
+         }
+        
+         .carousel-prev-btn {
+             position: absolute;
+             margin-top: 7%;
+         }
+    </style>
 </head>
 
-<h2>title</h2>
 <body>
     
 <div class="mainContent" style="height: fit-content">
@@ -69,9 +81,7 @@
 
             <p style="margin-top:1%; margin-left: 65%;">Product Total &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 &nbsp;@totalPrice₺</p>
-            <p style="margin-left: 65%;">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tax
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;57.00₺</p>
+
 
             <hr style=" border-color: black; margin-top: 1.5%; border-width: 1px; width: 40%; margin-left: 60%; ">
 
@@ -150,7 +160,7 @@
                 </div>
                 <input type="radio" id="agreement" name="agreement" required="required"
                     style="width: 7%; height: 7%; margin-top: 5%; margin-left: -1%; accent-color: grey;">
-                <p style="margin-top: -4%; margin-left: 6%;">
+                <p style="margin-top: -2.5%; margin-left: 6%;">
                     I have read and approve the <a href="#" style="color: blue;">Distance Sales Agreement.</a>
                 </p>
                 <button type="submit" class="save-button">Confirm Order</button>

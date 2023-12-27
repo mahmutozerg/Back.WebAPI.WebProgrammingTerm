@@ -70,12 +70,17 @@ public class ProductController : Controller
 
         ViewData["searchterm"] = searchTerm;
         ViewData["page"] = page;
-        var products = productObject["data"].ToObject<List<ProductGetDto>>();
+        var products = productObject["data"].ToObject<List<ProductGetDto>>() ?? new List<ProductGetDto>();
 
-        if (products is null)
+        if (products.Count ==0)
         {
-            products = new List<ProductGetDto>();
+            ViewData["NXT"] = false;
+
+            return RedirectToAction("Search", new { searchTerm = searchTerm, page = page-1 });
+            
         }
+        ViewData["NXT"] = true;
+
         return View(products);
     }
 
@@ -97,12 +102,23 @@ public class ProductController : Controller
 
         ViewData["searchterm"] = searchTerm;
         ViewData["page"] = page;
+
         var products = productObject["data"].ToObject<List<ProductGetDto>>();
 
         if (products is null)
         {
             products = new List<ProductGetDto>();
         }
+        
+        if (products.Count ==0)
+        {
+            ViewData["NXT"] = false;
+
+            return RedirectToAction("Search", new { searchTerm = searchTerm, page = page-1 });
+            
+        }
+        ViewData["NXT"] = true;
+
         return View("Search",products);
     }
 

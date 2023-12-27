@@ -6,7 +6,7 @@
 }
 
 <head>
-    <link rel="stylesheet" type="text/css" href="~/Content/BookerrCSS/AdminProductUpdate.css?v1">
+    <link rel="stylesheet" type="text/css" href="~/Content/BookerrCSS/AdminProductUpdate.css?v2">
 </head>
 
 <body>
@@ -57,7 +57,7 @@
         </label>
         @Html.HiddenFor(m=>m.TargetProductId,new {value = Model.TargetProductId})
         @Html.HiddenFor(m=>m.DepotId,new {value = Model.DepotId})
-
+        <br/>
         <button type="submit" class="save-button">Save</button>
     </form>
     

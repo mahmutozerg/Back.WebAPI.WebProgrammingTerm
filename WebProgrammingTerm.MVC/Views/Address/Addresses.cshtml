@@ -2,15 +2,17 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/profile.css?v27">
-    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/address.css?v38">
+    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/address.css?v39">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <script src="~/Scripts/BookerrScripts/AddressCarosel.js?v6" defer></script>
+    <script src="~/Scripts/BookerrScripts/AddressCarosel.js?v7" defer></script>
     <script src="~/Scripts/BookerrScripts/AddressPage.js?v11"></script>
+    
+
 </head>
 
 <body>
@@ -53,30 +55,33 @@
 
                         <h3 style=" font-size: 16px; font-weight: 700">@location.Title</h3>
                         <content>
-                            <p style=" font-size: 14px; font-weight: 500;">@location.Address @location.City
-                                @location.ZipCode
+                            @{
+                                var fullAddress = location.Address + location.City + location.ZipCode;
+                                var truncatedName = fullAddress.Length > 60
+                                    ? fullAddress.Substring(0, 57) + "..."
+                                    : fullAddress;
+                                
+                            }
+                            <p style=" font-size: 14px; font-weight: 500;">
+                                @truncatedName
                             </p>
-                            <div style="position: relative;left: 22px; " >
-                                <a  style="color:#F47878 ;margin-left:60%; cursor: pointer"><i class="fa-solid fa-pen" onclick='SetClickedIndex(@Model.locations.IndexOf(location)) ;ShowAddressInfo(@Model.locations.IndexOf(location), "@location.Id", "@location.Title", "@location.Address", "@location.City", "@location.ZipCode")'></i></a>
-                            </div>
-                            
+                            <a class="pen"><i class="fa-solid fa-pen" onclick='SetClickedIndex(@Model.locations.IndexOf(location)) ;ShowAddressInfo(@Model.locations.IndexOf(location), "@location.Id", "@location.Title", "@location.Address", "@location.City", "@location.ZipCode")'></i></a>
+
                             <form action="@Url.Action("DeleteAddress")" method="POST" id="deleteForm">
                                 @Html.Hidden("locationIdToDelete", "")
 
-                                <div style="margin-top:5px;">
-                                    <a style="color:#F47878; margin-left:95%; cursor: pointer" onclick="confirmDelete(@Model.locations.IndexOf(location),'@location.Id');">
+                                    <a class="tbag" onclick="confirmDelete(@Model.locations.IndexOf(location),'@location.Id');">
                                         <button type="button" class="save-button" style="border: none; background: none; padding: 0;">
                                             <i class="fas fa-trash-can" style="color: inherit;"></i>
                                         </button>
                                     </a>
-                                </div>
                             </form>
 
 
                             <div class="popup-container" id="confirmationPopup" style="display: none;">
                                 <div class="popup-content">
                                     <div class="warning-sign">⚠️</div>
-                                    <p>Are you sure you want to delete @location.Title  </p>
+                                    <p>Are you sure you want to delete @location.Title </p>
                                     <button class="close-btn" onclick="confirmAndSubmit()">Yes</button>
                                     <button class="close-btn" style="background-color: red" onclick="closeConfirmationPopup()">No</button>
                                 </div>

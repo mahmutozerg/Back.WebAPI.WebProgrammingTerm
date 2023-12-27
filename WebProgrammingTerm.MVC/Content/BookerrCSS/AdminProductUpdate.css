@@ -18,3 +18,16 @@ body > div > form >input {
     background-color: #E6E7E8;
 
 }
+
+body > div > form > button
+{
+    width: 20%;
+    height: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    background-color: #F47878;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}

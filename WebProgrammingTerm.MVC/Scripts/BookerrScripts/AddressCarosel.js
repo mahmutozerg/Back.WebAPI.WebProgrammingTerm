@@ -68,11 +68,11 @@
         }
 
         function prevSlide() {
-            showSlide(currentIndex - 3);
+            showSlide(currentIndex - 1);
         }
 
         function nextSlide() {
-            showSlide(currentIndex + 3);
+            showSlide(currentIndex + 1);
         }
     }
 }

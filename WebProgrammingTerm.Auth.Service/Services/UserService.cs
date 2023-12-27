@@ -134,7 +134,16 @@ public class UserService:GenericService<User>,IUserService
 
     public async Task<Response<NoDataDto>> UpdateUser(AppUserUpdateDto appUserUpdateDto,ClaimsIdentity claimsIdentity)
     {
-        var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userId = "";
+        if (string.IsNullOrEmpty(appUserUpdateDto.Id))
+        {
+            userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        }
+        else
+        {
+            userId = appUserUpdateDto.Id;
+        }
 
         if (userId == null)
             return Response<NoDataDto>.Fail("User not found", 404, true);
@@ -146,7 +155,7 @@ public class UserService:GenericService<User>,IUserService
             return Response<NoDataDto>.Fail("Email already taken", 409, true);
 
         }
-        var userEntity = await _userManager.FindByIdAsync(appUserUpdateDto.Id);
+        var userEntity = await _userManager.FindByIdAsync(userId);
         if (userEntity == null) 
             return Response<NoDataDto>.Fail("User not found", 404, true);
         

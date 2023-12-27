@@ -1,0 +1,55 @@
+﻿@model SharedLibrary.DTO.CompanyAddDto
+
+
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v26">
+    <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/AdminProductUpdate.css?v2">
+    
+    <style>
+        body > div > form >input {
+            width: 95%;
+            height: fit-content;
+            font-size: 13px;
+            padding: 5px;
+            margin-bottom: 1%;
+            border-radius: 8px;
+            border:none ;
+            background-color: #E6E7E8;
+        
+        }
+    </style>
+</head>
+<body>
+<div class="mainContent" style="display: flex">
+    <div class="profileContent" style="width: fit-content;">
+        <div class="profile_section" style="width: fit-content">
+            <div class="link_holder">
+                <div class="profile_sections">
+                    <a href="@Url.Action("Products", "Admin")"><button type="button"  >Products</button></a>
+                    <a href="@Url.Action("Users", "Admin")"><button type="button">Users</button></a>
+                    <a href="@Url.Action("AddCompany", "Admin")"><button type="button" style="color: white; background-color: #808285">Add Company</button></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <form action="@Url.Action("AddCompany", "Admin")" method="POST" style="margin-left:50px;margin-top: 80px">
+        <p><strong> Company user will automatically created</strong></p>
+        <p>Company Name:</p>
+        @Html.TextBoxFor(m => m.Name, new { @class = "name-input", id = "name-input", placeholder = "Name", required = "required" })
+        <p>Company Contact:</p>
+        @Html.TextBoxFor(m => m.Contact, new { @class = "contact-input", id = "contact-input", placeholder = "Contact", required = "required" })
+
+        <button type="submit" class="save-button">Save</button>
+
+    </form>
+</div>
+
+
+
+
+
+</body>

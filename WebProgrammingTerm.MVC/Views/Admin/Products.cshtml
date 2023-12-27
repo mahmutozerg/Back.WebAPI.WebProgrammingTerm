@@ -81,21 +81,21 @@
 											<a href="@Url.Action("UpdateProduct", "Admin", new { id = product.ProductId })" style="text-decoration: underline; color: #F47878"> Update </a>
 										</div>
 										<div class="info-image">
-											<a style="text-decoration: underline; color: #F47878; cursor: pointer" onclick="showConfirmationPopup()"> Delete </a>
+											<a style="text-decoration: underline; color: #F47878; cursor: pointer" onclick="showConfirmationPopup('@product.ProductId')"> Delete </a>
 										</div>
 									</div>
 								</p>
 							</div>
 						</div>
 					</a>
-				</div>
-				<div class="popup-container" id="confirmationPopup" style="display: none;">
-					<div class="popup-content">
-						<div class="warning-sign">⚠️</div>
-						<p>Are you sure you want to delete @product.Name </p>
-						<button class="close-btn" onclick="sendDeletePostRequest('@product.ProductId')">Yes</button>
-						<button class="close-btn" style="background-color: red" onclick="closeConfirmationPopup()">No</button>
-					</div>
+					<div class="popup-container" id="confirmationPopup_@product.ProductId" style="display: none;">
+                    	<div class="popup-content">
+                    		<div class="warning-sign">⚠️</div>
+                    		<p>Are you sure you want to delete @product.Name </p>
+							<button class="close-btn" onclick="sendDeletePostRequest('@product.ProductId')">Yes</button>
+							<button class="close-btn" style="background-color: red" onclick="closeConfirmationPopup('@product.ProductId')">No</button>
+                    	</div>
+                    </div>
 				</div>
 			}
 
@@ -113,26 +113,27 @@
 	</div>
 <script>
 
-function showConfirmationPopup() {
-    document.getElementById("confirmationPopup").style.display = "block";
+function showConfirmationPopup(productId) {
+    document.getElementById("confirmationPopup_" + productId).style.display = "block";
 }
-function closeConfirmationPopup() {
-    document.getElementById("confirmationPopup").style.display = "none";
-}
-function sendDeletePostRequest(clickedId) {
-	$.ajax({
-		type: "POST",
-		url: '@Url.Action("DeleteProduct", "Admin")',
-		data: {id:clickedId},
-		success: function(response) {
 
-			console.log("Post request successful");
-			closeConfirmationPopup();
-		},
-		error: function(error) {
-			console.error("Error in post request", error);
-		}
-	});
+function closeConfirmationPopup(productId) {
+    document.getElementById("confirmationPopup_" + productId).style.display = "none";
+}
+
+function sendDeletePostRequest(clickedId) {
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("DeleteProduct", "Admin")',
+        data: { id: clickedId },
+        success: function (response) {
+            console.log("Post request successful");
+            closeConfirmationPopup(clickedId);
+        },
+        error: function (error) {
+            console.error("Error in post request", error);
+        }
+    });
 }
 </script>
 

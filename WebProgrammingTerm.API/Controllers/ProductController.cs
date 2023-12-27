@@ -71,7 +71,13 @@ public class ProductController:CustomControllerBase
         var a = await _productService.GetProductByName(page, name);
         return CreateActionResult(a);
     }
-    
+    [HttpGet("[action]/{category}/{page:int}")]
+    public async Task<IActionResult> GetProductByCategory(int page ,string category)
+    {
+
+        var a = await _productService.GetProductByCategory(page, category);
+        return CreateActionResult(a);
+    }
     [HttpDelete]
     [Authorize(Roles = "Admin,Company")]
     public async Task<IActionResult> DeleteProductById([FromQuery]string id)

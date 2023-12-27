@@ -18,15 +18,15 @@ public class AdminController:CustomControllerBase
 {
     private readonly IProductRepository _productRepository;
     private readonly IProductDetailRepository _productDetailRepository;
-    private readonly ICompanyRepository _companyRepository;
+    private readonly ICompanyService _companyService;
     private readonly IUserRepository _userRepository;
 
-    public AdminController(IProductRepository productRepository, IProductDetailRepository productDetailRepository, ICompanyRepository companyRepository, IUserRepository userRepository)
+    public AdminController(IProductRepository productRepository, IProductDetailRepository productDetailRepository, IUserRepository userRepository, ICompanyService companyService)
     {
         _productRepository = productRepository;
         _productDetailRepository = productDetailRepository;
-        _companyRepository = companyRepository;
         _userRepository = userRepository;
+        _companyService = companyService;
     }
     [HttpGet("[action]")]
     public async Task<IActionResult> GetProductsByName([FromQuery]int page=1 ,[FromQuery]string? name ="")
@@ -77,4 +77,46 @@ public class AdminController:CustomControllerBase
 
         return CreateActionResult(CustomResponseDto<User>.Success(user, ResponseCodes.Ok));
     }
+    
+        
+    [HttpDelete("[action]/{id}")]
+    public async Task<IActionResult> DeleteUserById(string id)
+    {
+
+        var user = await _userRepository.Where(u => u != null && u.Id == id)
+            .Include(u=>u.Favorites)
+            .Include(u=>u.Locations)
+            .Include(u=>u.Orders)
+            .SingleOrDefaultAsync();
+
+
+        foreach (var favorite in user.Favorites)
+        {
+            favorite.IsDeleted = true;
+        }
+        
+        foreach (var favorite in user.Favorites)
+        {
+            favorite.IsDeleted = true;
+        }
+
+        foreach (var order in user.Orders)
+        {
+            order.IsDeleted = true;
+        }
+
+        var name = user.Email.Split("@")[0];
+        var companyEntity = await _companyService.Where(c => c != null && c.Name == name && !c.IsDeleted)
+            .SingleOrDefaultAsync();
+
+        if (companyEntity is not null)
+        {
+            var company = await _companyService.ToggleDeleteCompanyById(companyEntity.Id);
+
+        }
+        
+        return CreateActionResult(CustomResponseDto<User>.Success(user, ResponseCodes.Ok));
+    }
+
+    
 }

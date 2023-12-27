@@ -102,6 +102,12 @@ public class ProductService:GenericService<Product>,IProductService
         return  CustomResponseListDataDto<ProductGetDto>.Success(dtos,200);
     }
 
+    public async Task<CustomResponseListDataDto<ProductGetDto>> GetProductByCategory(int page, string name)
+    {
+        var products = await _productRepository.GetProductsByCategory(page, name);
+        var  dtos = products.Select(product => ProductMapper.ToAddDto(product)).ToList();
+        return  CustomResponseListDataDto<ProductGetDto>.Success(dtos,200);    }
+
     public async Task<CustomResponseDto<ProductWCommentDto>> GetProductWithComments(string id)
     {
         var products = await _productRepository.Where(p => p != null  && p.Id == id)

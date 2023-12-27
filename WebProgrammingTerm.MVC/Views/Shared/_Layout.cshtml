@@ -50,9 +50,9 @@
             
                 @using (Html.BeginForm("Search", "Product", FormMethod.Get))
                 {
-                <div class="search-bar">
-                    <input type="text" name="searchTerm" placeholder="Search">
-                </div>
+                    <div class="search-bar">
+                        <input type="text" name="searchTerm" placeholder="Search">
+                    </div>
                 }
 
             <div class="profile-image">
@@ -75,12 +75,12 @@
             </div>
         </div>
         <div class="vertical-stripe">
-            <a href="../UnderDevelopement/UnderDevelopementPage.html" class="stripe-item">Novel</a>
-            <a href="../UnderDevelopement/UnderDevelopementPage.html" class="stripe-item">Self Improvement</a>
-            <a href="../UnderDevelopement/UnderDevelopementPage.html" class="stripe-item">Kids</a>
-            <a href="../UnderDevelopement/UnderDevelopementPage.html" class="stripe-item">Manga</a>
-            <a href="../UnderDevelopement/UnderDevelopementPage.html" class="stripe-item">History</a>
-            <a href="../UnderDevelopement/UnderDevelopementPage.html" class="stripe-item">Other</a>
+            <a href="@Url.Action("SearchByCategory","Product",new{searchTerm = "Roman",page=1})" class="stripe-item">Novel</a>
+            <a href="@Url.Action("SearchByCategory","Product",new{searchTerm = "Kişisel Gelişim",page=1})" class="stripe-item">Self Improvement</a>
+            <a href="@Url.Action("SearchByCategory","Product",new{searchTerm = "Çocuk",page=1})" class="stripe-item">Kids</a>
+            <a href="@Url.Action("SearchByCategory","Product",new{searchTerm = "E-kitap",page=1})" class="stripe-item">E Book</a>
+            <a href="@Url.Action("SearchByCategory","Product",new{searchTerm = "Egitim",page=1})" class="stripe-item">Education</a>
+            <a href="@Url.Action("SearchByCategory","Product",new{searchTerm = "Edebiyat",page=1})" class="stripe-item">Literature</a>
         </div>
     </header>
 

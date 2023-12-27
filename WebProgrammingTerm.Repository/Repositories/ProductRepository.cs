@@ -44,6 +44,20 @@ public class ProductRepository:GenericRepository<Product>,IProductRepository
 
         return query.ToHashSet().ToList();
     }
+    public async Task<List<Product>> GetProductsByCategory(int page, string name)
+    {
+        var query = await _products
+            .Where(p => p.Stock >= 0 && !p.IsDeleted &&
+                        p.Category.Contains(name))
+            .Skip((21) * (page - 1))
+            .Take(21)
+            .Include(p => p.ProductDetail)
+            .Include(p => p.Company)
+            .AsNoTracking()
+            .ToListAsync();
+
+        return query.ToHashSet().ToList();
+    }
 
     public async Task<List<Product>> GetProductsByNameAdmin(int page,string name)
     {

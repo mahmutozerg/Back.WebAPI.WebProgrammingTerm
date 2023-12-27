@@ -100,17 +100,7 @@ public class UserService:GenericService<User>,IUserService
             }
 
         }
-        if (updateDto.IsDeleted)
-        {
-            var name = userEntity.Email.Split("@")[0];
-            var  companyEntity = await _companyService.Where(c => c != null && c.Name == name && !c.IsDeleted).SingleOrDefaultAsync();
-
-            if (companyEntity is not null)
-            {
-                await _companyService.ToggleDeleteCompanyById(companyEntity.Id);
-
-            }
-        }
+        
         var tempData = userEntity.Email;
         userEntity = AppUserMapper.UpdateUser(userEntity, updateDto);
 

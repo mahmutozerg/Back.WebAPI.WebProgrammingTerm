@@ -20,6 +20,7 @@ public static class UserServices
     private const string UpdateUserInfo = "https://localhost:7082/api/User/Update";
     private const string CreateTokenByRefreshTokenUrl = "https://localhost:7049/api/Auth/CreateTokenByRefreshToken";
     private const string UpdateUserPasswordUrl = "https://localhost:7049/api/User/UpdateUserPassword";
+    private const string DeleteUserUrl = "https://localhost:7082/api/Admin/DeleteUserById";
     public static async Task<JObject> CreateTokenByRefreshToken(string refreshToken)
     {
         using (var client = new HttpClient())
@@ -225,6 +226,25 @@ public static class UserServices
             
             
         };
+    }
+
+
+    public static async Task<JObject> DeleteUserById(string id,string token)
+    {
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.DeleteAsync(DeleteUserUrl+"/"+Uri.EscapeDataString(id));
+
+            var a = DeleteUserUrl + "/" + Uri.EscapeDataString(id);
+            if (response.IsSuccessStatusCode)
+            {            
+                return JObject.Parse(await response.Content.ReadAsStringAsync());
+            }
+        }
+
+        return new JObject();
     }
 
 }

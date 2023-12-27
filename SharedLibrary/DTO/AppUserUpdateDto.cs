@@ -11,5 +11,4 @@ public class AppUserUpdateDto
     public string BirthDate { get; set; } = string.Empty;
     public bool? Gender { get; set; }
 
-    public bool IsDeleted { get; set; } = false;
 }

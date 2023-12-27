@@ -27,11 +27,6 @@
          <p>Email (if user is also company it will be updated to)</p>
         @Html.TextBoxFor(m=>m.Email ,new { @class = "BirthDate-input", id = "BirthDate-input", value =Model.Email ,required="required"})
 
-                
-        <p>Is Deleted: (For deletion see previous page, Use it for remove soft delete)</p>
-        <label>
-            @Html.CheckBoxFor(m => m.IsDeleted, new { @class = "isd-input", id = "isd-input" }) Toggle IsDeleted
-        </label>
         @Html.HiddenFor(m=>m.Id,new {value = Model.Id})
         <button type="submit" class="save-button">Save</button>
     </form>

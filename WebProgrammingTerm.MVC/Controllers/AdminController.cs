@@ -127,6 +127,32 @@ public class AdminController : Controller
 
     }
     
+    [HttpPost]
+    public async Task<ActionResult> DeleteUser(string id)
+    {
+        var accessToken = Request.Cookies["accessToken"]?.Value;
+
+        if (accessToken is null)
+            return RedirectToAction("Home", "Home");
+
+        var roleObject = await AdminServices.GetRole(accessToken);
+
+        if (roleObject["data"].ToObject<string>() != "Admin")
+            return RedirectToAction("Home", "Home");
+
+        var deleteResult = await UserServices.DeleteUserById(id, accessToken);
+
+        if (!deleteResult.HasValues)
+            return Json(new {success = true, redir = @Url.Action("Index","ErrorPage" ) });
+        
+
+        if (deleteResult["errors"].HasValues)
+            return Json(new {success = true, redir = @Url.Action("Index","ErrorPage" ) });
+
+        var responseData = new {success = true, redir = @Url.Action("Products" ) };
+        return Json(responseData);
+
+    }
     
     public async Task<ActionResult> Users(string email="", int page=1)
     {
@@ -146,6 +172,13 @@ public class AdminController : Controller
 
 
         var usersObject = await AdminServices.GetUsersByEmail(email, page, accessToken);
+
+        if (!usersObject.HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+        
+        if (usersObject["errors"].HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+        
         var users = usersObject["data"].ToObject<List<User>>();
 
         ViewData["AdminUserPage"] = page;
@@ -207,7 +240,6 @@ public class AdminController : Controller
             Gender = user.Gender,
             LastName = user.LastName,
             Name = user.Name,
-            IsDeleted = user.IsDeleted
         };
 
         var userUpdateObject =await UserServices.UpdateUserProfile(userUpdateDto, accessToken);

@@ -73,17 +73,17 @@
 						<a href="@Url.Action("UpdateUser",new {id = @user.Id})" style="text-decoration: underline; color: #F47878"> Update </a>
 					</div>
 					<div class="info-image">
-						<a style="text-decoration: underline; color: #F47878; cursor: pointer" onclick="showConfirmationPopup()"> Delete </a>
+						<a style="text-decoration: underline; color: #F47878; cursor: pointer" onclick="showConfirmationPopup('@user.Id')"> Delete </a>
 					</div>
 				</div>
 			</div>
 			
-			<div class="popup-container" id="confirmationPopup" style="display: none;">
+			<div class="popup-container" id="confirmationPopup_@user.Id" style="display: none;">
 				<div class="popup-content">
 					<div class="warning-sign">⚠️</div>
 					<p>Are you sure you want to delete @user.Email </p>
 					<button class="close-btn" onclick="sendDeletePostRequest('@user.Id')">Yes</button>
-					<button class="close-btn" style="background-color: red" onclick="closeConfirmationPopup()">No</button>
+					<button class="close-btn" style="background-color: red" onclick="closeConfirmationPopup('@user.Id')">No</button>
 				</div>
 			</div>
 		}
@@ -91,14 +91,27 @@
 </div>
 <script>
 
-function showConfirmationPopup() {
-    document.getElementById("confirmationPopup").style.display = "block";
+function showConfirmationPopup(userId) {
+    document.getElementById("confirmationPopup_" + userId).style.display = "block";
 }
-function closeConfirmationPopup() {
-    document.getElementById("confirmationPopup").style.display = "none";
-}
-function sendDeletePostRequest(clickedId) {
 
+function closeConfirmationPopup(userId) {
+    document.getElementById("confirmationPopup_" + userId).style.display = "none";
+}
+
+function sendDeletePostRequest(clickedId) {
+    $.ajax({
+        type: "POST",
+        url: '@Url.Action("DeleteUser", "Admin")',
+        data: { id: clickedId },
+        success: function (response) {
+            console.log("Post request successful");
+            closeConfirmationPopup(clickedId);
+        },
+        error: function (error) {
+            console.error("Error in post request", error);
+        }
+    });
 }
 </script>
 

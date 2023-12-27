@@ -35,7 +35,12 @@ public class RouteConfig
             url: "admin/products/delete/{id}",
             defaults: new { controller = "Admin", action = "DeleteProduct" }
         );
-        
+        routes.MapRoute(
+            name: "AdminUserDeleteRoute",
+            url: "admin/User/delete/{id}",
+            defaults: new { controller = "Admin", action = "DeleteUser" }
+        );
+
         routes.MapRoute(
             name: "AdminUsersRoute",
             url: "admin/users",
@@ -94,6 +99,11 @@ public class RouteConfig
             name: "ProductSearchRoute",
             url: "product/search/{searchTerm}",
             defaults: new { controller = "Product", action = "Search" }
+        );
+        routes.MapRoute(
+            name: "ProductSearchByCategoryRoute",
+            url: "product/SearchByCategory/{searchTerm}",
+            defaults: new { controller = "Product", action = "SearchByCategory" }
         );
         routes.MapRoute(
             name: "AddToCartRoute",

@@ -79,7 +79,32 @@ public class ProductController : Controller
         return View(products);
     }
 
+    public async Task<ActionResult> SearchByCategory(string searchTerm = "",int page = 1)
+    {
 
+        if (page < 1)
+        {
+            page = 1;
+        }
+        var productObject = await ProductServices.GetProductFromCategory(searchTerm, page);
+
+        if (!productObject.HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+
+        if (productObject["errors"].HasValues)
+            return RedirectToAction("Index", "ErrorPage");
+
+
+        ViewData["searchterm"] = searchTerm;
+        ViewData["page"] = page;
+        var products = productObject["data"].ToObject<List<ProductGetDto>>();
+
+        if (products is null)
+        {
+            products = new List<ProductGetDto>();
+        }
+        return View("Search",products);
+    }
 
  
 }

@@ -55,7 +55,18 @@ namespace WebProgrammingTerm.MVC.Services
 
             return new JObject();
         }
-        
+        public static async Task<JObject> GetProductFromCategory(string category,int page)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(Url + $"/GetProductByCategory/{Uri.EscapeDataString(category)}/{page}");
+
+                if (response.IsSuccessStatusCode)
+                    return JObject.Parse(await response.Content.ReadAsStringAsync());
+            }
+
+            return new JObject();
+        }
         public static async Task<JObject> UpdateProduct(ProductUpdateDto productUpdateDto,string accessToken)
         {
             using (var client = new HttpClient())

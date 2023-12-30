@@ -183,8 +183,7 @@
 		</div>
 	</div>
 </div>
-	@if (ViewData["NXT"] is bool eopValue && eopValue)
-	{
+
 		<div class="buttons" style="width: 5% ; height: 5%; display: flex;position:relative;left: 52%;margin-top: 5%;">
 			<a class="left_button" href ="@Url.Action("Search","Product",new {searchTerm= ViewData["searchterm"].ToString(),page= int.Parse(ViewData["page"].ToString())-1})" style="width: 50%;height: 100%;margin-right: 10%">
 				<img src = "../../Content/WebAssets/arrow_left.svg"/>
@@ -193,7 +192,6 @@
 				<img src = "../../Content/WebAssets/arrow_right.svg"/>
 			</a>
 		</div>
-	}
 
 <script>
     function showPopup() {

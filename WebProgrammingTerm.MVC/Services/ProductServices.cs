@@ -101,6 +101,24 @@ namespace WebProgrammingTerm.MVC.Services
             return new JObject();
 
         }
+        
+        
+        public static async Task<JObject> AddProduct(ProductAddDto productAddDto,string accessToken)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                var jsonData = JsonConvert.SerializeObject(productAddDto);
+                var content = new StringContent(jsonData, Encoding.UTF8, "application/json");               
+                var response = await client.PostAsync(Url,content);
+
+                if (response.IsSuccessStatusCode)
+                    return JObject.Parse(await response.Content.ReadAsStringAsync());
+            }
+
+            return new JObject();
+
+        }
     }
     
 

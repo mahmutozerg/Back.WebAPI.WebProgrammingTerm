@@ -72,14 +72,7 @@ public class ProductController : Controller
         ViewData["page"] = page;
         var products = productObject["data"].ToObject<List<ProductGetDto>>() ?? new List<ProductGetDto>();
 
-        if (products.Count ==0)
-        {
-            ViewData["NXT"] = false;
 
-            return RedirectToAction("Search", new { searchTerm = searchTerm, page = page-1 });
-            
-        }
-        ViewData["NXT"] = true;
 
         return View(products);
     }

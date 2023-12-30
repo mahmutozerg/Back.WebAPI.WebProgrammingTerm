@@ -1,0 +1,69 @@
+﻿@model WebProgrammingTerm.MVC.Models.CompanyProductAdd
+
+
+<head>
+    
+    
+	    <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/HomePage.css">
+        <link rel="stylesheet" type="text/css" href="../../Content/BookerrCSS/Products.css">
+        <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/profile.css?v27">
+        <link rel="stylesheet" type="text/css" href="/Content/BookerrCSS/AdminProductUpdate.css?v27">
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</head>
+
+<body>
+<div class="mainContent" style="display: flex">
+<form action="@Url.Action("AddProducts")" method="POST">
+        
+        <p>Name:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.Name ,new { @class = "name-input", id = "name-input", value =Model.ProductAddDto.Name, required = "required" })
+        <p>Image Url:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.ImagePath ,new { @class = "image-input", id = "image-input", value =Model.ProductAddDto.ImagePath, required = "required" })
+        
+        <p>Category:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.Category ,new { @class = "categ-input", id = "categ-input", value =Model.ProductAddDto.Category, required = "required" })
+        
+        <p>Author:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.Author ,new { @class = "author-input", id = "author-input", value =Model.ProductAddDto.Author, required = "required" })
+        
+         <p>Stock:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.Stock ,new { @class = "stock-input", id = "stock-input", value =Model.ProductAddDto.Stock, required = "required" , type = "number" })
+        
+        <p>Price:</p>
+        @Html.TextBoxFor(m => m.ProductAddDto.Price, new { @class = "price-input", id = "price-input", value = Model.ProductAddDto.Price, required = "required", type = "number", step = "any" })
+        
+       
+
+        <p>Discount Rate:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.DiscountRate ,new { @class = "dr-input", id = "dr-input", value =Model.ProductAddDto.DiscountRate, required = "required" , type = "number", step = "any" })
+        
+        <p>Publish Date:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.PublishDate ,new { @class = "pd-input", id = "pd-input", value =Model.ProductAddDto.PublishDate, required = "required" })
+        
+        <p>Publisher:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.Publisher ,new { @class = "p-input", id = "p-input", value =Model.ProductAddDto.Publisher, required = "required" })
+
+        <p>Language:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.Language ,new { @class = "lang-input", id = "lang-input", value =Model.ProductAddDto.Language, required = "required" })
+        
+        <p>Size:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.Size ,new { @class = "s-input", id = "s-input", value =Model.ProductAddDto.Size, required = "required" })        
+        
+        <p>Page:</p>
+        @Html.TextBoxFor(m=>m.ProductAddDto.Page ,new { @class = "page-input", id = "page-input", value =Model.ProductAddDto.Page, required = "required" })
+        
+
+        <div class="form-group">
+            @Html.DropDownListFor(m => m.ProductAddDto.DepotId, new SelectList(Model.Depots, "Id", "City"), "Select Depot", new { @class = "depot-dropdown", id = "depot-dropdown", required = "required" })
+        </div>
+            
+        <br/>
+        <button type="submit" class="save-button">Save</button>
+    </form>
+    
+
+    
+</div>
+
+</body>

@@ -63,6 +63,12 @@ public class RouteConfig
             url: "company/products",
             defaults: new { controller = "Company", action = "Products" }
         );
+        
+        routes.MapRoute(
+            name: "CompanyAddProductsRoute",
+            url: "company/addproduct",
+            defaults: new { controller = "Company", action = "AddProducts" }
+        );
         routes.MapRoute(
             name: "ProfileRoute",
             url: "profile",

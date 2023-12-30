@@ -143,6 +143,7 @@
     </Compile>
     <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\CompanyProductAdd.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\SignUpDto.cs" />
     <Compile Include="Models\UserModels.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Services\AdminServices.cs" />
     <Compile Include="Services\CartServices.cs" />
     <Compile Include="Services\CompanyServices.cs" />
+    <Compile Include="Services\DepotServices.cs" />
     <Compile Include="Services\FavoritesService.cs" />
     <Compile Include="Services\ProductServices.cs" />
     <Compile Include="Services\UserServices.cs" />
@@ -257,6 +259,7 @@
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\MyOrders.cshtml" />
+    <Content Include="Views\Company\AddProducts.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Company\Products.cshtml" />
     <Content Include="Views\Contact\ContactIndex.cshtml" />

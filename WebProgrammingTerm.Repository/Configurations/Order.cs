@@ -15,12 +15,13 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .HasForeignKey(o => o.UserId)
             .OnDelete(DeleteBehavior.NoAction);
 
-        builder.HasMany<Product>(o => o.Products).WithMany(p => p.Orders);
-         
+        builder.
+            HasMany<Product>(o => o.Products)
+            .WithMany(p => p.Orders);
+
         builder
             .HasOne(o => o.OrderDetail)
             .WithOne(od => od.Order)
             .HasForeignKey<OrderDetail>(od => od.OrderId);
-        ;
     }
 }

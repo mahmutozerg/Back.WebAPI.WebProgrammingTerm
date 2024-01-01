@@ -87,7 +87,8 @@ public class ProfileController : Controller
     {
         var accessToken = Request.Cookies["accessToken"]?.Value;
         var refreshToken = Request.Cookies["refreshToken"]?.Value;
-        
+        TempData["PasswordChanged"] = false;
+
         if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken))
             return RedirectToAction("SignIn", "Account");
 

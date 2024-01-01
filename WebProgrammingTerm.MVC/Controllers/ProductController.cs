@@ -103,11 +103,11 @@ public class ProductController : Controller
             products = new List<ProductGetDto>();
         }
         
-        if (products.Count ==0)
+        if (products.Count ==0 && page >2)
         {
             ViewData["NXT"] = false;
 
-            return RedirectToAction("Search", new { searchTerm = searchTerm, page = page-1 });
+            return RedirectToAction("SearchByCategory", new { searchTerm = searchTerm, page = page-1 });
             
         }
         ViewData["NXT"] = true;

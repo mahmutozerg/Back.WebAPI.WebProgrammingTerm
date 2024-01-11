@@ -34,3 +34,4 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgramming
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.pdb
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.genruntimeconfig.cache
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\ref\WebProgrammingTerm.Auth.Repository.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\WebProgrammingTerm.Auth.Repository\obj\Debug\net7.0\WebProgrammingTerm.Auth.Repository.sourcelink.json

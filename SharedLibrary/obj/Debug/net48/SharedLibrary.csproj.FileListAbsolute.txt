@@ -18,3 +18,4 @@ C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.Text.Encodings.Web.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.Threading.Tasks.Extensions.dll
 C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\bin\Debug\net48\System.ValueTuple.dll
+C:\Users\karak\OneDrive\Masaüstü\Back.WebAPI.WebProgrammingTerm\SharedLibrary\obj\Debug\net48\SharedLibrary.sourcelink.json

@@ -393,8 +393,6 @@ m
 =WebProgrammingTerm.Repository/Configurations/OrderDetailed.cs,e\c\ec21462178b9b169d09996ce44586818315a4d0c
 O
 SharedLibrary/Models/Company.cs,5\c\5cf718f01b64ddabc9928415b8ab62931c7727d9
-M
-SharedLibrary/Models/Order.cs,a\b\ab87fa029e986e5929ddbf97447782d3a8109b53
 j
 :WebProgrammingTerm.Core/Repositories/ICompanyRepository.cs,9\9\99378ce2082a81e79d1927b5ca6e955aa76e9ef2
 k
@@ -463,16 +461,10 @@ _
 /WebProgrammingTerm.MVC/Views/Home/Booker.cshtml,6\5\6564558e176db9865dfc5099e879bbaa072bbb80
 a
 1WebProgrammingTerm.MVC/Views/Product/Index.cshtml,0\0\0029e92bc73c256904d75009601f735181cc8810
-b
-2WebProgrammingTerm.MVC/Views/Shared/_Layout.cshtml,2\7\27d819ffcdf10b872132137880fcefbb96c71ed1
 g
 7WebProgrammingTerm.MVC/Views/Company/AddProducts.cshtml,3\4\346774c78617204b5edc9f5ac7a823826561ce6e
-g
-7WebProgrammingTerm.MVC/Controllers/ProductController.cs,2\8\28eb92e97a2f035e5864a09f14bec3649f91f74e
 d
 4WebProgrammingTerm.MVC/Content/BookerrCSS/Header.css,1\4\143f19a0821221403ebe94324d959957dc20a7e8
-b
-2WebProgrammingTerm.MVC/Views/Product/Search.cshtml,7\b\7b632afce49b1dc0c8447fcc87bb8aab62a8efd1
 g
 7WebProgrammingTerm.MVC/Controllers/AccountController.cs,b\5\b58a7da381c336f8e0465db138ab014d34b0cc4b
 _

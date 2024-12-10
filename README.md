@@ -8,6 +8,11 @@ https://github.com/YasinKarabulutt
 https://github.com/ebr4ryiit
 https://github.com/ebr4ryiit
 
+DOCS:
+
+[AnalysisReportGroup5.pdf](https://github.com/user-attachments/files/18079873/AnalysisReportGroup5.pdf)
+
+
 Known issues:
 
 Category search doesn't work as intended when user tries to search by product name in the category search page
